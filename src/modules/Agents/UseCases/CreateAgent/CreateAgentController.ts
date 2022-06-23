@@ -8,7 +8,7 @@ interface IRequest{
 }
 
 class CreateAgentController{
-  createAgentUseCase: CreateAgentUseCase
+  private createAgentUseCase: CreateAgentUseCase
   constructor(createAgentUseCase:CreateAgentUseCase) {
     this.createAgentUseCase = createAgentUseCase
   }
