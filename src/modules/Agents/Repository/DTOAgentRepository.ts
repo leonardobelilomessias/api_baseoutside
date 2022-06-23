@@ -25,4 +25,4 @@ interface DTOAgentRepository{
 
   find({email}):Promise<Agent>
 }
-export {DTOAgentRepository,CreateAgent}
+export {DTOAgentRepository,CreateAgent} 
