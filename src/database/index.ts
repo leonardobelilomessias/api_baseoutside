@@ -1,4 +1,5 @@
 import { DataSource } from "typeorm";
+import { Agent } from "../modules/Agents/Entities/Agent";
 
 export const AppDataSource = new DataSource({
   type: "mysql",
@@ -7,12 +8,10 @@ export const AppDataSource = new DataSource({
   username: "root",
   password: "Leo175033",
   database: "crowdforeign",
-  synchronize: true,
-  logging: true,
-  entities: [],
+  entities: [Agent],
   subscribers: [],
   migrations: ["./src/database/migrations/*.ts"],
-  migrationsRun:true
+
  
 
   

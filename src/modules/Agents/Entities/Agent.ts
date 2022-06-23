@@ -5,6 +5,7 @@ import {v4 as uuidv4} from 'uuid'
 class Agent{
   @PrimaryColumn()
   id?: string;
+
   @Column()
   name: string;
 
@@ -15,10 +16,13 @@ class Agent{
   password: string;
 
   @Column()
-  describe: string;
+  description: string;
 
   @Column()
   image_profile: string;
+
+  @Column()
+  is_active:boolean
 
   @CreateDateColumn()
   create_at: Date;
@@ -31,3 +35,4 @@ class Agent{
 
 
 }
+export {Agent}

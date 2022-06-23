@@ -1,3 +1,4 @@
+import { type } from "os"
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
 export class CreateAgent1655849858546 implements MigrationInterface {
@@ -10,12 +11,17 @@ export class CreateAgent1655849858546 implements MigrationInterface {
                     columns: [
                         {
                             name: "id",
-                            type: "binary(16)",
-                            isPrimary:true
+                            type: "varchar",
+                            isPrimary: true,
+                            length:"36"
                         },
                         {
                             name: "name",
                             type:"varchar(50)"
+                        },
+                        {
+                            name: "email",
+                            type:"varchar"
                         },
                         {
                             name: "password",
@@ -23,20 +29,28 @@ export class CreateAgent1655849858546 implements MigrationInterface {
                         },
                         {
                             name: "description",
-                            type:"text(4000)"
+                            type: "text(4000)",
+                            isNullable:true
                         },
                         {
                             name: "image_profile",
-                            type:"varchar"
+                            type: "varchar",
+                            isNullable:true
                         },
                         {
                             name: "balance",
-                            type:"int"
+                            type: "decimal(15,2)",
+                            default:0.00
                         },
                         {
                             name: 'create_at',
                             type: "timestamp",
                             default:"now()"
+                        },
+                        {
+                            name: "is_active",
+                            type: "boolean",
+                            default:true
                         }
 
                     ] ,
