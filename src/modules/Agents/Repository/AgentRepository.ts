@@ -2,6 +2,7 @@ import { Repository } from "typeorm"
 import { AppDataSource } from "../../../database"
 import { Agent } from "../Entities/Agent"
 import { CreateAgent, DTOAgentRepository } from "./DTOAgentRepository"
+import{hash} from 'bcrypt'
 
 class AgentRepository implements DTOAgentRepository {
   agentRepository: Repository<Agent>
@@ -13,7 +14,8 @@ class AgentRepository implements DTOAgentRepository {
     return  findAgent
   }
   async create({ name, email, password }: CreateAgent): Promise<Agent> {
-    const agent =  this.agentRepository.create({ name, email, password })
+    const passwordHash = await hash(password,8)
+    const agent =  this.agentRepository.create({ name, email, password:passwordHash })
     const newAgent = await this.agentRepository.save(agent)
     return newAgent
   }

@@ -10,7 +10,6 @@ agent.get("/", (request, response) => {
 })
 
 agent.post("/", (request, response) => {
-  console.log("router Agent")
   createAgentController().handle(request,response)
 })
 

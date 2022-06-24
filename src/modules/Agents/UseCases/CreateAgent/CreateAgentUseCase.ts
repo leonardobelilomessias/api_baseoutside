@@ -9,7 +9,7 @@ class CreateAgentUseCase{
   }
   async execute({ name, email, password }: CreateAgent) {
     const agentExist = await this.agentRepository.find({ email })
-    console.log(agentExist)
+    
     if (agentExist) {
       console.log("existe")
       throw Error("Agent already exist")

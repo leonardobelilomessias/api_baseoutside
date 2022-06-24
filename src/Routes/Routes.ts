@@ -1,11 +1,13 @@
 import {Router} from "express";
+import { action } from "./Action.routes";
 import { agent } from "./Agent.routes";
 import { mission } from "./Mission.routes";
 
 const router = Router()
 
 router.use("/agent", agent)
-router.use("/mission",mission)
+router.use("/mission", mission)
+router.use("/action",action)
 
 
 export{router}
