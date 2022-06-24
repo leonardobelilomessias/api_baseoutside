@@ -10,7 +10,8 @@ export class mission1656014397876 implements MigrationInterface {
                     {
                         name: "id",
                         type: "varchar",
-                        length:"36"
+                        length: "36",
+                        isPrimary:true
                     },
                     {
                         name: "name",
