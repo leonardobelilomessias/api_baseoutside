@@ -9,7 +9,7 @@ class AgentRepository implements DTOAgentRepository {
   constructor() {
     this.agentRepository = AppDataSource.getRepository(Agent)
   }
-  async find({ email }: { email: any }): Promise<Agent> {
+  async find({ email }: { email:string }): Promise<Agent> {
     const findAgent = await this.agentRepository.findOneBy({email:email})
     return  findAgent
   }
