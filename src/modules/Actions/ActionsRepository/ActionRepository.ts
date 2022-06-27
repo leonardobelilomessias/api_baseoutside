@@ -1,5 +1,6 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../database";
+import { AppError } from "../../../errors/AppError";
 import { Action } from "../Entity/Action";
 import { DTOActionRepository, ICreateAction } from "./DTOActionRepository";
 
@@ -18,13 +19,13 @@ class ActionRepository implements DTOActionRepository{
     return allAction
   }
   find(): Promise<Action> {
-    throw new Error("Method not implemented.");
+    throw new AppError("Method not implemented.");
   }
   edit(): Promise<Action> {
-    throw new Error("Method not implemented.");
+    throw new AppError("Method not implemented.");
   }
   delete(): Promise<Action> {
-    throw new Error("Method not implemented.");
+    throw new AppError("Method not implemented.");
   }
 
 }

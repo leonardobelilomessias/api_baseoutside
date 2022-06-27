@@ -1,3 +1,5 @@
+import { hash } from "bcrypt"
+import { AppError } from "../../../../errors/AppError"
 import { AgentRepository } from "../../Repository/AgentRepository"
 import { CreateAgent } from "../../Repository/DTOAgentRepository"
 
@@ -8,15 +10,22 @@ class CreateAgentUseCase{
     this.agentRepository = agentReposiotory
   }
   async execute({ name, email, password }: CreateAgent) {
-    const agentExist = await this.agentRepository.find({ email })
+    try {
+      const agentExist = await this.agentRepository.findByEmail({ email })
     
-    if (agentExist) {
-      console.log("existe")
-      throw Error("Agent already exist")
+      if (agentExist) {
+        return new AppError("User already exist", 200)
+      }
+      const passwordHash = await hash(password, 8)
+      const agent = await this.agentRepository.create({ name, email, password:passwordHash })
+      return agent
+      
+    } catch {
+      throw new  AppError("user",200) 
     }
-    const agent = await this.agentRepository.create({ name, email, password })
-    return agent
-  }
+
+
+  } 
 
 }
 

@@ -3,7 +3,9 @@ import { Agent } from "../Entities/Agent";
 interface CreateAgent{
   name: string
   email: string
-  password:string
+  password: string
+  id?: string
+  image_profile?:string
 }
 
 interface EditAgent{
@@ -23,6 +25,8 @@ interface DTOAgentRepository{
 
   edit(): Promise<Agent>
 
-  find({email}):Promise<Agent>
+  findByEmail({ email }): Promise<Agent>
+
+  findById({id}):Promise<Agent>
 } 
 export {DTOAgentRepository,CreateAgent} 

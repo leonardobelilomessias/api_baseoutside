@@ -1,5 +1,6 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../../database"
+import { AppError } from "../../../errors/AppError"
 import { Mission } from "../Entities/Mission"
 import { DTOMissionReposiotry, ICreateMission } from "./DTOMissonRepository"
 
@@ -18,10 +19,10 @@ class MissionRepository implements DTOMissionReposiotry{
     return allMission
   }
   find(): Promise<Mission> {
-    throw new Error("Method not implemented.")
+    throw new AppError("Method not implemented.")
   }
   edit({ data }: { data: any }): Promise<Mission> {
-    throw new Error("Method not implemented.")
+    throw new AppError("Method not implemented.")
   }
 
 
