@@ -1,7 +1,49 @@
-describe("Criar Agent", () => {
-  it("hope that 2 sum 2 be 4", () => {
-    const soma = 2 + 2
-    const resultado = 5
-    expect(soma).toBe(resultado)
+import { AppError } from "../../../../errors/AppError"
+import { AgentInMemoryRepository } from "../../RepositoryInMemory/AgentInMemoryRepository"
+import { CreateAgentUseCase } from "./CreateAgentUseCase"
+let agentRepositoryInMemory :AgentInMemoryRepository
+let createAgentUseCase: CreateAgentUseCase
+describe("Create agent", () => {
+  beforeEach(() => {
+    agentRepositoryInMemory = new AgentInMemoryRepository
+    createAgentUseCase = new CreateAgentUseCase(agentRepositoryInMemory)
+  })
+  it("should be able create a new agent ", async () => {
+    const agent = {
+      name: "Test",
+      email: "email@test.com",
+      password: "123",
+    }
+    await createAgentUseCase.execute({
+      name: agent.name,
+      email: agent.email,
+      password: agent.password,
+    })
+    const agentCreated = await agentRepositoryInMemory.findByEmail({ email: agent.email })
+    
+    expect(agentCreated).toHaveProperty("id")
+  })
+
+  it("shouldn't be able create a new agent with same name ", async () => {
+    expect(async () => {
+      const agent = {
+        name: "Test",
+        email: "email@test.com",
+        password: "123",
+      }
+      await createAgentUseCase.execute({
+        name: agent.name,
+        email: agent.email,
+        password: agent.password,
+      })
+      await createAgentUseCase.execute({
+        name: agent.name,
+        email: agent.email,
+        password: agent.password,
+      })
+
+    }).rejects.toBeInstanceOf(AppError)
+    
+    
   })
 })
