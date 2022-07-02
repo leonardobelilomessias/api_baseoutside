@@ -1,10 +1,10 @@
 import { ActionRepository } from "../../ActionsRepository/ActionRepository"
-import { ICreateAction } from "../../ActionsRepository/DTOActionRepository"
+import { DTOActionRepository, ICreateAction } from "../../ActionsRepository/DTOActionRepository"
 import { Action } from "../../Entity/Action"
 
 class CreateActionUseCase{
-  private actionRepository: ActionRepository
-  constructor(actionRepository: ActionRepository) {
+  private actionRepository: DTOActionRepository
+  constructor(actionRepository: DTOActionRepository) {
     this.actionRepository = actionRepository
   }
 
