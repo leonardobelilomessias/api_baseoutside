@@ -2,6 +2,9 @@ import { DataSource } from "typeorm";
 import { Action } from "../modules/Actions/Entity/Action";
 import { Agent } from "../modules/Agents/Entities/Agent";
 import { Mission } from "../modules/Missions/Entities/Mission";
+import { Task } from "../modules/Task/Entities/Task";
+
+
 
 export const AppDataSource = new DataSource({
   type: "mysql",
@@ -10,9 +13,10 @@ export const AppDataSource = new DataSource({
   username: "root",
   password: "Leo175033",
   database: "crowdforeign",
-  entities: [Agent,Mission,Action],
+  entities: [Agent,Mission,Action,Task],
   subscribers: [],
   migrations: ["./src/database/migrations/*.ts"],
+  
 
  
 

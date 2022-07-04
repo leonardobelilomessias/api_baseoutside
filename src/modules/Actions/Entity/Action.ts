@@ -1,6 +1,8 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
 import {v4 as uuidv4} from 'uuid'
 import { Mission } from '../../Missions/Entities/Mission';
+import { Task } from '../../Task/Entities/Task';
+
 
 @Entity("action")
 class Action{
@@ -33,7 +35,7 @@ class Action{
   
   @Column()
   mission: string;
-
+  
   
   constructor() {
     if (!this.id) {
