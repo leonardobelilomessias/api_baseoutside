@@ -15,10 +15,11 @@ class UpdateImageAgentUseCase{
     this.agenteRepository = agentRepository
  
   }
-  async execute({user_id,image_profile}:ICreateImageProfile):Promise<void> {
+  async execute({ user_id, image_profile }: ICreateImageProfile): Promise<void> {
+    
     const agent = await this.agenteRepository.findById({ id: user_id })
+  
     if (agent.image_profile) {
-      
       await deleteFile(`./tmp/Agent/ImageProfile/${agent.image_profile}`)
     }
     agent.image_profile = image_profile

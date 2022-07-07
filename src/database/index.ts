@@ -3,6 +3,7 @@ import { Action } from "../modules/Actions/Entity/Action";
 import { Agent } from "../modules/Agents/Entities/Agent";
 import { Mission } from "../modules/Missions/Entities/Mission";
 import { Task } from "../modules/Task/Entities/Task";
+import { AgentToken } from "../modules/accounts/UserToken/Entity/AgentToken";
 
 
 
@@ -13,8 +14,7 @@ export const AppDataSource = new DataSource({
   username: "root",
   password: "Leo175033",
   database: "crowdforeign",
-  entities: [Agent,Mission,Action,Task],
-  subscribers: [],
+  entities: [Agent,Mission,Action,Task,AgentToken],
   migrations: ["./src/database/migrations/*.ts"],
   
 

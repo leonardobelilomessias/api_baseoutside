@@ -3,7 +3,8 @@ import {sign} from 'jsonwebtoken'
 import { AppError } from '../../../errors/AppError';
 import { AgentRepository } from "../../Agents/Repository/AgentRepository";
 import { DTOAgentRepository } from '../../Agents/Repository/DTOAgentRepository';
-
+import auth from '../../../config/auth'
+import { IAgentTokenRepository } from '../UserToken/Repository/IAgentTokenRepository';
 interface IRequest{
   email: string;
   password:string
@@ -14,14 +15,17 @@ interface IResponse{
     name:string
     email:string,
   }
-  token:string
+  token: string
+  refresh_token:string
 }
 
 class AuthenticateAgentUseCase{
-  private agentRepository:DTOAgentRepository
+  private agentRepository: DTOAgentRepository
+  private agentTokenRepository:IAgentTokenRepository
 
-  constructor(agentRepository:DTOAgentRepository) {
+  constructor(agentRepository:DTOAgentRepository, agentTokenRepository:IAgentTokenRepository) {
     this.agentRepository = agentRepository
+    this.agentTokenRepository = agentTokenRepository
   }
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
@@ -40,19 +44,28 @@ class AuthenticateAgentUseCase{
 
       throw err
     }
-
-      
-          const token = sign({}, "e5ff181ccf72acc8a9c890ab2fd9f2f1", {
+          const token = sign({}, auth.secret_token, {
             subject: agent.id,
-            expiresIn: "1d"
+            expiresIn: auth.expires_in
           })
+    const refresh_token = sign({email}, auth.secret_refreshToken,{
+      subject: agent.id,
+      expiresIn:auth.expires_in_refreshToken
+    })
+    await this.agentTokenRepository.deleteById(agent.id)
+    await this.agentTokenRepository.create({
+      agent_id:agent.id
+      , expires_date:'2022-07-04 20:09:06'
+      , refresh_token:refresh_token
+    })
       
-          const tokenReturn = {
+    const tokenReturn = {
             token,
             agent: {
               name: agent.name,
               email: agent.email
-            }
+            },
+            refresh_token
           }
           return tokenReturn
         

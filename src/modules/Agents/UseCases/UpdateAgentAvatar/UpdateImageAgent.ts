@@ -14,8 +14,7 @@ class UpdateImageAgentController{
     const image_profile = request.file.filename
    
     const { id } = request.user
-   
-    this.updateImageAvatarUseCase.execute({ user_id: id, image_profile })
+    this.updateImageAvatarUseCase.execute({ user_id: id, image_profile:image_profile })
     
     return response.status(204).send()
     
