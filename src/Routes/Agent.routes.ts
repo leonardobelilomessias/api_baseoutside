@@ -9,7 +9,7 @@ import { updateImageAgentController } from "../modules/Agents/UseCases/UpdateAge
 
 const agent = Router()
 
-const upload_image_profile = multer(uploadConfig.upload("./tmp/Agent/ImageProfile"))
+const upload_image_profile = multer(uploadConfig)
 
 agent.get("/", (request, response) => {
   listAgentController.handle(request,response)
