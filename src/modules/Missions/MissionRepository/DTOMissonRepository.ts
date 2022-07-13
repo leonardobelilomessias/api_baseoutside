@@ -15,9 +15,13 @@ interface DTOMissionReposiotry{
   
   list(): Promise<Mission[]>
 
-  find(): Promise<Mission>
+  findByName({name}): Promise<Mission>
   
-  edit({data}):Promise<Mission>
+  edit({ data }): Promise<Mission>
+  
+  deactivate({ id }): Promise<Mission>
+  
+  
 }
 
 export {DTOMissionReposiotry, ICreateMission}

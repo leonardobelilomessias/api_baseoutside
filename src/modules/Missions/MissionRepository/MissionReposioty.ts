@@ -9,6 +9,9 @@ class MissionRepository implements DTOMissionReposiotry{
   constructor(){
     this.missionRepository = AppDataSource.getRepository(Mission)
   }
+  deactivate({ id }: { id: any }): Promise<Mission> {
+    throw new Error("Method not implemented.")
+  }
   async create({ name, description, create_by, image_profile }: ICreateMission): Promise<Mission> {
     const newMission =  this.missionRepository.create({ name, description, create_by, image_profile })
     const mission = await this.missionRepository.save(newMission)
@@ -18,12 +21,14 @@ class MissionRepository implements DTOMissionReposiotry{
     const allMission = await this.missionRepository.find()
     return allMission
   }
-  find(): Promise<Mission> {
+  findByName({name}): Promise<Mission> {
     throw new AppError("Method not implemented.")
   }
   edit({ data }: { data: any }): Promise<Mission> {
     throw new AppError("Method not implemented.")
   }
+
+
 
 
 }
