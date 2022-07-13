@@ -9,9 +9,9 @@ interface CreateAgent{
 }
 
 interface EditAgent{
+  id:string 
   name?: string
   email?: string
-  password?: string
   description?:string
 }
 
@@ -21,12 +21,16 @@ interface DTOAgentRepository{
 
   list(): Promise<Agent[]>
   
-  delete({id}): Promise<Agent>
+  deactivate({ id }): Promise<Agent>
+  
+  activate({email}):Promise<void>
 
-  edit(): Promise<Agent>
+  edit({id, description,email,name}:EditAgent): Promise<Agent>
 
   findByEmail({ email }): Promise<Agent>
 
-  findById({id}):Promise<Agent>
+  findById({ id }): Promise<Agent>
+  
+  findByName({name}):Promise<Agent>
 } 
-export {DTOAgentRepository,CreateAgent} 
+export {DTOAgentRepository,CreateAgent,EditAgent} 

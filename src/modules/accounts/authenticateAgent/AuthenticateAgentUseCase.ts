@@ -30,13 +30,16 @@ class AuthenticateAgentUseCase{
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
     const agent = await this.agentRepository.findByEmail({ email })
+
     try {
       if (!agent) {
+        
         throw new AppError("Email or password incorrect")
       }
 
         const passwordMatch = await compare(password, agent.password)
-        if (!passwordMatch) {
+      if (!passwordMatch) {
+   
           throw new AppError("Email or password incorrect")
   }
       
@@ -52,6 +55,7 @@ class AuthenticateAgentUseCase{
       subject: agent.id,
       expiresIn:auth.expires_in_refreshToken
     })
+    await this.agentRepository.activate({email:agent.email})
     await this.agentTokenRepository.deleteById(agent.id)
     await this.agentTokenRepository.create({
       agent_id:agent.id

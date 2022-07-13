@@ -1,7 +1,7 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../../database"
 import { Agent } from "../Entities/Agent"
-import { CreateAgent, DTOAgentRepository } from "./DTOAgentRepository"
+import { CreateAgent, DTOAgentRepository, EditAgent } from "./DTOAgentRepository"
 import{hash} from 'bcrypt'
 import { AppError } from "../../../errors/AppError"
 
@@ -10,6 +10,7 @@ class AgentRepository implements DTOAgentRepository {
   constructor() {
     this.agentRepository = AppDataSource.getRepository(Agent)
   }
+
   async findById({id}): Promise<Agent> {
     const findAgent = await this.agentRepository.findOneBy({id:id})
     return  findAgent
@@ -25,14 +26,29 @@ class AgentRepository implements DTOAgentRepository {
     return newAgent
   }
   async list(): Promise<Agent[]> {
-    const allAgents =await  this.agentRepository.find()
+    const allAgents =await  this.agentRepository.findBy({is_active:true})
     return allAgents
   }
-  delete({ id }: { id: any }): Promise<Agent> {
-    throw new AppError("Method not implemented.")  
+  async deactivate({ id }): Promise<Agent> {
+    const agentWillBeDelete = await  this.agentRepository.findOneBy({ id: id })  
+    agentWillBeDelete.is_active = false
+    this.agentRepository.save(agentWillBeDelete)
+    return  agentWillBeDelete
   }
-  edit(): Promise<Agent> {
-    throw new AppError("Method not implemented.")
+  async activate({email}): Promise<void>{
+    const agentActivate = await this.agentRepository.findOneBy({ email: email })
+    agentActivate.is_active = true
+    await this.agentRepository.save(agentActivate)
+  }
+  async edit({id,description,email,name}:EditAgent): Promise<Agent> {
+    const agentEdit = await this.agentRepository.findOneBy({ id: id })
+    const agent = Object.assign(agentEdit,{description,email,name})
+    await this.agentRepository.save(agent)
+    return agent 
+  }
+  findByName({ name }): Promise<Agent> {
+    const foundAgent = this.agentRepository.findOneBy({ name: name })
+    return foundAgent
   }
 }
 

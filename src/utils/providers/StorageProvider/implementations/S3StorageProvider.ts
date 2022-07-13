@@ -10,7 +10,6 @@ class S3StorageProvider implements IStorageProvider{
   
   private client: S3
   constructor() {
-    console.log("Bucket região->",process.env.AWS_BUCKET)
     this.client = new S3({
       region: process.env.AWS_BUCKET_REGION,
     })
