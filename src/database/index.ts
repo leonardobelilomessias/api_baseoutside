@@ -4,6 +4,8 @@ import { Agent } from "../modules/Agents/Entities/Agent";
 import { Mission } from "../modules/Missions/Entities/Mission";
 import { Task } from "../modules/Task/Entities/Task";
 import { AgentToken } from "../modules/accounts/UserToken/Entity/AgentToken";
+import { Interests } from "../modules/Agents/Entities/Interests";
+import { Skills } from "../modules/Agents/Entities/Skills";
 
 
 
@@ -13,8 +15,8 @@ export const AppDataSource = new DataSource({
   port: 3306,
   username: "root",
   password: "Leo175033",
-  database: "crowdforeign",
-  entities: [Agent,Mission,Action,Task,AgentToken],
+  database: "db_holdrope",
+  entities: [Agent,Mission,Action,Task,AgentToken,Interests,Skills],
   migrations: ["./src/database/migrations/*.ts"],
   
 

@@ -10,8 +10,8 @@ class UpdateAgentController{
   }
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const {id ,name,description,email}:EditAgent = request.body
-    const agentEdited = await this.updateAgentUseCase.execute({ id, name, description, email })
+    const { id, name, description, email, interests, skills }: EditAgent = request.body
+    const agentEdited = await this.updateAgentUseCase.execute({ id, name, description, email,interests,skills })
     return response.status(201).json(agentEdited)
   }
 

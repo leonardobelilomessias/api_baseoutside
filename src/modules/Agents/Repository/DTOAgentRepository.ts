@@ -1,4 +1,6 @@
 import { Agent } from "../Entities/Agent";
+import { Interests } from "../Entities/Interests";
+import { Skills } from "../Entities/Skills";
 
 interface CreateAgent{
   name: string
@@ -12,12 +14,22 @@ interface EditAgent{
   id:string 
   name?: string
   email?: string
-  description?:string
+  description?: string
+  interests?: string[]
+  skills?:string[]
+}
+interface ResponseAgent{
+  id: string
+  name:string
+  email: string
+  description: string
+  skills:string[]
+  interests: string[]
 }
 
 interface DTOAgentRepository{
   
-  create({name,email,password}:CreateAgent): Promise<Agent>
+  create({name,email,password,}:CreateAgent): Promise<Agent>
 
   list(): Promise<Agent[]>
   
@@ -25,7 +37,7 @@ interface DTOAgentRepository{
   
   activate({email}):Promise<void>
 
-  edit({id, description,email,name}:EditAgent): Promise<Agent>
+  edit({id, description,email,name,skills,interests}:EditAgent): Promise<ResponseAgent>
 
   findByEmail({ email }): Promise<Agent>
 
@@ -33,4 +45,4 @@ interface DTOAgentRepository{
   
   findByName({name}):Promise<Agent>
 } 
-export {DTOAgentRepository,CreateAgent,EditAgent} 
+export {DTOAgentRepository,CreateAgent,EditAgent,ResponseAgent} 

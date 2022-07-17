@@ -8,8 +8,8 @@ class UpdateAgentUseCase{
     this.agentRepository = agentRepository
   }
   
-  async execute({ id, name, description, email }: EditAgent) {
-    const agentToEdit = await this.agentRepository.edit({ id, name, description, email })
+  async execute({ id, name, description, email,interests,skills }: EditAgent) {
+    const agentToEdit = await this.agentRepository.edit({ id, name, description, email,interests,skills })
     return agentToEdit
   }
 

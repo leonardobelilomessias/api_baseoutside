@@ -1,5 +1,7 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import {v4 as uuidv4} from 'uuid'
+import { Interests } from "./Interests";
+import { Skills } from "./Skills";
 
 @Entity("agent")
 class Agent{
@@ -26,6 +28,11 @@ class Agent{
 
   @CreateDateColumn()
   create_at: Date;
+
+  @Column()
+  vocation?:string
+
+
 
   constructor() {
     if (!this.id) {

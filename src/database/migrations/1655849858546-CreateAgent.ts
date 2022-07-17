@@ -29,7 +29,7 @@ export class CreateAgent1655849858546 implements MigrationInterface {
                         },
                         {
                             name: "description",
-                            type: "text(4000)",
+                            type: "text",
                             isNullable:true
                         },
                         {
@@ -51,9 +51,10 @@ export class CreateAgent1655849858546 implements MigrationInterface {
                             name: "is_active",
                             type: "boolean",
                             default:true
-                        }
+                        },
 
-                    ] ,
+                    ],
+                    
                 }
            )
        )

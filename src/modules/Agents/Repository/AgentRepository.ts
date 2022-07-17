@@ -1,14 +1,22 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../../database"
 import { Agent } from "../Entities/Agent"
-import { CreateAgent, DTOAgentRepository, EditAgent } from "./DTOAgentRepository"
+import { CreateAgent, DTOAgentRepository, EditAgent, ResponseAgent } from "./DTOAgentRepository"
 import{hash} from 'bcrypt'
 import { AppError } from "../../../errors/AppError"
+import { Skills } from "../Entities/Skills"
+import { Interests } from "../Entities/Interests"
+import { SkillsRepository } from "./SkillsRepository"
+import { InterestsRepository } from "./InterestsRepository"
 
-class AgentRepository implements DTOAgentRepository {
-  agentRepository: Repository<Agent>
-  constructor() {
-    this.agentRepository = AppDataSource.getRepository(Agent)
+ class AgentRepository implements DTOAgentRepository {
+   agentRepository: Repository<Agent>
+   skillsRepository: SkillsRepository
+   interestsRepository :InterestsRepository
+   constructor() {
+     this.agentRepository = AppDataSource.getRepository(Agent)
+     this.skillsRepository = new SkillsRepository()
+     this.interestsRepository = new InterestsRepository()
   }
 
   async findById({id}): Promise<Agent> {
@@ -40,14 +48,30 @@ class AgentRepository implements DTOAgentRepository {
     agentActivate.is_active = true
     await this.agentRepository.save(agentActivate)
   }
-  async edit({id,description,email,name}:EditAgent): Promise<Agent> {
+  async edit({ id, description, email, name, skills, interests}: EditAgent): Promise<ResponseAgent> {
+
     const agentEdit = await this.agentRepository.findOneBy({ id: id })
-    const agent = Object.assign(agentEdit,{description,email,name})
+
+    const skill = await this.skillsRepository.updateSkills(skills, id)
+
+    const interest = await this.interestsRepository.updateInterests(id,interests)
+  
+
+    const agent = Object.assign(agentEdit, { description, email, name })
     await this.agentRepository.save(agent)
-    return agent 
+    const responseAgent = {
+      id,
+      name,
+      email,
+      description,
+      skills:skill,
+      interests:interest
+
+    }
+    return responseAgent
   }
-  findByName({ name }): Promise<Agent> {
-    const foundAgent = this.agentRepository.findOneBy({ name: name })
+  async findByName({ name }): Promise<Agent> {
+    const foundAgent = await  this.agentRepository.findOneBy({ name: name })
     return foundAgent
   }
 }
