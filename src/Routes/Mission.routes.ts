@@ -9,7 +9,7 @@ mission.post("/", (request, response) => {
   createMissionController.handle(request,response)
 })
 
-mission.get("/",ensureAuthenticate, (request, response) => {
+mission.get("/", (request, response) => {
   listMissionController.handle(request,response)
 })
 

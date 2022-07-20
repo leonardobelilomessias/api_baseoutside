@@ -23,6 +23,11 @@ class InterestsRepository{
     return interestAgent
   }
 
+  async findByInterest(interest:string) {
+    const interestAgent = await this.interestsRepository.findBy({interests:interest})
+    return interestAgent
+  }
+
   async updateInterests(id_agent: string, interests: string[]) {
     if (interests) {
       await this.interestsRepository.createQueryBuilder()

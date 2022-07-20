@@ -7,7 +7,7 @@ class ListAgentUseCase{
     this.agenteRepository = agentRepository
   }
   async execute():Promise<Agent[]> {
-    const allAgent =await  this.agenteRepository.list()
+    const allAgent = await  this.agenteRepository.list()
     return allAgent
   }
 

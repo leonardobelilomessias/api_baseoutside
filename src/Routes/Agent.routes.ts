@@ -5,6 +5,8 @@ import uploadConfig from '../config/upload'
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 import  createAgentController  from "../modules/Agents/UseCases/CreateAgent";
 import { deactivateAgentController } from "../modules/Agents/UseCases/DeactivateAgent";
+import { findyByInterestController } from "../modules/Agents/UseCases/FindByInterest";
+import { findByVocationController } from "../modules/Agents/UseCases/FindByVocation";
 import { findAgentController } from "../modules/Agents/UseCases/FindUser";
 import { listAgentController } from "../modules/Agents/UseCases/ListAgent";
 import { updateAgentController } from "../modules/Agents/UseCases/UpdateAgent";
@@ -14,14 +16,22 @@ const agent = Router()
 
 const upload_image_profile = multer(uploadConfig)
 
-agent.get("/", (request, response) => {
-  listAgentController.handle(request,response)
+
+agent.get("/",async  (request, response) => {
+ await  listAgentController.handle(request,response)
 })
 
 agent.get("/:name", (request, response) => {
   findAgentController.handle(request,response)
 })
 
+agent.get("/",async (request, response) => {
+  await findByVocationController.handle(request,response)
+})
+
+agent.get("/", async (request, response) => {
+  await findyByInterestController.handle(request,response)
+})
 agent.post("/", (request, response) => {
   createAgentController().handle(request,response)
 })

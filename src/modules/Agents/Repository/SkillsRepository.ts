@@ -8,6 +8,12 @@ class SkillsRepository{
   constructor(){
     this.skillsRepository = AppDataSource.getRepository(Skills)
   }
+
+  async allSkills() {
+    const skills = this.skillsRepository.find()
+    return skills
+  }
+
   async findSkillsByAgent(id_agent:string) {
     const skillsCurrent = await this.skillsRepository.find({ 
       relations: {
@@ -31,7 +37,6 @@ class SkillsRepository{
   }
 
   async updateSkills(skills: string[], id_agent: string) {
-    console.log(skills,"em updateskills")
     if (skills) {
       await this.skillsRepository.createQueryBuilder()
       .delete()
