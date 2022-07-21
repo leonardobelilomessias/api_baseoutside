@@ -15,7 +15,7 @@ import { updateImageAgentController } from "../modules/Agents/UseCases/UpdateAge
 const agent = Router()
 
 const upload_image_profile = multer(uploadConfig)
-
+const uploadPhotosAgent = multer(uploadConfig)
 
 agent.get("/",async  (request, response) => {
  await  listAgentController.handle(request,response)
@@ -35,6 +35,11 @@ agent.get("/", async (request, response) => {
 agent.post("/", (request, response) => {
   createAgentController().handle(request,response)
 })
+
+agent.post("/photopublicationagent",uploadPhotosAgent.array(), () => {
+  
+})
+
 
 agent.patch("/image_profile",ensureAuthenticate, upload_image_profile.single("image_profile"),(request, response) => {
   updateImageAgentController.handle(request,response)

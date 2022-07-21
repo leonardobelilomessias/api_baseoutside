@@ -1,14 +1,27 @@
+import { PhotoPublicationAgent } from "../Entities/PhotoPublicationAgent";
 import { PublicationAgent } from "../Entities/PublicationAgent";
-import { CreatePublication, DTOPublicationsAgentRepository, EditPublication } from "../Repository/DTOS/DTOPublicationsAgentRepository";
+import { DTOPhotosPublicationAgent } from "../Repository/DTOS/DTOPhotosPublicationAgentRepository";
+import { CreatePublication, DTOPublicationsAgentRepository, EditPublication, ResponseCreatePublication } from "../Repository/DTOS/DTOPublicationsAgentRepository";
 
 class PublicationsAgentRepositoryInMemory implements DTOPublicationsAgentRepository {
-  publicationsAgent: PublicationAgent[]
+  publicationsAgent: PublicationAgent[] =[]
+  photosPublicationAgent:DTOPhotosPublicationAgent
+  constructor(photosPublicationAgent:DTOPhotosPublicationAgent) {
+    this.photosPublicationAgent = photosPublicationAgent
+  }
   
-  async create({ id_agent, type, description }: CreatePublication): Promise<PublicationAgent> {
+  async create({ id_agent, type, description,content }: CreatePublication): Promise<ResponseCreatePublication> {
+    
     const newPublicationAgent = new PublicationAgent()
     Object.assign(newPublicationAgent, { id_agent, type, description })
+    const newPhotoPublication = await this.photosPublicationAgent.create(newPublicationAgent.id,content)
     this.publicationsAgent.push(newPublicationAgent)
-    return newPublicationAgent
+    
+    return {
+      id_publication: newPublicationAgent.id,
+      type: type,
+      content: newPhotoPublication
+    }
   }
   async list(): Promise<PublicationAgent[]> {
     const allPublicationAgent = this.publicationsAgent

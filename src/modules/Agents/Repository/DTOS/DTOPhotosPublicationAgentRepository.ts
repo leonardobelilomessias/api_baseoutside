@@ -4,7 +4,7 @@ import { PhotoPublicationAgent } from "../../Entities/PhotoPublicationAgent"
 
 interface DTOPhotosPublicationAgent{
 
-  create(id_publication:string, photos:[]): Promise<PhotoPublicationAgent[]>
+  create(id_publication:string, photos:string[]): Promise<PhotoPublicationAgent[]>
   
   list(id_publication:string): Promise<PhotoPublicationAgent[]>
   
