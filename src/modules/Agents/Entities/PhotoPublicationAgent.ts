@@ -1,5 +1,5 @@
 
-import { CreateDateColumn, Entity, PrimaryColumn, ManyToOne, JoinColumn } from 'typeorm'
+import { CreateDateColumn, Entity, PrimaryColumn, ManyToOne, JoinColumn, Column } from 'typeorm'
 import{v4 as uuidv4} from 'uuid'
 import { PublicationAgent } from './PublicationAgent'
 
@@ -13,6 +13,9 @@ class PhotoPublicationAgent{
   @JoinColumn({name:"id_publication"})
   id_publication: PublicationAgent
 
+  @Column()
+  url: string
+  
   @CreateDateColumn()
   created_at: string
 

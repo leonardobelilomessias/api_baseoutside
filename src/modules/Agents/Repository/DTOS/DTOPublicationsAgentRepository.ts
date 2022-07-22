@@ -1,11 +1,14 @@
+import { Agent } from "../../Entities/Agent"
 import { PhotoPublicationAgent } from "../../Entities/PhotoPublicationAgent"
 import { PublicationAgent } from "../../Entities/PublicationAgent"
+import { IFile } from "./DTOPhotosPublicationAgentRepository"
 
-interface CreatePublication{
-  id_agent: string
+interface ICreatePublication
+{
+  agent: string
   type: string
   description?: string
-  content:string[]
+  content: string[]
 }
 interface EditPublication{
   id_publication: string
@@ -16,12 +19,12 @@ interface EditPublication{
 interface ResponseCreatePublication{
   id_publication: string,
   type: string,
-  content:string | PhotoPublicationAgent[]
+  content:PhotoPublicationAgent[]
  }
 
 
 interface DTOPublicationsAgentRepository{
-  create({id_agent,type,description}:CreatePublication):Promise<ResponseCreatePublication>
+  create({agent,type,description,content}:ICreatePublication):Promise<ResponseCreatePublication>
 
   list():Promise<PublicationAgent[]>
 
@@ -30,4 +33,4 @@ interface DTOPublicationsAgentRepository{
   delete(id_publication:string):Promise<PublicationAgent>
 
 }
-export{ DTOPublicationsAgentRepository,CreatePublication,EditPublication,ResponseCreatePublication}
+export{ DTOPublicationsAgentRepository,ICreatePublication,EditPublication,ResponseCreatePublication}

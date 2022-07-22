@@ -6,6 +6,8 @@ import { Task } from "../modules/Task/Entities/Task";
 import { AgentToken } from "../modules/accounts/UserToken/Entity/AgentToken";
 import { Interests } from "../modules/Agents/Entities/Interests";
 import { Skills } from "../modules/Agents/Entities/Skills";
+import { PhotoPublicationAgent } from "../modules/Agents/Entities/PhotoPublicationAgent";
+import { PublicationAgent } from "../modules/Agents/Entities/PublicationAgent";
 
 
 
@@ -16,7 +18,7 @@ export const AppDataSource = new DataSource({
   username: "root",
   password: "Leo175033",
   database: "db_holdrope",
-  entities: [Agent,Mission,Action,Task,AgentToken,Interests,Skills],
+  entities: [Agent,Mission,Action,Task,AgentToken,Interests,Skills,PhotoPublicationAgent,PublicationAgent],
   migrations: ["./src/database/migrations/*.ts"],
   
 

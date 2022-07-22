@@ -1,6 +1,8 @@
 import { PhotoPublicationAgent } from "../../Entities/PhotoPublicationAgent"
 
-
+interface IFile{
+  filename:string
+}
 
 interface DTOPhotosPublicationAgent{
 
@@ -13,4 +15,4 @@ interface DTOPhotosPublicationAgent{
 
 }
 
-export{DTOPhotosPublicationAgent}
+export{DTOPhotosPublicationAgent,IFile}

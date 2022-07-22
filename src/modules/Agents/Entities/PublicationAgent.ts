@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn , ManyToOne} from "typeorm"
+import { Column, CreateDateColumn, Entity, PrimaryColumn , ManyToOne, JoinColumn} from "typeorm"
 import{v4 as uuidv4} from 'uuid'
 import { Agent } from "./Agent"
 
@@ -9,8 +9,8 @@ class PublicationAgent{
   id: string
   
   @ManyToOne(()=> Agent)
-  @Column({name:"id_agent"})
-  id_agent:Agent
+  @JoinColumn({ name: "id_agent" })
+  agent:Agent
   
   @CreateDateColumn()
   created_at: string

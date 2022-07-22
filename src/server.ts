@@ -6,6 +6,7 @@ import { AppError } from "./errors/AppError";
 import express, { NextFunction, Request, Response } from "express";
 
 const app = express()
+app.use(express.static('tmp'))
 app.use(express.json())
 app.use(router)  
 app.use((err: Error, resquest:Request, response:Response, next:NextFunction) => {

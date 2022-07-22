@@ -1,9 +1,10 @@
 
-import {  response, Router } from "express";
-import multer from "multer";
+import {   Router} from "express";
+import multer, { } from "multer";
 import uploadConfig from '../config/upload'
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 import  createAgentController  from "../modules/Agents/UseCases/CreateAgent";
+import { createPublicationAgentController } from "../modules/Agents/UseCases/CreatePublicationAgent";
 import { deactivateAgentController } from "../modules/Agents/UseCases/DeactivateAgent";
 import { findyByInterestController } from "../modules/Agents/UseCases/FindByInterest";
 import { findByVocationController } from "../modules/Agents/UseCases/FindByVocation";
@@ -36,8 +37,9 @@ agent.post("/", (request, response) => {
   createAgentController().handle(request,response)
 })
 
-agent.post("/photopublicationagent",uploadPhotosAgent.array(), () => {
+agent.post("/photopublicationagent", uploadPhotosAgent.array('photos', 3), async (request, response) => {
   
+ await createPublicationAgentController.handle(request,response)
 })
 
 
