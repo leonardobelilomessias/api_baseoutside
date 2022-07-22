@@ -1,4 +1,4 @@
-import { Repository } from "typeorm"
+import { createQueryBuilder, Repository } from "typeorm"
 import { AppDataSource } from "../../../database"
 import { Agent } from "../Entities/Agent"
 import { CreateAgent, DTOAgentRepository, EditAgent, ResponseAgent } from "./DTOAgentRepository"
@@ -59,10 +59,18 @@ interface AgentList{
          },
          where: {
            is_active: true
-         }
+         },
+
        })
-       
-     return allAgents
+     const newQuery = await this.agentRepository.createQueryBuilder("agent")
+       .leftJoinAndMapMany("agent.skills", "skills_agent", "sk", "agent.id = sk.id_agent")
+       .leftJoinAndMapMany("agent.interests", "interests_agent", "in", "agent.id = in.id_agent")
+
+  
+       .getMany()
+     console.log(newQuery)
+     
+     return newQuery
    }
 
   async deactivate({ id }): Promise<Agent> {

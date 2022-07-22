@@ -1,6 +1,5 @@
 import { hash } from "bcrypt"
 import { AppError } from "../../../../errors/AppError"
-import { AgentRepository } from "../../Repository/AgentRepository"
 import { CreateAgent, DTOAgentRepository } from "../../Repository/DTOAgentRepository"
 
 class CreateAgentUseCase{
@@ -23,8 +22,6 @@ class CreateAgentUseCase{
     } catch(err) {
       throw err 
     }
-
-
   } 
 
 }
