@@ -30,7 +30,10 @@ class Agent{
   create_at: Date;
 
   @Column()
-  vocation?:string
+  vocation?: string
+  
+  @Column()
+  level:number
 
 
 

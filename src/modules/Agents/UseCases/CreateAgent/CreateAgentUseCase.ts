@@ -10,8 +10,8 @@ class CreateAgentUseCase{
   }
   async execute({ name, email, password }: CreateAgent) {
     try {
-      const agentExist = await this.agentRepository.findByEmail({ email })
-    
+      const agentExist = await this.agentRepository.findByEmail({ email })    
+      
       if (agentExist) {
         throw new AppError("User already exist", 200)
       }
@@ -19,8 +19,8 @@ class CreateAgentUseCase{
       const agent = await this.agentRepository.create({ name, email, password:passwordHash })
       return agent
       
-    } catch(err) {
-      throw err 
+    } catch (err) {
+      return err 
     }
   } 
 

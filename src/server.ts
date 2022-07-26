@@ -6,10 +6,7 @@ import { AppError } from "./errors/AppError";
 import express, { NextFunction, Request, Response } from "express";
 
 const app = express()
-app.use(express.static('tmp'))
-app.use(express.json())
-app.use(router)  
-
+  
 app.use((err: Error, resquest:Request, response:Response, next:NextFunction) => {
   if (err instanceof AppError) {
 
@@ -22,10 +19,11 @@ app.use((err: Error, resquest:Request, response:Response, next:NextFunction) => 
     message:`internal server error - ${err}`
   }) 
 })
-
+app.use(express.json())
+app.use(router)  
 
 app.get("/", (request, response) => {
-  return response.json({message:"hello world, programing is the future"}).send()
+  return response.json({message:"hello world, programing is the future"})
 }) 
 
 app.listen(3333, () => {

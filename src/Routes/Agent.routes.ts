@@ -6,6 +6,7 @@ import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 import  createAgentController  from "../modules/Agents/UseCases/CreateAgent";
 import { createPublicationAgentController } from "../modules/Agents/UseCases/CreatePublicationAgent";
 import { deactivateAgentController } from "../modules/Agents/UseCases/DeactivateAgent";
+import { findAgentBySkillController } from "../modules/Agents/UseCases/FindAgentBySkill";
 import { findyByInterestController } from "../modules/Agents/UseCases/FindByInterest";
 import { findByVocationController } from "../modules/Agents/UseCases/FindByVocation";
 import { findAgentController } from "../modules/Agents/UseCases/FindUser";
@@ -18,23 +19,29 @@ const agent = Router()
 const upload_image_profile = multer(uploadConfig)
 const uploadPhotosAgent = multer(uploadConfig)
 
+
 agent.get("/",async  (request, response) => {
  await  listAgentController.handle(request,response)
 })
 
-agent.get("/:name", (request, response) => {
-  findAgentController.handle(request,response)
+agent.get("/name/:name", async (request, response) => {
+  await findAgentController.handle(request,response)
 })
-
-agent.get("/",async (request, response) => {
+agent.get("/findBySkill", (request, response) => {
+  findAgentBySkillController.handle(request,response)
+})
+agent.get("/findByVocation",async (request, response) => {
   await findByVocationController.handle(request,response)
 })
 
-agent.get("/", async (request, response) => {
+agent.get("/findByInterest", async (request, response) => {
   await findyByInterestController.handle(request,response)
 })
-agent.post("/", (request, response) => {
-  createAgentController().handle(request,response)
+
+
+
+agent.post("/",async (request, response) => {
+  await createAgentController().handle(request,response)
 })
 
 agent.post("/photopublicationagent", uploadPhotosAgent.array('photos', 3), async (request, response) => {

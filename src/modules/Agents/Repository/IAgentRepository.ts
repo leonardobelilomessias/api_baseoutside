@@ -27,7 +27,7 @@ interface ResponseAgent{
   interests: string[]
 }
 
-interface DTOAgentRepository{
+interface IAgentRepository{
   
   create({name,email,password,}:CreateAgent): Promise<Agent>
 
@@ -43,6 +43,10 @@ interface DTOAgentRepository{
 
   findById({ id }): Promise<Agent>
   
-  findByName({name}):Promise<Agent>
+  findByName({ name }): Promise<Agent>
+  
+  findBySkill({skill}):Promise<Agent[]>
+  
+  findByInterest({interest}):Promise<Agent[]>
 } 
-export {DTOAgentRepository,CreateAgent,EditAgent,ResponseAgent} 
+export {IAgentRepository,CreateAgent,EditAgent,ResponseAgent} 

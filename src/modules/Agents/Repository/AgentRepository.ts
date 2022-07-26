@@ -1,9 +1,10 @@
 import { createQueryBuilder, Repository } from "typeorm"
 import { AppDataSource } from "../../../database"
 import { Agent } from "../Entities/Agent"
-import { CreateAgent, DTOAgentRepository, EditAgent, ResponseAgent } from "./DTOAgentRepository"
+import { CreateAgent, IAgentRepository, EditAgent, ResponseAgent } from "./IAgentRepository"
 import { SkillsRepository } from "./SkillsRepository"
 import { InterestsRepository } from "./InterestsRepository"
+
 interface AgentList{
   id: string
   name:string
@@ -15,16 +16,26 @@ interface AgentList{
   skills:string[]
 }
 
- class AgentRepository implements DTOAgentRepository {
+ class AgentRepository implements IAgentRepository {
    agentRepository: Repository<Agent>
    skillsRepository: SkillsRepository
    interestsRepository: InterestsRepository
-   
+    
    constructor() {
      this.agentRepository = AppDataSource.getRepository(Agent)
      this.skillsRepository = new SkillsRepository()
      this.interestsRepository = new InterestsRepository()
   }
+   async findBySkill({ skill }): Promise<Agent[]> {
+    const agentsWithSkill = await this.agentRepository.createQueryBuilder("agent")
+    .innerJoinAndMapMany("agent.skills", "skills_agent", "sk", "agent.id = sk.id_agent")
+    .where("sk.skill = :skill",{skill:skill})   
+    .getMany()
+     return agentsWithSkill
+   }
+   async findByInterest({ interest }: { interest: any }): Promise<Agent[]> {
+     throw new Error("Method not implemented.")
+   }
 
   async findById({id}): Promise<Agent> {
     const findAgent = await this.agentRepository.findOneBy({id:id})
@@ -43,7 +54,7 @@ interface AgentList{
     return newAgent
    }
    
-   async list(): Promise<Agent[]> {
+  async list(): Promise<Agent[]> {
      const moreangent = []
      const allskill = await this.skillsRepository.allSkills()
      const allAgents = await this.agentRepository.find(
@@ -65,10 +76,9 @@ interface AgentList{
      const newQuery = await this.agentRepository.createQueryBuilder("agent")
        .leftJoinAndMapMany("agent.skills", "skills_agent", "sk", "agent.id = sk.id_agent")
        .leftJoinAndMapMany("agent.interests", "interests_agent", "in", "agent.id = in.id_agent")
-
-  
+       .leftJoinAndMapMany("agent.owner_mission", "mission", "ms", "agent.id = ms.create_by")
        .getMany()
-     console.log(newQuery)
+     
      
      return newQuery
    }
@@ -113,6 +123,7 @@ interface AgentList{
     const foundAgent = await  this.agentRepository.findOneBy({ name: name })
     return foundAgent
    }
+
    async findByVocation({ vocation }): Promise<Agent[]>{
      const usersByVocation = this.agentRepository.findBy({ vocation: vocation })
      return usersByVocation

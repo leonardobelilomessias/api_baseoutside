@@ -50,7 +50,7 @@ class SkillsRepository{
       })
       return dealingSkills
     }
-
   }
+
 }
 export{ SkillsRepository}
