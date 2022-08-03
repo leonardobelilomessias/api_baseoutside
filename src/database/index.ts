@@ -8,6 +8,9 @@ import { Interests } from "../modules/Agents/Entities/Interests";
 import { Skills } from "../modules/Agents/Entities/Skills";
 import { PhotoPublicationAgent } from "../modules/Agents/Entities/PhotoPublicationAgent";
 import { PublicationAgent } from "../modules/Agents/Entities/PublicationAgent";
+import { Departament } from "../modules/departemets/entities/Departament";
+import { JourneyAgent } from "../modules/Agents/Entities/JourneyAgent";
+import { SponsorAgent } from "../modules/Agents/Entities/SponsorAgent";
 
 
 
@@ -18,7 +21,7 @@ export const AppDataSource = new DataSource({
   username: "root",
   password: "Leo175033",
   database: "db_holdrope",
-  entities: [Agent,Mission,Action,Task,AgentToken,Interests,Skills,PhotoPublicationAgent,PublicationAgent],
+  entities: [Agent,JourneyAgent,SponsorAgent,Mission,Action,Task,AgentToken,Interests,Skills,PhotoPublicationAgent,PublicationAgent,Departament],
   migrations: ["./src/database/migrations/*.ts"],
   
 

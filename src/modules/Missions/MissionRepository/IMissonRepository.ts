@@ -3,15 +3,15 @@ import { Mission } from "../Entities/Mission";
 interface ICreateMission{
   name: string;
   description: string;
-  create_by: string,
+  creator: string,
   image_profile?: string;
 
 }
 
 
-interface DTOMissionReposiotry{
+interface IMissionReposiotry{
 
-  create({name,description,create_by,image_profile}:ICreateMission): Promise<Mission>
+  create({name,description,creator,image_profile}:ICreateMission): Promise<Mission>
   
   list(): Promise<Mission[]>
 
@@ -24,4 +24,4 @@ interface DTOMissionReposiotry{
   
 }
 
-export {DTOMissionReposiotry, ICreateMission}
+export {IMissionReposiotry, ICreateMission}

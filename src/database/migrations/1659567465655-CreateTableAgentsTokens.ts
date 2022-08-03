@@ -1,11 +1,11 @@
 import { MigrationInterface, QueryRunner, Table } from "typeorm"
 
-export class CreateTasks1656959070564 implements MigrationInterface {
+export class CreateTableAgentsTokens1659567465655 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "task",
+                name: "agents_tokens",
                 columns: [
                     {
                         name: "id",
@@ -14,35 +14,33 @@ export class CreateTasks1656959070564 implements MigrationInterface {
                         isPrimary:true
                     },
                     {
-                        name: "description",
-                        type:"text"
+                        name: "refresh_token",
+                        type:"varchar"
                     },
                     {
-                        name: "title",
-                        type:"varchar",
-                    },
-                    {
-                        name: "status_current",
-                        type: "bool",
-                        default:true
-                    },
-                    {
-                        name: "id_action",
+                        name: "id_agent",
                         type: "varchar",
                         length:"36"
                     },
                     {
-                        name: "create_at",
+                        name: "expires_date",
+                        type:"timestamp"
+                    },
+                    {
+                        name: "created_at",
                         type: "timestamp",
                         default:"now()"
                     }
+
                 ],
                 foreignKeys: [
                     {
-                        name: "fk_action_task",
-                        referencedTableName: "action",
+                        name: "fk_id_agent_agents_tokens",
+                        referencedTableName: "agents",
                         referencedColumnNames: ["id"],
-                        columnNames:["id_action"]
+                        columnNames: ["id_agent"],
+                        onDelete: "CASCADE",
+                        onUpdate:"CASCADE"
                     }
                 ]
             })
@@ -50,7 +48,8 @@ export class CreateTasks1656959070564 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("task")
+        await queryRunner.dropTable("agents_tokens")
     }
+
 
 }

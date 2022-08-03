@@ -1,5 +1,6 @@
 import { Mission } from "../../Entities/Mission"
-import { ICreateMission } from "../../MissionRepository/DTOMissonRepository"
+import { ICreateMission } from "../../MissionRepository/IMissonRepository"
+
 import { MissionRepository } from "../../MissionRepository/MissionReposioty"
 
 
@@ -8,8 +9,8 @@ class CreateMissionUseCase{
   constructor(missionRepository:MissionRepository) {
     this.missionRepository = missionRepository
   }
-  async execute({name,description,create_by,image_profile}:ICreateMission):Promise<Mission>{
-    const mission = await this.missionRepository.create({ name, description, create_by, image_profile })
+  async execute({name,description,creator,image_profile}:ICreateMission):Promise<Mission>{
+    const mission = await this.missionRepository.create({ name, description, creator, image_profile })
     return mission
   }
 }

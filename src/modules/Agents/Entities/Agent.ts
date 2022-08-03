@@ -3,37 +3,44 @@ import {v4 as uuidv4} from 'uuid'
 import { Interests } from "./Interests";
 import { Skills } from "./Skills";
 
-@Entity("agent")
+@Entity("agents")
 class Agent{
   @PrimaryColumn()
   id?: string;
+  
+  @Column()
+  email: string;
+  
+  @Column()
+  password: string;
 
   @Column()
   name: string;
 
   @Column()
-  email: string;
-
-  @Column()
-  password: string;
-
-  @Column()
   description: string;
 
   @Column()
-  image_profile: string;
+  balance:number
 
   @Column()
-  is_active:boolean
-
-  @CreateDateColumn()
-  create_at: Date;
-
-  @Column()
-  vocation?: string
+  is_active: boolean
   
   @Column()
-  level:number
+  level: number
+  
+  @Column()
+  image_profile: string;
+  
+  
+  @Column()
+  vocation?: string
+    
+  @CreateDateColumn()
+  created_at: Date;
+
+  @Column()
+  state:number
 
 
 

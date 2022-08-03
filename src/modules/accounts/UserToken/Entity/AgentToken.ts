@@ -21,7 +21,7 @@ class AgentToken{
   expires_date: string;
   
   @Column()
-  create_at: string;
+  created_at: string;
 
   constructor() {
     if (!this.id) {

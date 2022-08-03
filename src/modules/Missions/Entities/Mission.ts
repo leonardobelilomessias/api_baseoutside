@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn 
 import {v4 as uuidv4} from 'uuid'
 import { Agent } from '../../Agents/Entities/Agent';
 
-@Entity("mission")
+@Entity("missions")
 class Mission {
   @PrimaryColumn()
   id: string;
@@ -10,36 +10,58 @@ class Mission {
   @Column()
   name: string;
 
+  @ManyToOne(()=>Agent)
+  @JoinColumn({name:"creator"})
+  creator: string;
+
   @Column()
   description: string;
   
   @Column()
+  local?:string
+
+  @Column()
+  state?: number
+  
+  @Column()
   balance: number;
+
+  @Column()
+  is_active?: boolean
+  
+  @Column()
+  level?:number
   
   @Column()
   image_profile?: string;
+
+  @Column()
+  duration?: number
   
   @Column()
-  state: string;
-
+  date_start?: Date
+  
   @Column()
-  create_by: string;
-
-  @ManyToOne(()=>Agent)
-  @JoinColumn({name:"create_by"})
-  agent:Agent
+  date_end?: Date
+  
+  @Column()
+  is_private: boolean
+  
+  @Column()
+  type?: number
+  
   
   @CreateDateColumn()
-  create_at:Date
-
+  created_at:Date
+  
+  @Column()
+  field?:string
+  
   constructor() {
     if (!this.id) {
       this.id = uuidv4()
     }
   }
-
-
-
 }
 
 export{Mission}

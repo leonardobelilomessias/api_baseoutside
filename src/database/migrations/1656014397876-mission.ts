@@ -5,7 +5,7 @@ export class mission1656014397876 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "mission",
+                name: "missions",
                 columns: [
                     {
                         name: "id",
@@ -18,13 +18,38 @@ export class mission1656014397876 implements MigrationInterface {
                         type: "varchar",
                     },
                     {
+                        name: "creator",
+                        type:"varchar(36)"
+                    },
+                    {
                         name: "description",
                         type: "text",
                     },
                     {
+                        name: "local",
+                        type: "varchar",
+                        isNullable:true
+                    },
+                    {
+                        name: "state",
+                        type: "int",
+                        default:0
+                    },
+
+                    {
                         name: "balance",
                         type: "decimal(15,2)",
                         default:0.00
+                    },
+                    {
+                        name: "is_active",
+                        type: "boolean",
+                        default:true
+                    },
+                    {
+                        name: "level",
+                        type: "int",
+                        default:0
                     },
                     {
                         name: "image_profile",
@@ -32,27 +57,48 @@ export class mission1656014397876 implements MigrationInterface {
                         isNullable: true,
                     },
                     {
-                        name: "state",
-                        type: "varchar",
-                        default:"'ativo'"
+                        name: "duration",
+                        type: "int",
+                        default:0
                     },
                     {
-                        name: "create_by",
-                        type:"varchar(36)"
+                        name: "date_start",
+                        type: "timestamp",
+                        isNullable:true
                     },
                     {
-                        name: "create_at",
+                        name: "date_end",
+                        type: "timestamp",
+                        isNullable:true
+                    },
+                    {
+                        name: "is_private",
+                        type: "boolean",
+                        default:false
+                    },
+                    {
+                        name: "type",
+                        type: "int",
+                        isNullable:true
+                    },
+                    {
+                        name: "created_at",
                         type: "timestamp",
                         default:"now()"
+                    },
+                    {
+                        name: "field",
+                        type: "varchar",
+                        isNullable:true
                     }
 
                 ],
                 foreignKeys: [
                     {
-                        name: "fk_agent",
-                        referencedTableName: "agent",
+                        name: "fk_agent_creator",
+                        referencedTableName: "agents",
                         referencedColumnNames: ["id"],
-                        columnNames: ["create_by"],
+                        columnNames: ["creator"],
                     }
                 ]
             })
@@ -60,7 +106,7 @@ export class mission1656014397876 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("mission")
+        await queryRunner.dropTable("missions")
     }
 
 

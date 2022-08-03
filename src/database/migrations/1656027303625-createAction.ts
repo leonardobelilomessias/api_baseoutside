@@ -5,7 +5,7 @@ export class createAction1656027303625 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "action",
+                name: "actions",
                 columns: [
                     {
                         name: "id",
@@ -22,6 +22,20 @@ export class createAction1656027303625 implements MigrationInterface {
                         type: "text",
                     },
                     {
+                        name: "local",
+                        type: "varchar",
+                        isNullable:true
+                    },
+                    {
+                        name: "id_mission",
+                        type: "varchar(36)",
+                    },
+                    {
+                        name: "created_at",
+                        type: "timestamp",
+                        default:"now()"
+                    },
+                    {
                         name: "date_start",
                         type: "timestamp",
                         isNullable:true
@@ -32,31 +46,28 @@ export class createAction1656027303625 implements MigrationInterface {
                         isNullable:true
                     },
                     {
-                        name: "create_at",
-                        type: "timestamp",
-                        default:"now()"
+                        name: "state",
+                        type: "int",
+                        default:0
                     },
                     {
-                        name: "balance",
-                        type: "decimal(15,2)",
-                        default:0.00
+                        name: "is_active",
+                        type: "boolean",
+                        default:true
                     },
                     {
-                        name: "value",
-                        type: "decimal(15,2)",
-                        default:0.00
-                    },
-                    {
-                        name: "mission",
-                        type: "varchar(36)",
+                        name: "type",
+                        type: "int",
+                        default:0
                     }
+
                 ],
                 foreignKeys: [
                     {
-                        name: "fk_mission",
-                        referencedTableName: "mission",
+                        name: "fk_mission_action",
+                        referencedTableName: "missions",
                         referencedColumnNames: ["id"],
-                        columnNames:["mission"]
+                        columnNames:["id_mission"]
                     }
                 ]
             })
@@ -64,7 +75,7 @@ export class createAction1656027303625 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("action")
+        await queryRunner.dropTable("actions")
     }
 
 }

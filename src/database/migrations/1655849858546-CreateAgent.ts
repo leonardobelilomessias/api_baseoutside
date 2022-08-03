@@ -7,7 +7,7 @@ export class CreateAgent1655849858546 implements MigrationInterface {
         await queryRunner.createTable(
             new Table(
                 {
-                    name: "agent",
+                    name: "agents",
                     columns: [
                         {
                             name: "id",
@@ -15,10 +15,7 @@ export class CreateAgent1655849858546 implements MigrationInterface {
                             isPrimary: true,
                             length:"36"
                         },
-                        {
-                            name: "name",
-                            type:"varchar(50)"
-                        },
+
                         {
                             name: "email",
                             type:"varchar"
@@ -28,13 +25,12 @@ export class CreateAgent1655849858546 implements MigrationInterface {
                             type:"varchar"
                         },
                         {
-                            name: "description",
-                            type: "text",
-                            isNullable:true
+                            name: "name",
+                            type:"varchar(50)"
                         },
                         {
-                            name: "image_profile",
-                            type: "varchar",
+                            name: "description",
+                            type: "text",
                             isNullable:true
                         },
                         {
@@ -43,15 +39,37 @@ export class CreateAgent1655849858546 implements MigrationInterface {
                             default:0.00
                         },
                         {
-                            name: 'create_at',
-                            type: "timestamp",
-                            default:"now()"
-                        },
-                        {
                             name: "is_active",
                             type: "boolean",
                             default:true
                         },
+                        {
+                            name: "level",
+                            type: "int",
+                            default:0
+                        },
+                        {
+                            name: "image_profile",
+                            type: "varchar",
+                            isNullable:true
+                        },
+                        {
+                            name: "vocation",
+                            type: "varchar",
+                            isNullable:true
+                        },
+
+                        {
+                            name: 'created_at',
+                            type: "timestamp",
+                            default:"now()"
+                        },
+                        {
+                            name: "state",
+                            type: "int",
+                            default:0
+                        }
+
 
                     ],
                     
@@ -61,7 +79,7 @@ export class CreateAgent1655849858546 implements MigrationInterface {
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable("agent")
+        await queryRunner.dropTable("agents")
     }
 
 }

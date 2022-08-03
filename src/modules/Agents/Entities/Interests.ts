@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm'
 import {v4 as uuidv4} from 'uuid'
 import { Agent } from './Agent'
 
-@Entity("interests_agent")
+@Entity("interests_agents")
 class Interests {
   @PrimaryColumn()
   id?: string

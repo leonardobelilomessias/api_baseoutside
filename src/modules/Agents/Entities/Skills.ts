@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { Agent } from "./Agent";
 import{v4 as uuidv4} from 'uuid'
 
-@Entity("skills_agent")
+@Entity("skills_agents")
 class Skills{
 
   @PrimaryColumn()
@@ -13,7 +13,7 @@ class Skills{
 
   @ManyToOne(() => Agent)
   @JoinColumn({name:"id_agent"})
-  id_agent: Agent
+  id_agent: Agent 
   constructor(id_agent,skill) {
     if (!this.id) {
       this.id= uuidv4()

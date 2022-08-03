@@ -28,7 +28,7 @@ interface AgentList{
   }
    async findBySkill({ skill }): Promise<Agent[]> {
     const agentsWithSkill = await this.agentRepository.createQueryBuilder("agent")
-    .innerJoinAndMapMany("agent.skills", "skills_agent", "sk", "agent.id = sk.id_agent")
+    .innerJoinAndMapMany("agent.skills", "skills_agents", "sk", "agent.id = sk.id_agent")
     .where("sk.skill = :skill",{skill:skill})   
     .getMany()
      return agentsWithSkill
@@ -74,9 +74,9 @@ interface AgentList{
 
        })
      const newQuery = await this.agentRepository.createQueryBuilder("agent")
-       .leftJoinAndMapMany("agent.skills", "skills_agent", "sk", "agent.id = sk.id_agent")
-       .leftJoinAndMapMany("agent.interests", "interests_agent", "in", "agent.id = in.id_agent")
-       .leftJoinAndMapMany("agent.owner_mission", "mission", "ms", "agent.id = ms.create_by")
+       .leftJoinAndMapMany("agent.skills", "skills_agents", "sk", "agent.id = sk.id_agent")
+       .leftJoinAndMapMany("agent.interests", "interests_agents", "in", "agent.id = in.id_agent")
+       .leftJoinAndMapMany("agent.owner_mission", "missions", "ms", "agent.id = ms.creator")
        .getMany()
      
      

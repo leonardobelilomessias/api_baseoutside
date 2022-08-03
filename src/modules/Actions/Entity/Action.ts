@@ -1,10 +1,7 @@
-import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryColumn } from 'typeorm';
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne,PrimaryColumn } from 'typeorm';
 import {v4 as uuidv4} from 'uuid'
 import { Mission } from '../../Missions/Entities/Mission';
-import { Task } from '../../Task/Entities/Task';
-
-
-@Entity("action")
+@Entity("actions")
 class Action{
   @PrimaryColumn()
   id: string;
@@ -14,6 +11,16 @@ class Action{
 
   @Column()
   description: string;
+
+  @Column()
+  local?: string;
+
+  @ManyToOne(()=>Mission)
+  @JoinColumn({name:"id_mission"})
+  id_mission: string;  
+  
+  @CreateDateColumn()
+  created_at: Date;
   
   @Column()
   date_start?: Date;
@@ -21,22 +28,14 @@ class Action{
   @Column()
   date_end?: Date;
 
-  @CreateDateColumn()
-  create_at: Date;
   @Column()
-  value?: number;
+  is_active?: boolean;
 
   @Column()
-  balance?:number
+  type?:number
   
-  @ManyToOne(()=>Mission)
-  @JoinColumn({ name: "mission" })
-  fk_mission:Mission  
-  
-  @Column()
-  mission: string;
-  
-  
+
+
   constructor() {
     if (!this.id) {
     this.id = uuidv4()

@@ -4,6 +4,7 @@ import multer, { } from "multer";
 import uploadConfig from '../config/upload'
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 import  createAgentController  from "../modules/Agents/UseCases/CreateAgent";
+import { createNewSponsorAgentController } from "../modules/Agents/UseCases/CreateNewSponsorAgent";
 import { createPublicationAgentController } from "../modules/Agents/UseCases/CreatePublicationAgent";
 import { deactivateAgentController } from "../modules/Agents/UseCases/DeactivateAgent";
 import { findAgentBySkillController } from "../modules/Agents/UseCases/FindAgentBySkill";
@@ -36,6 +37,10 @@ agent.get("/findByVocation",async (request, response) => {
 
 agent.get("/findByInterest", async (request, response) => {
   await findyByInterestController.handle(request,response)
+})
+
+agent.post("/sponsorAgent", (request, response) => {
+  createNewSponsorAgentController.handle(request,response)
 })
 
 

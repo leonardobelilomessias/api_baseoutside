@@ -2,9 +2,9 @@ import { Repository } from "typeorm"
 import { AppDataSource } from "../../../database"
 import { AppError } from "../../../errors/AppError"
 import { Mission } from "../Entities/Mission"
-import { DTOMissionReposiotry, ICreateMission } from "./DTOMissonRepository"
+import { IMissionReposiotry, ICreateMission } from "./IMissonRepository"
 
-class MissionRepository implements DTOMissionReposiotry{
+class MissionRepository implements IMissionReposiotry{
   private missionRepository:Repository<Mission>
   constructor(){
     this.missionRepository = AppDataSource.getRepository(Mission)
@@ -12,8 +12,8 @@ class MissionRepository implements DTOMissionReposiotry{
   deactivate({ id }: { id: any }): Promise<Mission> {
     throw new Error("Method not implemented.")
   }
-  async create({ name, description, create_by, image_profile }: ICreateMission): Promise<Mission> {
-    const newMission =  this.missionRepository.create({ name, description, create_by, image_profile })
+  async create({ name, description, creator, image_profile }: ICreateMission): Promise<Mission> {
+    const newMission =  this.missionRepository.create({ name, description, creator, image_profile })
     const mission = await this.missionRepository.save(newMission)
     return mission
   }

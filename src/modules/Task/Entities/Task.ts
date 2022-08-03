@@ -1,32 +1,62 @@
 import { Entity, PrimaryColumn,Column, CreateDateColumn, ManyToMany, JoinColumn, ManyToOne, JoinTable } from 'typeorm'
 import {v4 as uuidv4} from 'uuid'
 import { Action } from '../../Actions/Entity/Action';
+import { Departament } from '../../departemets/entities/Departament';
+import { Mission } from '../../Missions/Entities/Mission';
 
-
-
-@Entity("task")
+@Entity("tasks_departamets")
 class Task{
   @PrimaryColumn()
   id: string;
+
+  @ManyToOne(()=>Departament)
+  @JoinColumn({ name: "id_departament" })
+  id_departament: string;
+
+  @ManyToOne(()=>Action)
+  @JoinColumn({ name: "id_action" })
+  id_action: string;
   
+  @ManyToOne(()=>Mission)
+  @JoinColumn({ name: "id_mission" })
+  id_mission: string;
+
   @Column()
   title: string;
+
+  @CreateDateColumn()
+  created_at?: Date;
 
   @Column()
   description: string;
 
   @Column()
-  status_current?: Boolean;
-  
-  @CreateDateColumn()
-  create_at?: Date;
-
-  @ManyToOne(()=>Action)
-  @JoinColumn({ name: "id_action" })
-  fk_action_task:Action 
+  local?: string;
 
   @Column()
-  id_action:string
+  is_active?: boolean;
+
+  @Column()
+  state?:number;
+
+  @Column()
+  agents_necessary?: number;
+
+  @Column()
+  agents_limit?: number;
+  
+  @Column()
+  priority: number;
+
+  @Column()
+  date_limit_subscribe?: Date;
+
+  @Column()
+  is_require_skill: boolean;
+
+  @Column()
+  skill_require?:string
+
   constructor() {
     if (!this.id) {
     this.id = uuidv4()

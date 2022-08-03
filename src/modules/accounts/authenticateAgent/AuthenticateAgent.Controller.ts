@@ -8,7 +8,7 @@ class AuthenticateAgentController{
   }
   async handle(request:Request,response:Response):Promise<Response> {
     const { password, email } = request.body
-    const token = await this.authenticateAgentUseCase.execute({ password, email })
+    const token = await this.authenticateAgentUseCase.execute({password, email })
     return response.json(token)
   }
 
