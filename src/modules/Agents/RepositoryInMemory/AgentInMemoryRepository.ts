@@ -1,27 +1,19 @@
-import { Agent } from "../Entities/Agent";
-import { EditAgent, ResponseAgent ,CreateAgent, DTOAgentRepository} from "../Repository/DTOAgentRepository";
+import { Agent } from "../infra/typeorm/entities/Agent"
+import { CreateAgent, EditAgent, IAgentRepository, ResponseAgent } from "../repositories/IAgentRepository"
 
 
-class AgentInMemoryRepository implements DTOAgentRepository{
+class AgentInMemoryRepository implements IAgentRepository{
   repositoryInMemory: Agent[] = []
-  
+
+  async listAll(): Promise<Agent[]> {
+    return this.repositoryInMemory
+  }
+
   async create({ name, email, password }: CreateAgent): Promise<Agent> {
     const newAgent = new Agent()
-    Object.assign(newAgent, { name, email, password })
+    Object.assign(newAgent, { name, email, password,skills:["programing","desing"],interests:["sociology","filosofy"] })
     this.repositoryInMemory.push(newAgent)
     return newAgent
-  }
-  async list(): Promise<Agent[]> {
-    const all = this.repositoryInMemory
-    return all 
-  }
-
-  async delete({ id }: { id: any; }): Promise<Agent> {
-    throw new Error("Method not implemented.");
-  }
-
-  async edit({id,description,email,interests,name,skills}:EditAgent): Promise<ResponseAgent> {
-    throw new Error("Method not implemented.");
   }
 
   async findByEmail({ email }: { email: any; }): Promise<Agent> {
@@ -30,6 +22,28 @@ class AgentInMemoryRepository implements DTOAgentRepository{
     })
     return agent
   }
+
+  findBySkill({ skill }: { skill: any }): Promise<Agent[]> {
+    throw new Error("Method not implemented.")
+  }
+
+  findByInterest({ interest }: { interest: any }): Promise<Agent[]> {
+    throw new Error("Method not implemented.")
+  }
+
+  findByVocation({ vocation }: { vocation: any }): Promise<Agent[]> {
+    throw new Error("Method not implemented.")
+  }
+  
+  async delete({ id }: { id: any; }): Promise<Agent> {
+    throw new Error("Method not implemented.");
+  }
+
+  async edit({id,description,email,interests,name,skills}:EditAgent): Promise<ResponseAgent> {
+    throw new Error("Method not implemented.");
+  }
+
+
 
   async findById({ id }: { id: any; }): Promise<Agent> {
     throw new Error("Method not implemented.");

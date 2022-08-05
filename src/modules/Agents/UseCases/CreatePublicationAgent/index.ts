@@ -1,7 +1,6 @@
 import { LocalStorageProvider } from "../../../../utils/providers/StorageProvider/implementations/LocalStorageProvider";
-import { PublicationAgent } from "../../Entities/PublicationAgent";
-import { PhotoPublicationAgentRepository } from "../../Repository/PhotosPublicationAgentRepository";
-import { PublicationsAgentRepository } from "../../Repository/PublicationsAgentRepository";
+import { PhotoPublicationAgentRepository } from "../../infra/typeorm/repositories/PhotosPublicationAgentRepository";
+import { PublicationsAgentRepository } from "../../infra/typeorm/repositories/PublicationsAgentRepository";
 import { CreatePublicationAgentController } from "./CreatePublicationAgentController";
 import { CreatePublicationAgentUseCase } from "./CreatePublicationAgentUseCase";
 

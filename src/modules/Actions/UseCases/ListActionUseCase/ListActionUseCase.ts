@@ -1,5 +1,6 @@
-import { ActionRepository } from "../../ActionsRepository/ActionRepository";
-import { Action } from "../../Entity/Action";
+import { Action } from "../../infra/typeorm/entities/Action"
+import { ActionRepository } from "../../infra/typeorm/repositories/ActionRepository"
+
 
 
 class ListActionUseCase{

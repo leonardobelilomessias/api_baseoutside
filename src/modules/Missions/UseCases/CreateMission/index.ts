@@ -1,5 +1,5 @@
 
-import { MissionRepository } from "../../MissionRepository/MissionReposioty";
+import { MissionRepository } from "../../infra/typeorm/repositories/MissionReposioty";
 import { CreateMissionController } from "./CreateMissionController";
 import { CreateMissionUseCase } from "./CreateMissionUseCase";
 

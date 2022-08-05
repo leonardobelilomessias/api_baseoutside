@@ -1,5 +1,6 @@
-import { Mission } from "../../Entities/Mission"
-import { MissionRepository } from "../../MissionRepository/MissionReposioty"
+import { Mission } from "../../infra/typeorm/entities/Mission"
+import { MissionRepository } from "../../infra/typeorm/repositories/MissionReposioty"
+
 
 
 class ListMissionUseCase{

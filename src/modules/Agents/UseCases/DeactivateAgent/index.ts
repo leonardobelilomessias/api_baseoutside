@@ -1,6 +1,10 @@
-import { AgentRepository } from "../../Repository/AgentRepository";
-import { InterestsRepository } from "../../Repository/InterestsRepository";
-import { SkillsRepository } from "../../Repository/SkillsRepository";
+
+
+
+
+import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepository";
+import { InterestsRepository } from "../../infra/typeorm/repositories/InterestsRepository";
+import { SkillsRepository } from "../../infra/typeorm/repositories/SkillsRepository";
 import { DeactivateAgentController } from "./DeactivateAgentController";
 import { DeactivateAgentUseCase } from "./DeactivateAgentUseCase";
 

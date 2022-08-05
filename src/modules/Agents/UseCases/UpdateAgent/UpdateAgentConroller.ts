@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
-import { Agent } from "../../Entities/Agent"
-import { EditAgent } from "../../Repository/DTOAgentRepository"
+import { EditAgent } from "../../repositories/IAgentRepository"
+
 import { UpdateAgentUseCase } from "./UpdateAgentUseCase"
 
 class UpdateAgentController{

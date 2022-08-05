@@ -1,7 +1,7 @@
-import { Mission } from "../../Entities/Mission"
-import { ICreateMission } from "../../MissionRepository/IMissonRepository"
+import { Mission } from "../../infra/typeorm/entities/Mission"
+import { MissionRepository } from "../../infra/typeorm/repositories/MissionReposioty"
+import { ICreateMission } from "../../repositories/IMissonRepository"
 
-import { MissionRepository } from "../../MissionRepository/MissionReposioty"
 
 
 class CreateMissionUseCase{

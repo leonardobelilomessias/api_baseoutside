@@ -1,14 +1,16 @@
 import { hash } from "bcrypt"
-import { AppError } from "../../../../errors/AppError"
-import { CreateAgent, DTOAgentRepository } from "../../Repository/DTOAgentRepository"
+import { AppError } from "../../../../shared/errors/AppError"
+import { IAgentRepository } from "../../repositories/IAgentRepository"
+
+
 
 class CreateAgentUseCase{
-  private agentRepository: DTOAgentRepository
+  private agentRepository: IAgentRepository
 
-  constructor(agentReposiotory:DTOAgentRepository) {
+  constructor(agentReposiotory:IAgentRepository) {
     this.agentRepository = agentReposiotory
   }
-  async execute({ name, email, password }: CreateAgent) {
+  async execute({ name, email, password }) {
     try {
       const agentExist = await this.agentRepository.findByEmail({ email })    
       
@@ -20,6 +22,7 @@ class CreateAgentUseCase{
       return agent
       
     } catch (err) {
+      console.log(err)
       return err 
     }
   } 

@@ -1,10 +1,10 @@
 import { compare } from 'bcrypt'
 import {sign} from 'jsonwebtoken'
-import { AppError } from '../../../errors/AppError';
-import { AgentRepository } from "../../Agents/Repository/AgentRepository";
-import { DTOAgentRepository } from '../../Agents/Repository/DTOAgentRepository';
 import auth from '../../../config/auth'
-import { IAgentTokenRepository } from '../UserToken/Repository/IAgentTokenRepository';
+import { AppError } from '../../../shared/errors/AppError';
+import { IAgentRepository } from '../../agents/repositories/IAgentRepository';
+import { IAgentTokenRepository } from '../userToken/repositories/IAgentTokenRepository';
+
 interface IRequest{
   email: string;
   password:string
@@ -20,10 +20,10 @@ interface IResponse{
 }
 
 class AuthenticateAgentUseCase{
-  private agentRepository: DTOAgentRepository
+  private agentRepository: IAgentRepository
   private agentTokenRepository:IAgentTokenRepository
 
-  constructor(agentRepository:DTOAgentRepository, agentTokenRepository:IAgentTokenRepository) {
+  constructor(agentRepository:IAgentRepository, agentTokenRepository:IAgentTokenRepository) {
     this.agentRepository = agentRepository
     this.agentTokenRepository = agentTokenRepository
   }

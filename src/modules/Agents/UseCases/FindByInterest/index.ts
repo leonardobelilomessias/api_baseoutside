@@ -1,4 +1,4 @@
-import { InterestsRepository } from "../../Repository/InterestsRepository";
+import { InterestsRepository } from "../../infra/typeorm/repositories/InterestsRepository";
 import { FindyByInterestController } from "./FindByInterestController";
 import { FindByInterestUseCase } from "./FindByInterestUseCase";
 

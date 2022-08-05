@@ -1,10 +1,10 @@
-import { DTOAgentRepository, EditAgent } from "../../Repository/DTOAgentRepository"
+import { IAgentRepository, EditAgent } from "../../repositories/IAgentRepository"
 
 
 
 class UpdateAgentUseCase{
-  private agentRepository: DTOAgentRepository
-  constructor(agentRepository: DTOAgentRepository) {
+  private agentRepository: IAgentRepository
+  constructor(agentRepository: IAgentRepository) {
     this.agentRepository = agentRepository
   }
   

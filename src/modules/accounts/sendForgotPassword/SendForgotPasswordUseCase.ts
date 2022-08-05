@@ -1,17 +1,18 @@
-import { AppError } from "../../../errors/AppError"
-import { AgentRepository } from "../../Agents/Repository/AgentRepository"
-import { DTOAgentRepository } from "../../Agents/Repository/DTOAgentRepository"
-import { IAgentTokenRepository } from "../UserToken/Repository/IAgentTokenRepository"
+
 import { v4 as uuidv4} from 'uuid'
-import { IMailProvider } from "../../../utils/providers/MailProvider/IMailProvider"
-import { AgentTokenRepository } from "../UserToken/Repository/AgentTokenRepository"
+
 import {resolve} from 'path'
+import { AppError } from '../../../shared/errors/AppError'
+import { IMailProvider } from '../../../utils/providers/MailProvider/IMailProvider'
+import { IAgentRepository } from '../../agents/repositories/IAgentRepository'
+import { AgentTokenRepository } from '../userToken/infra/typeorm/repositories/AgentTokenRepository'
+import { IAgentTokenRepository } from '../userToken/repositories/IAgentTokenRepository'
 
 class SendForgotPasswordUseCase{
-  private agentRepository: DTOAgentRepository
+  private agentRepository: IAgentRepository
   private agentTokenRepository: IAgentTokenRepository
   private mailProvider:IMailProvider
-  constructor(agentRepository:DTOAgentRepository, agentTokenRepository:AgentTokenRepository,mailProvider:IMailProvider) {
+  constructor(agentRepository:IAgentRepository, agentTokenRepository:AgentTokenRepository,mailProvider:IMailProvider) {
     this.agentRepository = agentRepository
     this.agentTokenRepository = agentTokenRepository
     this.mailProvider = mailProvider

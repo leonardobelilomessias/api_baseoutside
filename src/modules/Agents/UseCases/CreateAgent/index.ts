@@ -1,6 +1,8 @@
-import { AgentRepository } from "../../Repository/AgentRepository";
-import { CreateAgentController } from "./CreateAgentController";
-import { CreateAgentUseCase } from "./CreateAgentUseCase";
+import { AgentRepository } from "../../../agents/infra/typeorm/repositories/AgentRepository"
+import { CreateAgentUseCase } from "../../../agents/UseCases/CreateAgent/CreateAgentUseCase"
+import { CreateAgentController } from "../../../agents/UseCases/CreateAgent/CreateAgentController"
+
+
 
 export default () => {
   const agentRepository = new AgentRepository()

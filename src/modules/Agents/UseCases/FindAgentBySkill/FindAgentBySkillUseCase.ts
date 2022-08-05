@@ -1,5 +1,6 @@
-import { Agent } from "../../Entities/Agent"
-import { IAgentRepository } from "../../Repository/IAgentRepository"
+import { Agent } from "../../infra/typeorm/entities/Agent"
+import { IAgentRepository } from "../../repositories/IAgentRepository"
+
 
 
 class FindAgentBySkillUseCase{

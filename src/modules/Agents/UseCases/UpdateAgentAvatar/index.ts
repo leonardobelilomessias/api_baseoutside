@@ -1,6 +1,5 @@
-import { LocalStorageProvider } from "../../../../utils/providers/StorageProvider/implementations/LocalStorageProvider";
 import { S3StorageProvider } from "../../../../utils/providers/StorageProvider/implementations/S3StorageProvider";
-import { AgentRepository } from "../../Repository/AgentRepository";
+import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepository";
 import { UpdateImageAgentController } from "./UpdateImageAgent";
 import { UpdateImageAgentUseCase } from "./UpdateImageAgentUseCase";
 

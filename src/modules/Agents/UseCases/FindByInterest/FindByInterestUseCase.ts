@@ -1,4 +1,4 @@
-import { InterestsRepository } from "../../Repository/InterestsRepository"
+import { InterestsRepository } from "../../infra/typeorm/repositories/InterestsRepository"
 
 class FindByInterestUseCase{
   private interestRepository: InterestsRepository

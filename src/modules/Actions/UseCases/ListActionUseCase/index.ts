@@ -1,4 +1,4 @@
-import { ActionRepository } from "../../ActionsRepository/ActionRepository";
+import { ActionRepository } from "../../infra/typeorm/repositories/ActionRepository";
 import { ListActionController } from "./ListActionController";
 import { ListActionUseCase } from "./ListActionUseCase";
 

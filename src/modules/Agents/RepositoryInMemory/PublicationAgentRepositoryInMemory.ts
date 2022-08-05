@@ -1,7 +1,6 @@
-import { PhotoPublicationAgent } from "../Entities/PhotoPublicationAgent";
-import { PublicationAgent } from "../Entities/PublicationAgent";
-import { DTOPhotosPublicationAgent } from "../Repository/DTOS/DTOPhotosPublicationAgentRepository";
-import { CreatePublication, DTOPublicationsAgentRepository, EditPublication, ResponseCreatePublication } from "../Repository/DTOS/DTOPublicationsAgentRepository";
+import { DTOPhotosPublicationAgent } from "../DTOS/DTOPhotosPublicationAgentRepository"
+import { DTOPublicationsAgentRepository, ResponseCreatePublication, EditPublication, ICreatePublication } from "../DTOS/DTOPublicationsAgentRepository"
+import { PublicationAgent } from "../infra/typeorm/entities/PublicationAgent"
 
 class PublicationsAgentRepositoryInMemory implements DTOPublicationsAgentRepository {
   publicationsAgent: PublicationAgent[] =[]
@@ -10,7 +9,7 @@ class PublicationsAgentRepositoryInMemory implements DTOPublicationsAgentReposit
     this.photosPublicationAgent = photosPublicationAgent
   }
   
-  async create({ id_agent, type, description,content }: CreatePublication): Promise<ResponseCreatePublication> {
+  async create({ id_agent, type, description,content }: ICreatePublication): Promise<ResponseCreatePublication> {
     
     const newPublicationAgent = new PublicationAgent()
     Object.assign(newPublicationAgent, { id_agent, type, description })

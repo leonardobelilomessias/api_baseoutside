@@ -1,6 +1,7 @@
 import { EtherealMailProvider } from "../../../utils/providers/MailProvider/EtherealMailProvider";
-import { AgentRepository } from "../../Agents/Repository/AgentRepository";
-import { AgentTokenRepository } from "../UserToken/Repository/AgentTokenRepository";
+import { AgentRepository } from "../../agents/infra/typeorm/repositories/AgentRepository";
+import { AgentTokenRepository } from "../userToken/infra/typeorm/repositories/AgentTokenRepository";
+
 import { SendForgotPasswordController } from "./SendForgotPasswordController";
 import { SendForgotPasswordUseCase } from "./SendForgotPasswordUseCase";
 

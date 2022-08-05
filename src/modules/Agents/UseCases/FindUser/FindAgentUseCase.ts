@@ -1,9 +1,10 @@
-import { Agent } from "../../Entities/Agent"
-import { DTOAgentRepository } from "../../Repository/DTOAgentRepository"
+import { Agent } from "../../infra/typeorm/entities/Agent"
+import { IAgentRepository } from "../../repositories/IAgentRepository"
+
 
 class FindAgentUseCase{
-  private agentRepository: DTOAgentRepository
-  constructor(agentRepository:DTOAgentRepository) {
+  private agentRepository: IAgentRepository
+  constructor(agentRepository:IAgentRepository) {
     this.agentRepository = agentRepository
   }
   async execute({name}):Promise<Agent> {

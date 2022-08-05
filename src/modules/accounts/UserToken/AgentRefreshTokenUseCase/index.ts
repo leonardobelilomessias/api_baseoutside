@@ -1,4 +1,4 @@
-import { AgentTokenRepository } from "../Repository/AgentTokenRepository";
+import { AgentTokenRepository } from "../infra/typeorm/repositories/AgentTokenRepository";
 import { AgentRefreshTokenController } from "./AgentRefreshTokenController";
 import { AgentRefreshTokenUseCase } from "./AgentRefreshTokenUseCase";
 

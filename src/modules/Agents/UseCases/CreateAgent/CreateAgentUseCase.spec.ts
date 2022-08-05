@@ -1,21 +1,41 @@
-import { Agent } from "../../Entities/Agent"
+import { AppError } from "../../../../shared/errors/AppError"
+import { IAgentRepository } from "../../repositories/IAgentRepository"
 import { AgentInMemoryRepository } from "../../RepositoryInMemory/AgentInMemoryRepository"
-import { DTOAgentRepository } from "../../RepositoryInMemory/DTOAgentRepository"
 import { CreateAgentUseCase } from "./CreateAgentUseCase"
 
-let agentRepository:  AgentInMemoryRepository
+let agentRepositoryInmemory: IAgentRepository
 let createAgentUseCase: CreateAgentUseCase
-describe("create a new agent", () => {
-  beforeEach(() => {
-    agentRepository = new AgentInMemoryRepository()
-    createAgentUseCase = new CreateAgentUseCase(agentRepository)
-  })
-  it("should be create a new agent",async  () => {
-    
-    const agent = new Agent()
-    Object.assign(agent, { email: "leonardo@email", password: '123' })
-    const newAgent = await createAgentUseCase.execute(agent)
 
+describe("create agent", () => {
+  beforeEach(() => {
+    agentRepositoryInmemory = new AgentInMemoryRepository()
+    createAgentUseCase = new CreateAgentUseCase(agentRepositoryInmemory)
+  })
+  it("should be able to create a new profile", async () => {
+    const requestAgent = {
+      email: 'leonardo@email',
+      password: "123",
+      name:"leo"
+    }
+    const newAgent = await createAgentUseCase.execute(requestAgent)
+    const findAgent = await agentRepositoryInmemory.findByEmail({ email: requestAgent.email })
+    expect(findAgent).toHaveProperty("id")
     expect(newAgent).toHaveProperty("id")
+  })
+
+  it("shouldn't be able to create a new profile with email already exists", async () => {
+    expect(async () => {
+      const requestAgent = {
+        email: 'leonardo@email',
+        password: "123",
+        name:"leo"
+      }
+      await createAgentUseCase.execute({email:requestAgent.email,password:requestAgent.password,name:requestAgent.name})
+      const agentError = await createAgentUseCase.execute({email:requestAgent.email,password:requestAgent.password,name:requestAgent.name})
+  
+      const findAgent = await agentRepositoryInmemory.findByEmail({ email: requestAgent.email })
+    }).rejects.toBeInstanceOf(AppError)
+  
+
   })
 })

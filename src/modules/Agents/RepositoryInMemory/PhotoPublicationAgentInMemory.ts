@@ -1,5 +1,6 @@
-import { PhotoPublicationAgent } from "../Entities/PhotoPublicationAgent";
-import { DTOPhotosPublicationAgent } from "../Repository/DTOS/DTOPhotosPublicationAgentRepository";
+import { DTOPhotosPublicationAgent } from "../DTOS/DTOPhotosPublicationAgentRepository"
+import { PhotoPublicationAgent } from "../infra/typeorm/entities/PhotoPublicationAgent"
+
 
 class PhotosPublicationAgentInMemory implements DTOPhotosPublicationAgent{
   photosPublicationAgent:PhotoPublicationAgent[] = []

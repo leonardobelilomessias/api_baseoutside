@@ -1,7 +1,7 @@
 import { dirname } from "path"
 import { deleteFile } from "../../../../utils/file"
 import { IStorageProvider } from "../../../../utils/providers/StorageProvider/IStorageProvide"
-import { AgentRepository } from "../../Repository/AgentRepository"
+import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepository"
 
 
 interface ICreateImageProfile{

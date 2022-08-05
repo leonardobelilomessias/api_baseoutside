@@ -1,4 +1,4 @@
-import { AgentRepository } from "../../Repository/AgentRepository";
+import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepository";
 import { ListAgentController } from "./ListAgentController";
 import { ListAgentUseCase } from "./ListAgentUseCase";
 

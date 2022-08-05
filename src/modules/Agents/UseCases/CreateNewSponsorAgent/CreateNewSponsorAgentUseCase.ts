@@ -1,5 +1,6 @@
-import { SponsorAgent } from "../../Entities/SponsorAgent"
-import { SponsorsAgentsRepository } from "../../Repository/SponsorsAgentRepository.ts"
+import { SponsorAgent } from "../../infra/typeorm/entities/SponsorAgent"
+import { SponsorsAgentsRepository } from "../../infra/typeorm/repositories/SponsorsAgentRepository.ts"
+
 
 class CreateNewSponsorAgentUseCase{
   private sponsorsAgentsRepository: SponsorsAgentsRepository

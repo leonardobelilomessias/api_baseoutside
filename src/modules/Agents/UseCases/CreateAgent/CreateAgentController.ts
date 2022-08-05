@@ -1,5 +1,7 @@
 import { Request, Response } from "express"
-import { CreateAgentUseCase } from "./CreateAgentUseCase"
+import { CreateAgentUseCase } from "../../../agents/UseCases/CreateAgent/CreateAgentUseCase"
+
+
 
 interface IRequest{
   name: string

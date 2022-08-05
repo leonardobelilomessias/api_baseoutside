@@ -11,10 +11,10 @@ class CreatePublicationAgentController{
   }
 
   async handle(request:Request,response:Response):Promise<Response> {
-    const { description, agent, type } = request.body
+    const { description, id_agent, type } = request.body
     const files = request.files as IFiles[]
     const content = files.map((file)=>{ return file.filename})
-    const publicationAgent = await this.createPublicationAgentUseCase.execute({ agent, type, description, content })
+    const publicationAgent = await this.createPublicationAgentUseCase.execute({ id_agent, type, description, content })
     return response.status(201).json(publicationAgent)
     
   }

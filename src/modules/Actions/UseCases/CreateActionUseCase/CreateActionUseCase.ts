@@ -1,6 +1,8 @@
-import { ActionRepository } from "../../ActionsRepository/ActionRepository"
-import { DTOActionRepository, ICreateAction } from "../../ActionsRepository/DTOActionRepository"
-import { Action } from "../../Entity/Action"
+
+
+import { Action } from "../../infra/typeorm/entities/Action"
+import { DTOActionRepository, ICreateAction } from "../../repositories/IActionRepository"
+
 
 class CreateActionUseCase{
   private actionRepository: DTOActionRepository
