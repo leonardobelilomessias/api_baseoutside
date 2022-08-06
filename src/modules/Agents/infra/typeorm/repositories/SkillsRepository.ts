@@ -1,21 +1,22 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
+import { ISkillsRepository } from "../../../repositories/ISkillsRepository"
 import { Skills } from "../entities/Skills"
 
 
 
-class SkillsRepository{
+class SkillsRepository implements ISkillsRepository{
   skillsRepository: Repository<Skills>
   constructor(){
     this.skillsRepository = AppDataSource.getRepository(Skills)
   }
 
-  async allSkills() {
+  async ListAllSkills():Promise<Skills[]> {
     const skills = this.skillsRepository.find()
     return skills
   }
 
-  async findSkillsByAgent(id_agent:string) {
+  async findSkillsByAgent(id_agent:string):Promise<Skills[]> {
     const skillsCurrent = await this.skillsRepository.find({ 
       relations: {
         id_agent:true
@@ -28,7 +29,7 @@ class SkillsRepository{
     })
     return skillsCurrent
   }
-  async findSkillsByName(nameSkill:string) {
+  async findSkillsByName(nameSkill:string):Promise<Skills[]>{
     const agentsWithSkills = await this.skillsRepository.find({
       where: {
         skill:nameSkill
@@ -37,7 +38,7 @@ class SkillsRepository{
     return agentsWithSkills
   }
 
-  async updateSkills(skills: string[], id_agent: string) {
+  async updateSkillsAgent(skills: string[], id_agent: string):Promise<string[]> {
     if (skills) {
       await this.skillsRepository.createQueryBuilder()
       .delete()

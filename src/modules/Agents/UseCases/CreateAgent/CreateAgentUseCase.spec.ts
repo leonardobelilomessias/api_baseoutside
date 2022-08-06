@@ -31,11 +31,10 @@ describe("create agent", () => {
         name:"leo"
       }
       await createAgentUseCase.execute({email:requestAgent.email,password:requestAgent.password,name:requestAgent.name})
-      const agentError = await createAgentUseCase.execute({email:requestAgent.email,password:requestAgent.password,name:requestAgent.name})
+      await createAgentUseCase.execute({email:requestAgent.email,password:requestAgent.password,name:requestAgent.name})
   
-      const findAgent = await agentRepositoryInmemory.findByEmail({ email: requestAgent.email })
-    }).rejects.toBeInstanceOf(AppError)
-  
+   }).rejects.toBeInstanceOf(AppError)
+
 
   })
 })

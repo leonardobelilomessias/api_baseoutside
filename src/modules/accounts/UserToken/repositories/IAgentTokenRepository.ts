@@ -1,4 +1,5 @@
-import { AgentToken } from "../Entity/AgentToken";
+import { AgentToken } from "../infra/typeorm/entities/AgentToken";
+
 
 
 interface ICreateAgentTokenDTO{

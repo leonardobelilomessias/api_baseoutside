@@ -4,14 +4,14 @@ import { CreateAgent, EditAgent, IAgentRepository, ResponseAgent } from "../repo
 
 class AgentInMemoryRepository implements IAgentRepository{
   repositoryInMemory: Agent[] = []
-
+  
   async listAll(): Promise<Agent[]> {
     return this.repositoryInMemory
   }
 
   async create({ name, email, password }: CreateAgent): Promise<Agent> {
     const newAgent = new Agent()
-    Object.assign(newAgent, { name, email, password,skills:["programing","desing"],interests:["sociology","filosofy"] })
+    Object.assign(newAgent, { name, email, password })
     this.repositoryInMemory.push(newAgent)
     return newAgent
   }

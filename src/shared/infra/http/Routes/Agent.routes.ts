@@ -46,8 +46,9 @@ agent.post("/sponsorAgent", (request, response) => {
 
 
 
-agent.post("/",async (request, response) => {
-  await createAgentController().handle(request,response)
+agent.post("/", async (request, response) => {
+
+   await createAgentController().handle(request,response)
 })
 
 agent.post("/photopublicationagent", uploadPhotosAgent.array('photos', 3), async (request, response) => {

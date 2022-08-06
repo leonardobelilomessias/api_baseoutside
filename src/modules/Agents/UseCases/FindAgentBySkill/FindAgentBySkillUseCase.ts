@@ -11,7 +11,7 @@ class FindAgentBySkillUseCase{
 
   async execute({ skill}): Promise<Agent[]>{
     const agentsWithSkill = await this.agentRepository.findBySkill({ skill })
-    console.log(skill)
+
     return agentsWithSkill
   }
 

@@ -1,17 +1,16 @@
 import { Repository } from "typeorm/repository/Repository"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
-
+import { IInterestsRepository } from "../../../repositories/IInterestsRepository"
 import { Interests } from "../entities/Interests"
 
 
 
-class InterestsRepository{
+class InterestsRepository implements IInterestsRepository{
   interestsRepository: Repository<Interests>
    constructor() {
     this.interestsRepository = AppDataSource.getRepository(Interests)
   }
-
-  async findByAgent(id_agent:string) {
+  async findInterestByAgent(id_agent: string): Promise<Interests[]> {
     const interestAgent = await this.interestsRepository.find({
       relations: {
         id_agent:true
@@ -24,6 +23,7 @@ class InterestsRepository{
     })
     return interestAgent
   }
+
 
   async findByInterest(interest:string) {
     const interestAgent = await this.interestsRepository.findBy({interests:interest})
