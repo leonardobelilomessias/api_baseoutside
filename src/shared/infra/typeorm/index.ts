@@ -24,12 +24,6 @@ export const AppDataSource = new DataSource({
   database: "db_holdrope",
   entities: [Agent,JourneyAgent,SponsorAgent,Mission,Action,Task,AgentToken,Interests,Skills,PhotoPublicationAgent,PublicationAgent,Departament],
   migrations: ["./src/database/migrations/*.ts"],
-  
-
- 
-
-  
-
 
 })
 

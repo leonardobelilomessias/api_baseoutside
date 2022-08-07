@@ -51,7 +51,7 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
    
   async list(): Promise<Agent[]> {
      const moreangent = []
-     const allskill = await this.skillsRepository.allSkills()
+     const allskill = await this.skillsRepository.ListAllSkills()
      const allAgents = await this.agentRepository.find(
        {
          select: {
@@ -95,7 +95,7 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
 
     const agentEdit = await this.agentRepository.findOneBy({ id: id }) 
 
-    const skill = await this.skillsRepository.updateSkills(skills, id)
+    const skill = await this.skillsRepository.updateSkillsAgent(skills, id)
 
     const interest = await this.interestsRepository.updateInterests(id,interests)
     const agent = Object.assign(agentEdit, { description, email, name })

@@ -35,11 +35,32 @@ describe("Authenticate Agent", () => {
 
     const isAuthenticate = await authenticateAgentUseCase.execute(login)
     expect(isAuthenticate).toHaveProperty("token")
+
   })
   it("shouldn't be able authenticate a no existent agent", async () => {
     
     expect(async () => {
-      await authenticateAgentUseCase.execute({ email: "leo", password: '123' })
+          const createAgent = {
+      email: 'leo@email',
+      name: "leo",
+      password:"123"
+    }
+    await createAgentUseCase.execute(createAgent)
+    await authenticateAgentUseCase.execute({ email: "le@email", password: '123' })
     }).rejects.toBeInstanceOf(AppError)
+  })
+  it("shouldn't be able authenticate with incorrect password", async () => {
+    
+
+    expect(async () => {
+      const createAgent = {
+        email: 'leo@email',
+        name: "leo",
+        password:"123"
+      }
+      await createAgentUseCase.execute(createAgent)
+      await authenticateAgentUseCase.execute({ email: "le@email", password: '123' })
+    }).rejects.toBeInstanceOf(AppError)
+
   })
 })

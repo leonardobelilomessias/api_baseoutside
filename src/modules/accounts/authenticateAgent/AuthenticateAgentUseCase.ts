@@ -30,18 +30,16 @@ class AuthenticateAgentUseCase{
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
     const agent = await this.agentRepository.findByEmail({ email })
-    try {
+
       if (!agent) {
+    
         throw new AppError("Email or password incorrect")
-        console.log("aqui")
       }
       const passwordMatch = await compare(password, agent.password)
       if (!passwordMatch) {
         throw new AppError("Email or password incorrect")
       }
-    } catch (err){
-      throw err
-    }
+
           const token = sign({}, auth.secret_token, {
             subject: agent.id,
             expiresIn: auth.expires_in

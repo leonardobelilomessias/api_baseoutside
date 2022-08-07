@@ -15,7 +15,7 @@ class AgentToken{
   id_agent: string;
 
   @ManyToOne(()=>Agent)
-  @JoinColumn({name:"agent_id"})
+  @JoinColumn({name:"id_agent"})
   fk_userToken: Agent
 
   @Column()
