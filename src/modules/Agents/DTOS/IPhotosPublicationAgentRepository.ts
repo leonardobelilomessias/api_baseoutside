@@ -5,7 +5,7 @@ interface IFile{
   filename:string
 }
 
-interface DTOPhotosPublicationAgent{
+interface IPhotosPublicationAgent{
 
   create(id_publication:string, photos:string[]): Promise<PhotoPublicationAgent[]>
   
@@ -16,4 +16,4 @@ interface DTOPhotosPublicationAgent{
 
 }
 
-export{DTOPhotosPublicationAgent,IFile}
+export{IPhotosPublicationAgent,IFile}

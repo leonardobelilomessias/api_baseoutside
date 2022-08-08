@@ -7,13 +7,14 @@ import { deactivateAgentController } from "../../../../modules/agents/UseCases/D
 import { findAgentBySkillController } from "../../../../modules/agents/UseCases/FindAgentBySkill";
 import { findyByInterestController } from "../../../../modules/agents/UseCases/FindByInterest";
 import { findByVocationController } from "../../../../modules/agents/UseCases/FindByVocation";
-import { findAgentController } from "../../../../modules/agents/UseCases/FindUser";
-import { listAgentController } from "../../../../modules/agents/UseCases/ListAgent";
+
 import { updateAgentController } from "../../../../modules/agents/UseCases/UpdateAgent";
 import { updateImageAgentController } from "../../../../modules/agents/UseCases/UpdateAgentAvatar";
 import uploadConfig from '../../../../config/upload'
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 import createAgentController from '../../../../modules/agents/UseCases/CreateAgent/index'
+import { findAgentByNameController } from "../../../../modules/agents/UseCases/FindAgentByName";
+import { listsAgentController } from "../../../../modules/agents/UseCases/ListAgents";
 
 
 const agent = Router()
@@ -23,11 +24,11 @@ const uploadPhotosAgent = multer(uploadConfig)
 
 
 agent.get("/",async  (request, response) => {
- await  listAgentController.handle(request,response)
+ await  listsAgentController.handle(request,response)
 })
 
 agent.get("/name/:name", async (request, response) => {
-  await findAgentController.handle(request,response)
+  await findAgentByNameController.handle(request,response)
 })
 agent.get("/findBySkill", (request, response) => {
   findAgentBySkillController.handle(request,response)

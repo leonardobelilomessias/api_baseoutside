@@ -16,13 +16,14 @@ interface EditPublication{
 }
 
 interface ResponseCreatePublication{
-  id_publication: string,
-  type: string,
+  id_agent: string;
+  id_publication: string;
+  type: string;
   content:PhotoPublicationAgent[]
  }
 
 
-interface DTOPublicationsAgentRepository{
+interface IPublicationsAgentRepository{
   create({id_agent,type,description,content}:ICreatePublication):Promise<ResponseCreatePublication>
 
   list():Promise<PublicationAgent[]>
@@ -32,4 +33,4 @@ interface DTOPublicationsAgentRepository{
   delete(id_publication:string):Promise<PublicationAgent>
 
 }
-export{ DTOPublicationsAgentRepository,ICreatePublication,EditPublication,ResponseCreatePublication}
+export{ IPublicationsAgentRepository,ICreatePublication,EditPublication,ResponseCreatePublication}

@@ -5,7 +5,7 @@ import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepositor
 
 
 interface ICreateImageProfile{
-  user_id: string
+  id_agent: string
   image_profile:string
 }
 class UpdateImageAgentUseCase{
@@ -16,8 +16,8 @@ class UpdateImageAgentUseCase{
      this.agenteRepository = agentRepository
      this.storageProvider = storageProvider
   }
-  async execute({ user_id, image_profile }: ICreateImageProfile): Promise<void> {
-    const agent = await this.agenteRepository.findById({ id: user_id })
+  async execute({ id_agent, image_profile }: ICreateImageProfile): Promise<void> {
+    const agent = await this.agenteRepository.findById(id_agent )
     if (agent.image_profile) {
       await this.storageProvider.delete(agent.image_profile, "Agent")
       

@@ -1,14 +1,15 @@
 import { Repository } from "typeorm"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { IStorageProvider } from "../../../../../utils/providers/StorageProvider/IStorageProvide"
-import { DTOPhotosPublicationAgent } from "../../../DTOS/DTOPhotosPublicationAgentRepository"
+import { IPhotosPublicationAgent } from "../../../DTOS/IPhotosPublicationAgentRepository"
+
 import { PhotoPublicationAgent } from "../entities/PhotoPublicationAgent"
 
 
 
 
 
-class PhotoPublicationAgentRepository implements DTOPhotosPublicationAgent{
+class PhotoPublicationAgentRepository implements IPhotosPublicationAgent{
   private photosPublicationAgent: Repository<PhotoPublicationAgent>
   private storageProvider:IStorageProvider
   constructor(storageProvider:IStorageProvider) {

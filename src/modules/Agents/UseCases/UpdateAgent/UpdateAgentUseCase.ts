@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError"
 import { IAgentRepository, EditAgent } from "../../repositories/IAgentRepository"
 
 
@@ -8,8 +9,10 @@ class UpdateAgentUseCase{
     this.agentRepository = agentRepository
   }
   
-  async execute({ id, name, description, email,interests,skills }: EditAgent) {
-    const agentToEdit = await this.agentRepository.edit({ id, name, description, email,interests,skills })
+  async execute({ id, name, description, email, interests, skills, vocation, }: EditAgent) {
+    const agentExist = await this.agentRepository.findById(id)
+    if(!agentExist) throw new AppError('Agent not found')
+    const agentToEdit = await this.agentRepository.edit({ id, name, description, email,interests,skills,vocation})
     return agentToEdit
   }
 

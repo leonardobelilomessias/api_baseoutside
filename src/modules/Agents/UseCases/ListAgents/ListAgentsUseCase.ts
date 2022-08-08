@@ -2,7 +2,7 @@ import { Agent } from "../../infra/typeorm/entities/Agent"
 import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepository"
 
 
-class ListAgentUseCase{
+class ListAgentsUseCase{
   private agenteRepository : AgentRepository
   constructor(agentRepository:AgentRepository) {
     this.agenteRepository = agentRepository
@@ -13,4 +13,4 @@ class ListAgentUseCase{
   }
 
 }
-export {ListAgentUseCase}
+export {ListAgentsUseCase}

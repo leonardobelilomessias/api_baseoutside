@@ -1,30 +1,34 @@
-import { DTOPhotosPublicationAgent } from "../DTOS/DTOPhotosPublicationAgentRepository"
+
+import { IPhotosPublicationAgent } from "../DTOS/IPhotosPublicationAgentRepository"
 import { PhotoPublicationAgent } from "../infra/typeorm/entities/PhotoPublicationAgent"
+import { copyFile } from "../../../utils/copyFiles"
+import {resolve,extname} from 'path'
 
 
-class PhotosPublicationAgentInMemory implements DTOPhotosPublicationAgent{
-  photosPublicationAgent:PhotoPublicationAgent[] = []
+class PhotosPublicationAgentInMemory implements IPhotosPublicationAgent{
+  photoPublicationAgentRepositoryInMemory:PhotoPublicationAgent[] = []
   async create(id_publication: string, photos: string[]): Promise<PhotoPublicationAgent[]> {
-    const photosCreated = []
-    photos.forEach((photo) => {
-      const newPhoto = new PhotoPublicationAgent()
-      Object.assign(newPhoto,{id_publication})
-      this.photosPublicationAgent.push(newPhoto)
-      photosCreated.push(newPhoto)
+    const photosCreated = photos.map((photo) => {
+      const destination = resolve('tmp/localPhotos',`${ Math.random()}${extname(photo)}` )
+      copyFile(resolve(photo), destination)
+      const newPhoto = new PhotoPublicationAgent(id_publication)
+      Object.assign(newPhoto,{url:destination})
+      this.photoPublicationAgentRepositoryInMemory.push(newPhoto)
+      return newPhoto
     })
     
     return photosCreated
   }
   async list(id_publication:string): Promise<PhotoPublicationAgent[]> {
-    const allPhotosPublication = this.photosPublicationAgent.filter((photo) => {
-      return String(photo.id_publication) === id_publication
+    const allPhotosPublication = this.photoPublicationAgentRepositoryInMemory.filter((photo) => {
+      return  photo.id_publication === id_publication
     })
     return allPhotosPublication
   }
   delete(id_publication: string): Promise<void> {
-    this.photosPublicationAgent.forEach((photo, index) => {
+    this.photoPublicationAgentRepositoryInMemory.forEach((photo, index) => {
       if (String(photo.id_publication)  === id_publication ) {
-        this.photosPublicationAgent.splice(index,1)
+        this.photoPublicationAgentRepositoryInMemory.splice(index,1)
       }
     })
     return

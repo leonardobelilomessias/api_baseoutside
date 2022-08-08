@@ -14,15 +14,18 @@ interface EditAgent{
   email?: string
   description?: string
   interests?: string[]
-  skills?:string[]
+  skills?: string[]
+  vocation?: string;
+
 }
 interface ResponseAgent{
-  id: string
-  name:string
-  email: string
-  description: string
-  skills:string[]
-  interests: string[]
+  id: string;
+  name: string;
+  email: string;
+  description: string;
+  skills?: string[];
+  interests?: string[];
+  vocation?: string;
 }
 
 interface IAgentRepository{
@@ -31,7 +34,7 @@ interface IAgentRepository{
 
   listAll(): Promise<Agent[]>
   
-  deactivate({ id }): Promise<Agent>
+  deactivate( id:string ): Promise<Agent>
   
   activate({email}):Promise<void>
 
@@ -39,9 +42,9 @@ interface IAgentRepository{
 
   findByEmail({ email }): Promise<Agent>
 
-  findById({ id }): Promise<Agent>
+  findById( id :string): Promise<Agent>
   
-  findByName({ name }): Promise<Agent>
+  findByName(name :string): Promise<Agent>
   
   findBySkill({skill}):Promise<Agent[]>
   

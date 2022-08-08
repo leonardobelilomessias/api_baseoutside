@@ -9,9 +9,8 @@ class PhotoPublicationAgent{
   @PrimaryColumn()
   id: string
   
-  @ManyToOne(()=>PublicationAgent)
-  @JoinColumn({name:"id_publication"})
-  id_publication: PublicationAgent
+  @Column()
+  id_publication: string
 
   @Column()
   url: string
@@ -19,10 +18,11 @@ class PhotoPublicationAgent{
   @CreateDateColumn()
   created_at: string
 
-  constructor() {
+  constructor(id_publication:string) {
     if (!this.id) {
       this.id = uuidv4()
     }
+    this.id_publication =id_publication
     
     
 }

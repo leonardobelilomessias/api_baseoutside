@@ -32,7 +32,7 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
      throw new Error("Method not implemented.")
    }
 
-  async findById({id}): Promise<Agent> {
+  async findById(id:string): Promise<Agent> {
     const findAgent = await this.agentRepository.findOneBy({id:id})
     return  findAgent
    }

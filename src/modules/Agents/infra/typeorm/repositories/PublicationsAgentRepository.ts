@@ -1,20 +1,19 @@
 import { Repository } from "typeorm";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { DTOPublicationsAgentRepository, ICreatePublication, ResponseCreatePublication, EditPublication } from "../../../DTOS/DTOPublicationsAgentRepository";
-import { PublicationAgent } from "../entities/PublicationAgent";
-
+import { EditPublication, ICreatePublication, IPublicationsAgentRepository, ResponseCreatePublication } from "../../../DTOS/IPublicationsAgentRepository";
+import { PublicationAgent} from "../entities/PublicationAgent";
 import { PhotoPublicationAgentRepository } from "./PhotosPublicationAgentRepository";
 
-class PublicationsAgentRepository implements DTOPublicationsAgentRepository{
+class PublicationsAgentRepository implements IPublicationsAgentRepository{
   private publicationsAgentRepository: Repository<PublicationAgent>
   private photosPublicationsAgent : PhotoPublicationAgentRepository
   constructor(photoPublicationAgentRepository:PhotoPublicationAgentRepository) {
     this.publicationsAgentRepository = AppDataSource.getRepository(PublicationAgent)
     this.photosPublicationsAgent = photoPublicationAgentRepository
   }
-  async create({agent, type, description ,content}:ICreatePublication): Promise<ResponseCreatePublication> {
+  async create({id_agent, type, description ,content}:ICreatePublication): Promise<ResponseCreatePublication> {
     const newPublication = new PublicationAgent()
-    Object.assign(newPublication, { agent, type, description })
+    Object.assign(newPublication, { id_agent, type, description })
     await this.publicationsAgentRepository.save(newPublication)
     const photosAgent = await this.photosPublicationsAgent.create(newPublication.id,content)
     return {id_publication:newPublication.id,type:newPublication.type,content:photosAgent}

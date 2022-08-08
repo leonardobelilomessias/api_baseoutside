@@ -46,6 +46,8 @@ class Agent{
   constructor() {
     if (!this.id) {
       this.id = uuidv4()
+      this.vocation = null
+      this.is_active = true
     }
   }
 
