@@ -1,17 +1,17 @@
 import { Request,Response } from "express"
-import { FindAgentBySkillUseCase } from "./FindAgentBySkillUseCase"
+import { FindAgentsBySkillsUseCase } from "./FindAgentBySkillUseCase"
 
 
-class FindAgentBySkillController{
-  private findAgentBySkillUseCase: FindAgentBySkillUseCase
-  constructor(findAgentBySkillUseCase: FindAgentBySkillUseCase) {
-    this.findAgentBySkillUseCase = findAgentBySkillUseCase
+class FindAgentsBySkillsController{
+  private findAgentsBySkillsUseCase: FindAgentsBySkillsUseCase
+  constructor(findAgentBySkillUseCase: FindAgentsBySkillsUseCase) {
+    this.findAgentsBySkillsUseCase = findAgentBySkillUseCase
   }
   async handle(request: Request, response: Response):Promise<Response> {
-    const { skill } = request.body 
-    const agentsWithSkill =await this.findAgentBySkillUseCase.execute({ skill })
+    const { skills } = request.body 
+    const agentsWithSkill =await this.findAgentsBySkillsUseCase.execute( skills )
     return response.status(200).json(agentsWithSkill)
   }
 
 }
-export{FindAgentBySkillController}
+export{FindAgentsBySkillsController}

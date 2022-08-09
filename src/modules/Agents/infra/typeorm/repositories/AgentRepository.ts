@@ -18,6 +18,9 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
      this.skillsRepository = new SkillsRepository()
      this.interestsRepository = new InterestsRepository()
   }
+   findBySkills(skill: string[]): Promise<Agent[]> {
+     throw new Error("Method not implemented.")
+   }
    listAll(): Promise<Agent[]> {
      throw new Error("Method not implemented.")
    }
@@ -78,7 +81,7 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
      return newQuery
    }
 
-  async deactivate({ id }): Promise<Agent> {
+  async deactivate(id:string ): Promise<Agent> {
     const agentWillBeDelete = await  this.agentRepository.findOneBy({ id: id })  
     agentWillBeDelete.is_active = false
     this.agentRepository.save(agentWillBeDelete)
@@ -111,7 +114,7 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
     return responseAgent
    }
    
-  async findByName({ name }): Promise<Agent> {
+  async findByName(name :string): Promise<Agent> {
     const foundAgent = await  this.agentRepository.findOneBy({ name: name })
     return foundAgent
    }

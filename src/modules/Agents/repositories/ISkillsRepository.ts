@@ -6,7 +6,7 @@ interface ISkillsRepository{
   
   findSkillsByAgent(id_agent: string): Promise<Skills[]>
   
-  findSkillsByName(nameSkill:string): Promise<Skills[]>
+  findSkillsByName(namesSkills:string[]): Promise<string[]>
   
   updateSkillsAgent(skills:string[],id_agent:string):Promise<string[]>
 

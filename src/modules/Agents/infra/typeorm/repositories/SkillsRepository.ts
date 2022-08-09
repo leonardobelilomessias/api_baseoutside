@@ -29,13 +29,8 @@ class SkillsRepository implements ISkillsRepository{
     })
     return skillsCurrent
   }
-  async findSkillsByName(nameSkill:string):Promise<Skills[]>{
-    const agentsWithSkills = await this.skillsRepository.find({
-      where: {
-        skill:nameSkill
-      }
-    })
-    return agentsWithSkills
+  async findSkillsByName(skills:string[]):Promise<string[]>{
+    return
   }
 
   async updateSkillsAgent(skills: string[], id_agent: string):Promise<string[]> {

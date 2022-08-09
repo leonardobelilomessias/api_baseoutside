@@ -39,8 +39,16 @@ class AgentInMemoryRepository implements IAgentRepository{
     return agent
   }
 
-  findBySkill({ skill }: { skill: any }): Promise<Agent[]> {
-    throw new Error("Method not implemented.")
+  async findBySkills(id_agentsSkills:[]): Promise<Agent[]> {
+    const agentsWithSkills = []
+    this.agentRepositoryInMemory.forEach(agent => {
+      id_agentsSkills.forEach(id_agentsOfSkills => {
+        if (agent.id === id_agentsOfSkills) {
+          agentsWithSkills.push(agent)
+        }
+      })
+    })
+    return agentsWithSkills
   }
 
   findByInterest({ interest }: { interest: any }): Promise<Agent[]> {

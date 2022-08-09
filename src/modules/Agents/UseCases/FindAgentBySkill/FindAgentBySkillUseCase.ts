@@ -1,19 +1,23 @@
 import { Agent } from "../../infra/typeorm/entities/Agent"
 import { IAgentRepository } from "../../repositories/IAgentRepository"
+import { ISkillsRepository } from "../../repositories/ISkillsRepository"
+import { SkillsRepositoryInMemory } from "../../RepositoryInMemory/SkillsRepositoryInmemory"
 
 
 
-class FindAgentBySkillUseCase{
+class FindAgentsBySkillsUseCase{
   private agentRepository: IAgentRepository
-  constructor(agentRepository: IAgentRepository) {
+  private skillsRepositoryInMemory : ISkillsRepository
+  constructor(agentRepository: IAgentRepository,skillsRepositoryInMemory:ISkillsRepository) {
+    this.skillsRepositoryInMemory = skillsRepositoryInMemory
     this.agentRepository = agentRepository
   }
 
-  async execute({ skill}): Promise<Agent[]>{
-    const agentsWithSkill = await this.agentRepository.findBySkill({ skill })
-
-    return agentsWithSkill
+  async execute(skills:string[]): Promise<Agent[]>{
+    const IdAgentBySkills = await this.skillsRepositoryInMemory.findSkillsByName(skills)
+    const agentsWithSkills = await this.agentRepository.findBySkills(IdAgentBySkills)
+    return agentsWithSkills
   }
 
 }
-export{FindAgentBySkillUseCase}
+export{FindAgentsBySkillsUseCase}

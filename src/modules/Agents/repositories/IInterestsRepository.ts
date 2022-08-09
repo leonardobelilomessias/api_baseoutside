@@ -5,7 +5,7 @@ interface IInterestsRepository{
 
   findInterestByAgent(id_agent: string): Promise<Interests[]>
   
-  findByInterest(interest:string):Promise<Interests[]>
+  findByInterestByName(interest:string[]):Promise<string[]>
 
   updateInterests(id_agent: string, interests: string[]): Promise<string[]>
   

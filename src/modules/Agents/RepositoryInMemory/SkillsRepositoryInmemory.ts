@@ -4,6 +4,9 @@ import { ISkillsRepository } from "../repositories/ISkillsRepository"
 
 class SkillsRepositoryInMemory implements ISkillsRepository{
   skillsRepositoryInMemory: Skills[]
+  constructor() {
+    this.skillsRepositoryInMemory =[]
+  }
 
   async ListAllSkills(): Promise<Skills[]> {
     return this.skillsRepositoryInMemory
@@ -13,9 +16,14 @@ class SkillsRepositoryInMemory implements ISkillsRepository{
     return AgentSkill
   }
 
-  async findSkillsByName(nameSkill: string): Promise<Skills[]> {
-    const skill = await this.skillsRepositoryInMemory.filter((skill) => (skill.skill === nameSkill))
-    return skill
+  async findSkillsByName(skills: string[]): Promise<string[]> {
+    const agentsSkills = []
+    this.skillsRepositoryInMemory.forEach(skillRepository => {
+      skills.forEach(skill => {
+        if(skill ===skillRepository.skill) agentsSkills.push(skillRepository.id_agent)
+      })
+    })
+    return agentsSkills
   }
   
   async updateSkillsAgent(skills: string[], id_agent: string): Promise<string[]> {
