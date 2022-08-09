@@ -1,16 +1,20 @@
 import fs from 'fs'
 
 
-export const copyFile =function(origin:string,destination:string){
-  
-  const read = fs.createReadStream(origin)
+export const copyFile =async function(origin:string,destination:string){
+  fs.copyFileSync(origin,destination)
+  /* const read = await fs.createReadStream(origin)
   read.on("error", (err) => {
     console.log(err)
   })
-  const writer = fs.createWriteStream(destination)
+  const writer = await fs.createWriteStream(destination)
   writer.on("error", (err) => {
     console.log(err)
   })
 
- read.pipe(writer)
+  const data = await read.pipe(writer)
+  writer.on('close', (data) => {
+    return data
+  })
+  return data.toString() */
 }

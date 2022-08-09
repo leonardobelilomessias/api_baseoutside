@@ -31,7 +31,7 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
     .getMany()
      return agentsWithSkill
    }
-   async findByInterest({ interest }: { interest: any }): Promise<Agent[]> {
+   async findByInterest(interests:string[]): Promise<Agent[]> {
      throw new Error("Method not implemented.")
    }
 

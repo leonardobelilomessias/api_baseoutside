@@ -33,7 +33,7 @@ class Agent{
   
   
   @Column()
-  vocation?: string
+  vocation: string
     
   @CreateDateColumn()
   created_at: Date;
@@ -48,6 +48,7 @@ class Agent{
       this.id = uuidv4()
       this.vocation = null
       this.is_active = true
+      this.image_profile=null
     }
   }
 

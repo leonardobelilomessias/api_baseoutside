@@ -1,3 +1,6 @@
+import { extname, resolve } from "path"
+import { copyFile } from "../../../utils/copyFiles"
+import { StorageTestProvider } from "../../../utils/providers/StorageProvider/implementations/StorageTestProvides"
 import { Agent } from "../infra/typeorm/entities/Agent"
 import { CreateAgent, EditAgent, IAgentRepository, ResponseAgent } from "../repositories/IAgentRepository"
 
@@ -14,7 +17,7 @@ class AgentInMemoryRepository implements IAgentRepository{
   async create({ name, email, password }: CreateAgent): Promise<Agent> {
     const newAgent = new Agent()
     Object.assign(newAgent, { name, email, password })
-    this.agentRepositoryInMemory.push(newAgent)
+     this.agentRepositoryInMemory.push(newAgent)
     return newAgent
   }
 
@@ -63,20 +66,33 @@ class AgentInMemoryRepository implements IAgentRepository{
   return agentsWithiInterest
   }
 
-  findByVocation({ vocation }: { vocation: any }): Promise<Agent[]> {
-    throw new Error("Method not implemented.")
+  async findByVocation({ vocation }: { vocation: any }): Promise<Agent[]> {
+    const agents = await  this.agentRepositoryInMemory.filter((agent) => (agent.vocation === vocation))
+    return agents
   }
   
   async delete({ id }: { id: any; }): Promise<Agent> {
     throw new Error("Method not implemented.");
   }
 
-  async edit({id,description,email,interests,name,skills,vocation}:EditAgent): Promise<ResponseAgent> {
+  async edit({id,description,email,interests,name,skills,vocation,image_profile}:EditAgent): Promise<ResponseAgent> {
     const findIndexAgent = this.agentRepositoryInMemory.findIndex((agent) => {
       return String(agent.id) === String(id) 
     })
     const [agent] = await this.agentRepositoryInMemory.splice(findIndexAgent, 1)
-    Object.assign(agent, { description:description, email:email, interests:interests, name:name, skills:skills ,vocation:vocation})
+/*     if (image_profile) {
+      const type = extname(image_profile)
+      const destination = resolve(`./tmp/localPhotos',${Math.random()},${type}`,)
+      const storage = new StorageTestProvider()
+      agent.image_profile = await  storage.save(image_profile,destination )
+    } */
+    const fildEdited = {
+      description: description || agent.description,
+      email: email || agent.email,
+      name: name || agent.name,
+      vocation:vocation||agent.vocation
+    }
+    Object.assign(agent, { description:fildEdited.description, email:fildEdited.email, interests:interests, name:fildEdited.name, skills:skills ,vocation: fildEdited.vocation})
     this.agentRepositoryInMemory.push(agent)
     return agent as ResponseAgent
   }

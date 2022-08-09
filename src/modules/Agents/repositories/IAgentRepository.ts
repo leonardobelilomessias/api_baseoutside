@@ -5,7 +5,8 @@ interface CreateAgent{
   email: string
   password: string
   id?: string
-  image_profile?:string
+  image_profile?: string
+  vocation?:string
 }
 
 interface EditAgent{
@@ -16,6 +17,7 @@ interface EditAgent{
   interests?: string[]
   skills?: string[]
   vocation?: string;
+  image_profile?:string
 
 }
 interface ResponseAgent{
