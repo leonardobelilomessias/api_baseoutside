@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
-import { FindByInterestUseCase } from "./FindByInterestUseCase";
+import { FindAgentsByInterestUseCase } from "./FindByInterestUseCase";
 
 class FindyByInterestController{
-  private findeByInterestUseCase: FindByInterestUseCase
-  constructor(findByInterestUseCase: FindByInterestUseCase) {
+  private findeByInterestUseCase: FindAgentsByInterestUseCase
+  constructor(findByInterestUseCase: FindAgentsByInterestUseCase) {
     this.findeByInterestUseCase = findByInterestUseCase
   }
   async handle(request:Request,response:Response) {

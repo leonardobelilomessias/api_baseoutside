@@ -1,15 +1,24 @@
+import { Agent } from "../infra/typeorm/entities/Agent";
 import { Interests } from "../infra/typeorm/entities/Interests";
 import { IInterestsRepository } from "../repositories/IInterestsRepository";
 
 class InterestsRepositoryInMemory implements IInterestsRepository{
-  interestsRepositoryInMemory : Interests[]
+  interestsRepositoryInMemory: Interests[]
+  constructor() {
+    this.interestsRepositoryInMemory =[]
+  }
   async findInterestByAgent(id_agent: string): Promise<Interests[]> {
     const interests = this.interestsRepositoryInMemory.filter(interest => String(interest.id_agent) === id_agent)
     return interests
   }
-  async findByInterest(interest: string): Promise<Interests[]> {
-    const interests = this.interestsRepositoryInMemory.filter(interests => String(interests.interests) === interest )
-    return interests
+  async findByInterestByName(interests: string[]): Promise<string[]> {
+    const agentsinterests = []
+    this.interestsRepositoryInMemory.forEach(interestRepository => {
+      interests.forEach(interest => {
+        if(interest ===interestRepository.interests) agentsinterests.push(interestRepository.id_agent)
+      })
+    })
+    return agentsinterests
   }
   async updateInterests(id_agent: string, interests: string[]): Promise<string[]> {
     const IndexAgentInterest = this.interestsRepositoryInMemory.findIndex(interests => String(interests.id_agent) === id_agent)

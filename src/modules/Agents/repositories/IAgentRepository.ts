@@ -48,7 +48,7 @@ interface IAgentRepository{
   
   findBySkills(skill:string[]):Promise<Agent[]>
   
-  findByInterestByName( interest:string[] ): Promise<Agent[]>
+  findByInterest( interest:string[] ): Promise<Agent[]>
 
   findByVocation({vocation}):Promise<Agent[]>
 } 

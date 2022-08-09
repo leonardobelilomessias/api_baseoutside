@@ -1,3 +1,4 @@
+import { Agent } from "../infra/typeorm/entities/Agent"
 import { Interests } from "../infra/typeorm/entities/Interests"
 
 
