@@ -5,8 +5,8 @@ import { FindyByInterestController } from "./FindByInterestController";
 import { FindAgentsByInterestUseCase } from "./FindByInterestUseCase";
 
 const agentRepository = new AgentInMemoryRepository()
-const interestRepository = new InterestsRepositoryInMemory()
-const findByInterestUseCase = new FindAgentsByInterestUseCase(interestRepository,agentRepository)
+const interestRepository = new InterestsRepository(agentRepository)
+const findByInterestUseCase = new FindAgentsByInterestUseCase(interestRepository)
 const findyByInterestController = new FindyByInterestController(findByInterestUseCase)
 
 export{findyByInterestController}

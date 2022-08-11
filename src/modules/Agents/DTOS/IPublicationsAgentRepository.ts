@@ -11,7 +11,6 @@ interface ICreatePublication
 }
 interface EditPublication{
   id_publication: string
-  type: string
   description?:string
 }
 
@@ -19,6 +18,7 @@ interface ResponseCreatePublication{
   id_agent: string;
   id_publication: string;
   type: string;
+  description?: string;
   content:PhotoPublicationAgent[]
  }
 
@@ -26,11 +26,17 @@ interface ResponseCreatePublication{
 interface IPublicationsAgentRepository{
   create({id_agent,type,description,content}:ICreatePublication):Promise<ResponseCreatePublication>
 
-  list():Promise<PublicationAgent[]>
+  listAll(): Promise<PublicationAgent[]>
 
-  edit({id_publication,type,description}:EditPublication):Promise<PublicationAgent>
+  listByIdAgent(idAgent: string): Promise<PublicationAgent[]>
+  
+  listByAgentName(nameAgent:string): Promise<PublicationAgent[]>
 
-  delete(id_publication:string):Promise<PublicationAgent>
+  edit({id_publication,description}:EditPublication):Promise<PublicationAgent>
+
+  delete(id_publication: string): Promise<PublicationAgent>
+  
+  findPublicationById(id_publication:string):Promise<PublicationAgent>
 
 }
 export{ IPublicationsAgentRepository,ICreatePublication,EditPublication,ResponseCreatePublication}

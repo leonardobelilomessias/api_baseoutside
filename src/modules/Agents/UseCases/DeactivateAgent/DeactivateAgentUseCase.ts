@@ -9,8 +9,8 @@ class DeactivateAgentUseCase{
     this.agentRepository = agentRepository
   }
   async execute( id:string ): Promise<Agent> {
-    const existAgent = this.agentRepository.findById(id)
-    if(existAgent) throw new AppError("agent does not exist")
+    const existAgent = await  this.agentRepository.findById(id)
+    if(!existAgent) throw new AppError("agent does not exist") 
     const agentWillBeDeactivate = await this.agentRepository.deactivate(id )
     
     return agentWillBeDeactivate

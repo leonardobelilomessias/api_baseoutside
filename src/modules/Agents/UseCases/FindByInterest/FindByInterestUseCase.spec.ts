@@ -8,14 +8,14 @@ let findAgentsByinterestsUseCase: FindAgentsByInterestUseCase
 let agentRepositoryInMemory: IAgentRepository
 let interestsRepositoryInMemory: IInterestsRepository
 describe("Find by interests", () => {
-  beforeEach(() => {
+  beforeAll(() => {
     agentRepositoryInMemory = new AgentInMemoryRepository()
-    interestsRepositoryInMemory = new InterestsRepositoryInMemory()
-    findAgentsByinterestsUseCase = new FindAgentsByInterestUseCase(interestsRepositoryInMemory, agentRepositoryInMemory)
+    interestsRepositoryInMemory = new InterestsRepositoryInMemory(agentRepositoryInMemory)
+    findAgentsByinterestsUseCase = new FindAgentsByInterestUseCase(interestsRepositoryInMemory)
   })
   it("should be able find agent by interests", async () => {
     const agent = await agentRepositoryInMemory.create({ name: "agent", email: 'agent@email', password: "xxx" })
-    await interestsRepositoryInMemory.updateInterests(agent.id,['programing', 'desing'],)
+    await interestsRepositoryInMemory.updateInterests(agent.id, ['programing'],)
     const agents = await findAgentsByinterestsUseCase.execute(['programing'])
     expect(agents).toEqual([agent])
   })

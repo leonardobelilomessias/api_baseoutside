@@ -4,16 +4,15 @@ import { IAgentRepository } from "../../repositories/IAgentRepository"
 import { IInterestsRepository } from "../../repositories/IInterestsRepository"
 
 class FindAgentsByInterestUseCase{
-  private interestRepositoryInMemory: IInterestsRepository
-  private agenteRepository : IAgentRepository
-  constructor(interestRepository:IInterestsRepository,agentRepository:IAgentRepository) {
-    this.interestRepositoryInMemory = interestRepository
-    this.agenteRepository = agentRepository
+  private interestRepository: IInterestsRepository
+
+  constructor(interestRepository:IInterestsRepository) {
+    this.interestRepository = interestRepository
+
   }
-  async execute(interests:string[]):Promise<Agent[]> {
-    const IdAgentByInterests= await this.interestRepositoryInMemory.findByInterestByName(interests)
-    const agentsWithInterests = await this.agenteRepository.findByInterest(IdAgentByInterests)
-    return agentsWithInterests
+  async execute(interests: string[]) {
+    const IdAgentByInterests= await this.interestRepository.findAgentByInterest(interests)
+    return IdAgentByInterests
   }
 
 }

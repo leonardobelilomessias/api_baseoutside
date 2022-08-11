@@ -1,11 +1,13 @@
 import { Skills } from "../infra/typeorm/entities/Skills"
+import { IAgentRepository } from "../repositories/IAgentRepository"
 import { ISkillsRepository } from "../repositories/ISkillsRepository"
 
 
 class SkillsRepositoryInMemory implements ISkillsRepository{
   skillsRepositoryInMemory: Skills[]
+  agentRepository: IAgentRepository
   constructor() {
-    this.skillsRepositoryInMemory =[]
+    this.skillsRepositoryInMemory = []
   }
 
   async ListAllSkills(): Promise<Skills[]> {
@@ -16,10 +18,10 @@ class SkillsRepositoryInMemory implements ISkillsRepository{
     return AgentSkill
   }
 
-  async findSkillsByName(skills: string[]): Promise<string[]> {
+  async findAgentBySkill(namesSkills: string[]) {
     const agentsSkills = []
     this.skillsRepositoryInMemory.forEach(skillRepository => {
-      skills.forEach(skill => {
+      namesSkills.forEach(skill => {
         if(skill ===skillRepository.skill) agentsSkills.push(skillRepository.id_agent)
       })
     })

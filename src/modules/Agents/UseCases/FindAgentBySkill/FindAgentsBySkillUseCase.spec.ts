@@ -18,6 +18,7 @@ describe("Find agents by skills", () => {
     const agent = await agentRepositoryInMemory.create({ name: "agent", email: 'agent@email', password: "xxx" })
     await skillsRepositoryInMemory.updateSkillsAgent(['programing', 'desing'],agent.id)
     const agents = await findAgentsBySkillsUseCase.execute(['programing'])
-    expect(agents).toEqual([agent])
+    const foundAgent = await agentRepositoryInMemory.findById(agents[0])
+   expect(foundAgent.id).toEqual(agents[0])
   })
 })

@@ -17,7 +17,7 @@ class SponsorAgentRepositoryInMemory implements ISponsorAgentRepository{
     return sponsors
   }
   async delete({ id_agent, id_sponsor }: { id_agent: any; id_sponsor: any; }): Promise<SponsorAgent> {
-    const sponsorIndex = this.sponsorAgentRepositoryInMemory.findIndex((sponsors)=>{sponsors.id_agent ===id_agent})
+    const sponsorIndex = this.sponsorAgentRepositoryInMemory.findIndex((sponsors)=>(sponsors.id_agent ===id_agent &&sponsors.id_sponsor===id_sponsor))
     const deletedSposnor = this.sponsorAgentRepositoryInMemory.splice(sponsorIndex, 1)
     return deletedSposnor[0]
   }

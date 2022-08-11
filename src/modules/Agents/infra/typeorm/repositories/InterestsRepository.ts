@@ -1,5 +1,6 @@
 import { Repository } from "typeorm/repository/Repository"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
+import { IAgentRepository } from "../../../repositories/IAgentRepository"
 import { IInterestsRepository } from "../../../repositories/IInterestsRepository"
 import { Interests } from "../entities/Interests"
 
@@ -7,9 +8,15 @@ import { Interests } from "../entities/Interests"
 
 class InterestsRepository implements IInterestsRepository{
   interestsRepository: Repository<Interests>
-   constructor() {
-    this.interestsRepository = AppDataSource.getRepository(Interests)
+  agentRepository :IAgentRepository
+   constructor(agentRepository:IAgentRepository) {
+     this.interestsRepository = AppDataSource.getRepository(Interests)
+     this.agentRepository = agentRepository
   }
+  findInterestByName(interest: string): Promise<Interests[]> {
+    throw new Error("Method not implemented.")
+  }
+
   async findInterestByAgent(id_agent: string): Promise<Interests[]> {
     const interestAgent = await this.interestsRepository.find({
       relations: {
@@ -23,7 +30,6 @@ class InterestsRepository implements IInterestsRepository{
     })
     return interestAgent
   }
-
 
   async findByInterest(interest:string) {
     const interestAgent = await this.interestsRepository.findBy({interests:interest})
@@ -39,7 +45,8 @@ class InterestsRepository implements IInterestsRepository{
       .execute()
       const allInterests = interests.map(interest => interest.trim())
       allInterests.forEach(async (interests) => {
-        const newInterest = new Interests(id_agent, interests)
+        const newInterest = new Interests()
+        Object.assign(newInterest,{id_agent,interests})
         await this.interestsRepository.save(newInterest)
       })
 
@@ -48,13 +55,17 @@ class InterestsRepository implements IInterestsRepository{
  
   }
 
-  async findInterestByName(interest:string) {
+  async findAgentByInterest(interest: string[]) {
+    const listInterest= interest.map(thisInterest=> ({interests:thisInterest}))
     const allInterests = await this.interestsRepository.find({
-      where: {
-        interests:interest
-      }
+      relations: {
+        id_agent:true
+      },
+      where: listInterest
     })
-    return allInterests
+    
+    const foundInterests = allInterests.map(thisInterest=>({interest:thisInterest.interests, agent:thisInterest.id_agent}))
+    return foundInterests 
   }
 }
 export{InterestsRepository}

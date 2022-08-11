@@ -1,4 +1,5 @@
 import { Repository } from "typeorm"
+import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { ISponsorAgentRepository } from "../../../repositories/ISponsorAgentRepository"
 import { SponsorAgent } from "../entities/SponsorAgent"
@@ -17,11 +18,21 @@ class SponsorsAgentsRepository implements ISponsorAgentRepository{
     await this.sponsorsAgentsRepository.save(newSponsor) 
     return newSponsor
   }
-  list(id_agent: any): Promise<SponsorAgent[]> {
-    throw new Error("Method not implemented.")
+  async list(id_agent: string): Promise<SponsorAgent[]> {
+    if(!id_agent) throw new AppError("Invalid agent")
+    const sponsorsAgent = await this.sponsorsAgentsRepository.findBy({ id_agent: id_agent })
+    return sponsorsAgent
   }
-  delete({ id_agent, id_sponsor }: { id_agent: any; id_sponsor: any }): Promise<SponsorAgent> {
-    throw new Error("Method not implemented.")
+  async delete({ id_agent, id_sponsor }: { id_agent: any; id_sponsor: any }): Promise<SponsorAgent> {
+    const canceledSponsor = await this.sponsorsAgentsRepository.findOne({
+      where: {
+        id_agent: id_agent,
+        id_sponsor:id_sponsor
+      }
+    })
+    if(!canceledSponsor)throw new AppError("Don't exist sponsor agent ")
+    await this.sponsorsAgentsRepository.delete(canceledSponsor)
+    return canceledSponsor
   }
 }
 export{SponsorsAgentsRepository}

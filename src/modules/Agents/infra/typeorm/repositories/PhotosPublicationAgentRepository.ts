@@ -13,17 +13,17 @@ class PhotoPublicationAgentRepository implements IPhotosPublicationAgent{
   private photosPublicationAgent: Repository<PhotoPublicationAgent>
   private storageProvider:IStorageProvider
   constructor(storageProvider:IStorageProvider) {
-    this.photosPublicationAgent = AppDataSource.getRepository(PhotoPublicationAgent)
+    this.photosPublicationAgent = AppDataSource.getRepository('photos_publications_agents')
     this.storageProvider = storageProvider
   }
   async create(id_publication: string, photos: string[]): Promise<PhotoPublicationAgent[]> {
     
     const promise =  photos.map(async (photo) => {
-      const newPhoto = new PhotoPublicationAgent()
-      Object.assign(newPhoto, { id_publication: id_publication, url: photo })
+      const newPhoto = new PhotoPublicationAgent(id_publication)
+      Object.assign(newPhoto, {  url: photo })
       const fotonew = await this.photosPublicationAgent.save(newPhoto)
       this.storageProvider.save(photo,"PhotosPublications") 
-      return fotonew
+      return fotonew  
     })
     const photosAgent =await  Promise.all(promise)
     

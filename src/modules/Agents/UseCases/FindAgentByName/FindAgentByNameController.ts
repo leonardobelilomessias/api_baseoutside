@@ -10,7 +10,7 @@ class FindAgentByNameController{
   }
   async handle(request: Request, response: Response): Promise<Response> {
     const {name} = request.params
-    const foundAgent = await  this.findAgentByNameByNameUseCase.execute({ name })
+    const foundAgent = await  this.findAgentByNameByNameUseCase.execute(name )
     return response.status(200).json(foundAgent)
   }
 

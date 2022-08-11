@@ -1,28 +1,28 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn , ManyToOne, JoinColumn} from "typeorm"
 import{v4 as uuidv4} from 'uuid'
-import { Agent } from "./Agent"
+import { Agent } from "./Agent";
 
 @Entity("publications_agents")
 class PublicationAgent{
   
   @PrimaryColumn()
-  id: string
+  id: string;
   
   @Column()
-  id_agent: string
+  id_agent: string;
   
   @CreateDateColumn()
-  created_at: string
+  created_at: string;
   
   @Column()
-  type: string
+  type: string;
 
   @Column()
-  description: string
+  description: string;
 
   constructor() {
     if (!this.id) {
-      this.id = uuidv4()
+      this.id = uuidv4();
     }
   }
   

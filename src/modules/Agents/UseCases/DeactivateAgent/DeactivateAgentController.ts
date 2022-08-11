@@ -9,7 +9,7 @@ class DeactivateAgentController{
 
   async handle(request: Request, response: Response): Promise<Response> {
     const {id} = request.body
-    const agentWillBeDeactivate = await this.deactivateAgentUseCase.execute({id})
+    const agentWillBeDeactivate = await this.deactivateAgentUseCase.execute(id)
     return response.status(200).json(agentWillBeDeactivate)
   }
 }

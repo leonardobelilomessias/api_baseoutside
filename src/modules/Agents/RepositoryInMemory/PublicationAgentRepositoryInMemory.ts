@@ -10,6 +10,24 @@ class PublicationsAgentRepositoryInMemory implements IPublicationsAgentRepositor
   constructor(photosPublicationAgent:IPhotosPublicationAgent) {
     this.photosPublicationAgent = photosPublicationAgent
   }
+  async listByAgentName(idAgent: string): Promise<PublicationAgent[]> {
+    const publicationByIdAgent =await  this.publicationsAgent.filter(publicationagent => publicationagent.id_agent === idAgent)
+    return publicationByIdAgent
+  }
+  async listAll(): Promise<PublicationAgent[]> {
+    const allPublications = await  this.publicationsAgent
+    return allPublications
+  }
+  async listByIdAgent(idAgent: string): Promise<PublicationAgent[]> {
+    const publicationByIdAgent =await  this.publicationsAgent.filter(publicationagent => publicationagent.id_agent === idAgent)
+    return publicationByIdAgent
+  }
+  async findPublicationById(id_publication: string): Promise<PublicationAgent> {
+
+    const foundPublication = this.publicationsAgent.find(publication => publication.id === id_publication)
+
+    return foundPublication
+  }
   
   async create({ id_agent, type, description,content }: ICreatePublication): Promise<ResponseCreatePublication> {
     const newPublicationAgent = new PublicationAgent()
@@ -32,12 +50,11 @@ class PublicationsAgentRepositoryInMemory implements IPublicationsAgentRepositor
     const allPublicationAgent = this.publicationsAgent
     return allPublicationAgent
   }
-  async edit({ id_publication, type, description }: EditPublication): Promise<PublicationAgent> {
-    const editAgent = this.publicationsAgent.find((publication) => {
-      if (publication.id === id_publication) {
-         publication.description = description
-       }
+  async edit({ id_publication, description }: EditPublication): Promise<PublicationAgent> {
+    const editAgent = await this.publicationsAgent.find((publication) => {
+      return publication.id === id_publication
     })
+    Object.assign(editAgent,{description:description})
      return editAgent
   }
   async delete(id_publication: string): Promise<PublicationAgent> {

@@ -1,3 +1,4 @@
+import { ICreateAgentDTO } from "../DTOS/CreateAgentDTO"
 import { Agent } from "../infra/typeorm/entities/Agent"
 
 interface CreateAgent{
@@ -32,7 +33,7 @@ interface ResponseAgent{
 
 interface IAgentRepository{
   
-  create({name,email,password,}:CreateAgent): Promise<Agent>
+  create({name,email,password,}:ICreateAgentDTO): Promise<Agent>
 
   listAll(): Promise<Agent[]>
   

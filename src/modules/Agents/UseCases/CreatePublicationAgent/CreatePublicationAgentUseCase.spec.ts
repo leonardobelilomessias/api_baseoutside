@@ -13,7 +13,13 @@ describe("Create Publication Agent", () => {
     createPublicationAgentUseCase = new CreatePublicationAgentUseCase(publicationAgentRepository)
   })
   it("Should be able to create a new publication", async () => {
-   const newPublication =  await createPublicationAgentUseCase.execute({id_agent:'01',type:'photo',description:'teste',content:["./tmp/sendPhotos/01.jpg",'./tmp/sendPhotos/02.png']})
+    const newPublication = await createPublicationAgentUseCase.execute(
+      {
+        id_agent: '01',
+        type: 'photo',
+        description: 'teste',
+        content: ["./tmp/sendPhotos/01.jpg", './tmp/sendPhotos/02.png']
+      })
     expect(newPublication.id_agent).toEqual('01')
   })
 })

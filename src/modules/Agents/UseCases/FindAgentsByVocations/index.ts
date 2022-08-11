@@ -1,9 +1,9 @@
 import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepository";
-import { FindByVocationController } from "./FindByVocationController";
-import { FindByVocationUseCase } from "./FindByVocationUseCase";
+import { FindAgentsByVocationController } from "./FindAgentsByVocationController";
+import { FindAgentsByVocationUseCase } from "./FindAgentsByVocationUseCase";
 
 const agentRepository = new AgentRepository()
-const findByVocationUseCase = new FindByVocationUseCase(agentRepository)
-const findByVocationController = new FindByVocationController(findByVocationUseCase)
+const findAgentsByVocationUseCase = new FindAgentsByVocationUseCase(agentRepository)
+const findAgentsByVocationController = new FindAgentsByVocationController(findAgentsByVocationUseCase)
 
-export{findByVocationController}
+export{findAgentsByVocationController}

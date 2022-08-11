@@ -11,7 +11,7 @@ class FindAgentsByVocationController{
 
   async handle(request:Request,response:Response):Promise<Response> {
     const { vocation } = request.body
-    const usersAgentsByVocation = this.findAgentsByVocationUseCase.execute({ vocation })
+    const usersAgentsByVocation = await this.findAgentsByVocationUseCase.execute(vocation)
     return response.status(200).json(usersAgentsByVocation)
   }
 }

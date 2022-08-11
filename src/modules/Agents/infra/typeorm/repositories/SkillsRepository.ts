@@ -12,7 +12,7 @@ class SkillsRepository implements ISkillsRepository{
   }
 
   async ListAllSkills():Promise<Skills[]> {
-    const skills = this.skillsRepository.find()
+    const skills = await this.skillsRepository.find()
     return skills
   }
 
@@ -29,8 +29,16 @@ class SkillsRepository implements ISkillsRepository{
     })
     return skillsCurrent
   }
-  async findSkillsByName(skills:string[]):Promise<string[]>{
-    return
+  async   findAgentBySkill(namesSkills:string[]){
+    const listSkills= namesSkills.map(thisSkills=> ({skill:thisSkills}))
+    const allInterests = await this.skillsRepository.find({
+      relations: {
+        id_agent:true
+      },
+      where: listSkills
+    })
+    const foundSkills = allInterests.map(thisInterest=>({interest:thisInterest.skill, agent:thisInterest.id_agent}))
+    return foundSkills
   }
 
   async updateSkillsAgent(skills: string[], id_agent: string):Promise<string[]> {

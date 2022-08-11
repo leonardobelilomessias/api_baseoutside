@@ -7,16 +7,15 @@ import { SkillsRepositoryInMemory } from "../../RepositoryInMemory/SkillsReposit
 
 class FindAgentsBySkillsUseCase{
   private agentRepository: IAgentRepository
-  private skillsRepositoryInMemory : ISkillsRepository
+  private skillsRepository : ISkillsRepository
   constructor(agentRepository: IAgentRepository,skillsRepositoryInMemory:ISkillsRepository) {
-    this.skillsRepositoryInMemory = skillsRepositoryInMemory
+    this.skillsRepository = skillsRepositoryInMemory
     this.agentRepository = agentRepository
   }
 
-  async execute(skills:string[]): Promise<Agent[]>{
-    const IdAgentBySkills = await this.skillsRepositoryInMemory.findSkillsByName(skills)
-    const agentsWithSkills = await this.agentRepository.findBySkills(IdAgentBySkills)
-    return agentsWithSkills
+  async execute(skills:string[]){
+    const agentBySkills = await this.skillsRepository.findAgentBySkill(skills)
+    return agentBySkills
   }
 
 }

@@ -10,9 +10,9 @@ class FindAgentsByVocationUseCase{
     this.agentRepository = agentRepository
   }
 
-  async execute({vocation}):Promise<Agent[]> {
-    const usersAgentsByVocation = await this.agentRepository.findByVocation({vocation})
-    return usersAgentsByVocation
+  async execute( vocation ): Promise<Agent[]> {
+    const agentByVocation = await this.agentRepository.findByVocation(vocation)
+    return agentByVocation
   }
 
 }

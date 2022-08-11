@@ -17,7 +17,7 @@ describe("create agent", () => {
       password: "123",
       name:"leo"
     }
-    const newAgent = await createAgentUseCase.execute(requestAgent)
+    const newAgent = await createAgentUseCase.execute(requestAgent )
     const findAgent = await agentRepositoryInmemory.findByEmail({ email: requestAgent.email })
     expect(findAgent).toHaveProperty("id")
     expect(newAgent).toHaveProperty("id")

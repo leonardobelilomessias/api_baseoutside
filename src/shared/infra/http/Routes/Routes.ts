@@ -8,6 +8,7 @@ import { password } from "./password.routes";
 import { task } from "./Task.routes";
 
 const router = Router()
+
 router.use("/agent", agent)
 router.use("/mission", mission)
 router.use("/action", action)

@@ -15,9 +15,9 @@ class CreateAgentController{
     this.createAgentUseCase = createAgentUseCase
   }
   async handle(request:Request,response:Response):Promise<Response> {
-    const {name,email,password} = request.body
+    const {name,email,password,vocation,description} = request.body
 
-    const agent = await this.createAgentUseCase.execute({ name, email, password })
+    const agent = await this.createAgentUseCase.execute({ name, email, password,vocation,description })
     return response.status(201).json(agent) 
   }
 
