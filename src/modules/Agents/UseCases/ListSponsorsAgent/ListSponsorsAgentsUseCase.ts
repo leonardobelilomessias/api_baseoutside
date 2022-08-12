@@ -5,8 +5,8 @@ class ListSponsorsAgentsUseCase{
   constructor(sponsorAgentRepository: ISponsorAgentRepository) {
     this.sponsorAgentRepository = sponsorAgentRepository
   }
-  async execute(id_agent) {
-    const sponsorsAgent = this.sponsorAgentRepository.list(id_agent)
+  async execute(id_agent: string) {  
+    const sponsorsAgent = this.sponsorAgentRepository.listSponsorsAgent(id_agent)
     return sponsorsAgent
   }
 }

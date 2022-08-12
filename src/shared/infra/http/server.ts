@@ -18,6 +18,7 @@ app.use((error: Error, resquest:Request, response:Response, next:NextFunction) =
     })
     
   }
+
   return response.status(500).json({
     status: "error",
     message:`internal server error - ${error}`

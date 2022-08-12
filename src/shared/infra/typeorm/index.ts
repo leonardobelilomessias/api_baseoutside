@@ -2,6 +2,7 @@ import { DataSource } from "typeorm";
 import { AgentToken } from "../../../modules/accounts/userToken/infra/typeorm/entities/AgentToken";
 import { Action } from "../../../modules/actions/infra/typeorm/entities/Action";
 import { Agent } from "../../../modules/agents/infra/typeorm/entities/Agent";
+import { ColabAgent } from "../../../modules/agents/infra/typeorm/entities/ColabAgent";
 import { Interests } from "../../../modules/agents/infra/typeorm/entities/Interests";
 import { JourneyAgent } from "../../../modules/agents/infra/typeorm/entities/JourneyAgent";
 import { PhotoPublicationAgent } from "../../../modules/Agents/infra/typeorm/entities/PhotoPublicationAgent";
@@ -33,8 +34,10 @@ export const AppDataSource = new DataSource({
     Skills,
     PhotoPublicationAgent,
     Departament,
-    PublicationAgent],
-  migrations: ["./src/database/migrations/*.ts"],
+    PublicationAgent,
+    ColabAgent
+  ],
+  migrations: ["./src/shared/infra/typeorm/migrations/*.ts"]
 
 })
 

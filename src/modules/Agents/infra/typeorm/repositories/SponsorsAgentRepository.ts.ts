@@ -11,6 +11,11 @@ class SponsorsAgentsRepository implements ISponsorAgentRepository{
   constructor(){
     this.sponsorsAgentsRepository = AppDataSource.getRepository(SponsorAgent)
   }
+  async listSponsorsAgent(id_agent: string): Promise<SponsorAgent[]> {
+    if(!id_agent) throw new AppError("Invalid agent")
+    const sponsorsAgent = await this.sponsorsAgentsRepository.findBy({ id_agent: id_agent })
+    return sponsorsAgent
+  }
 
   async create({ id_agent, id_sponsor, type, agent_private, sponsor_private }): Promise<SponsorAgent> {
     const sponsor = new SponsorAgent()
@@ -18,7 +23,7 @@ class SponsorsAgentsRepository implements ISponsorAgentRepository{
     await this.sponsorsAgentsRepository.save(newSponsor) 
     return newSponsor
   }
-  async list(id_agent: string): Promise<SponsorAgent[]> {
+  async listAgentSponsor(id_agent: string): Promise<SponsorAgent[]> {
     if(!id_agent) throw new AppError("Invalid agent")
     const sponsorsAgent = await this.sponsorsAgentsRepository.findBy({ id_agent: id_agent })
     return sponsorsAgent

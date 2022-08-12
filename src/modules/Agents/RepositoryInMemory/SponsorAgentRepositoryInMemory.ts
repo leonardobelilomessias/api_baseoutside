@@ -6,14 +6,19 @@ class SponsorAgentRepositoryInMemory implements ISponsorAgentRepository{
   constructor() {
     this.sponsorAgentRepositoryInMemory = []
   }
-  async create({ id_agent, id_sponsor, type, agent_private, sponsor_private }):Promise<SponsorAgent> {
+  async listSponsorsAgent(id_agent: string): Promise<SponsorAgent[]> {
+    const sponsors = await this.sponsorAgentRepositoryInMemory.filter((sponsors) => ( sponsors.id_agent === id_agent ))
+    return sponsors
+  }
+  async create({ id_agent, id_sponsor, type, agent_private, sponsor_private }): Promise<SponsorAgent> {
+    
     const newSponsor = new SponsorAgent()
     Object.assign(newSponsor, { id_agent, id_sponsor, type, agent_private, sponsor_private })
     this.sponsorAgentRepositoryInMemory.push(newSponsor)
     return newSponsor
   }
-  async list(id_agent: any): Promise<SponsorAgent[]> {
-    const sponsors = this.sponsorAgentRepositoryInMemory.filter((sponsors) => { sponsors.id_agent === id_agent })
+    async listAgentSponsor(id_agent: string): Promise<SponsorAgent[]> {
+    const sponsors = await this.sponsorAgentRepositoryInMemory.filter((sponsors) => { sponsors.id_agent === id_agent })
     return sponsors
   }
   async delete({ id_agent, id_sponsor }: { id_agent: any; id_sponsor: any; }): Promise<SponsorAgent> {

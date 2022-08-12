@@ -18,6 +18,8 @@ import { updatePublicationAgentController } from "../../../../modules/agents/Use
 import { listAllPublicationsAgentsController } from "../../../../modules/agents/UseCases/ListAllPublicationsAgents";
 import { listPublicatonsByIdAgentController } from "../../../../modules/agents/UseCases/ListPublicationByAgentName";
 import { toCancelSponsorAgentController } from "../../../../modules/agents/UseCases/ToCancelSponsorAgent";
+import { listSponsorAgentController } from "../../../../modules/agents/UseCases/ListSponsorsAgent";
+import { createColabAgentController } from "../../../../modules/agents/UseCases/CreateColab";
 
 
 const agent = Router()
@@ -51,6 +53,10 @@ agent.get("/listPublicationsByIdAgent",  (request, response) => {
   listPublicatonsByIdAgentController.handle(request,response)
 })
 
+agent.get("/listSponsorsAgent", (request, response) => {
+  listSponsorAgentController.handle(request,response)
+})
+
 agent.post("/sponsorAgent",async (request, response) => {
   await createNewSponsorAgentController.handle(request,response)
 })
@@ -58,15 +64,15 @@ agent.post("/sponsorAgent",async (request, response) => {
 
 
 agent.post("/", async (request, response) => {
-
    await createAgentController().handle(request,response)
 })
 
 agent.post("/photopublicationagent", uploadPhotosAgent.array('photos', 3), async (request, response) => {
-  
  await createPublicationAgentController.handle(request,response)
 })
-
+agent.post("/createColabAgent", async (request, response) => {
+  await createColabAgentController.handle(request,response)
+ })
 
 agent.patch("/image_profile",ensureAuthenticate, upload_image_profile.single("image_profile"),(request, response) => {
   updateImageAgentController.handle(request,response)
