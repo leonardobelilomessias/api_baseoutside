@@ -11,6 +11,15 @@ class ColabAgentRepository implements IColabRepository{
   constructor() {
     this.colabAgentRepository = AppDataSource.getRepository(ColabAgent)
   }
+  async findIfExistentcolab({ id_agent, id_colab}: { id_agent: any; id_colab: any; type: any; }): Promise<ColabAgent> {
+    const findColabAgent = this.colabAgentRepository.findOne({
+      where: {
+        id_agent_colab: id_colab,
+        id_agent:id_agent
+      }
+    })
+    return findColabAgent
+  }
   async create({ id_agent, id_colab, type }): Promise<ColabAgent> {
     const newColab = new ColabAgent()
     Object.assign(newColab, { id_agent, id_agent_colab: id_colab, type })

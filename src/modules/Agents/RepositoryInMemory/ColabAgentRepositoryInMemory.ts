@@ -8,6 +8,10 @@ class ColabAgentRepositoryInMemory implements IColabRepository{
   constructor() {
     this.colabAgentInMemory = []
   }
+  async findIfExistentcolab({ id_agent, id_colab, type }: { id_agent: any; id_colab: any; type: any }): Promise<ColabAgent> {
+    const findColabAgent = this.colabAgentInMemory.find(colab => ((colab.id_agent_colab === id_colab && colab.id_agent === id_agent)))
+    return findColabAgent
+  }
   async create({ id_agent, id_colab, type }): Promise<ColabAgent> {
     const findColabAgent = this.colabAgentInMemory.find(colab=>((colab.id_agent_colab ===id_colab && colab.id_agent ===id_agent)))
     if(findColabAgent) throw new AppError('Alredy exist colab')

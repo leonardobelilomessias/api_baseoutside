@@ -14,6 +14,8 @@ interface IColabRepository{
   
   listAgentColab(id_colab:string):Promise<Agent[]>
   
-  toCancelColab(id_agent,id_agent_colab):Promise<ColabAgent>
+  toCancelColab(id_agent, id_agent_colab): Promise<ColabAgent>
+  
+  findIfExistentcolab({ id_agent, id_colab}):Promise<ColabAgent>
 }
 export{ IColabRepository}
