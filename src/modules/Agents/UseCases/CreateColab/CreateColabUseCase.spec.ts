@@ -1,12 +1,15 @@
 import { AppError } from "../../../../shared/errors/AppError"
+import { AgentInMemoryRepository } from "../../RepositoryInMemory/AgentInMemoryRepository"
 import { ColabAgentRepositoryInMemory } from "../../RepositoryInMemory/ColabAgentRepositoryInMemory"
 import { CreateColabAgentUseCase } from "./CreateColabUseCase"
 
 let colabAgentRepositoryInMemory: ColabAgentRepositoryInMemory
-let createColabUseCase:CreateColabAgentUseCase
+let createColabUseCase: CreateColabAgentUseCase
+let agentRepositoryInMemory:AgentInMemoryRepository
 describe("Create Colab ", () => {
   beforeEach(() => {
-    colabAgentRepositoryInMemory = new ColabAgentRepositoryInMemory()
+    agentRepositoryInMemory = new AgentInMemoryRepository()
+    colabAgentRepositoryInMemory = new ColabAgentRepositoryInMemory(agentRepositoryInMemory)
     createColabUseCase = new CreateColabAgentUseCase(colabAgentRepositoryInMemory)
   })
   it("should be able create a new colab", async () => {

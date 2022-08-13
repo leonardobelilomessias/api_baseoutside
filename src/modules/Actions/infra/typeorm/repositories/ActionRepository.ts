@@ -18,7 +18,7 @@ class ActionRepository implements DTOActionRepository{
     const allAction = this.actionRepository.find()
     return allAction
   }
-  find(): Promise<Action> {
+  async find(): Promise<Action> {
     throw new AppError("Method not implemented.");
   }
   edit(): Promise<Action> {

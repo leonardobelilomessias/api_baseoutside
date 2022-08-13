@@ -20,6 +20,8 @@ import { listPublicatonsByIdAgentController } from "../../../../modules/agents/U
 import { toCancelSponsorAgentController } from "../../../../modules/agents/UseCases/ToCancelSponsorAgent";
 import { listSponsorAgentController } from "../../../../modules/agents/UseCases/ListSponsorsAgent";
 import { createColabAgentController } from "../../../../modules/agents/UseCases/CreateColab";
+import { toCancelColabAgentController } from "../../../../modules/agents/UseCases/ToCancelColabAgent";
+import { listColabsAgentController } from "../../../../modules/agents/UseCases/ListColabsAgent";
 
 
 const agent = Router()
@@ -56,6 +58,9 @@ agent.get("/listPublicationsByIdAgent",  (request, response) => {
 agent.get("/listSponsorsAgent", (request, response) => {
   listSponsorAgentController.handle(request,response)
 })
+agent.get("/listColabsAgent", (request, response) => {
+  listColabsAgentController.handle(request,response)
+})
 
 agent.post("/sponsorAgent",async (request, response) => {
   await createNewSponsorAgentController.handle(request,response)
@@ -90,5 +95,8 @@ agent.delete("/", (request, response) => {
 })
 agent.delete("/toCancelSponsorAgent",async (request, response) => {
   await toCancelSponsorAgentController.handle(request,response)
+})
+agent.delete("/toCancelColabAgent",async (request, response) => {
+  await toCancelColabAgentController.handle(request,response)
 })
 export {agent}

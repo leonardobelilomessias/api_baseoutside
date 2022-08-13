@@ -32,14 +32,25 @@ class ColabAgentRepository implements IColabRepository{
       throw new AppError('Invalid agent ou sponsor')
     }
   }
-  listColabAgent(id_agent: string): Promise<Agent[]> {
-    throw new Error("Method not implemented.");
+  async listColabAgent(id_agent: string): Promise<Agent[]> {
+    const colabsAgets = AppDataSource.createQueryRunner()
+      .manager.query(`select * from agents agent inner join colabs_agents colab on agent.id = colab.id_agent_colab  where colab.id_agent = '${id_agent}';`)
+      
+    return colabsAgets 
   }
   listAgentColab(id_colab: string): Promise<Agent[]> {
     throw new Error("Method not implemented.");
   }
-  toCancelColab(id_agent: any, id_agent_colab: any): Promise<ColabAgent> {
-    throw new Error("Method not implemented.");
+  async toCancelColab({ id_agent, id_colab }): Promise<ColabAgent> {
+    const agentcolab = await  this.colabAgentRepository.findOne({where:{ id_agent: id_agent, id_agent_colab: id_colab }})
+    await this.colabAgentRepository
+    .createQueryBuilder()
+    .delete()
+    .from(ColabAgent)
+      .where("id = :id", { id:agentcolab.id})
+    .execute()
+    
+    return agentcolab
   }
 
 }
