@@ -10,7 +10,7 @@ class ListMissionUseCase{
 
   }
   async execute(): Promise<Mission[]>{
-    const allMission = await  this.missionRepository.list()
+    const allMission = await  this.missionRepository.listAllMissions()
     return allMission
   }
   

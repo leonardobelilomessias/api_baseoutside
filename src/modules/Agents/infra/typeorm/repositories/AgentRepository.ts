@@ -23,8 +23,8 @@ import { ICreateAgentDTO } from "../../../DTOS/CreateAgentDTO"
    listAll(): Promise<Agent[]> {
      throw new Error("Method not implemented.")
    }
+   
    async findBySkills(skills): Promise<Agent[]> {
-
     const agentsWithSkill = await this.agentRepository.createQueryBuilder("agents")
     .innerJoinAndMapMany("agents.skills", "skills_agents", "sk", "agents.id = sk.id_agent")
     .where("sk.skill = :skill",{skill:skills})   

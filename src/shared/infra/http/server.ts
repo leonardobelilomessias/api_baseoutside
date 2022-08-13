@@ -9,16 +9,12 @@ const app = express()
 app.use(express.json())
 app.use(router)  
 app.use((error: Error, resquest:Request, response:Response, next:NextFunction) => {
-  
   if (error instanceof AppError) {
-    
     return response.status(error.statusCode).json({
       message: error.message,
       statusCode:error.statusCode
-    })
-    
+    }) 
   }
-
   return response.status(500).json({
     status: "error",
     message:`internal server error - ${error}`

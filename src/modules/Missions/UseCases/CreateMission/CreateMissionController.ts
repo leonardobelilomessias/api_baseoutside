@@ -8,7 +8,6 @@ interface IRequest{
   image_profile?:string
 }
 
-
 class CreateMissionController{
   private createMissionUseCase: CreateMissionUseCase
   constructor(createMissionUseCase:CreateMissionUseCase) {
@@ -20,5 +19,4 @@ class CreateMissionController{
     return response.status(201).json(mission)
   }
 }
-
 export{CreateMissionController}

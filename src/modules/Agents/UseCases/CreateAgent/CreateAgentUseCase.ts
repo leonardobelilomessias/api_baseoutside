@@ -3,11 +3,8 @@ import { AppError } from "../../../../shared/errors/AppError"
 import { ICreateAgentDTO } from "../../DTOS/CreateAgentDTO"
 import { IAgentRepository } from "../../repositories/IAgentRepository"
 
-
-
 class CreateAgentUseCase{
   private agentRepository: IAgentRepository
-
   constructor(agentReposiotory:IAgentRepository) {
     this.agentRepository = agentReposiotory
   }

@@ -1,32 +1,46 @@
 import { Repository } from "typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
-import { ICreateMission, IMissionReposiotry } from "../../../repositories/IMissonRepository"
+import { ICreateMissionDTO } from "../../../dtos/ICreateMissionDTO"
+import { IMissionRepository } from "../../../repositories/IMissonRepository"
 import { Mission } from "../entities/Mission"
 
 
-class MissionRepository implements IMissionReposiotry{
+class MissionRepository implements IMissionRepository{
   private missionRepository:Repository<Mission>
   constructor(){
     this.missionRepository = AppDataSource.getRepository(Mission)
   }
-  deactivate({ id }: { id: any }): Promise<Mission> {
-    throw new Error("Method not implemented.")
-  }
-  async create({ name, description, creator, image_profile }: ICreateMission): Promise<Mission> {
-    const newMission =  this.missionRepository.create({ name, description, creator, image_profile })
+  async create({ name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type }: ICreateMissionDTO): Promise<Mission> {
+    const newMission = new Mission()
+    Object.assign(newMission, { name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type })
     const mission = await this.missionRepository.save(newMission)
     return mission
   }
-  async list(): Promise<Mission[]> {
-    const allMission = await this.missionRepository.find()
-    return allMission
+  async listAllMissions(): Promise<Mission[]> {
+    const allMissions =await this.missionRepository.find()
+    return allMissions
   }
-  findByName({name}): Promise<Mission> {
-    throw new AppError("Method not implemented.")
+  async findByName(name: string): Promise<Mission> {
+    const findMissionByName = await  this.missionRepository.findOneBy({ name: name })
+    return findMissionByName
+  }
+  async findMissionByFild(field: string): Promise<Mission[]> {
+    const findMissionByName = await  this.missionRepository.findBy({ field:field })
+    return findMissionByName
+  }
+  async findMissionByLocal(local: string): Promise<Mission[]> {
+    const findMissionByName = await  this.missionRepository.findBy({ local:local })
+    return findMissionByName
   }
   edit({ data }: { data: any }): Promise<Mission> {
-    throw new AppError("Method not implemented.")
+    throw new Error("Method not implemented.")
+  }
+  deactivate(id: string): Promise<Mission> {
+    throw new Error("Method not implemented.")
+  }
+  createAdminMission({ id_agent, type }: { id_agent: any; type: any }) {
+    throw new Error("Method not implemented.")
   }
 
 
