@@ -10,12 +10,12 @@ class CreateMissionUseCase{
     this.missionRepository = missionRepository
   }
 
-  async execute({name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type}: ICreateMissionDTO): Promise<Mission>{
+  async execute({name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type,field}: ICreateMissionDTO): Promise<Mission>{
     
     const existMission = await this.missionRepository.findByName(name);
     if (existMission) throw new AppError('Mission already exist');
     if ((!name || !description || !creator)) throw new AppError("Is necessary fill all filds");
-    const mission = await this.missionRepository.create({ name, description, creator, image_profile ,date_end,date_start,duration,is_private,local,type})
+    const mission = await this.missionRepository.create({ name, description, creator, image_profile ,date_end,date_start,duration,is_private,local,type,field})
     return mission
   }
 }

@@ -8,9 +8,9 @@ class MissionRepositoryInMemory implements IMissionRepository{
     this.missionRepositoryInMemory =[]
   }
 
-  async create({ name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type }: ICreateMissionDTO): Promise<Mission> {
+  async create({ name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field}: ICreateMissionDTO): Promise<Mission> {
     const newMission = new Mission()
-    Object.assign(newMission,{ name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type })
+    Object.assign(newMission,{ name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type,field })
     this.missionRepositoryInMemory.push(newMission)
     return newMission
   }
@@ -21,7 +21,7 @@ class MissionRepositoryInMemory implements IMissionRepository{
     const missionByName = await this.missionRepositoryInMemory.find(mission => (mission.name === name))
     return missionByName
   }
-  async findMissionByFild(field: string): Promise<Mission[]> {
+  async findMissionsByField(field: string): Promise<Mission[]> {
     const missionByName = await this.missionRepositoryInMemory.filter(mission => (mission.field === field))
     return missionByName
   }

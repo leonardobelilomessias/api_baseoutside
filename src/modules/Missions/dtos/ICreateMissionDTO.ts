@@ -9,7 +9,8 @@ interface ICreateMissionDTO{
   date_start?: Date;
   date_end?: Date;
   is_private?: boolean;
-  type?:number
+  type?: number;
+  field?: string;
 
 }
 

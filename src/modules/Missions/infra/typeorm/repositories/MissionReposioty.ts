@@ -11,9 +11,9 @@ class MissionRepository implements IMissionRepository{
   constructor(){
     this.missionRepository = AppDataSource.getRepository(Mission)
   }
-  async create({ name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type }: ICreateMissionDTO): Promise<Mission> {
+  async create({ name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field}: ICreateMissionDTO): Promise<Mission> {
     const newMission = new Mission()
-    Object.assign(newMission, { name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type })
+    Object.assign(newMission, { name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field})
     const mission = await this.missionRepository.save(newMission)
     return mission
   }
@@ -27,7 +27,7 @@ class MissionRepository implements IMissionRepository{
     })
     return findMissionByName
   }
-  async findMissionByFild(field: string): Promise<Mission[]> {
+  async findMissionsByField(field: string): Promise<Mission[]> {
     const findMissionByName = await  this.missionRepository.findBy({ field:field })
     return findMissionByName
   }

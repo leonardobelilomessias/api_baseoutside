@@ -2,16 +2,16 @@ import { AppError } from "../../../../shared/errors/AppError"
 import { Mission } from "../../infra/typeorm/entities/Mission"
 import { IMissionRepository } from "../../repositories/IMissonRepository"
 
-class FindMissionByNameUseCase{
+class FindMissionsByFieldUseCase{
   private missionRepository: IMissionRepository
   constructor(missionRepository: IMissionRepository) {
     this.missionRepository = missionRepository
   }
-  async execute(name: string): Promise<Mission>{
-    if(!name) throw new AppError('Value of  name is undefined')
-    const missionByName = await this.missionRepository.findByName(name)
-    return missionByName
+  async execute(field): Promise<Mission[]>{
+    if(!field) throw new AppError('Value of field is undefined')
+    const foundMissionsByField = await this.missionRepository.findMissionsByField(field)
+    return foundMissionsByField
   }
 
 }
-export{FindMissionByNameUseCase}
+export{ FindMissionsByFieldUseCase}
