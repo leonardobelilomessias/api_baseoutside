@@ -22,7 +22,9 @@ class MissionRepository implements IMissionRepository{
     return allMissions
   }
   async findByName(name: string): Promise<Mission> {
-    const findMissionByName = await  this.missionRepository.findOneBy({ name: name })
+    const findMissionByName = await this.missionRepository.findOne({
+      where:{name:name}
+    })
     return findMissionByName
   }
   async findMissionByFild(field: string): Promise<Mission[]> {

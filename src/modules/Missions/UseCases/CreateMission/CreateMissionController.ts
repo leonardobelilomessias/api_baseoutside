@@ -13,10 +13,12 @@ class CreateMissionController{
   constructor(createMissionUseCase:CreateMissionUseCase) {
     this.createMissionUseCase = createMissionUseCase
   }
-  async handle(request: Request, response: Response):Promise<Response> {
-    const {name,creator,description,image_profile}:IRequest = request.body
+  async handle(request: Request, response: Response): Promise<Response> {
+    
+    const { name, creator, description, image_profile }: IRequest = request.body
+    
     const mission = await this.createMissionUseCase.execute({ name, creator, description, image_profile })
-    return response.status(201).json(mission)
+    return response.status(201).json((mission))
   }
 }
 export{CreateMissionController}
