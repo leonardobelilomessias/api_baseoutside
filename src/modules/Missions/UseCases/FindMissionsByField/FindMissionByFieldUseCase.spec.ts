@@ -14,7 +14,7 @@ describe("Find Mission by field", () => {
     const missionsByField =await  findMissionsByFieldUseCase.execute("fieldMission")
     expect(missionsByField[0].field).toBe("fieldMission")
   })
-  it("Should be able to find missions by a field", async () => {
+  it("Shouldn't be able to find missions by a field undefined", async () => {
     expect(async () => {
       await missionRepositoryInMemory.create({name:"newMission",creator:"01",description:"A new Mission",field:"fieldMission"})
       const missionsByField =await  findMissionsByFieldUseCase.execute("")

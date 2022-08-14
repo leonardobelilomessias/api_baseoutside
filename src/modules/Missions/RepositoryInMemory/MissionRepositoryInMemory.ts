@@ -29,7 +29,7 @@ class MissionRepositoryInMemory implements IMissionRepository{
     const missionByName = await this.missionRepositoryInMemory.filter(mission => (mission.local === local))
     return missionByName
   }
-  edit({ data }: { data: any }): Promise<Mission> {
+  edit({name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type,field}): Promise<Mission> {
     throw new Error("Method not implemented.")
   }
   deactivate(id: string): Promise<Mission> {

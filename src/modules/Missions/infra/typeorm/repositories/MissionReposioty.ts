@@ -35,7 +35,7 @@ class MissionRepository implements IMissionRepository{
     const findMissionByName = await  this.missionRepository.findBy({ local:local })
     return findMissionByName
   }
-  edit({ data }: { data: any }): Promise<Mission> {
+  edit({name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type,field}): Promise<Mission> {
     throw new Error("Method not implemented.")
   }
   deactivate(id: string): Promise<Mission> {
