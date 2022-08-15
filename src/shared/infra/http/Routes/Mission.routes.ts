@@ -1,9 +1,11 @@
 import { Router } from "express";
 import { createMissionController } from "../../../../modules/missions/UseCases/CreateMission";
+import { deactivateMisionController } from "../../../../modules/missions/UseCases/DeactiveMission";
 import { findMissionByNameController } from "../../../../modules/missions/UseCases/FindMissionByName";
 import { findMissionsByFieldController } from "../../../../modules/missions/UseCases/FindMissionsByField";
 import { findMissionsByLocalController } from "../../../../modules/missions/UseCases/FindMissionsByLocal";
 import { listMissionController } from "../../../../modules/missions/UseCases/ListMission";
+import { updateMissionController } from "../../../../modules/missions/UseCases/UpdateMission";
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 
 
@@ -27,5 +29,12 @@ mission.get("/findMissionsByLocal/:local?", async(request, response) => {
   await findMissionsByLocalController.handle(request,response)
 })
 
+mission.patch("/updateMission", async (request, response) => {
+  await updateMissionController.handle(request,response)
+})
+
+mission.delete("/deactivateMission", async (request, response) => {
+  await deactivateMisionController.handle(request,response)
+})
 
 export {mission}

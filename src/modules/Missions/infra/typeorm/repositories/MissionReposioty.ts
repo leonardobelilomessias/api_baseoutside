@@ -11,6 +11,10 @@ class MissionRepository implements IMissionRepository{
   constructor(){
     this.missionRepository = AppDataSource.getRepository(Mission)
   }
+  async findById(id: string): Promise<Mission> {
+    const foundMissionById = await this.missionRepository.findOneBy({ id: id })
+    return foundMissionById
+  }
   async create({ name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field}: ICreateMissionDTO): Promise<Mission> {
     const newMission = new Mission()
     Object.assign(newMission, { name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field})
@@ -35,11 +39,21 @@ class MissionRepository implements IMissionRepository{
     const findMissionByName = await  this.missionRepository.findBy({ local:local })
     return findMissionByName
   }
-  edit({name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type,field}): Promise<Mission> {
-    throw new Error("Method not implemented.")
+  async updateMission({id, name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type,field}): Promise<Mission> {
+    if(!id) throw new  AppError("Value id mission is undefined")
+    const updateMission = await this.missionRepository.findOneBy({ id: id })
+    if (!updateMission) throw new AppError("Not found mission")
+    Object.assign(updateMission, { id, name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type, field })
+    const updatedMission = await this.missionRepository.save(updateMission)
+    return updatedMission
+
   }
-  deactivate(id: string): Promise<Mission> {
-    throw new Error("Method not implemented.")
+  async deactivate(id: string): Promise<Mission> {
+    const foundMission = await this.missionRepository.findOneBy({ id: id })
+    if(!foundMission) throw  new AppError("Mission not found ")
+    Object.assign(foundMission, { is_active: false })
+    const deactivateMision = await this.missionRepository.save(foundMission)
+    return deactivateMision
   }
   createAdminMission({ id_agent, type }: { id_agent: any; type: any }) {
     throw new Error("Method not implemented.")
