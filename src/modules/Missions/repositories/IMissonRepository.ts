@@ -24,7 +24,7 @@ interface IMissionRepository{
   
   deactivate(id:string): Promise<Mission>
 
-  createAdminMission({id_agent,type})
+  createAdminMission({id_mission,id_agent,type})
   
   
 }

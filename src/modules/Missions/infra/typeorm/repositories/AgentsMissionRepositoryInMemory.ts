@@ -1,0 +1,5 @@
+
+class AgentsMissionRepository{
+
+}
+export{AgentsMissionRepository}

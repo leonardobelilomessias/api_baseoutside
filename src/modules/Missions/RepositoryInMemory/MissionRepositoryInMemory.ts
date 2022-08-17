@@ -1,12 +1,15 @@
 import { AppError } from "../../../shared/errors/AppError"
 import { ICreateMissionDTO } from "../dtos/ICreateMissionDTO"
+import { AdminMission } from "../infra/typeorm/entities/AdminMission"
 import { Mission } from "../infra/typeorm/entities/Mission"
 import { IMissionRepository } from "../repositories/IMissonRepository"
 
 class MissionRepositoryInMemory implements IMissionRepository{
   private missionRepositoryInMemory: Mission[]
+  private adminsMission :AdminMission[]
   constructor() {
-    this.missionRepositoryInMemory =[]
+    this.missionRepositoryInMemory = []
+    this.adminsMission = []
   }
   async findById(id: string): Promise<Mission> {
     const foundMissionById = this.missionRepositoryInMemory.find(mission => (mission.id === id))
@@ -50,7 +53,7 @@ class MissionRepositoryInMemory implements IMissionRepository{
     Object.assign(deactivateMission, { is_active: false })
     return  deactivateMission
   }
-  createAdminMission({ id_agent, type }: { id_agent: any; type: any }) {
+  async createAdminMission({ id_agent, type }: { id_agent: any; type: any }) {
     throw new Error("Method not implemented.")
   }
 
