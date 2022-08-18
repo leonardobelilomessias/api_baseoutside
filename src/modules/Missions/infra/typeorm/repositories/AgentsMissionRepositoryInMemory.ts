@@ -1,5 +1,0 @@
-
-class AgentsMissionRepository{
-
-}
-export{AgentsMissionRepository}

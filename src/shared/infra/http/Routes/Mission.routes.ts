@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { createAgentMissionController } from "../../../../modules/missions/UseCases/CreateAgentMission";
 import { createMissionController } from "../../../../modules/missions/UseCases/CreateMission";
 import { deactivateMisionController } from "../../../../modules/missions/UseCases/DeactiveMission";
 import { findMissionByNameController } from "../../../../modules/missions/UseCases/FindMissionByName";
@@ -13,6 +14,10 @@ const mission = Router()
 
 mission.post("/", async (request, response) => {
   await createMissionController.handle(request,response)
+})
+
+mission.post("/createAgentMission", async (request, response) => {
+  await createAgentMissionController.handle(request,response)
 })
 
 mission.get("/", (request, response) => {
