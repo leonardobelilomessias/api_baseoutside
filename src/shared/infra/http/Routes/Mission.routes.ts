@@ -2,6 +2,7 @@ import { Router } from "express";
 import { createAgentMissionController } from "../../../../modules/missions/UseCases/CreateAgentMission";
 import { createMissionController } from "../../../../modules/missions/UseCases/CreateMission";
 import { deactivateMisionController } from "../../../../modules/missions/UseCases/DeactiveMission";
+import { deleteAgentMissionController } from "../../../../modules/missions/UseCases/DeleteColabMission";
 import { findMissionByNameController } from "../../../../modules/missions/UseCases/FindMissionByName";
 import { findMissionsByFieldController } from "../../../../modules/missions/UseCases/FindMissionsByField";
 import { findMissionsByLocalController } from "../../../../modules/missions/UseCases/FindMissionsByLocal";
@@ -48,6 +49,9 @@ mission.patch("/updateMission", async (request, response) => {
 
 mission.delete("/deactivateMission", async (request, response) => {
   await deactivateMisionController.handle(request,response)
+})
+mission.delete("/deleteAgentMission", async (request, response) => {
+  await deleteAgentMissionController.handle(request,response)
 })
 
 export {mission}

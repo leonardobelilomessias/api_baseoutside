@@ -14,11 +14,21 @@ class AgentsMissionRepository implements IAgentsMissions{
    const createdAgentMission = await this.agentsMissionRepository.save(newAgentMission)
    return createdAgentMission
   }
-  findAgentMission({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {
-    throw new Error("Method not implemented.");
+ async findAgentMission({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {
+   const agentMission = await this.agentsMissionRepository.findOne({
+    where:{id_agent:id_agent,id_mission:id_mission}
+   })
+   return agentMission
   }
-  delete({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {
-    throw new Error("Method not implemented.");
+ async  delete({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {
+    const agentMission = await  this.agentsMissionRepository.findOne({where:{ id_agent: id_agent, id_mission: id_mission }})
+    await this.agentsMissionRepository
+    .createQueryBuilder()
+    .delete()
+    .from(AgentMission)
+    .where("id = :id", { id:agentMission.id})
+    .execute()
+    return agentMission
   }
   async findAllAgentsMission(id_mission: string): Promise<AgentMission[]> {
     const listAgentsMission = await this.agentsMissionRepository.find({
