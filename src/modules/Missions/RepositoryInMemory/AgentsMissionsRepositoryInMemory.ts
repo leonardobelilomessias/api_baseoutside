@@ -26,7 +26,8 @@ class AgentsMissionsRepositoryInMemory implements IAgentsMissions{
     return  newAgentsMissions
   }
   async findAgentMission({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {
-    const foundAgentMission = await this.agentsMissionrepositoryInMemory.find(agentMission => ((agentMission.id === id_agent && agentMission.id_mission === id_mission)))
+    const foundAgentMission = await this.agentsMissionrepositoryInMemory.find(agentMission => ((agentMission.id_agent === id_agent && agentMission.id_mission === id_mission)))
+    console.log(foundAgentMission)
     return foundAgentMission
   }
   async delete({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {
