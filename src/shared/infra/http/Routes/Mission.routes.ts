@@ -5,6 +5,7 @@ import { deactivateMisionController } from "../../../../modules/missions/UseCase
 import { findMissionByNameController } from "../../../../modules/missions/UseCases/FindMissionByName";
 import { findMissionsByFieldController } from "../../../../modules/missions/UseCases/FindMissionsByField";
 import { findMissionsByLocalController } from "../../../../modules/missions/UseCases/FindMissionsByLocal";
+import { listAgentsMissionController } from "../../../../modules/missions/UseCases/ListAgentsMission";
 import { listMissionController } from "../../../../modules/missions/UseCases/ListMission";
 import { updateMissionController } from "../../../../modules/missions/UseCases/UpdateMission";
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
@@ -22,6 +23,9 @@ mission.post("/createAgentMission", async (request, response) => {
 
 mission.get("/", (request, response) => {
   listMissionController.handle(request,response)
+})
+mission.get("/ListAgentsMission", async (request, response) => {
+ await  listAgentsMissionController.handle(request,response)
 })
 mission.get("/findMissionByName/:name?", async(request, response) => {
   await findMissionByNameController.handle(request,response)

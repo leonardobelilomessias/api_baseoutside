@@ -9,10 +9,12 @@ class AgentsMissionsRepositoryInMemory implements IAgentsMissions{
   }
  async  findAllAgentsMission(id_mission: string): Promise<AgentMission[]> {
    const allAgentsMission = await this.agentsMissionrepositoryInMemory.filter(AgentMission => (AgentMission.id_mission === id_mission))
+   if (allAgentsMission.length === 0) return null 
    return allAgentsMission
   }
   async findAllMissionsAgent(id_agent: string): Promise<AgentMission[]> {
     const allMissionagent = await this.agentsMissionrepositoryInMemory.filter(missionAgent => (missionAgent.id_agent === id_agent))
+    if (allMissionagent.length === 0) return null 
     return allMissionagent
   }
   async create({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {

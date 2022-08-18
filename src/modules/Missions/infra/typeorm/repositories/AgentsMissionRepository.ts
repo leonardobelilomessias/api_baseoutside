@@ -20,8 +20,11 @@ class AgentsMissionRepository implements IAgentsMissions{
   delete({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {
     throw new Error("Method not implemented.");
   }
-  findAllAgentsMission(id_mission: string): Promise<AgentMission[]> {
-    throw new Error("Method not implemented.");
+  async findAllAgentsMission(id_mission: string): Promise<AgentMission[]> {
+    const listAgentsMission = await this.agentsMissionRepository.find({
+      where:{id_mission:id_mission}
+    })
+    return listAgentsMission
   }
   findAllMissionsAgent(id_agent: string): Promise<AgentMission[]> {
     throw new Error("Method not implemented.");
