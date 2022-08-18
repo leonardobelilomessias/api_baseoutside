@@ -7,6 +7,7 @@ import { findMissionsByFieldController } from "../../../../modules/missions/UseC
 import { findMissionsByLocalController } from "../../../../modules/missions/UseCases/FindMissionsByLocal";
 import { listAgentsMissionController } from "../../../../modules/missions/UseCases/ListAgentsMission";
 import { listMissionController } from "../../../../modules/missions/UseCases/ListMission";
+import { listMissionsAgentController } from "../../../../modules/missions/UseCases/ListMissionsAgent";
 import { updateMissionController } from "../../../../modules/missions/UseCases/UpdateMission";
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 
@@ -27,6 +28,9 @@ mission.get("/", (request, response) => {
 mission.get("/ListAgentsMission", async (request, response) => {
  await  listAgentsMissionController.handle(request,response)
 })
+mission.get("/ListMissionsAgent", async (request, response) => {
+  await  listMissionsAgentController.handle(request,response)
+ })
 mission.get("/findMissionByName/:name?", async(request, response) => {
   await findMissionByNameController.handle(request,response)
 })

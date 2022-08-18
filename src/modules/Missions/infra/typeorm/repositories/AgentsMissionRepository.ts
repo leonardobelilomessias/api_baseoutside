@@ -26,8 +26,11 @@ class AgentsMissionRepository implements IAgentsMissions{
     })
     return listAgentsMission
   }
-  findAllMissionsAgent(id_agent: string): Promise<AgentMission[]> {
-    throw new Error("Method not implemented.");
+  async findAllMissionsAgent(id_agent: string): Promise<AgentMission[]> {
+    const listMissionsAgent = await this.agentsMissionRepository.find({
+      where:{id_agent:id_agent}
+    })
+    return listMissionsAgent
   }
 
 }
