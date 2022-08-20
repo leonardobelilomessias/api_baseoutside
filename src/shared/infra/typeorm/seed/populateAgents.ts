@@ -5,10 +5,6 @@ import '../../typeorm';
 import { faker } from '@faker-js/faker';
 
 
-
-
-
-
 export const AppDataSource = new DataSource({
   type: "mysql",
   host: "localhost",

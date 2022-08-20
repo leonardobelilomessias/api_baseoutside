@@ -24,7 +24,7 @@ export const AppDataSource = new DataSource({
   port: 3306,
   username: "root",
   password: "Leo175033",
-  database: "db_holdrope",
+  database: "db_holdrope", 
   entities: [Agent,
     JourneyAgent,
     SponsorAgent,
