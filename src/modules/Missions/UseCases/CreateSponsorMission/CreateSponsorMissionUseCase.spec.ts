@@ -1,6 +1,6 @@
 import { AppError } from "../../../../shared/errors/AppError"
 import { SponsorMissionRepositoryInMemory } from "../../RepositoryInMemory/SponsorMissionRepositoryInMemory"
-import { CreateSponsorMissionUseCase } from "./CreateSponsorMission"
+import { CreateSponsorMissionUseCase } from "./CreateSponsorMissionUseCase"
 
 let sponsorMissionRepository: SponsorMissionRepositoryInMemory
 let createSponsorMissionUseCase:CreateSponsorMissionUseCase
