@@ -15,14 +15,19 @@ export class CreateTableSponsorsMissions1659563319041 implements MigrationInterf
                             isPrimary:true
                         },
                         {
-                            name: "id_agent_sponsor",
+                            name: "id_mission",
                             type: "varchar",
-                            length: "36",
+                            length:"36"
                         },
                         {
-                            name: "id_mission_sponsored",
+                            name: "id_sponsor",
                             type: "varchar",
-                            length: "36",
+                            length:"36"
+                        },
+                        {
+                            name: "type",
+                            type: "int",
+                            default:0
                         },
                         {
                             name: "created_at",
@@ -30,28 +35,28 @@ export class CreateTableSponsorsMissions1659563319041 implements MigrationInterf
                             default:"now()"
                         },
                         {
-                            name: "agent_sponsor_private",
+                            name: "mission_private",
                             type: "boolean",
                             default:false
                         },
                         {
-                            name: "mission_sponsored_private",
+                            name: "sponsor_private",
                             type: "boolean",
                             default:false
                         }
                     ],
                     foreignKeys: [
                         {
-                            name: "fk_id_agent_sponsors_missions",
+                            name: "fk_id_sponsors_missions",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_agent_sponsor"]
+                            columnNames:["id_sponsor"]
                         },
                         {
-                            name: "fk_id_mission_sponsors_missions",
+                            name: "fk_id_mission_sponsors",
                             referencedTableName: "missions",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_mission_sponsored"]
+                            columnNames:["id_mission"]
                         },
                     ]
                 }

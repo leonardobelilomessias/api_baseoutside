@@ -12,6 +12,7 @@ import { SponsorAgent } from "../../../modules/agents/infra/typeorm/entities/Spo
 import { Departament } from "../../../modules/departemets/infra/typeorm/entities/Departament";
 import { AgentMission } from "../../../modules/missions/infra/typeorm/entities/AgentMission";
 import { Mission } from "../../../modules/missions/infra/typeorm/entities/Mission";
+import { SponsorMission } from "../../../modules/missions/infra/typeorm/entities/SponsorMission";
 import { Task } from "../../../modules/tasks/infra/typeorm/entities/Task";
 
 
@@ -37,7 +38,8 @@ export const AppDataSource = new DataSource({
     Departament,
     PublicationAgent,
     ColabAgent,
-    AgentMission
+    AgentMission,
+    SponsorMission
   ],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"]
 
