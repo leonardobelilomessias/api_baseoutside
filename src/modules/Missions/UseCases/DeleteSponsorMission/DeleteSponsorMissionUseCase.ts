@@ -7,9 +7,9 @@ class DeleteSponsorMissionUseCase{
   constructor(sponsorMissionRepository:ISponsorMissionRepository){
     this.sponsorMissionRepository = sponsorMissionRepository
   }
-  async execute(id_mission:string,id_sponsor:string):Promise<SponsorMission>{
+  async execute({id_sponsor,id_mission}):Promise<SponsorMission>{
     if(!id_mission||!id_sponsor) throw new AppError("Value of mission or sponsor is undefined.")
-    const deletedSponsor = await this.sponsorMissionRepository.deleteSponsorMission(id_sponsor,id_mission)
+    const deletedSponsor = await this.sponsorMissionRepository.deleteSponsorMission({id_sponsor,id_mission})
     return deletedSponsor
   }
 } 

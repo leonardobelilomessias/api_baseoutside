@@ -10,6 +10,6 @@ interface ISponsorMissionRepository{
   
   listMissionsSponsor(id_sponsor:string):Promise<SponsorMission[]>
 
-  deleteSponsorMission(id_sponsor:string,id_mission:string):Promise<SponsorMission>
+  deleteSponsorMission({id_sponsor,id_mission}):Promise<SponsorMission>
 }
 export {ISponsorMissionRepository}

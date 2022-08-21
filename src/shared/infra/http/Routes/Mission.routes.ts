@@ -4,6 +4,7 @@ import { createMissionController } from "../../../../modules/missions/UseCases/C
 import { createSponsorMissionController } from "../../../../modules/Missions/UseCases/CreateSponsorMission";
 import { deactivateMisionController } from "../../../../modules/missions/UseCases/DeactiveMission";
 import { deleteAgentMissionController } from "../../../../modules/missions/UseCases/DeleteColabMission";
+import { deleteSponsorMissionController } from "../../../../modules/Missions/UseCases/DeleteSponsorMission";
 import { findMissionByNameController } from "../../../../modules/missions/UseCases/FindMissionByName";
 import { findMissionsByFieldController } from "../../../../modules/missions/UseCases/FindMissionsByField";
 import { findMissionsByLocalController } from "../../../../modules/missions/UseCases/FindMissionsByLocal";
@@ -65,5 +66,7 @@ mission.delete("/deactivateMission", async (request, response) => {
 mission.delete("/deleteAgentMission", async (request, response) => {
   await deleteAgentMissionController.handle(request,response)
 })
-
+mission.delete("/deleteSponsorMission", async (request, response) => {
+  await deleteSponsorMissionController.handle(request,response)
+})
 export {mission}

@@ -27,7 +27,7 @@ class SponsorMissionRepositoryInMemory implements ISponsorMissionRepository{
     const sponsorsMission = await this.sponsorAgentRepositoryInMemory.filter(sponsorMission=>(sponsorMission.id_sponsor===id_sponsor))
     return sponsorsMission
   }
-  async deleteSponsorMission(id_sponsor: string, id_mission: string): Promise<SponsorMission> {
+  async deleteSponsorMission({id_sponsor, id_mission}): Promise<SponsorMission> {
     const foundIndeSponsorMission = await this.sponsorAgentRepositoryInMemory.findIndex(sponsorMision=>(sponsorMision.id_mission ===id_mission && sponsorMision.id_sponsor ===id_sponsor))
     const deletedSponsor = await this.sponsorAgentRepositoryInMemory.splice(foundIndeSponsorMission,1)
     return deletedSponsor[0]

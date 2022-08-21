@@ -29,13 +29,22 @@ class SponsorsMissionsRepository implements ISponsorMissionRepository{
     return sponsorsMission
   }
  async  listMissionsSponsor(id_sponsor: string): Promise<SponsorMission[]> {
+  console.log(id_sponsor)
     const missionsSponsor = await this.sponsorsMissionsRepository.find({
       where:{id_sponsor:id_sponsor}
     })
     return missionsSponsor
   }
-  deleteSponsorMission(id_sponsor: string, id_mission: string): Promise<SponsorMission> {
-    throw new Error("Method not implemented.");
+  async deleteSponsorMission({id_sponsor, id_mission}): Promise<SponsorMission> {
+    const sponsorMission = await this.sponsorsMissionsRepository.findOne({where:{id_mission:id_mission,id_sponsor:id_sponsor}})
+    if(!sponsorMission) throw new AppError("Sponsor Mission not found")
+    const deletedSponsorMission = await this.sponsorsMissionsRepository
+    .createQueryBuilder()
+    .delete()
+    .from("sponsors_missions")
+    .where("id = :id", { id:sponsorMission.id})
+    .execute()
+    return sponsorMission
   }
 }
 export{SponsorsMissionsRepository}
