@@ -16,8 +16,6 @@ import { SponsorMission } from "../../../modules/missions/infra/typeorm/entities
 import { Task } from "../../../modules/tasks/infra/typeorm/entities/Task";
 
 
-
-
 export const AppDataSource = new DataSource({
   type: "mysql",
   host: "localhost",

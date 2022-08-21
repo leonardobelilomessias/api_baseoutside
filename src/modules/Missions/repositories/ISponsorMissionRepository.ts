@@ -6,9 +6,9 @@ interface ISponsorMissionRepository{
   
   findSponsorMission(id_sponsor:string, id_mission:string): Promise<SponsorMission>
   
-  listSponsorsMission(id_mission:string): Promise<SponsorMission>
+  listSponsorsMission(id_mission:string): Promise<SponsorMission[]>
   
-  ListMissionSponsor(id_sponsor:string):Promise<SponsorMission>
+  listMissionSponsor(id_sponsor:string):Promise<SponsorMission>
 
   deleteSponsorMission(id_sponsor:string,id_mission:string):Promise<SponsorMission>
 }

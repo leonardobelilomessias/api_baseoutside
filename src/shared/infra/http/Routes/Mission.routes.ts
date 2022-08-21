@@ -1,6 +1,7 @@
 import { Router } from "express";
 import { createAgentMissionController } from "../../../../modules/missions/UseCases/CreateAgentMission";
 import { createMissionController } from "../../../../modules/missions/UseCases/CreateMission";
+import { createSponsorMissionController } from "../../../../modules/Missions/UseCases/CreateSponsorMission";
 import { deactivateMisionController } from "../../../../modules/missions/UseCases/DeactiveMission";
 import { deleteAgentMissionController } from "../../../../modules/missions/UseCases/DeleteColabMission";
 import { findMissionByNameController } from "../../../../modules/missions/UseCases/FindMissionByName";
@@ -21,6 +22,9 @@ mission.post("/", async (request, response) => {
 
 mission.post("/createAgentMission", async (request, response) => {
   await createAgentMissionController.handle(request,response)
+})
+mission.post("/createSponsorMission", async (request, response) => {
+  await createSponsorMissionController.handle(request,response)
 })
 
 mission.get("/", (request, response) => {

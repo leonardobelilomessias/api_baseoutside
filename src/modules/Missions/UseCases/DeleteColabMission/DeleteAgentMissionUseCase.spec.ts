@@ -23,7 +23,7 @@ describe("Delete agent missin", () => {
   })
   it("Should be able delete a agent mission", async () => {
     const agentMission = await agentsMissionRepositoryInMemory.create({id_agent:"01",id_mission:"02"})
-    console.log(agentMission)
+
     const deletedAgentMission = await deleteAgentMissionUseCase.execute("01", "02")
     expect(deletedAgentMission.id).toEqual(agentMission.id)
   })
