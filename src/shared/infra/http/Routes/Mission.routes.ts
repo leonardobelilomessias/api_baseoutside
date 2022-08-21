@@ -10,6 +10,8 @@ import { findMissionsByLocalController } from "../../../../modules/missions/UseC
 import { listAgentsMissionController } from "../../../../modules/missions/UseCases/ListAgentsMission";
 import { listMissionController } from "../../../../modules/missions/UseCases/ListMission";
 import { listMissionsAgentController } from "../../../../modules/missions/UseCases/ListMissionsAgent";
+import { listmissionsSponsorsController } from "../../../../modules/Missions/UseCases/ListMissionsSponsor";
+import { listsponsorsMissionsController } from "../../../../modules/Missions/UseCases/ListSponsorsMission";
 import { updateMissionController } from "../../../../modules/missions/UseCases/UpdateMission";
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 
@@ -45,6 +47,12 @@ mission.get("/findMissionsByField/:field?", async(request, response) => {
 
 mission.get("/findMissionsByLocal/:local?", async(request, response) => {
   await findMissionsByLocalController.handle(request,response)
+})
+mission.get("/listSponsorsMission", async(request, response) => {
+  await listsponsorsMissionsController.handle(request,response)
+})
+mission.get("/listMissionsSponsors", async(request, response) => {
+  await listmissionsSponsorsController.handle(request,response)
 })
 
 mission.patch("/updateMission", async (request, response) => {

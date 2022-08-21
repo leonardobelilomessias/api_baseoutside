@@ -23,11 +23,14 @@ class SponsorMissionRepositoryInMemory implements ISponsorMissionRepository{
     const sponsorsMission = await this.sponsorAgentRepositoryInMemory
     return sponsorsMission
   }
-  listMissionSponsor(id_sponsor: string): Promise<SponsorMission> {
-    throw new Error("Method not implemented.");
+  async listMissionsSponsor(id_sponsor: string): Promise<SponsorMission[]> {
+    const sponsorsMission = await this.sponsorAgentRepositoryInMemory.filter(sponsorMission=>(sponsorMission.id_sponsor===id_sponsor))
+    return sponsorsMission
   }
-  deleteSponsorMission(id_sponsor: string, id_mission: string): Promise<SponsorMission> {
-    throw new Error("Method not implemented.");
+  async deleteSponsorMission(id_sponsor: string, id_mission: string): Promise<SponsorMission> {
+    const foundIndeSponsorMission = await this.sponsorAgentRepositoryInMemory.findIndex(sponsorMision=>(sponsorMision.id_mission ===id_mission && sponsorMision.id_sponsor ===id_sponsor))
+    const deletedSponsor = await this.sponsorAgentRepositoryInMemory.splice(foundIndeSponsorMission,1)
+    return deletedSponsor[0]
   }
 
 }

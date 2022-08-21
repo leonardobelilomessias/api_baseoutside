@@ -22,11 +22,17 @@ class SponsorsMissionsRepository implements ISponsorMissionRepository{
     if(!foundSponsorMission )return null
     return foundSponsorMission
   }
-  listSponsorsMission(id_mission: string): Promise<SponsorMission[]> {
-    throw new Error("Method not implemented.");
+  async listSponsorsMission(id_mission: string): Promise<SponsorMission[]> {
+    const sponsorsMission = await this.sponsorsMissionsRepository.find({
+      where:{id_mission:id_mission}
+    })
+    return sponsorsMission
   }
-  ListMissionSponsor(id_sponsor: string): Promise<SponsorMission> {
-    throw new Error("Method not implemented.");
+ async  listMissionsSponsor(id_sponsor: string): Promise<SponsorMission[]> {
+    const missionsSponsor = await this.sponsorsMissionsRepository.find({
+      where:{id_sponsor:id_sponsor}
+    })
+    return missionsSponsor
   }
   deleteSponsorMission(id_sponsor: string, id_mission: string): Promise<SponsorMission> {
     throw new Error("Method not implemented.");

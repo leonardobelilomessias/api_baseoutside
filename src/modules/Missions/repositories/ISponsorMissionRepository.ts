@@ -8,7 +8,7 @@ interface ISponsorMissionRepository{
   
   listSponsorsMission(id_mission:string): Promise<SponsorMission[]>
   
-  listMissionSponsor(id_sponsor:string):Promise<SponsorMission>
+  listMissionsSponsor(id_sponsor:string):Promise<SponsorMission[]>
 
   deleteSponsorMission(id_sponsor:string,id_mission:string):Promise<SponsorMission>
 }
