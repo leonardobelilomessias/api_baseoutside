@@ -10,9 +10,9 @@ interface ICreateAction{
   value:number
 }
 
-interface DTOActionRepository{
+interface IActionRepository{
 
-  create({name,description,date_start,date_end,value,mission}:ICreateAction): Promise<Action>
+  create({name,description,date_start,date_end,value,mission}): Promise<Action>
   
   list(): Promise<Action[]>
   
