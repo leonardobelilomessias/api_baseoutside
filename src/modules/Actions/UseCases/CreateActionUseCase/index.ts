@@ -6,4 +6,4 @@ const actionRepository = new ActionRepository()
 const createActionUseCase = new CreateActionUseCase(actionRepository)
 const createActionController = new CreateActionController(createActionUseCase)
 
-export { createActionController}
+export{createActionController}

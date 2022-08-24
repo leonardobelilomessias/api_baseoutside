@@ -8,7 +8,7 @@ import {resolve,extname} from 'path'
 class PhotosPublicationAgentInMemory implements IPhotosPublicationAgent{
   photoPublicationAgentRepositoryInMemory:PhotoPublicationAgent[] = []
   async create(id_publication: string, photos: string[]): Promise<PhotoPublicationAgent[]> {
-    const photosCreated = photos.map((photo) => {
+    /*const photosCreated = photos.map((photo) => {
       const destination = resolve('tmp/localPhotos',`${ Math.random()}${extname(photo)}` )
       copyFile(resolve(photo), destination)
       const newPhoto = new PhotoPublicationAgent(id_publication)
@@ -18,6 +18,8 @@ class PhotosPublicationAgentInMemory implements IPhotosPublicationAgent{
     })
     
     return photosCreated
+    */
+    return
   }
   async list(id_publication:string): Promise<PhotoPublicationAgent[]> {
     const allPhotosPublication = this.photoPublicationAgentRepositoryInMemory.filter((photo) => {

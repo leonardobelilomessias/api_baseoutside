@@ -1,32 +1,39 @@
 import { Repository } from "typeorm";
+import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { DTOActionRepository, ICreateAction } from "../../../repositories/IActionRepository";
+import { IActionRepository, ICreateAction } from "../../../repositories/IActionRepository";
 import { Action } from "../entities/Action";
 
 
-class ActionRepository implements DTOActionRepository{
+class ActionRepository implements IActionRepository{
   private actionRepository: Repository<Action>
   constructor() {
     this.actionRepository = AppDataSource.getRepository(Action)
   }
-  async create({name,description,date_start,date_end,value,mission}:ICreateAction): Promise<Action> {
-    const newAction = this.actionRepository.create({ name, description, date_start, date_end, value,mission })
-    const action = await this.actionRepository.save(newAction)
-    return action
+  create({ name, description, date_start, date_end, value, mission }: { name: any; description: any; date_start: any; date_end: any; value: any; mission: any; }): Promise<Action> {
+    throw new Error("Method not implemented.");
   }
-  async list(): Promise<Action[]> {
-    const allAction = this.actionRepository.find()
-    return allAction
+  listAll(): Promise<Action[]> {
+    throw new Error("Method not implemented.");
   }
-  async find(): Promise<Action> {
-    throw new AppError("Method not implemented.");
+  findById(id: string): Promise<Action> {
+    throw new Error("Method not implemented.");
+  }
+  findByName(name: string): Promise<Action> {
+    throw new Error("Method not implemented.");
+  }
+  findByLocal(local: string): Promise<Action[]> {
+    throw new Error("Method not implemented.");
+  }
+  findByField(field: string): Promise<Action> {
+    throw new Error("Method not implemented.");
   }
   edit(): Promise<Action> {
-    throw new AppError("Method not implemented.");
+    throw new Error("Method not implemented.");
   }
   delete(): Promise<Action> {
-    throw new AppError("Method not implemented.");
+    throw new Error("Method not implemented.");
   }
-
+ 
 }
 export{ ActionRepository}

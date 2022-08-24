@@ -1,29 +1,44 @@
-import { Action } from "../Entity/Action";
-import { DTOActionRepository, ICreateAction } from "./DTOActionRepository";
 
-class ActionInMemoryRepository implements DTOActionRepository{
-  actionRepository:Action[]= []
+import { Action } from "../infra/typeorm/entities/Action"
+import { IActionRepository } from "../repositories/IActionRepository"
 
-  async create({ name, description, date_start, date_end, value, mission }: ICreateAction): Promise<Action> {
-    const newAction = new Action()
-    Object.assign(newAction, { name, description, date_start, date_end, value, mission })
+
+class ActionInMemoryRepository implements IActionRepository{
+  private actionRepositoryInMemory:Action[]
+
+  constructor(){
+    this.actionRepositoryInMemory = []
+  }
+
+  async create({ name, description, date_start, date_end, value, mission }: { name: any; description: any; date_start: any; date_end: any; value: any; mission: any }): Promise<Action> {
+    const newAction= new Action()
+    Object.assign(newAction,{ name, description, date_start, date_end, value, mission })
     this.actionRepository.push(newAction)
     return newAction
-
   }
-  async list(): Promise<Action[]> {
-    const all = this.actionRepository
-    return all
+  async listAll(): Promise<Action[]> {
+    return this.actionRepositoryInMemory
   }
-  find(): Promise<Action> {
-    throw new Error("Method not implemented.");
+  findById(id: string): Promise<Action> {
+    throw new Error("Method not implemented.")
+  }
+  findByName(name: string): Promise<Action> {
+    throw new Error("Method not implemented.")
+  }
+  findByLocal(local: string): Promise<Action[]> {
+    throw new Error("Method not implemented.")
+  }
+  findByField(field: string): Promise<Action> {
+    throw new Error("Method not implemented.")
   }
   edit(): Promise<Action> {
-    throw new Error("Method not implemented.");
+    throw new Error("Method not implemented.")
   }
   delete(): Promise<Action> {
-    throw new Error("Method not implemented.");
+    throw new Error("Method not implemented.")
   }
+  actionRepository:Action[]= []
+
 
 
 }

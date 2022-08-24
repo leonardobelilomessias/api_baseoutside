@@ -1,27 +1,35 @@
-import { Action } from "aws-sdk/clients/appstream";
+import { Action } from "../infra/typeorm/entities/Action";
+
 
 
 interface ICreateAction{
   name: string;
   description: string
-  date_start: string
-  date_end: string
-  mission: string
-  value:number
+  date_start?: string
+  date_end?: string
+  mission?: string
+  value?:number
 }
 
 interface IActionRepository{
 
-  create({name,description,date_start,date_end,value,mission}): Promise<Action>
+  create({name,description,date_start,date_end,value,mission}:ICreateAction):Promise<Action>
   
-  list(): Promise<Action[]>
+  listAll(): Promise<Action[]>
   
-  find(): Promise<Action>
+  findById(id:string): Promise<Action>
   
+  findByName(name:string): Promise<Action>
+
+  findByLocal(local:string): Promise<Action[]>
+
+  findByField(field:string): Promise<Action>
+
   edit(): Promise<Action>
   
   delete(): Promise<Action>
 
 }
 
-export{DTOActionRepository,ICreateAction}
+export{
+  IActionRepository,ICreateAction}

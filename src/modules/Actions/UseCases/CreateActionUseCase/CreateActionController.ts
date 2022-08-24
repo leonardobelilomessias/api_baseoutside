@@ -1,30 +1,17 @@
-import { Request, Response } from "express"
-import { CreateActionUseCase } from "./CreateActionUseCase"
-
-interface IRequest{
-
-  name: string;
-  description: string,
-  value?: number;
-  date_start?: string;
-  date_end?: string;
-  mission?: string;
-  
-}
+import { Request,Response } from "express";
+import { CreateActionUseCase } from "./CreateActionUseCase";
 
 
 class CreateActionController{
-  private createActionUseCase: CreateActionUseCase
-  constructor(createActionUseCase: CreateActionUseCase) {
-    this.createActionUseCase = createActionUseCase
+  private createActionUseCase:CreateActionUseCase
+  constructor(createActionUseCase:CreateActionUseCase){
+  this.createActionUseCase = createActionUseCase  
   }
 
-  async handle(request: Request, response: Response): Promise<Response>{
-    const {name,description,mission,value,date_end,date_start}:IRequest = request.body
-    const action = await this.createActionUseCase.execute({ name, description, mission, value, date_end, date_start })
-    return response.status(201).json(action)
+  async handle(request:Request,response:Response){
+    const { name, description, date_start, date_end, value, mission } = request.body
+    const newAction = await this.createActionUseCase.execute({ name, description, date_start, date_end, value, mission })
+    return response.status(200).json(newAction)
   }
-
-
 }
 export{CreateActionController}
