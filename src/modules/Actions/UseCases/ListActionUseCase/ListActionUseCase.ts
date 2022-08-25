@@ -10,7 +10,7 @@ class ListActionUseCase{
     this.actionRepository = actionRepository
   }
   async execute(): Promise<Action[]>{
-    const allAction = await this.actionRepository.list()
+    const allAction = await this.actionRepository.listAll()
     return allAction
   }
 

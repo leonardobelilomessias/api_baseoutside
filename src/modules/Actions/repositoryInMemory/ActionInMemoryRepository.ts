@@ -10,9 +10,9 @@ class ActionInMemoryRepository implements IActionRepository{
     this.actionRepositoryInMemory = []
   }
 
-  async create({ name, description, date_start, date_end, value, mission }: { name: any; description: any; date_start: any; date_end: any; value: any; mission: any }): Promise<Action> {
+  async create({ name, description, date_start, date_end, value, id_mission }): Promise<Action> {
     const newAction= new Action()
-    Object.assign(newAction,{ name, description, date_start, date_end, value, mission })
+    Object.assign(newAction,{ name, description, date_start, date_end, value,id_mission })
     this.actionRepository.push(newAction)
     return newAction
   }

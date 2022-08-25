@@ -7,13 +7,15 @@ interface ICreateAction{
   description: string
   date_start?: string
   date_end?: string
-  mission?: string
-  value?:number
+  id_mission: string
+  value?:number;
+  state?:number;
+  local?:string
 }
 
 interface IActionRepository{
 
-  create({name,description,date_start,date_end,value,mission}:ICreateAction):Promise<Action>
+  create({name,description,date_start,date_end,value,id_mission,state,local}:ICreateAction):Promise<Action>
   
   listAll(): Promise<Action[]>
   

@@ -10,11 +10,20 @@ class ActionRepository implements IActionRepository{
   constructor() {
     this.actionRepository = AppDataSource.getRepository(Action)
   }
-  create({ name, description, date_start, date_end, value, mission }: { name: any; description: any; date_start: any; date_end: any; value: any; mission: any; }): Promise<Action> {
-    throw new Error("Method not implemented.");
+  async create({ name, description, date_start, date_end, value, id_mission }): Promise<Action> {
+    try{
+      const action = new Action()
+      Object.assign(action,{ name, description, date_start, date_end, value, id_mission })
+      const newAction = await this.actionRepository.save(action)
+      return newAction
+    }catch(err){
+      throw new AppError("invalid value of mission")
+    }
+
   }
-  listAll(): Promise<Action[]> {
-    throw new Error("Method not implemented.");
+ async  listAll(): Promise<Action[]> {
+    const action = await this.actionRepository.find()
+    return action
   }
   findById(id: string): Promise<Action> {
     throw new Error("Method not implemented.");

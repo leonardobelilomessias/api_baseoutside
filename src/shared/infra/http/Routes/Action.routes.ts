@@ -5,8 +5,8 @@ import { listActionController } from "../../../../modules/actions/UseCases/ListA
 
 const action = Router()
 
-action.post("/", (request, response) => {
-  createActionController.handle(request,response)
+action.post("/", async (request, response) => {
+ await  createActionController.handle(request,response)
 })
 
 action.get("/", (request, response) => {

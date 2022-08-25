@@ -34,6 +34,9 @@ class Action{
 
   @Column()
   type?:number
+
+  @Column()
+  state:number
   
 
 

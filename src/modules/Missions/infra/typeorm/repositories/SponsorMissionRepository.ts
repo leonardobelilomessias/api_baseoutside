@@ -29,7 +29,7 @@ class SponsorsMissionsRepository implements ISponsorMissionRepository{
     return sponsorsMission
   }
  async  listMissionsSponsor(id_sponsor: string): Promise<SponsorMission[]> {
-  console.log(id_sponsor)
+
     const missionsSponsor = await this.sponsorsMissionsRepository.find({
       where:{id_sponsor:id_sponsor}
     })
