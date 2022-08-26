@@ -3,6 +3,7 @@ import { createActionController } from "../../../../modules/actions/UseCases/Cre
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
 import { listActionController } from "../../../../modules/actions/UseCases/ListAllActions";
+import { updateActionController } from "../../../../modules/Actions/UseCases/UpdateAction";
 
 
 const action = Router()
@@ -19,6 +20,10 @@ action.get("/findActionByName", async (request, response) => {
 })
 action.get("/findActionByLocal", async (request, response) => {
   await findActionByLocalController.handle(request,response)
+})
+
+action.patch("/",async(request,response)=>{
+  await updateActionController.handle(request,response)
 })
 
 export {action}

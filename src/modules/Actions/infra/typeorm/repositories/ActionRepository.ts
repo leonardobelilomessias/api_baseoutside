@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { IActionRepository, ICreateAction } from "../../../repositories/IActionRepository";
+import { IActionRepository, ICreateAction, IUpdateAction } from "../../../repositories/IActionRepository";
 import { Action } from "../entities/Action";
 
 
@@ -25,8 +25,9 @@ class ActionRepository implements IActionRepository{
     const action = await this.actionRepository.find()
     return action
   }
-  findById(id: string): Promise<Action> {
-    throw new Error("Method not implemented.");
+  async findById(id: string): Promise<Action> {
+    const findAction = await this.actionRepository.findOneBy({id})
+    return findAction
   }
   async findByName(name: string): Promise<Action[]> {
     const foundAction = await this.actionRepository.findBy({name})
@@ -39,8 +40,9 @@ class ActionRepository implements IActionRepository{
   findByField(field: string): Promise<Action> {
     throw new Error("Method not implemented.");
   }
-  edit(): Promise<Action> {
-    throw new Error("Method not implemented.");
+  async edit({ id, name,description,date_start,date_end,value,state,local}:IUpdateAction): Promise<Action> {
+      const updatedAction = await this.actionRepository.save({ id, name,description,date_start,date_end,value,state,local})
+      return updatedAction
   }
   delete(): Promise<Action> {
     throw new Error("Method not implemented.");

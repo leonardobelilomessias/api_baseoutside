@@ -34,9 +34,9 @@ class ActionInMemoryRepository implements IActionRepository{
   findByField(field: string): Promise<Action> {
     throw new Error("Method not implemented.")
   }
-  async edit({id_action, name, description, date_start, date_end, value, id_mission,local }): Promise<Action> {
-    const findAction= this.actionRepositoryInMemory.find(action=>(action.id ===id_action))
-    const updateAction = Object.assign(findAction,{id_action, name, description, date_start, date_end, value, id_mission,local })
+  async edit({id, name, description, date_start, date_end, value, id_mission,local }): Promise<Action> {
+    const findAction= this.actionRepositoryInMemory.find(action=>(action.id ===id))
+    const updateAction = Object.assign(findAction,{id, name, description, date_start, date_end, value, id_mission,local })
     return updateAction
   }
   delete(): Promise<Action> {
