@@ -13,33 +13,36 @@ class ActionInMemoryRepository implements IActionRepository{
   async create({ name, description, date_start, date_end, value, id_mission,local }:ICreateAction): Promise<Action> {
     const newAction= new Action()
     Object.assign(newAction,{ name, description, date_start, date_end, value,id_mission,local })
-    this.actionRepository.push(newAction)
+    await this.actionRepositoryInMemory.push(newAction)
     return newAction
   }
   async listAll(): Promise<Action[]> {
     return this.actionRepositoryInMemory
   }
-  findById(id: string): Promise<Action> {
-    throw new Error("Method not implemented.")
-  }
+  async findById(id: string): Promise<Action> {
+    const foundActionById = await this.actionRepositoryInMemory.find(action =>{ return action.id ===id})
+    return foundActionById
+    }
   async findByName(name: string): Promise<Action[]> {
-    const foundAction = this.actionRepository.filter(action =>(action.name === name))
+    const foundAction = this.actionRepositoryInMemory.filter(action =>(action.name === name))
     return foundAction
   }
   async findByLocal(local: string): Promise<Action[]> {
-    const foundAction = await this.actionRepository.filter(action =>(action.local === local))
+    const foundAction = await this.actionRepositoryInMemory.filter(action =>(action.local === local))
     return foundAction
   }
   findByField(field: string): Promise<Action> {
     throw new Error("Method not implemented.")
   }
-  edit(): Promise<Action> {
-    throw new Error("Method not implemented.")
+  async edit({id_action, name, description, date_start, date_end, value, id_mission,local }): Promise<Action> {
+    const findAction= this.actionRepositoryInMemory.find(action=>(action.id ===id_action))
+    const updateAction = Object.assign(findAction,{id_action, name, description, date_start, date_end, value, id_mission,local })
+    return updateAction
   }
   delete(): Promise<Action> {
     throw new Error("Method not implemented.")
   }
-  actionRepository:Action[]= []
+
 
 
 

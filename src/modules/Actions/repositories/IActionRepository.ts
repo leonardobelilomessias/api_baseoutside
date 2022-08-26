@@ -12,6 +12,16 @@ interface ICreateAction{
   state?:number;
   local?:string
 }
+interface IUpdateAction{
+  id_action:string;
+  name?: string;
+  description?: string
+  date_start?: string
+  date_end?: string
+  value?:number;
+  state?:number;
+  local?:string
+}
 
 interface IActionRepository{
 
@@ -27,11 +37,11 @@ interface IActionRepository{
 
   findByField(field:string): Promise<Action>
 
-  edit(): Promise<Action>
+  edit({ id_action, name,description,date_start,date_end,value,state,local}:IUpdateAction): Promise<Action>
   
   delete(): Promise<Action>
 
 }
 
 export{
-  IActionRepository,ICreateAction}
+  IActionRepository,ICreateAction,IUpdateAction}
