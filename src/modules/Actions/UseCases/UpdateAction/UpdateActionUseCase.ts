@@ -13,6 +13,6 @@ class UpdateActionUseCase{
     Object.assign(foundAction,{ name,description,date_start,date_end,value,state,local})
     const updateAction  = await this.actionRepository.edit(foundAction)
     return updateAction
-  }
+  } 
 }
 export{UpdateActionUseCase}

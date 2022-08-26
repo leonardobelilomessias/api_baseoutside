@@ -39,8 +39,10 @@ class ActionInMemoryRepository implements IActionRepository{
     const updateAction = Object.assign(findAction,{id, name, description, date_start, date_end, value, id_mission,local })
     return updateAction
   }
-  delete(): Promise<Action> {
-    throw new Error("Method not implemented.")
+  async delete(action:Action): Promise<Action> {
+    const findAction = await this.actionRepositoryInMemory.findIndex(actionArray=>(actionArray.id === action.id))
+    const deletedAction = await this.actionRepositoryInMemory.slice(findAction,1) 
+    return deletedAction[0]
   }
 
 

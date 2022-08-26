@@ -39,7 +39,7 @@ interface IActionRepository{
 
   edit({ id, name,description,date_start,date_end,value,state,local}:IUpdateAction): Promise<Action>
   
-  delete(): Promise<Action>
+  delete(Action:Action): Promise<Action>
 
 }
 
