@@ -1,6 +1,8 @@
 import { Router } from "express";
-import { createActionController } from "../../../../modules/actions/UseCases/CreateActionUseCase";
-import { listActionController } from "../../../../modules/actions/UseCases/ListActionUseCase";
+import { createActionController } from "../../../../modules/actions/UseCases/CreateAction";
+import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
+import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
+import { listActionController } from "../../../../modules/actions/UseCases/ListAllActions";
 
 
 const action = Router()
@@ -11,6 +13,12 @@ action.post("/", async (request, response) => {
 
 action.get("/", (request, response) => {
   listActionController.handle(request,response)
+})
+action.get("/findActionByName", async (request, response) => {
+  await findActionByNameController.handle(request,response)
+})
+action.get("/findActionByLocal", async (request, response) => {
+  await findActionByLocalController.handle(request,response)
 })
 
 export {action}

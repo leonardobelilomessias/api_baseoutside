@@ -8,12 +8,12 @@ import { Action } from "../entities/Action";
 class ActionRepository implements IActionRepository{
   private actionRepository: Repository<Action>
   constructor() {
-    this.actionRepository = AppDataSource.getRepository(Action)
+    this.actionRepository = AppDataSource.getRepository("actions")
   }
-  async create({ name, description, date_start, date_end, value, id_mission }): Promise<Action> {
+  async create({ name, description, date_start, date_end, value, id_mission,local }): Promise<Action> {
     try{
       const action = new Action()
-      Object.assign(action,{ name, description, date_start, date_end, value, id_mission })
+      Object.assign(action,{ name, description, date_start, date_end, value, id_mission,local })
       const newAction = await this.actionRepository.save(action)
       return newAction
     }catch(err){
@@ -28,11 +28,13 @@ class ActionRepository implements IActionRepository{
   findById(id: string): Promise<Action> {
     throw new Error("Method not implemented.");
   }
-  findByName(name: string): Promise<Action> {
-    throw new Error("Method not implemented.");
+  async findByName(name: string): Promise<Action[]> {
+    const foundAction = await this.actionRepository.findBy({name})
+    return foundAction
   }
-  findByLocal(local: string): Promise<Action[]> {
-    throw new Error("Method not implemented.");
+  async findByLocal(local: string): Promise<Action[]> {
+    const foundAction = await this.actionRepository.findBy({local})
+    return foundAction
   }
   findByField(field: string): Promise<Action> {
     throw new Error("Method not implemented.");

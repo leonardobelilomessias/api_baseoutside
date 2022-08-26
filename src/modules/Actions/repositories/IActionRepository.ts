@@ -21,7 +21,7 @@ interface IActionRepository{
   
   findById(id:string): Promise<Action>
   
-  findByName(name:string): Promise<Action>
+  findByName(name:string): Promise<Action[]>
 
   findByLocal(local:string): Promise<Action[]>
 

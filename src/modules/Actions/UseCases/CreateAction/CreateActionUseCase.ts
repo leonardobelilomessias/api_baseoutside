@@ -18,8 +18,7 @@ class CreateActionUseCase{
     const compareDateEnd = DateProvider.compairInHours(date_end,dateNow)
     if(compareDateStart < minimunDateStart) throw new AppError(" minimund date Start is 24 hours")
     if(compareDateEnd < minimunDateEnd) throw new AppError(" minimund date Start is 48 hours")
-    const newAction = await this.actionRepository.create({name,description,date_start,date_end,value,id_mission})
-    //Object.assign(newAction,{name,description,date_start,date_end,value,id_mission})
+    const newAction = await this.actionRepository.create({name,description,date_start,date_end,value,id_mission,local})
     return newAction
   }
 }
