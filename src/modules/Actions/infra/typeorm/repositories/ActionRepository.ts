@@ -44,8 +44,10 @@ class ActionRepository implements IActionRepository{
       const updatedAction = await this.actionRepository.save({ id, name,description,date_start,date_end,value,state,local})
       return updatedAction
   }
-  delete(): Promise<Action> {
-    throw new Error("Method not implemented.");
+  async delete(action): Promise<Action> {
+    const cancelAction = await this.actionRepository.delete({id:action.id})
+    return action
+
   }
  
 }

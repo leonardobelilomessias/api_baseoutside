@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { cancelActionController } from "../../../../modules/Actions/UseCases/CancelAction";
 import { createActionController } from "../../../../modules/actions/UseCases/CreateAction";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
@@ -26,4 +27,7 @@ action.patch("/",async(request,response)=>{
   await updateActionController.handle(request,response)
 })
 
+action.delete("/",async(request,response)=>{
+  await cancelActionController.handle(request,response)
+})
 export {action}
