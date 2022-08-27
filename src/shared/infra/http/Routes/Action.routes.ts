@@ -3,6 +3,7 @@ import { cancelActionController } from "../../../../modules/Actions/UseCases/Can
 import { cancelAgentActionController } from "../../../../modules/Actions/UseCases/CancelAgentAction";
 import { createActionController } from "../../../../modules/actions/UseCases/CreateAction";
 import { createAgentActionController } from "../../../../modules/Actions/UseCases/CreateAgentAction";
+import { createDepartamentController } from "../../../../modules/Actions/UseCases/CreateDepartament";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
 import { listAgentsActionsController } from "../../../../modules/Actions/UseCases/ListAgentsAction";
@@ -36,6 +37,10 @@ action.patch("/",async(request,response)=>{
 action.post("/createAgentAction",async(request,response)=>{
   await createAgentActionController.handle(request,response)
 })
+action.post("/createDepartament",async(request,response)=>{
+  await createDepartamentController.handle(request,response)
+})
+
 
 action.delete("/",async(request,response)=>{
   await cancelActionController.handle(request,response)
