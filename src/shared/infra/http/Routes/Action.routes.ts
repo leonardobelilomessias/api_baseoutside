@@ -24,7 +24,7 @@ action.get("/findActionByName", async (request, response) => {
 action.get("/findActionByLocal", async (request, response) => {
   await findActionByLocalController.handle(request,response)
 })
-action.get("/listAgentsActions", async (request, response) => {
+action.get("/listAgentsAction", async (request, response) => {
   await listAgentsActionsController.handle(request,response)
 })
 
