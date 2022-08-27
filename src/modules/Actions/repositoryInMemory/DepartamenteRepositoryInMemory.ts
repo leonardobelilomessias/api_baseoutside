@@ -24,8 +24,10 @@ class DepartamentRepositoryInMemory implements IDepartamentRepository{
   edit({ id, name, description, agents_limit, agents_necessary }: IEditDepartement): Promise<Departament> {
     throw new Error("Method not implemented.");
   }
-  delete(id: String): Promise<Departament> {
-    throw new Error("Method not implemented.");
+  async delete(id: String): Promise<Departament> {
+    const findDepartament = await this.departamentRepositoryInMemory.findIndex(departamet=>(departamet.id ===id))
+    const deleteDepartament = await this.departamentRepositoryInMemory.slice(findDepartament,1)
+    return deleteDepartament[0]
   }
 
 }
