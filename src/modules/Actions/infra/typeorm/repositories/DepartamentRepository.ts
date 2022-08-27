@@ -1,4 +1,5 @@
 import { Repository } from "typeorm";
+import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { IDepartamentRepository, ICreateDepartament, IEditDepartement } from "../../../repositories/IDepartamentRepository";
 import { Departament } from "../entities/Departament";
@@ -30,8 +31,11 @@ class DepartamentRepository implements IDepartamentRepository{
   edit({ id, name, description, agents_limit, agents_necessary }: IEditDepartement): Promise<Departament> {
     throw new Error("Method not implemented.");
   }
-  delete(id: String): Promise<Departament> {
-    throw new Error("Method not implemented.");
+  async delete(id: string): Promise<Departament> {
+    const findDepartament = await this.departamentRepository.findOneBy({id})
+    if(!findDepartament)throw new AppError("Departament not found.")
+    await this.departamentRepository.delete({id})
+    return findDepartament
   }
 
 }
