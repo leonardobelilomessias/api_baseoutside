@@ -1,7 +1,7 @@
 import { Entity, PrimaryColumn,Column, CreateDateColumn, ManyToMany, JoinColumn, ManyToOne, JoinTable } from 'typeorm'
 import {v4 as uuidv4} from 'uuid'
 import { Action } from '../../../../actions/infra/typeorm/entities/Action';
-import { Departament } from '../../../../departemets/infra/typeorm/entities/Departament';
+import { Departament } from '../../../../Actions/infra/typeorm/entities/Departament';
 import { Mission } from '../../../../Missions/infra/typeorm/entities/Mission';
 
 
