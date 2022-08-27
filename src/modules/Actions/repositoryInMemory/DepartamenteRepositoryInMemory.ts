@@ -12,8 +12,9 @@ class DepartamentRepositoryInMemory implements IDepartamentRepository{
     const createdDepartament = await this.departamentRepositoryInMemory.push(newDepartament)
     return newDepartament
   }
-  listAll(): Promise<Departament[]> {
-    throw new Error("Method not implemented.");
+  async listAll(id_action:string): Promise<Departament[]> {
+    const listDepartament = await this.departamentRepositoryInMemory.filter(depatament =>(depatament.id_action === id_action))
+    return listDepartament
   }
   listAgentsDepartament(id: string): Promise<Departament[]> {
     throw new Error("Method not implemented.");

@@ -9,6 +9,7 @@ import { findActionByLocalController } from "../../../../modules/Actions/UseCase
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
 import { listAgentsActionsController } from "../../../../modules/Actions/UseCases/ListAgentsAction";
 import { listActionController } from "../../../../modules/actions/UseCases/ListAllActions";
+import { listDepartamentController } from "../../../../modules/Actions/UseCases/ListDepartamets";
 import { updateActionController } from "../../../../modules/Actions/UseCases/UpdateAction";
 
 
@@ -29,6 +30,9 @@ action.get("/findActionByLocal", async (request, response) => {
 })
 action.get("/listAgentsAction", async (request, response) => {
   await listAgentsActionsController.handle(request,response)
+})
+action.get("/listdepartaments", async (request, response) => {
+  await listDepartamentController.handle(request,response)
 })
 
 action.patch("/",async(request,response)=>{

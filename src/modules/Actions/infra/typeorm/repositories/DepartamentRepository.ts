@@ -19,8 +19,9 @@ class DepartamentRepository implements IDepartamentRepository{
     return createdDepartament
   
   }
-  listAll(): Promise<Departament[]> {
-    throw new Error("Method not implemented.");
+  async listAll(id_action:string): Promise<Departament[]> {
+    const listDepartament = await this.departamentRepository.find({where:{id_action:id_action}})
+    return listDepartament
   }
   listAgentsDepartament(id: string): Promise<Departament[]> {
     throw new Error("Method not implemented.");

@@ -8,9 +8,8 @@ class Departament{
 
   @PrimaryColumn()
   id: string;
-  
-  @ManyToOne(() => Action)
-  @JoinColumn({ name: "id_action" })
+
+  @Column()
   id_action: string;
 
   @Column()

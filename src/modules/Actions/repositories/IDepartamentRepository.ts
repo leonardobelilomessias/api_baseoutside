@@ -19,7 +19,7 @@ interface IDepartamentRepository{
 
   create({id_action,name,description,agents_limit,agents_necessary}:ICreateDepartament):Promise<Departament>
 
-  listAll():Promise<Departament[]>
+  listAll(id_action:string):Promise<Departament[]>
 
   listAgentsDepartament(id:string):Promise<Departament[]>
 
