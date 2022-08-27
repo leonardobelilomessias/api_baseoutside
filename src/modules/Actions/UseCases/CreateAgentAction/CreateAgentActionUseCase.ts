@@ -9,7 +9,7 @@ class CreateAgentActionUseCase{
     this.agentActionRepository = agentActionRepository
   }
   async execute({id_agent,id_action}):Promise<AgentAction>{
-    if(!id_agent||!id_action) throw new AppError("Value og agent or mission undefined.")
+    if(!id_agent||!id_action) throw new AppError("Value og agent or action undefined.")
     const foundAgentAction = await this.agentActionRepository.findAgentAction({id_agent,id_action})
     if(foundAgentAction) throw new AppError("Agent alredy is at action")
     const newAgentAction = await this.agentActionRepository.create({id_agent,id_action})

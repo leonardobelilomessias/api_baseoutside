@@ -17,8 +17,9 @@ class AgentActionRepositoryInMemory implements IAgentActionRepository{
     this.agentActionRepositoryInMemory.push(agentAction)
     return agentAction
   }
-  listAgentsAction(id_action: any): Promise<AgentAction[]> {
-    throw new Error("Method not implemented.")
+  async listAgentsAction(id_action: any): Promise<AgentAction[]> {
+    const agentsActions = await this.agentActionRepositoryInMemory.filter(agentAction=>(agentAction.id_action ===id_action))
+    return agentsActions
   }
   listActionsAgent(id_agent: any): Promise<AgentAction> {
     throw new Error("Method not implemented.")

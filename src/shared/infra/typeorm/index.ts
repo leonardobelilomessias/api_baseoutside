@@ -16,6 +16,7 @@ import { Mission } from "../../../modules/missions/infra/typeorm/entities/Missio
 import { SponsorMission } from "../../../modules/missions/infra/typeorm/entities/SponsorMission";
 import { Task } from "../../../modules/tasks/infra/typeorm/entities/Task";
 import  'dotenv/config';
+import { AgentAction } from "../../../modules/Actions/infra/typeorm/entities/AgentAction";
 
 
 export const AppDataSource = new DataSource({
@@ -39,7 +40,8 @@ export const AppDataSource = new DataSource({
     PublicationAgent,
     ColabAgent,
     AgentMission,
-    SponsorMission
+    SponsorMission,
+    AgentAction
   ],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"]
 
