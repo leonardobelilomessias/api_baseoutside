@@ -14,14 +14,14 @@ describe("Create a Action",()=>{
     }).rejects.toBeInstanceOf(AppError)
   })
   it("Should be able create a new action",async()=>{
-    const action = {name:"NewAction", description:"Description Action",id_mission:"0001", date_start:"2022-08-28",date_end:"2022-08-29"}
+    const action = {name:"NewAction", description:"Description Action",id_mission:"0001", date_start:"2023-08-28",date_end:"2023-08-29"}
     const newAction = await createActionUseCase.execute(action)
     expect(newAction.name).toBe(action.name)
   })
 
   it("Shouldn't be able create a new action with invalid time",async()=>{
     expect(async()=>{
-      const action = {name:"NewAction", description:"Description Action",id_mission:"0001", date_stat:"2022-08-20",date_end:"2022-08-20"}
+      const action = {name:"NewAction", description:"Description Action",id_mission:"0001", date_stat:"2023-08-20",date_end:"2023-08-20"}
       const newAction = await createActionUseCase.execute(action)
       expect(newAction.name).toBe(action.name)
     }).rejects.toBeInstanceOf(AppError)

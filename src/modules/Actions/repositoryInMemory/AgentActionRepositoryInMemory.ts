@@ -24,8 +24,10 @@ class AgentActionRepositoryInMemory implements IAgentActionRepository{
   listActionsAgent(id_agent: any): Promise<AgentAction> {
     throw new Error("Method not implemented.")
   }
-  delete({ id_action, id_agent }: { id_action: any; id_agent: any }): Promise<AgentAction> {
-    throw new Error("Method not implemented.")
+  async delete({ id_action, id_agent }: { id_action: any; id_agent: any }): Promise<AgentAction> {
+    const findAgentAction = await this.agentActionRepositoryInMemory.findIndex(agentAction=>(agentAction.id_action ===id_action && agentAction.id_agent ===id_agent))
+    const deletedAgentAction = await this.agentActionRepositoryInMemory.slice(findAgentAction,1)
+    return deletedAgentAction[0]
   }
 
 }
