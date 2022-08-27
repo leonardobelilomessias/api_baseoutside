@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { cancelActionController } from "../../../../modules/Actions/UseCases/CancelAction";
+import { cancelAgentActionController } from "../../../../modules/Actions/UseCases/CancelAgentAction";
 import { createActionController } from "../../../../modules/actions/UseCases/CreateAction";
 import { createAgentActionController } from "../../../../modules/Actions/UseCases/CreateAgentAction";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
@@ -32,11 +33,14 @@ action.patch("/",async(request,response)=>{
   await updateActionController.handle(request,response)
 })
 
+action.post("/createAgentAction",async(request,response)=>{
+  await createAgentActionController.handle(request,response)
+})
+
 action.delete("/",async(request,response)=>{
   await cancelActionController.handle(request,response)
 })
-
-action.post("/createAgentAction",async(request,response)=>{
-  await createAgentActionController.handle(request,response)
+action.delete("/cancelAgentAction",async(request,response)=>{
+  await cancelAgentActionController.handle(request,response)
 })
 export {action}

@@ -29,13 +29,16 @@ class AgentActionRepository implements IAgentActionRepository{
   async listAgentsAction(id_action: any): Promise<AgentAction[]> {
     const agentsActions = await this.agentActionRepository.findBy({id_action})
     return agentsActions
-    
+
   }
   listActionsAgent(id_agent: any): Promise<AgentAction> {
     throw new Error("Method not implemented.");
   }
-  delete({ id_action, id_agent }: { id_action: any; id_agent: any; }): Promise<AgentAction> {
-    throw new Error("Method not implemented.");
+  async delete({ id_action, id_agent }: { id_action: any; id_agent: any; }): Promise<AgentAction> {
+    const findAgentAction = await this.agentActionRepository.findOne({ where:{ id_action, id_agent }})
+    if(!findAgentAction) throw new AppError("AgentAction not found.")
+    const deleteAgentAction = await this.agentActionRepository.delete(findAgentAction)
+    return findAgentAction
   }
 
 }
