@@ -41,7 +41,7 @@ class DepartamentRepositoryInMemory implements IDepartamentRepository{
     this.agentsDepartamentRepositoryInMemory.push(newAgentDepartament)
     return newAgentDepartament
   }
-  listAgentsDepartament(id_departament: any): Promise<AgentDepartament> {
+  listAgentsDepartament(id_departament: any): Promise<AgentDepartament[]> {
     throw new Error("Method not implemented.");
   }
   deleteAgentDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any; }): Promise<AgentDepartament> {

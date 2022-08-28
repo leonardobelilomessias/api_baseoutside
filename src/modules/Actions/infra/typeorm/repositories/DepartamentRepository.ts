@@ -9,18 +9,13 @@ import { Departament } from "../entities/Departament";
 
 class DepartamentRepository implements IDepartamentRepository{
   private departamentRepository:Repository<Departament>
+  private agentDepartamentRepository:Repository<AgentDepartament>
   constructor(){
+    this.agentDepartamentRepository = AppDataSource.getRepository(AgentDepartament)
     this.departamentRepository = AppDataSource.getRepository(Departament)
+
   }
-  createAgentDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any; }): Promise<AgentDepartament> {
-    throw new Error("Method not implemented.");
-  }
-  listAgentsDepartament(id_departament: any): Promise<AgentDepartament> {
-    throw new Error("Method not implemented.");
-  }
-  deleteAgentDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any; }): Promise<AgentDepartament> {
-    throw new Error("Method not implemented.");
-  }
+
   async create({ id_action, name, description, agents_limit, agents_necessary }: ICreateDepartament): Promise<Departament> {
     
     const newAction = new Departament()
@@ -45,6 +40,22 @@ class DepartamentRepository implements IDepartamentRepository{
     if(!findDepartament)throw new AppError("Departament not found.")
     await this.departamentRepository.delete({id})
     return findDepartament
+  }
+  async createAgentDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any; }): Promise<AgentDepartament> {
+    try{
+      const newAgentDepartament = new AgentDepartament()
+      Object.assign(newAgentDepartament,{id_agent,id_departament})
+      const createAgentDepartament = await this.agentDepartamentRepository.save(newAgentDepartament)
+      return createAgentDepartament
+    }catch{
+      throw new AppError("Some value is wrong. Confirm if there is the agent or departament")
+    }
+  }
+  listAgentsDepartament(id_departament: any): Promise<AgentDepartament[]> {
+    throw new Error("Method not implemented.");
+  }
+  deleteAgentDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any; }): Promise<AgentDepartament> {
+    throw new Error("Method not implemented.");
   }
 
 }

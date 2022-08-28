@@ -30,7 +30,7 @@ interface IDepartamentRepository{
 
   createAgentDepartament({id_agent,id_departament}):Promise<AgentDepartament>
 
-  listAgentsDepartament(id_departament):Promise<AgentDepartament>
+  listAgentsDepartament(id_departament):Promise<AgentDepartament[]>
 
   deleteAgentDepartament({id_agent,id_departament}):Promise<AgentDepartament>
 
