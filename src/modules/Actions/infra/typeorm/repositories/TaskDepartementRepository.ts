@@ -1,4 +1,5 @@
 import { Repository } from "typeorm"
+import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { ICreateTaskDepartament, IEditTaskDepartament, ITaskDepartamentRepository } from "../../../repositories/ITaskDepartamentRepository"
 import { TaskDepartament } from "../entities/TaskDepartament"
@@ -11,8 +12,15 @@ class TaskDepartamentRepository implements ITaskDepartamentRepository{
   constructor() {
     this.taskDepartamentRepository  =  AppDataSource.getRepository(TaskDepartament)
   }
-  create({ title, description, id_action, local, is_active, state, agents_necessary, agents_limit, priority, date_limit_subscribe, is_require_skill, skill_require, id_mission, id_departament }: ICreateTaskDepartament): Promise<TaskDepartament> {
-    throw new Error("Method not implemented.")
+  async create({ title, description, id_action, local, is_active, state, agents_necessary, agents_limit, priority, date_limit_subscribe, is_require_skill, skill_require, id_mission, id_departament }: ICreateTaskDepartament): Promise<TaskDepartament> { 
+    try {
+      const newTaskDepartament = new TaskDepartament()
+      Object.assign(newTaskDepartament,{ title, description, id_action, local, is_active, state, agents_necessary, agents_limit, priority, date_limit_subscribe, is_require_skill, skill_require, id_mission, id_departament })
+      const taskDepartament = await this.taskDepartamentRepository.save(newTaskDepartament)
+      return taskDepartament
+    } catch {
+      throw new AppError("Some value is incorrect")
+    }
   }
   findTaskDepartamentById({ id }: { id: any }): Promise<TaskDepartament> {
     throw new Error("Method not implemented.")
