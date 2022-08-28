@@ -51,9 +51,12 @@ class DepartamentRepository implements IDepartamentRepository{
       throw new AppError("Some value is wrong. Confirm if there is the agent or departament")
     }
   }
-  listAgentsDepartament(id_departament: any): Promise<AgentDepartament[]> {
-    throw new Error("Method not implemented.");
-  }
+ async  listAgentsDepartament(id_departament: any): Promise<AgentDepartament[]> {
+   
+  const listAgentsDepartament = await this.agentDepartamentRepository.findBy({id_departament})
+  
+  return listAgentsDepartament  
+}
   deleteAgentDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any; }): Promise<AgentDepartament> {
     throw new Error("Method not implemented.");
   }
