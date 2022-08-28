@@ -1,4 +1,4 @@
-import { DepartamentRepository } from "../../infra/typeorm/repositories/DepartamentRepository";
+import { DepartamentRepository } from "../../../infra/typeorm/repositories/DepartamentRepository";
 import { ListDepartamentsController } from "./ListDepartamentsController";
 import { ListDepartamentsUseCase } from "./ListDepartamentsUseCase";
 

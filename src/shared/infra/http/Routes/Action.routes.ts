@@ -3,13 +3,14 @@ import { cancelActionController } from "../../../../modules/Actions/UseCases/Can
 import { cancelAgentActionController } from "../../../../modules/Actions/UseCases/CancelAgentAction";
 import { createActionController } from "../../../../modules/actions/UseCases/CreateAction";
 import { createAgentActionController } from "../../../../modules/Actions/UseCases/CreateAgentAction";
-import { createDepartamentController } from "../../../../modules/Actions/UseCases/CreateDepartament";
-import { deleteDepartamentController } from "../../../../modules/Actions/UseCases/DeleteDepartament";
+import { createAgentDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/CreateAgentDepartament";
+import { createDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/CreateDepartament";
+import { deleteDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/DeleteDepartament";
+import { listDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/ListDepartamets";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
 import { listAgentsActionsController } from "../../../../modules/Actions/UseCases/ListAgentsAction";
 import { listActionController } from "../../../../modules/actions/UseCases/ListAllActions";
-import { listDepartamentController } from "../../../../modules/Actions/UseCases/ListDepartamets";
 import { updateActionController } from "../../../../modules/Actions/UseCases/UpdateAction";
 
 
@@ -46,6 +47,9 @@ action.post("/createDepartament",async(request,response)=>{
   await createDepartamentController.handle(request,response)
 })
 
+action.post("/createAgentDepartament",async(request,response)=>{
+  await createAgentDepartamentController.handle(request,response)
+})
 
 action.delete("/",async(request,response)=>{
   await cancelActionController.handle(request,response)

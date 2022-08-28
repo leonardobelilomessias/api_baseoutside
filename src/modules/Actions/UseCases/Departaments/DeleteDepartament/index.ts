@@ -1,5 +1,4 @@
-import { DeleteAgentMissionController } from "../../../Missions/UseCases/DeleteColabMission/DeleteAgentMissionController";
-import { DepartamentRepository } from "../../infra/typeorm/repositories/DepartamentRepository";
+import { DepartamentRepository } from "../../../infra/typeorm/repositories/DepartamentRepository";
 import { DeleteDepartamentController } from "./DeleteDepartamentController";
 import { DeleteDepartamentUseCase } from "./DeleteDepartamentUseCase";
 

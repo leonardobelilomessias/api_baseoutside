@@ -1,5 +1,5 @@
-import { AppError } from "../../../../shared/errors/AppError"
-import { DepartamentRepositoryInMemory } from "../../repositoryInMemory/DepartamenteRepositoryInMemory"
+import { AppError } from "../../../../../shared/errors/AppError"
+import { DepartamentRepositoryInMemory } from "../../../repositoryInMemory/DepartamenteRepositoryInMemory"
 import { DeleteDepartamentUseCase } from "./DeleteDepartamentUseCase"
 
 let departamentRepositoryInMemory :DepartamentRepositoryInMemory

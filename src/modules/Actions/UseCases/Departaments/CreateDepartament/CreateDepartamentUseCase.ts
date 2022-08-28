@@ -1,6 +1,6 @@
-import { AppError } from "../../../../shared/errors/AppError"
-import { Departament } from "../../infra/typeorm/entities/Departament"
-import { ICreateDepartament, IDepartamentRepository } from "../../repositories/IDepartamentRepository"
+import { AppError } from "../../../../../shared/errors/AppError"
+import { Departament } from "../../../infra/typeorm/entities/Departament"
+import { IDepartamentRepository, ICreateDepartament } from "../../../repositories/IDepartamentRepository"
 
 class CreateDepartamentUseCase{
   private departamentRepository:IDepartamentRepository
