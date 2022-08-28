@@ -57,8 +57,13 @@ class DepartamentRepository implements IDepartamentRepository{
   
   return listAgentsDepartament  
 }
-  deleteAgentDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any; }): Promise<AgentDepartament> {
-    throw new Error("Method not implemented.");
+  async deleteAgentDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any; }): Promise<AgentDepartament> {
+    const findAgentDepartament = await this.agentDepartamentRepository.findOne({where:{
+      id_agent,id_departament
+    }})
+    if(!findAgentDepartament) throw new AppError("Not found register of agent departament")
+    const deleteAgentDepartament = await this.agentDepartamentRepository.delete(findAgentDepartament)
+    return findAgentDepartament
   }
 
 }

@@ -5,6 +5,7 @@ import { createActionController } from "../../../../modules/actions/UseCases/Cre
 import { createAgentActionController } from "../../../../modules/Actions/UseCases/CreateAgentAction";
 import { createAgentDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/CreateAgentDepartament";
 import { createDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/CreateDepartament";
+import { deleteAgentDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/DeleteAgentDepartament";
 import { deleteDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/DeleteDepartament";
 import { listAgentsDepartmentController } from "../../../../modules/Actions/UseCases/Departaments/ListAgentsDepartament";
 import { listDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/ListDepartamets";
@@ -63,5 +64,9 @@ action.delete("/cancelAgentAction",async(request,response)=>{
 })
 action.delete("/deleteDepartament",async(request,response)=>{
   await deleteDepartamentController.handle(request,response)
+})
+
+action.delete("/deleteAgentDepartament",async(request,response)=>{
+  await deleteAgentDepartamentController.handle(request,response)
 })
 export {action}
