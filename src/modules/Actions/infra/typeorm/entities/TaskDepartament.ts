@@ -6,16 +6,14 @@ import { Mission } from '../../../../Missions/infra/typeorm/entities/Mission';
 
 
 @Entity("tasks_departamets")
-class Task{
+class TaskDepartament{
   @PrimaryColumn()
   id: string;
 
-  @ManyToOne(()=>Departament)
-  @JoinColumn({ name: "id_departament" })
+  @Column()
   id_departament: string;
 
-  @ManyToOne(()=>Action)
-  @JoinColumn({ name: "id_action" })
+  @Column()
   id_action: string;
   
   @Column()
@@ -65,4 +63,4 @@ class Task{
 
 }
 
-export {Task}
+export {TaskDepartament}

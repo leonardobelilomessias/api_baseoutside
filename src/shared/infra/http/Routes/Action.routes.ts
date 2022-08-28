@@ -9,6 +9,7 @@ import { deleteAgentDepartamentController } from "../../../../modules/Actions/Us
 import { deleteDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/DeleteDepartament";
 import { listAgentsDepartmentController } from "../../../../modules/Actions/UseCases/Departaments/ListAgentsDepartament";
 import { listDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/ListDepartamets";
+import { createTaskDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/CreateTask";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
 import { listAgentsActionsController } from "../../../../modules/Actions/UseCases/ListAgentsAction";
@@ -54,6 +55,10 @@ action.post("/createDepartament",async(request,response)=>{
 
 action.post("/createAgentDepartament",async(request,response)=>{
   await createAgentDepartamentController.handle(request,response)
+})
+
+action.post("/createTaskDepartament",async(request,response)=>{
+  await createTaskDepartamentController.handle(request,response)
 })
 
 action.delete("/",async(request,response)=>{

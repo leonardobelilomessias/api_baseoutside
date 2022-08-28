@@ -14,10 +14,10 @@ import { SponsorAgent } from "../../../modules/agents/infra/typeorm/entities/Spo
 import { AgentMission } from "../../../modules/missions/infra/typeorm/entities/AgentMission";
 import { Mission } from "../../../modules/missions/infra/typeorm/entities/Mission";
 import { SponsorMission } from "../../../modules/missions/infra/typeorm/entities/SponsorMission";
-import { Task } from "../../../modules/tasks/infra/typeorm/entities/Task";
 import  'dotenv/config';
 import { AgentAction } from "../../../modules/Actions/infra/typeorm/entities/AgentAction";
 import { AgentDepartament } from "../../../modules/Actions/infra/typeorm/entities/AgentDepartament";
+import {  TaskDepartament } from "../../../modules/Actions/infra/typeorm/entities/TaskDepartament";
 
 
 export const AppDataSource = new DataSource({
@@ -32,7 +32,7 @@ export const AppDataSource = new DataSource({
     SponsorAgent,
     Mission,
     Action,
-    Task,
+    TaskDepartament,
     AgentToken,
     Interests,
     Skills,
