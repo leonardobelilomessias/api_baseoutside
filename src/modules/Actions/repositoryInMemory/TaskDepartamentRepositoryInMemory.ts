@@ -34,10 +34,12 @@ class TaskDepartamentRepositoryInMemory implements ITaskDepartamentRepository{
   listTasksDepartamentByMisssion(id_mission: string): Promise<TaskDepartament[]> {
     throw new Error("Method not implemented.")
   }
-  editTaskDepartament({ id, id_departament }: { id: any; id_departament: any }): Promise<TaskDepartament> {
-    throw new Error("Method not implemented.")
+  async editTaskDepartament({ id, title, description, local, is_active, state, agents_necessary, agents_limit, priority, date_limit_subscribe, is_require_skill, skill_require,id_departament }: IEditTaskDepartament): Promise<TaskDepartament> {
+    const findTask = await this.taskDepartamentRepositoryInMemory.find(taskDepartament =>(taskDepartament.id ===id && taskDepartament.id_departament ===id_departament))
+    Object.assign(findTask,{ id, title, description, local, is_active, state, agents_necessary, agents_limit, priority, date_limit_subscribe, is_require_skill, skill_require,id_departament })
+    return findTask
   }
-  deleteTaskDepartament({ id, title, description, id_action, local, is_active, state, agents_necessary, agents_limit, priority, date_limit_subscribe, is_require_skill, skill_require, id_mission, id_departament }: IEditTaskDepartament): Promise<TaskDepartament> {
+  deleteTaskDepartament({id,id_departament}): Promise<TaskDepartament> {
     throw new Error("Method not implemented.")
   }
 

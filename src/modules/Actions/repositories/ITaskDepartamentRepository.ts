@@ -25,7 +25,6 @@ interface IEditTaskDepartament {
   id_departament:string;
   title?: string
   description?: string,
-  id_action?:string,
   local?:string;
   is_active?:boolean;
   state?:number;
@@ -35,7 +34,7 @@ interface IEditTaskDepartament {
   date_limit_subscribe?:Date;
   is_require_skill?:number;
   skill_require?:string;
-  id_mission?:string;
+
 }
 
 interface ITaskDepartamentRepository{
@@ -54,9 +53,9 @@ interface ITaskDepartamentRepository{
 
   listTasksDepartamentByMisssion(id_mission:string):Promise<TaskDepartament[]>
 
-  editTaskDepartament({id,id_departament}):Promise<TaskDepartament>
+  editTaskDepartament({id,title,description,local,is_active,state,agents_necessary,agents_limit,priority,date_limit_subscribe,is_require_skill,skill_require,id_departament}:IEditTaskDepartament):Promise<TaskDepartament>
 
-  deleteTaskDepartament({id,title,description,id_action,local,is_active,state,agents_necessary,agents_limit,priority,date_limit_subscribe,is_require_skill,skill_require,id_mission,id_departament}:IEditTaskDepartament):Promise<TaskDepartament>
+  deleteTaskDepartament({id,id_departament}):Promise<TaskDepartament>
 
 
 
