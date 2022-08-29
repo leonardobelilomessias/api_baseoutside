@@ -55,7 +55,7 @@ interface ITaskDepartamentRepository{
 
   editTaskDepartament({id,title,description,local,is_active,state,agents_necessary,agents_limit,priority,date_limit_subscribe,is_require_skill,skill_require,id_departament}:IEditTaskDepartament):Promise<TaskDepartament>
 
-  deleteTaskDepartament({id,id_departament}):Promise<TaskDepartament>
+  deleteTaskDepartament(id):Promise<TaskDepartament>
 
 
 

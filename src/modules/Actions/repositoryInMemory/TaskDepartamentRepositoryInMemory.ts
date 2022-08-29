@@ -39,8 +39,10 @@ class TaskDepartamentRepositoryInMemory implements ITaskDepartamentRepository{
     Object.assign(findTask,{ id, title, description, local, is_active, state, agents_necessary, agents_limit, priority, date_limit_subscribe, is_require_skill, skill_require,id_departament })
     return findTask
   }
-  deleteTaskDepartament({id,id_departament}): Promise<TaskDepartament> {
-    throw new Error("Method not implemented.")
+  async deleteTaskDepartament(id): Promise<TaskDepartament> {
+    const findIndexTaks = await this.taskDepartamentRepositoryInMemory.findIndex( task=> (task.id ===id))
+    const deleteTaskDepartament = this.taskDepartamentRepositoryInMemory.slice(findIndexTaks,1)
+    return deleteTaskDepartament[0]
   }
 
 

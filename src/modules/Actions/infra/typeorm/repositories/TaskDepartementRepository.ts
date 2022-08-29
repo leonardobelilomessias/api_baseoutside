@@ -50,7 +50,7 @@ class TaskDepartamentRepository implements ITaskDepartamentRepository{
     const  updateTaskDepartament = await this.taskDepartamentRepository.save(findTaksDepartament)
     return updateTaskDepartament
   }
-  deleteTaskDepartament(  { id, id_departament }): Promise<TaskDepartament> {
+  deleteTaskDepartament(id): Promise<TaskDepartament> {
     throw new Error("Method not implemented.")
   }
 
