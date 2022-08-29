@@ -40,13 +40,17 @@ export class CreateTableAdminsDepartaments1659566096260 implements MigrationInte
                             name: "fk_id_agent_admins_departaments",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_agent"]
+                            columnNames:["id_agent"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                         {
                             name: "fk_id_departament_admins_departaments",
                             referencedTableName: "departaments_actions",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_departament"]
+                            columnNames:["id_departament"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                     ]
                 }

@@ -63,13 +63,17 @@ export class CreateTableNoticesActions1659565646366 implements MigrationInterfac
                             name: "fk_id_agent_notices_actions",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_creator"]
+                            columnNames:["id_creator"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                         {
                             name: "fk_id_action_notices_actions",
                             referencedTableName: "actions",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_action"]
+                            columnNames:["id_action"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                     ]
                 }

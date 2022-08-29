@@ -63,13 +63,17 @@ export class CreateTableNoticesTasks1659565937277 implements MigrationInterface 
                             name: "fk_id_agent_notices_tasks",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_creator"]
+                            columnNames:["id_creator"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                         {
                             name: "fk_id_task_notices_tasks",
                             referencedTableName: "tasks_departamets",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_task"]
+                            columnNames:["id_task"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                     ]
                 }

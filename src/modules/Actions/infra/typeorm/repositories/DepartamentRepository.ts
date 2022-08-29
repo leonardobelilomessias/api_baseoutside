@@ -4,15 +4,18 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { IDepartamentRepository, ICreateDepartament, IEditDepartement } from "../../../repositories/IDepartamentRepository";
 import { AgentDepartament } from "../entities/AgentDepartament";
 import { Departament } from "../entities/Departament";
+import { TaskDepartament } from "../entities/TaskDepartament";
 
 
 
 class DepartamentRepository implements IDepartamentRepository{
   private departamentRepository:Repository<Departament>
   private agentDepartamentRepository:Repository<AgentDepartament>
+  private taskDepartamentRepository:Repository<TaskDepartament>
   constructor(){
     this.agentDepartamentRepository = AppDataSource.getRepository(AgentDepartament)
     this.departamentRepository = AppDataSource.getRepository(Departament)
+    this.taskDepartamentRepository = AppDataSource.getRepository(TaskDepartament)
 
   }
 
@@ -38,6 +41,11 @@ class DepartamentRepository implements IDepartamentRepository{
   async delete(id: string): Promise<Departament> {
     const findDepartament = await this.departamentRepository.findOneBy({id})
     if(!findDepartament)throw new AppError("Departament not found.")
+    await this.taskDepartamentRepository.createQueryBuilder()
+    .delete()
+    .from(TaskDepartament)
+    .where("id_departament = :id_departament", { id_departament: findDepartament.id })
+    .execute()
     await this.departamentRepository.delete({id})
     return findDepartament
   }

@@ -99,6 +99,8 @@ export class mission1656014397876 implements MigrationInterface {
                         referencedTableName: "agents",
                         referencedColumnNames: ["id"],
                         columnNames: ["creator"],
+                        onDelete: "CASCADE",
+                        onUpdate:"CASCADE"
                     }
                 ]
             })

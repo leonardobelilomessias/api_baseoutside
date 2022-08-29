@@ -102,13 +102,17 @@ export class CreateTasksDepartaments1659462767415 implements MigrationInterface 
                         name: "fk_action_task_departament",
                         referencedTableName: "actions",
                         referencedColumnNames: ["id"],
-                        columnNames:["id_action"]
+                        columnNames:["id_action"],
+                        onDelete: "CASCADE",
+                        onUpdate:"CASCADE"
                     },
                     {
                         name: "fk_departemant_task",
                         referencedTableName: "departaments_actions",
                         referencedColumnNames: ["id"],
-                        columnNames:["id_departament"]
+                        columnNames:["id_departament"],
+                        onDelete: "CASCADE",
+                        onUpdate:"CASCADE"
                     }
                 ]
             })

@@ -14,7 +14,6 @@ import { listMissionsAgentController } from "../../../../modules/missions/UseCas
 import { listmissionsSponsorsController } from "../../../../modules/Missions/UseCases/ListMissionsSponsor";
 import { listsponsorsMissionsController } from "../../../../modules/Missions/UseCases/ListSponsorsMission";
 import { updateMissionController } from "../../../../modules/missions/UseCases/UpdateMission";
-import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 
 
 const mission = Router()

@@ -50,13 +50,17 @@ export class CreateTableColabsAgents1659566403289 implements MigrationInterface 
                             name: "fk_id_agent_colabs_agents",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_agent"]
+                            columnNames:["id_agent"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                         {
                             name: "fk_id_colabs_colabs_agents",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_agent_colab"]
+                            columnNames:["id_agent_colab"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                     ]
                 }

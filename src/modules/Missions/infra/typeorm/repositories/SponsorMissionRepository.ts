@@ -10,10 +10,14 @@ class SponsorsMissionsRepository implements ISponsorMissionRepository{
     this.sponsorsMissionsRepository = AppDataSource.getRepository("sponsors_missions")
   }
   async create({ id_sponsor, id_mission, type, sponsor_private, mission_private }: { id_sponsor: any; id_mission: any; type: any; sponsor_private: any; mission_private: any; }): Promise<SponsorMission> {
-    const newSponsorMission = new SponsorMission()
-    Object.assign(newSponsorMission,{ id_sponsor, id_mission, type, sponsor_private, mission_private })
-    const createdSponsor = await this.sponsorsMissionsRepository.save(newSponsorMission)
-    return createdSponsor
+    try{
+      const newSponsorMission = new SponsorMission()
+      Object.assign(newSponsorMission,{ id_sponsor, id_mission, type, sponsor_private, mission_private })
+      const createdSponsor = await this.sponsorsMissionsRepository.save(newSponsorMission)
+      return createdSponsor
+    }catch{
+      throw new AppError("There was come error.")
+    }
   } 
   async findSponsorMission(id_sponsor: string, id_mission: string): Promise<SponsorMission> {
     const foundSponsorMission = await this.sponsorsMissionsRepository.findOne({

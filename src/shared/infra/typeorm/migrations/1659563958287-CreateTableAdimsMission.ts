@@ -40,13 +40,17 @@ export class CreateTableAdinsMission1659563958287 implements MigrationInterface 
                             name: "fk_id_agent_admins_missions",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_agent"]
+                            columnNames:["id_agent"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                         {
                             name: "fk_id_mission_admins_missions",
                             referencedTableName: "missions",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_mission"]
+                            columnNames:["id_mission"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                     ]
                 }

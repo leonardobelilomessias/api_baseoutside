@@ -67,7 +67,9 @@ export class createAction1656027303625 implements MigrationInterface {
                         name: "fk_mission_action",
                         referencedTableName: "missions",
                         referencedColumnNames: ["id"],
-                        columnNames:["id_mission"]
+                        columnNames:["id_mission"],
+                        onDelete: "CASCADE",
+                        onUpdate:"CASCADE"
                     }
                 ]
             })

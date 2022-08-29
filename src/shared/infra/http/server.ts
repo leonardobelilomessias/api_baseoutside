@@ -4,8 +4,11 @@ import '../typeorm'
 import { router } from "./Routes/Routes";
 import express, { NextFunction, Request, Response } from "express";
 import { AppError } from "../../errors/AppError";
+import upload from "../../../config/upload";
 
 const app = express()
+
+app.use("/sendPhotos",express.static(`./tmp/sendPhotos`))
 app.use(express.json())
 app.use(router)  
 app.use((error: Error, resquest:Request, response:Response, next:NextFunction) => {

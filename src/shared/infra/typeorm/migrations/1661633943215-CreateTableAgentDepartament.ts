@@ -34,13 +34,17 @@ export class CreateTableAgentDepartament1661633943215 implements MigrationInterf
                         name: "fk_id_agent_agents_departament",
                         referencedTableName: "agents",
                         referencedColumnNames: ["id"],
-                        columnNames:["id_agent"]
+                        columnNames:["id_agent"],
+                        onDelete: "CASCADE",
+                        onUpdate:"CASCADE"
                     },
                     {
                         name: "fk_id_departament_agents_actions",
                         referencedTableName: "departaments_actions",
                         referencedColumnNames: ["id"],
-                        columnNames:["id_departament"]
+                        columnNames:["id_departament"],
+                        onDelete: "CASCADE",
+                        onUpdate:"CASCADE"
                     },
                 ]
             }

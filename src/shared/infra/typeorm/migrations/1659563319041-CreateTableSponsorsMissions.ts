@@ -50,13 +50,17 @@ export class CreateTableSponsorsMissions1659563319041 implements MigrationInterf
                             name: "fk_id_sponsors_missions",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_sponsor"]
+                            columnNames:["id_sponsor"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                         {
                             name: "fk_id_mission_sponsors",
                             referencedTableName: "missions",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_mission"]
+                            columnNames:["id_mission"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                     ]
                 }

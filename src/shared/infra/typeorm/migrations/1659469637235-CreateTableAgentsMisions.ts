@@ -36,6 +36,8 @@ export class CreateTableAgentsMisions1659469637235 implements MigrationInterface
                             referencedTableName: "agents",
                             referencedColumnNames:["id"],
                             columnNames: ["id_agent"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                             
                         },
                         {
@@ -43,6 +45,8 @@ export class CreateTableAgentsMisions1659469637235 implements MigrationInterface
                             referencedTableName: "missions",
                             referencedColumnNames:["id"],
                             columnNames: ["id_mission"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                             
                         }
                        

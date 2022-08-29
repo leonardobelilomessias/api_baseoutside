@@ -44,13 +44,17 @@ export class CreateTableAgentsTasks1659562647683 implements MigrationInterface {
                             name: "fk_id_agent_agents_tasks",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_agent"]
+                            columnNames:["id_agent"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                         {
                             name: "fk_id_task_agents_tasks",
                             referencedTableName:"tasks_departamets",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_task"]
+                            columnNames:["id_task"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                     ]
                 }

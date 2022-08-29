@@ -48,7 +48,9 @@ export class CreateDepartament1659461560888 implements MigrationInterface {
                             name: "fk_action_departament",
                             referencedTableName:"actions",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_action"]
+                            columnNames:["id_action"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         }
                     ]
                 }

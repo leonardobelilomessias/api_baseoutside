@@ -63,13 +63,17 @@ export class CreateTableNoticesDepartaments1659565200729 implements MigrationInt
                             name: "fk_id_agent_notices_departaments",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_creator"]
+                            columnNames:["id_creator"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                         {
                             name: "fk_id_departament_notices_departaments",
                             referencedTableName: "departaments_actions",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_departament"]
+                            columnNames:["id_departament"],
+                            onDelete: "CASCADE",
+                            onUpdate:"CASCADE"
                         },
                     ]
                 }

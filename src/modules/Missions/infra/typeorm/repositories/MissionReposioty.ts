@@ -16,10 +16,14 @@ class MissionRepository implements IMissionRepository{
     return foundMissionById
   }
   async create({ name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field}: ICreateMissionDTO): Promise<Mission> {
-    const newMission = new Mission()
-    Object.assign(newMission, { name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field})
-    const mission = await this.missionRepository.save(newMission)
-    return mission
+    try{
+      const newMission = new Mission()
+      Object.assign(newMission, { name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field})
+      const mission = await this.missionRepository.save(newMission)
+      return mission
+    }catch{
+      throw new AppError("There was some error. verify the values or try again")
+    }
   }
   async listAllMissions(): Promise<Mission[]> {
     const allMissions =await this.missionRepository.find()
