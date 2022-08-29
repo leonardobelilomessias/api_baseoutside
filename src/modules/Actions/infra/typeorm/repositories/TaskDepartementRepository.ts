@@ -28,8 +28,9 @@ class TaskDepartamentRepository implements ITaskDepartamentRepository{
   findTaskDepartamentByTitle({ title }: { title: any }): Promise<TaskDepartament> {
     throw new Error("Method not implemented.")
   }
-  listAllTaskDepartament(id_departament: string): Promise<TaskDepartament[]> {
-    throw new Error("Method not implemented.")
+  async listAllTaskDepartament(id_departament: string): Promise<TaskDepartament[]> {
+    const tasksDapartament = await this.taskDepartamentRepository.findBy({id_departament})
+    return tasksDapartament 
   }
   listTasksDepartamentByAction(id_action: string): Promise<TaskDepartament[]> {
     throw new Error("Method not implemented.")

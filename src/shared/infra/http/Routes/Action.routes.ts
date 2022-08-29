@@ -10,6 +10,7 @@ import { deleteDepartamentController } from "../../../../modules/Actions/UseCase
 import { listAgentsDepartmentController } from "../../../../modules/Actions/UseCases/Departaments/ListAgentsDepartament";
 import { listDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/ListDepartamets";
 import { createTaskDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/CreateTask";
+import { listTasksDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/ListTaskDepartament";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
 import { listAgentsActionsController } from "../../../../modules/Actions/UseCases/ListAgentsAction";
@@ -40,6 +41,10 @@ action.get("/listdepartaments", async (request, response) => {
 })
 action.get("/listAgentsDepartaments", async (request, response) => {
   await listAgentsDepartmentController.handle(request,response)
+})
+
+action.get("/listTasksDepartament", async (request, response) => {
+  await listTasksDepartamentController.handle(request,response)
 })
 
 action.patch("/",async(request,response)=>{
