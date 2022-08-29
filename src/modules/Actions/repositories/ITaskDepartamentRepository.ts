@@ -46,13 +46,13 @@ interface ITaskDepartamentRepository{
 
   findTaskDepartamentByTitle({title}):Promise<TaskDepartament>
 
-  listAllTaskDepartament(id_departament:string):Promise<TaskDepartament>
+  listAllTaskDepartament(id_departament:string):Promise<TaskDepartament[]>
 
-  listTasksDepartamentByAction(id_action:string):Promise<TaskDepartament>
+  listTasksDepartamentByAction(id_action:string):Promise<TaskDepartament[]>
 
-  listTasksDepartamentByLocal(local:string):Promise<TaskDepartament>
+  listTasksDepartamentByLocal(local:string):Promise<TaskDepartament[]>
 
-  listTasksDepartamentByMisssion(id_mission:string):Promise<TaskDepartament>
+  listTasksDepartamentByMisssion(id_mission:string):Promise<TaskDepartament[]>
 
   editTaskDepartament({id,id_departament}):Promise<TaskDepartament>
 

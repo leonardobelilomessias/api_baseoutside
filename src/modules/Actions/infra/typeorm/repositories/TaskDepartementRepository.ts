@@ -28,16 +28,16 @@ class TaskDepartamentRepository implements ITaskDepartamentRepository{
   findTaskDepartamentByTitle({ title }: { title: any }): Promise<TaskDepartament> {
     throw new Error("Method not implemented.")
   }
-  listAllTaskDepartament(id_departament: string): Promise<TaskDepartament> {
+  listAllTaskDepartament(id_departament: string): Promise<TaskDepartament[]> {
     throw new Error("Method not implemented.")
   }
-  listTasksDepartamentByAction(id_action: string): Promise<TaskDepartament> {
+  listTasksDepartamentByAction(id_action: string): Promise<TaskDepartament[]> {
     throw new Error("Method not implemented.")
   }
-  listTasksDepartamentByLocal(local: string): Promise<TaskDepartament> {
+  listTasksDepartamentByLocal(local: string): Promise<TaskDepartament[]> {
     throw new Error("Method not implemented.")
   }
-  listTasksDepartamentByMisssion(id_mission: string): Promise<TaskDepartament> {
+  listTasksDepartamentByMisssion(id_mission: string): Promise<TaskDepartament[]> {
     throw new Error("Method not implemented.")
   }
   editTaskDepartament({ id, id_departament }: { id: any; id_departament: any }): Promise<TaskDepartament> {
