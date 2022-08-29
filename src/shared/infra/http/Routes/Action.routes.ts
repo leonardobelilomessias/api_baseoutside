@@ -11,6 +11,7 @@ import { listAgentsDepartmentController } from "../../../../modules/Actions/UseC
 import { listDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/ListDepartamets";
 import { createTaskDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/CreateTask";
 import { listTasksDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/ListTaskDepartament";
+import { updateTaskDepartementController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/UpdateTaskDepartament";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
 import { listAgentsActionsController } from "../../../../modules/Actions/UseCases/ListAgentsAction";
@@ -49,6 +50,10 @@ action.get("/listTasksDepartament", async (request, response) => {
 
 action.patch("/",async(request,response)=>{
   await updateActionController.handle(request,response)
+})
+
+action.patch("/updateTaskDepartament",async(request,response)=>{
+  await updateTaskDepartementController.handle(request,response)
 })
 
 action.post("/createAgentAction",async(request,response)=>{
