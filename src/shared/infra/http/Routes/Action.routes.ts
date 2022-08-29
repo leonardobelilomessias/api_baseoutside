@@ -10,6 +10,7 @@ import { deleteDepartamentController } from "../../../../modules/Actions/UseCase
 import { listAgentsDepartmentController } from "../../../../modules/Actions/UseCases/Departaments/ListAgentsDepartament";
 import { listDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/ListDepartamets";
 import { createTaskDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/CreateTask";
+import { deleteTaskDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/DeleteTaskDepartament";
 import { listTasksDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/ListTaskDepartament";
 import { updateTaskDepartementController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/UpdateTaskDepartament";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
@@ -83,5 +84,9 @@ action.delete("/deleteDepartament",async(request,response)=>{
 
 action.delete("/deleteAgentDepartament",async(request,response)=>{
   await deleteAgentDepartamentController.handle(request,response)
+})
+
+action.delete("/deleteTaskDepartament",async(request,response)=>{
+  await   deleteTaskDepartamentController.handle(request,response)
 })
 export {action}
