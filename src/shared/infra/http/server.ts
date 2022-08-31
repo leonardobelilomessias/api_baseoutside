@@ -4,7 +4,6 @@ import '../typeorm'
 import { router } from "./Routes/Routes";
 import express, { NextFunction, Request, Response } from "express";
 import { AppError } from "../../errors/AppError";
-import upload from "../../../config/upload";
 
 const app = express()
 

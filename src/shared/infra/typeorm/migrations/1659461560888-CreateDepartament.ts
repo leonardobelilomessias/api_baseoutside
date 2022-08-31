@@ -41,7 +41,12 @@ export class CreateDepartament1659461560888 implements MigrationInterface {
                             name: "agents_necessary",
                             type: "int",
                             default:1
-                        }
+                        },
+                        {
+                            name: "image_profile",
+                            type: "varchar",
+                            isNullable: true,
+                        },
                     ],
                     foreignKeys: [
                         {

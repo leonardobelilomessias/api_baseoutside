@@ -32,6 +32,7 @@ const uploadPhotosAgent = multer(uploadConfig)
 
 agent.get("/",async  (request, response) => {
  await  listsAgentController.handle(request,response)
+
 })
 
 agent.get("/name/:name",  (request, response) => {

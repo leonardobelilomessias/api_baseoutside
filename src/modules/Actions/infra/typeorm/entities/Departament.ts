@@ -1,7 +1,5 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from "typeorm";
 import { v4 as uuidv4 } from 'uuid';
-import { Action } from "../../../../actions/infra/typeorm/entities/Action";
-
 
 @Entity("departaments_actions")
 class Departament{
@@ -27,13 +25,14 @@ class Departament{
   @Column()
   agents_necessary: number;
 
+  @Column()
+  image_profile:string;
 
   constructor() {
     if (!this.id) {
       this.id = uuidv4()
     }
   }
-
 }
 
 export {Departament}

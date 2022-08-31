@@ -59,7 +59,12 @@ export class createAction1656027303625 implements MigrationInterface {
                         name: "type",
                         type: "int",
                         default:0
-                    }
+                    },
+                    {
+                        name: "image_profile",
+                        type: "varchar",
+                        isNullable: true,
+                    },
 
                 ],
                 foreignKeys: [

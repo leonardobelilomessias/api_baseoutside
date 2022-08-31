@@ -26,7 +26,7 @@ export const AppDataSource = new DataSource({
   port: 3306,
   username: process.env.USER_DATABASE ,
   password: process.env.PASSWORD_DATABASE,
-  database: "db_holdrope", 
+  database: process.env.DB_NAME, 
   entities: [Agent,
     JourneyAgent,
     SponsorAgent,

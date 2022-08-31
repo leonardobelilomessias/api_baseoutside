@@ -36,8 +36,11 @@ class Action{
   type?:number
 
   @Column()
-  state:number
+  state:number;
   
+  @Column()
+  image_profile:string;
+
 
 
   constructor() {
