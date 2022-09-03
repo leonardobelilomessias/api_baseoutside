@@ -2,23 +2,24 @@ import { Repository } from "typeorm/repository/Repository"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { IAgentRepository } from "../../../repositories/IAgentRepository"
 import { IInterestsRepository } from "../../../repositories/IInterestsRepository"
+import { Agent } from "../entities/Agent"
 import { Interests } from "../entities/Interests"
 
 
 
 class InterestsRepository implements IInterestsRepository{
   interestsRepository: Repository<Interests>
-  agentRepository :IAgentRepository
+  agentRepository :Repository<Agent>
    constructor() {
      this.interestsRepository = AppDataSource.getRepository("interests_agents")
-
+     this.agentRepository = AppDataSource.getRepository('agents')
   }
   findInterestByName(interest: string): Promise<Interests[]> {
     throw new Error("Method not implemented.")
   }
 
-  async findInterestByAgent(id_agent: string): Promise<Interests[]> {
-    const interestAgent = await this.interestsRepository.find({ where:{id_agent}})
+  async findInterestByAgent(id_agent): Promise<Interests[]> {
+    const interestAgent = await this.interestsRepository.find({where:{id_agent}})
     return interestAgent
   }
 
@@ -28,6 +29,7 @@ class InterestsRepository implements IInterestsRepository{
   }
 
   async updateInterests(id_agent: string, interests: string[]) {
+
     if (interests) {
       await this.interestsRepository.createQueryBuilder()
       .delete()

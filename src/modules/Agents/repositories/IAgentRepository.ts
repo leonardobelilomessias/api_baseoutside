@@ -41,7 +41,7 @@ interface IAgentRepository{
   
   activate({email}):Promise<void>
 
-  edit({id, description,email,name,skills,interests}:EditAgent): Promise<ResponseAgent>
+  edit({id, description,email,name,skills,interests,image_profile}:EditAgent): Promise<ResponseAgent>
 
   findByEmail({ email }): Promise<Agent>
 
@@ -54,5 +54,7 @@ interface IAgentRepository{
   findByInterest( interest:string[] ): Promise<Agent[]>
 
   findByVocation({vocation}):Promise<Agent[]>
+
+
 } 
 export {IAgentRepository,CreateAgent,EditAgent,ResponseAgent} 

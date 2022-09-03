@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError"
 import { Agent } from "../../infra/typeorm/entities/Agent"
 import { IAgentRepository } from "../../repositories/IAgentRepository"
 import { ISkillsRepository } from "../../repositories/ISkillsRepository"
@@ -14,6 +15,7 @@ class FindAgentsBySkillsUseCase{
   }
 
   async execute(skills:string[]){
+    if(typeof skills !== typeof Array()) throw new AppError("Values of skills must be sent as array.")
     const agentBySkills = await this.skillsRepository.findAgentBySkill(skills)
     return agentBySkills
   }

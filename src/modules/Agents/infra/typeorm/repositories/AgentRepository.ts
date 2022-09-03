@@ -5,6 +5,7 @@ import { InterestsRepository } from "./InterestsRepository"
 import {  EditAgent, IAgentRepository, ResponseAgent } from "../../../repositories/IAgentRepository"
 import { Agent } from "../entities/Agent"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
+import { AppError } from "../../../../../shared/errors/AppError"
 
 
 
@@ -32,12 +33,13 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
     .getMany()
      return agentsWithSkill
    }
+
    async findByInterest(interests:string[]): Promise<Agent[]> {
      throw new Error("Method not implemented.")
    }
 
   async findById(id:string): Promise<Agent> {
-    const findAgent = await this.agentRepository.findOneBy({id:id})
+    const findAgent = await this.agentRepository.findOneBy({id:String(id)})
     return  findAgent
    }
    
@@ -47,33 +49,19 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
    }
    
   async create({ name, email,user_name, password,image_profile,description,vocation }): Promise<Agent> {
-    const agent =  this.agentRepository.create({ name, user_name, email, password,image_profile,description,vocation })
+    const agent = new Agent()
+    Object.assign(agent,{ name, email,user_name, password,image_profile,description,vocation })
+
     const newAgent = await this.agentRepository.save(agent)
     return newAgent
    }
-   
+    
   async list(): Promise<Agent[]> {
-     const moreangent = []
-     const allskill = await this.skillsRepository.ListAllSkills()
-     const allAgents = await this.agentRepository.find(
-       {
-         select: {
-           name: true,
-           id: true,
-           email: true,
-           description: true,
-           image_profile: true,
-           vocation: true,
-           is_active: true
-         },
-         where: {
-           is_active: true
-         },
-       })
      const newQuery = await this.agentRepository.createQueryBuilder("agent")
        .leftJoinAndMapMany("agent.skills", "skills_agents", "sk", "agent.id = sk.id_agent")
        .leftJoinAndMapMany("agent.interests", "interests_agents", "in", "agent.id = in.id_agent")
        .leftJoinAndMapMany("agent.owner_mission", "missions", "ms", "agent.id = ms.creator")
+       .where("agent.is_active = :is_active", { is_active: true })
        .getMany()
      return newQuery
    }
@@ -83,16 +71,18 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
     agentWillBeDelete.is_active = false
     this.agentRepository.save(agentWillBeDelete)
     return  agentWillBeDelete
-   }
+   } 
    
   async activate({email}): Promise<void>{
     const agentActivate = await this.agentRepository.findOneBy({ email: email })
     agentActivate.is_active = true
     await this.agentRepository.save(agentActivate)
    }
-   
-  async edit({ id, description, email, name, skills, interests}: EditAgent): Promise<ResponseAgent> {
-    const agentEdit = await this.agentRepository.findOneBy({ id: id }) 
+    
+  async edit({ id, description, email, name, skills, interests,vocation,image_profile}: EditAgent): Promise<ResponseAgent> {
+ 
+     const agentEdit = await this.agentRepository.findOneBy({ id: id }) 
+
     const newSkills = []
     const newInterests =[]
     if(skills) {
@@ -103,17 +93,22 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
       const interest = await this.interestsRepository.updateInterests(id,interests)
       newInterests.push(interest)
     }
-    const agent = Object.assign(agentEdit, { description, email, name })
-    await this.agentRepository.save(agent)
-    const responseAgent = {
+    Object.assign(agentEdit, { description, email, name ,vocation,image_profile,skills:newSkills,interests:newInterests})
+    console.log('agent em edit agent=>',agentEdit)
+    await this.agentRepository.save(agentEdit)
+    const responseAgent = 
+    {
       id,
       name,
       email,
       description,
       skills:newSkills,
-      interests:newInterests
+      interests:newInterests,
+      image_profile
     }
     return responseAgent
+
+    
    }
    
   async findByName(name :string): Promise<Agent> {

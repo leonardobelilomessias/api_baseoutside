@@ -1,15 +1,20 @@
 import { Repository } from "typeorm";
+import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 
 import { EditPublication, ICreatePublication, IPublicationsAgentRepository, ResponseCreatePublication } from "../../../DTOS/IPublicationsAgentRepository";
+import { Agent } from "../entities/Agent";
 import { PublicationAgent} from "../entities/PublicationAgent";
+import { AgentRepository } from "./AgentRepository";
 import { PhotoPublicationAgentRepository } from "./PhotosPublicationAgentRepository";
 
 class PublicationsAgentRepository implements IPublicationsAgentRepository{
   private publicationsAgentRepository: Repository<PublicationAgent>
   private photosPublicationsAgent : PhotoPublicationAgentRepository
+  private agentRepository:Repository<Agent>
   constructor(photoPublicationAgentRepository:PhotoPublicationAgentRepository) {
     this.publicationsAgentRepository = AppDataSource.getRepository("publications_agents")
+    this.agentRepository = AppDataSource.getRepository("agents")
     this.photosPublicationsAgent = photoPublicationAgentRepository
   }
   listByAgentName(nameAgent: string): Promise<PublicationAgent[]> {
@@ -31,7 +36,8 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     return foundPublication
   }
   async create({id_agent, type, description ,content}:ICreatePublication): Promise<ResponseCreatePublication> {
-
+    const agent = await this.agentRepository.findOne({where:{id:id_agent}})
+    if(!agent) throw new AppError("Agent not found.")
     const newPublication = new PublicationAgent()
     Object.assign(newPublication,{id_agent,type,description})
     await this.publicationsAgentRepository.save(newPublication)

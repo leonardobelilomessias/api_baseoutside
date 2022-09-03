@@ -1,8 +1,10 @@
 import { dirname } from "path"
+import { AppError } from "../../../../shared/errors/AppError"
 import { deleteFile } from "../../../../utils/file"
 import { IStorageProvider } from "../../../../utils/providers/StorageProvider/IStorageProvide"
+import { Agent } from "../../infra/typeorm/entities/Agent"
 import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepository"
-import { IAgentRepository } from "../../repositories/IAgentRepository"
+import { EditAgent, IAgentRepository } from "../../repositories/IAgentRepository"
 
 
 interface ICreateImageProfile{
@@ -17,13 +19,24 @@ class UpdateImageAgentUseCase{
      this.agenteRepository = agentRepository
      this.storageProvider = storageProvider
   }
-  async execute({ id_agent, image_profile }: ICreateImageProfile): Promise<void> {
-    const agent = await this.agenteRepository.findById(id_agent )
-    if (agent.image_profile) {
-      await this.storageProvider.delete(agent.image_profile, "Agent")
+  async execute({ id_agent, image_profile }: ICreateImageProfile): Promise<EditAgent> {
+    try{
+      
+      if(!id_agent||!image_profile) throw new AppError("Values can't be undefined.")
+      const agent = await this.agenteRepository.findById(id_agent)
+      if(!agent) throw new AppError("Agent not found.")
+     
+      if (agent.image_profile) {
+        await this.storageProvider.delete(agent.image_profile, "Agent")
+      }
+       await this.storageProvider.save(image_profile,"Agent")
+      const updateImageAgent = await this.agenteRepository.edit({image_profile:image_profile ,id:id_agent})
+
+      return updateImageAgent
+    }catch (err){
+      console.log(err)
     }
-    agent.image_profile = await this.storageProvider.save(image_profile,"Agent")
-    await this.agenteRepository.create(agent)
+
   }
 }
 

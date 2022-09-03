@@ -20,7 +20,7 @@ describe("Cancel agent action",()=>{
     const agentAction = await agentActionRepositoryInMemory.create({id_action:"01",id_agent:"02"})
     const cancelAgentAction = await cancelAgentActionUseCase.execute({id_agent:agentAction.id_agent, id_action:agentAction.id_action})
     const listAgents = await agentActionRepositoryInMemory.listAgentsAction("02")
-    console.log(listAgents)
+
     expect(listAgents).toEqual([])
   })
 })

@@ -10,6 +10,7 @@ class UpdateAgentUseCase{
   }
   
   async execute({ id, name, description, email, interests, skills, vocation, }: EditAgent) {
+
     const agentExist = await this.agentRepository.findById(id)
     if(!agentExist) throw new AppError('Agent not found')
     const agentToEdit = await this.agentRepository.edit({ id, name, description, email,interests,skills,vocation})

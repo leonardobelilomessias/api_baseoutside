@@ -35,13 +35,14 @@ agent.get("/",async  (request, response) => {
 
 })
 
-agent.get("/:name",  (request, response) => {
-   findAgentByNameController.handle(request,response)
+agent.get("/findByname", async (request, response) => {
+   await findAgentByNameController.handle(request,response)
 })
-agent.get("/findBySkill", (request, response) => {
-  findAgentsBySkillsController.handle(request,response)
+
+agent.get("/findBySkill", async(request, response) => {
+ await  findAgentsBySkillsController.handle(request,response)
 })
-agent.get("/FindAgentsByVocation",async (request, response) => {
+agent.get("/FindByVocation",async (request, response) => {
   await findAgentsByVocationController.handle(request,response)
 })
 
@@ -73,15 +74,16 @@ agent.post("/", async (request, response) => {
    await createAgentController().handle(request,response)
 })
 
-agent.post("/photopublicationagent", uploadPhotosAgent.array('photos', 3), async (request, response) => {
+agent.post("/photoPublication", uploadPhotosAgent.array('photos', 3), async (request, response) => {
+
  await createPublicationAgentController.handle(request,response)
 })
 agent.post("/createColabAgent", async (request, response) => {
   await createColabAgentController.handle(request,response)
  })
 
-agent.patch("/image_profile",ensureAuthenticate, upload_image_profile.single("image_profile"),(request, response) => {
-  updateImageAgentController.handle(request,response)
+agent.patch("/imageProfile", upload_image_profile.single("image_profile"),async (request, response) => {
+  await updateImageAgentController.handle(request,response)
 })
 agent.patch("/updatePublication",(request, response) => {
    updatePublicationAgentController.handle(request,response)

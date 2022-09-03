@@ -1,5 +1,6 @@
 import { hash } from "bcrypt"
 import { AppError } from "../../../../shared/errors/AppError"
+import { cleanEmptySpace } from "../../../../utils/cleanEmptySpace"
 import { ICreateAgentDTO } from "../../DTOS/CreateAgentDTO"
 import { IAgentRepository } from "../../repositories/IAgentRepository"
 
@@ -9,10 +10,20 @@ class CreateAgentUseCase{
     this.agentRepository = agentReposiotory
   }
   async execute({ name, email, user_name, password ,description,vocation}:ICreateAgentDTO) {
-      const agentExist = await this.agentRepository.findByEmail({ email })   
-      if (agentExist) throw  new AppError("User already exist",200)
-      const passwordHash = await hash(password, 8)
-    const agent = await this.agentRepository.create({ name, email,user_name, password: passwordHash, vocation, description})
+    if(!name||!email||!user_name||!password) throw new AppError("You sent some invalid require value.")
+
+    const agentExist = await this.agentRepository.findByEmail({ email })   
+    const passwordHash = await hash(password, 8)
+    if (agentExist) throw  new AppError("User already exist",200)
+    const agent = await this.agentRepository.create(
+      { 
+        name,
+        email,
+        user_name,
+        password:passwordHash,
+        description,
+        vocation}
+      )
     return agent
 
       
