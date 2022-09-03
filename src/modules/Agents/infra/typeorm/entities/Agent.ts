@@ -17,6 +17,9 @@ class Agent{
   name: string;
 
   @Column()
+  user_name:string;
+
+  @Column()
   description: string;
 
   @Column()

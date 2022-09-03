@@ -8,11 +8,11 @@ class CreateAgentUseCase{
   constructor(agentReposiotory:IAgentRepository) {
     this.agentRepository = agentReposiotory
   }
-  async execute({ name, email, password ,description,vocation}:ICreateAgentDTO) {
+  async execute({ name, email, user_name, password ,description,vocation}:ICreateAgentDTO) {
       const agentExist = await this.agentRepository.findByEmail({ email })   
       if (agentExist) throw  new AppError("User already exist",200)
       const passwordHash = await hash(password, 8)
-    const agent = await this.agentRepository.create({ name, email, password: passwordHash, vocation, description})
+    const agent = await this.agentRepository.create({ name, email,user_name, password: passwordHash, vocation, description})
     return agent
 
       

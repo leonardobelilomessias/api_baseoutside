@@ -8,7 +8,7 @@ import { Skills } from "../entities/Skills"
 class SkillsRepository implements ISkillsRepository{
   skillsRepository: Repository<Skills>
   constructor(){
-    this.skillsRepository = AppDataSource.getRepository(Skills)
+    this.skillsRepository = AppDataSource.getRepository("skills_agents")
   }
 
   async ListAllSkills():Promise<Skills[]> {
@@ -17,16 +17,7 @@ class SkillsRepository implements ISkillsRepository{
   }
 
   async findSkillsByAgent(id_agent:string):Promise<Skills[]> {
-    const skillsCurrent = await this.skillsRepository.find({ 
-      relations: {
-        id_agent:true
-      },
-      where: {
-        id_agent: {
-          id:id_agent
-        }
-      }
-    })
+    const skillsCurrent = await this.skillsRepository.find({where:{id_agent}})
     return skillsCurrent
   }
   async   findAgentBySkill(namesSkills:string[]){
@@ -45,12 +36,13 @@ class SkillsRepository implements ISkillsRepository{
     if (skills) {
       await this.skillsRepository.createQueryBuilder()
       .delete()
-      .from(Skills)
+      .from("skills_agents")
       .where("id_agent = :id_agent", { id_agent: id_agent })
       .execute()
       const dealingSkills = skills.map((skill) => {return skill.trim()})
       const newSkills = dealingSkills.forEach(async (skill) => {
-        const newSkill = new Skills(id_agent, skill)
+        const newSkill = new Skills()
+        Object.assign(newSkill,{id_agent, skill})
         await this.skillsRepository.save(newSkill)
       })
       return dealingSkills

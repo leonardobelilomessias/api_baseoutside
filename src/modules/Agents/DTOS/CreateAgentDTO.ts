@@ -6,6 +6,7 @@ interface ICreateAgentDTO{
   image_profile?: string
   vocation?: string
   description?:string
+  user_name:string;
 }
 
 export{ICreateAgentDTO}

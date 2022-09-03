@@ -29,6 +29,11 @@ export class CreateAgent1655849858546 implements MigrationInterface {
                             type:"varchar(50)"
                         },
                         {
+                            name: "user_name",
+                            type:"varchar",
+                            isUnique:true
+                        },
+                        {
                             name: "description",
                             type: "text",
                             isNullable:true

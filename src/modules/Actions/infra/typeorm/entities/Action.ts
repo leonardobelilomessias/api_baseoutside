@@ -1,6 +1,5 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne,PrimaryColumn } from 'typeorm';
 import {v4 as uuidv4} from 'uuid'
-import { Mission } from '../../../../missions/infra/typeorm/entities/Mission';
 
 @Entity("actions")
 class Action{
@@ -16,8 +15,7 @@ class Action{
   @Column()
   local?: string;
 
-  @ManyToOne(()=>Mission)
-  @JoinColumn({name:"id_mission"})
+  @Column()
   id_mission: string;  
   
   @CreateDateColumn()

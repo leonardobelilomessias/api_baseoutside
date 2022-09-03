@@ -1,11 +1,11 @@
-import { createQueryBuilder, Repository } from "typeorm"
+import {  Repository } from "typeorm"
 
 import { SkillsRepository } from "./SkillsRepository"
 import { InterestsRepository } from "./InterestsRepository"
-import { CreateAgent, EditAgent, IAgentRepository, ResponseAgent } from "../../../repositories/IAgentRepository"
+import {  EditAgent, IAgentRepository, ResponseAgent } from "../../../repositories/IAgentRepository"
 import { Agent } from "../entities/Agent"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
-import { ICreateAgentDTO } from "../../../DTOS/CreateAgentDTO"
+
 
 
 
@@ -15,8 +15,9 @@ import { ICreateAgentDTO } from "../../../DTOS/CreateAgentDTO"
    interestsRepository: InterestsRepository
     
    constructor() {
-     this.agentRepository = AppDataSource.getRepository(Agent)
+     this.agentRepository = AppDataSource.getRepository("agents")
      this.skillsRepository = new SkillsRepository()
+     this.interestsRepository = new InterestsRepository()
    
   }
 
@@ -45,8 +46,8 @@ import { ICreateAgentDTO } from "../../../DTOS/CreateAgentDTO"
     return  findAgent
    }
    
-  async create({ name, email, password,image_profile,description,vocation }): Promise<Agent> {
-    const agent =  this.agentRepository.create({ name, email, password,image_profile,description,vocation })
+  async create({ name, email,user_name, password,image_profile,description,vocation }): Promise<Agent> {
+    const agent =  this.agentRepository.create({ name, user_name, email, password,image_profile,description,vocation })
     const newAgent = await this.agentRepository.save(agent)
     return newAgent
    }

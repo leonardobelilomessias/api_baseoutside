@@ -10,9 +10,8 @@ class Interests {
   @Column()
   interests: string
 
-  @ManyToOne(() => Agent)
-  @JoinColumn({name:"id_agent"})
-  id_agent: Agent
+  @Column()
+  id_agent: string;
   
   constructor(/* id_agent,interests */) {
     if (!this.id) {

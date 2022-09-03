@@ -1,6 +1,5 @@
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import {v4 as uuidv4} from 'uuid'
-import { Agent } from '../../../../agents/infra/typeorm/entities/Agent';
 
 
 @Entity("missions")
@@ -11,8 +10,7 @@ class Mission {
   @Column()
   name: string;
 
-  @ManyToOne(()=>Agent)
-  @JoinColumn({name:"creator"})
+  @Column()
   creator: string;
 
   @Column()

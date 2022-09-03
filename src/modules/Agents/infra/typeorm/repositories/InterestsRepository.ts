@@ -9,25 +9,16 @@ import { Interests } from "../entities/Interests"
 class InterestsRepository implements IInterestsRepository{
   interestsRepository: Repository<Interests>
   agentRepository :IAgentRepository
-   constructor(agentRepository:IAgentRepository) {
-     this.interestsRepository = AppDataSource.getRepository(Interests)
-     this.agentRepository = agentRepository
+   constructor() {
+     this.interestsRepository = AppDataSource.getRepository("interests_agents")
+
   }
   findInterestByName(interest: string): Promise<Interests[]> {
     throw new Error("Method not implemented.")
   }
 
   async findInterestByAgent(id_agent: string): Promise<Interests[]> {
-    const interestAgent = await this.interestsRepository.find({
-      relations: {
-        id_agent:true
-      },
-      where: {
-        id_agent: {
-          id:id_agent
-        }
-      }
-    })
+    const interestAgent = await this.interestsRepository.find({ where:{id_agent}})
     return interestAgent
   }
 
@@ -40,7 +31,7 @@ class InterestsRepository implements IInterestsRepository{
     if (interests) {
       await this.interestsRepository.createQueryBuilder()
       .delete()
-      .from(Interests)
+      .from("interests_agents")
       .where("id_agent = :id_agent", { id_agent: id_agent })
       .execute()
       const allInterests = interests.map(interest => interest.trim())

@@ -1,26 +1,26 @@
 
 import {   Router} from "express";
 import multer, { } from "multer";
-import { createNewSponsorAgentController } from "../../../../modules/agents/UseCases/CreateNewSponsorAgent";
-import { createPublicationAgentController } from "../../../../modules/agents/UseCases/CreatePublicationAgent";
-import { deactivateAgentController } from "../../../../modules/agents/UseCases/DeactivateAgent";
-import { findyByInterestController } from "../../../../modules/agents/UseCases/FindByInterest";
+import { createNewSponsorAgentController } from "../../../../modules/Agents/UseCases/CreateNewSponsorAgent";
+import { createPublicationAgentController } from "../../../../modules/Agents/UseCases/CreatePublicationAgent";
+import { deactivateAgentController } from "../../../../modules/Agents/UseCases/DeactivateAgent";
+import { findyByInterestController } from "../../../../modules/Agents/UseCases/FindByInterest";
 import { updateAgentController } from "../../../../modules/agents/UseCases/UpdateAgent";
-import { updateImageAgentController } from "../../../../modules/agents/UseCases/UpdateAgentAvatar";
+import { updateImageAgentController } from "../../../../modules/Agents/UseCases/UpdateAgentAvatar";
 import uploadConfig from '../../../../config/upload'
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
-import createAgentController from '../../../../modules/agents/UseCases/CreateAgent/index'
-import { findAgentByNameController } from "../../../../modules/agents/UseCases/FindAgentByName";
-import { listsAgentController } from "../../../../modules/agents/UseCases/ListAgents";
-import { findAgentsBySkillsController } from "../../../../modules/agents/UseCases/FindAgentBySkill";
-import { findAgentsByVocationController } from "../../../../modules/agents/UseCases/FindAgentsByVocations";
-import { updatePublicationAgentController } from "../../../../modules/agents/UseCases/UpdatePublicationAgent";
-import { listAllPublicationsAgentsController } from "../../../../modules/agents/UseCases/ListAllPublicationsAgents";
-import { listPublicatonsByIdAgentController } from "../../../../modules/agents/UseCases/ListPublicationByAgentName";
-import { toCancelSponsorAgentController } from "../../../../modules/agents/UseCases/ToCancelSponsorAgent";
-import { listSponsorAgentController } from "../../../../modules/agents/UseCases/ListSponsorsAgent";
-import { createColabAgentController } from "../../../../modules/agents/UseCases/CreateColab";
-import { toCancelColabAgentController } from "../../../../modules/agents/UseCases/ToCancelColabAgent";
+import createAgentController from '../../../../modules/Agents/UseCases/CreateAgent/index'
+import { findAgentByNameController } from "../../../../modules/Agents/UseCases/FindAgentByName";
+import { listsAgentController } from "../../../../modules/Agents/UseCases/ListAgents";
+import { findAgentsBySkillsController } from "../../../../modules/Agents/UseCases/FindAgentBySkill";
+import { findAgentsByVocationController } from "../../../../modules/Agents/UseCases/FindAgentsByVocations";
+import { updatePublicationAgentController } from "../../../../modules/Agents/UseCases/UpdatePublicationAgent";
+import { listAllPublicationsAgentsController } from "../../../../modules/Agents/UseCases/ListAllPublicationsAgents";
+import { listPublicatonsByIdAgentController } from "../../../../modules/Agents/UseCases/ListPublicationByAgentName";
+import { toCancelSponsorAgentController } from "../../../../modules/Agents/UseCases/ToCancelSponsorAgent";
+import { listSponsorAgentController } from "../../../../modules/Agents/UseCases/ListSponsorsAgent";
+import { createColabAgentController } from "../../../../modules/Agents/UseCases/CreateColab";
+import { toCancelColabAgentController } from "../../../../modules/Agents/UseCases/ToCancelColabAgent";
 import { listColabsAgentController } from "../../../../modules/agents/UseCases/ListColabsAgent";
 
 
@@ -35,7 +35,7 @@ agent.get("/",async  (request, response) => {
 
 })
 
-agent.get("/name/:name",  (request, response) => {
+agent.get("/:name",  (request, response) => {
    findAgentByNameController.handle(request,response)
 })
 agent.get("/findBySkill", (request, response) => {
