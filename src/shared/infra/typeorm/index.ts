@@ -20,9 +20,9 @@ import { AgentDepartament } from "../../../modules/Actions/infra/typeorm/entitie
 import {  TaskDepartament } from "../../../modules/Actions/infra/typeorm/entities/TaskDepartament";
 
 export const AppDataSource = new DataSource({
-  type: "mysql",
+  type: "postgres",
   host: "localhost",
-  port: 3307,
+  port: 5432,
   username: process.env.USER_DATABASE ,
   password: process.env.PASSWORD_DATABASE,
   database: process.env.DB_NAME, 
