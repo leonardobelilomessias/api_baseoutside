@@ -3,7 +3,7 @@ import {sign} from 'jsonwebtoken'
 import auth from '../../../config/auth'
 import { AppError } from '../../../shared/errors/AppError';
 import { IAgentRepository } from '../../Agents/repositories/IAgentRepository';
-import { IAgentTokenRepository } from '../userToken/repositories/IAgentTokenRepository';
+import { IAgentTokenRepository } from '../UserToken/repositories/IAgentTokenRepository';
 
 interface IRequest{
   email: string;

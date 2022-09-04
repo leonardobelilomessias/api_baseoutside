@@ -1,6 +1,6 @@
 
 import { AgentRepository } from "../../Agents/infra/typeorm/repositories/AgentRepository";
-import { AgentTokenRepository } from "../userToken/infra/typeorm/repositories/AgentTokenRepository";
+import { AgentTokenRepository } from "../UserToken/infra/typeorm/repositories/AgentTokenRepository";
 import { AuthenticateAgentController } from "./AuthenticateAgent.Controller";
 import { AuthenticateAgentUseCase } from "./AuthenticateAgentUseCase";
 

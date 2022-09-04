@@ -4,8 +4,8 @@ import { AgentRepository } from "../../agents/infra/typeorm/repositories/AgentRe
 import { IAgentRepository } from "../../agents/repositories/IAgentRepository"
 import { AgentInMemoryRepository } from "../../agents/RepositoryInMemory/AgentInMemoryRepository"
 import { CreateAgentUseCase } from "../../agents/UseCases/CreateAgent/CreateAgentUseCase"
-import { IAgentTokenRepository } from "../userToken/repositories/IAgentTokenRepository"
-import { AgentTokenRepositoryInMemory } from "../userToken/repositories/RepositoryInmemory/AgentTokenRepositoryInmemory"
+import { IAgentTokenRepository } from "../UserToken/repositories/IAgentTokenRepository"
+import { AgentTokenRepositoryInMemory } from "../UserToken/repositories/RepositoryInmemory/AgentTokenRepositoryInmemory"
 import { AuthenticateAgentUseCase } from "./AuthenticateAgentUseCase"
 
 let createAgentUseCase: CreateAgentUseCase

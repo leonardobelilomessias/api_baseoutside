@@ -5,8 +5,8 @@ import {resolve} from 'path'
 import { AppError } from '../../../shared/errors/AppError'
 import { IMailProvider } from '../../../utils/providers/MailProvider/IMailProvider'
 import { IAgentRepository } from '../../Agents/repositories/IAgentRepository'
-import { AgentTokenRepository } from '../userToken/infra/typeorm/repositories/AgentTokenRepository'
-import { IAgentTokenRepository } from '../userToken/repositories/IAgentTokenRepository'
+import { AgentTokenRepository } from '../UserToken/infra/typeorm/repositories/AgentTokenRepository'
+import { IAgentTokenRepository } from '../UserToken/repositories/IAgentTokenRepository'
 
 class SendForgotPasswordUseCase{
   private agentRepository: IAgentRepository

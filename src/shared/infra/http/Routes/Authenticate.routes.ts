@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { authenticateAgentController } from "../../../../modules/accounts/authenticateAgent";
-import { agentRefreshTokenController } from "../../../../modules/accounts/userToken/AgentRefreshTokenUseCase";
+import { agentRefreshTokenController } from "../../../../modules/accounts/UserToken/AgentRefreshTokenUseCase";
 
 
 const authenticateRoutes = Router()
