@@ -29,8 +29,6 @@ services:
     volumes:
       - .:/usr/app
 
-
-
     networks:
       - production
     depends_on:

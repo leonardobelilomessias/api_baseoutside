@@ -4,7 +4,7 @@ import { v4 as uuidv4} from 'uuid'
 import {resolve} from 'path'
 import { AppError } from '../../../shared/errors/AppError'
 import { IMailProvider } from '../../../utils/providers/MailProvider/IMailProvider'
-import { IAgentRepository } from '../../agents/repositories/IAgentRepository'
+import { IAgentRepository } from '../../Agents/repositories/IAgentRepository'
 import { AgentTokenRepository } from '../userToken/infra/typeorm/repositories/AgentTokenRepository'
 import { IAgentTokenRepository } from '../userToken/repositories/IAgentTokenRepository'
 

@@ -1,4 +1,4 @@
-import { DeactivateAgentController } from "../../../agents/UseCases/DeactivateAgent/DeactivateAgentController";
+import { DeactivateAgentController } from "../../../Agents/UseCases/DeactivateAgent/DeactivateAgentController";
 import { MissionRepository } from "../../infra/typeorm/repositories/MissionReposioty";
 import { DeactivateMissionUseCase } from "./DeactiveMissionUseCase";
 

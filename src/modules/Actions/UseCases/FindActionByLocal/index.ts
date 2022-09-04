@@ -1,5 +1,5 @@
 import { ActionRepository } from "../../infra/typeorm/repositories/ActionRepository";
-import { FindActionByLocalController } from "./FindActionByLocalcontroller";
+import { FindActionByLocalController } from "./FindActionByLocalController";
 import { FindActionByLocalUseCase } from "./FindActionByLocalUseCase";
 
 const actionRepository = new ActionRepository()

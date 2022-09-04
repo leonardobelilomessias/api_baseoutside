@@ -1,6 +1,6 @@
 import "reflect-metadata";
 import { DataSource, Repository } from "typeorm";
-import { Agent } from "../../../../modules/agents/infra/typeorm/entities/Agent";
+import { Agent } from "../../../../modules/Agents/infra/typeorm/entities/Agent";
 import '../../typeorm';
 import { faker } from '@faker-js/faker';
 

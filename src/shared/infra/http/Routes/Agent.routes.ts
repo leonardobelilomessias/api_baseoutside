@@ -5,7 +5,7 @@ import { createNewSponsorAgentController } from "../../../../modules/Agents/UseC
 import { createPublicationAgentController } from "../../../../modules/Agents/UseCases/CreatePublicationAgent";
 import { deactivateAgentController } from "../../../../modules/Agents/UseCases/DeactivateAgent";
 import { findyByInterestController } from "../../../../modules/Agents/UseCases/FindByInterest";
-import { updateAgentController } from "../../../../modules/agents/UseCases/UpdateAgent";
+import { updateAgentController } from "../../../../modules/Agents/UseCases/UpdateAgent";
 import { updateImageAgentController } from "../../../../modules/Agents/UseCases/UpdateAgentAvatar";
 import uploadConfig from '../../../../config/upload'
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
@@ -21,7 +21,7 @@ import { toCancelSponsorAgentController } from "../../../../modules/Agents/UseCa
 import { listSponsorAgentController } from "../../../../modules/Agents/UseCases/ListSponsorsAgent";
 import { createColabAgentController } from "../../../../modules/Agents/UseCases/CreateColab";
 import { toCancelColabAgentController } from "../../../../modules/Agents/UseCases/ToCancelColabAgent";
-import { listColabsAgentController } from "../../../../modules/agents/UseCases/ListColabsAgent";
+import { listColabsAgentController } from "../../../../modules/Agents/UseCases/ListColabsAgent";
 
 
 const agent = Router()

@@ -1,4 +1,4 @@
-import { AgentRepository } from "../../agents/infra/typeorm/repositories/AgentRepository";
+import { AgentRepository } from "../../Agents/infra/typeorm/repositories/AgentRepository";
 import { AgentTokenRepository } from "../UserToken/infra/typeorm/repositories/AgentTokenRepository";
 import { ResetPassworController } from "./ResetPassworController";
 import { ResetPasswordUseCase } from "./ResetPasswordUseCase";

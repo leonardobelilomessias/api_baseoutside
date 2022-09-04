@@ -1,5 +1,5 @@
 import { AppError } from "../../../../shared/errors/AppError"
-import { AgentInMemoryRepository } from "../../../agents/RepositoryInMemory/AgentInMemoryRepository"
+import { AgentInMemoryRepository } from "../../../Agents/RepositoryInMemory/AgentInMemoryRepository"
 import { AgentsMissionsRepositoryInMemory } from "../../RepositoryInMemory/AgentsMissionsRepositoryInMemory"
 import { MissionRepositoryInMemory } from "../../RepositoryInMemory/MissionRepositoryInMemory"
 import { CreateAgentMissionUseCase } from "./CreateAgentMissionUseCase"

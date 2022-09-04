@@ -1,4 +1,4 @@
-import { SponsorAgent } from "../../agents/infra/typeorm/entities/SponsorAgent";
+import { SponsorAgent } from "../../Agents/infra/typeorm/entities/SponsorAgent";
 import { SponsorMission } from "../infra/typeorm/entities/SponsorMission";
 import { ISponsorMissionRepository } from "../repositories/ISponsorMissionRepository";
 

@@ -2,7 +2,7 @@ import { compare } from 'bcryptjs'
 import {sign} from 'jsonwebtoken'
 import auth from '../../../config/auth'
 import { AppError } from '../../../shared/errors/AppError';
-import { IAgentRepository } from '../../agents/repositories/IAgentRepository';
+import { IAgentRepository } from '../../Agents/repositories/IAgentRepository';
 import { IAgentTokenRepository } from '../userToken/repositories/IAgentTokenRepository';
 
 interface IRequest{

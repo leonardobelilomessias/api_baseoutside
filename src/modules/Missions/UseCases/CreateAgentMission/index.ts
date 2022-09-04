@@ -1,4 +1,4 @@
-import { AgentRepository } from "../../../agents/infra/typeorm/repositories/AgentRepository";
+import { AgentRepository } from "../../../Agents/infra/typeorm/repositories/AgentRepository";
 import { AgentsMissionRepository } from "../../infra/typeorm/repositories/AgentsMissionRepository";
 import { MissionRepository } from "../../infra/typeorm/repositories/MissionReposioty";
 import { CreateAgentMissionController } from "./CreateAgentMissionController";

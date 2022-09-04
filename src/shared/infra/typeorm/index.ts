@@ -1,6 +1,5 @@
 
 import { DataSource } from "typeorm";
-import { Action } from "../../../modules/Actions/infra/typeorm/entities/Action";
 import { Departament } from "../../../modules/Actions/infra/typeorm/entities/Departament";
 import { Agent } from "../../../modules/Agents/infra/typeorm/entities/Agent";
 import { ColabAgent } from "../../../modules/Agents/infra/typeorm/entities/ColabAgent";
@@ -18,10 +17,11 @@ import { AgentAction } from "../../../modules/Actions/infra/typeorm/entities/Age
 import { AgentDepartament } from "../../../modules/Actions/infra/typeorm/entities/AgentDepartament";
 import {  TaskDepartament } from "../../../modules/Actions/infra/typeorm/entities/TaskDepartament";
 import { AgentToken } from "../../../modules/accounts/UserToken/infra/typeorm/entities/AgentToken";
+import { Action } from "../../../modules/Actions/infra/typeorm/entities/Action";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "localhost",
+  host: "database",
   port: 5432,
   username: process.env.USER_DATABASE ,
   password: process.env.PASSWORD_DATABASE,

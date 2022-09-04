@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { cancelActionController } from "../../../../modules/Actions/UseCases/CancelAction";
 import { cancelAgentActionController } from "../../../../modules/Actions/UseCases/CancelAgentAction";
-import { createActionController } from "../../../../modules/actions/UseCases/CreateAction";
+import { createActionController } from "../../../../modules/Actions/UseCases/CreateAction";
 import { createAgentActionController } from "../../../../modules/Actions/UseCases/CreateAgentAction";
 import { createAgentDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/CreateAgentDepartament";
 import { createDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/CreateDepartament";
@@ -16,7 +16,7 @@ import { updateTaskDepartementController } from "../../../../modules/Actions/Use
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
 import { listAgentsActionsController } from "../../../../modules/Actions/UseCases/ListAgentsAction";
-import { listActionController } from "../../../../modules/actions/UseCases/ListAllActions";
+import { listActionController } from "../../../../modules/Actions/UseCases/ListAllActions";
 import { updateActionController } from "../../../../modules/Actions/UseCases/UpdateAction";
 
 

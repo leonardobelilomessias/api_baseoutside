@@ -1,19 +1,19 @@
 import { Router } from "express";
-import { createAgentMissionController } from "../../../../modules/missions/UseCases/CreateAgentMission";
-import { createMissionController } from "../../../../modules/missions/UseCases/CreateMission";
+import { createAgentMissionController } from "../../../../modules/Missions/UseCases/CreateAgentMission";
+import { createMissionController } from "../../../../modules/Missions/UseCases/CreateMission";
 import { createSponsorMissionController } from "../../../../modules/Missions/UseCases/CreateSponsorMission";
-import { deactivateMisionController } from "../../../../modules/missions/UseCases/DeactiveMission";
-import { deleteAgentMissionController } from "../../../../modules/missions/UseCases/DeleteColabMission";
+import { deactivateMisionController } from "../../../../modules/Missions/UseCases/DeactiveMission";
+import { deleteAgentMissionController } from "../../../../modules/Missions/UseCases/DeleteColabMission";
 import { deleteSponsorMissionController } from "../../../../modules/Missions/UseCases/DeleteSponsorMission";
-import { findMissionByNameController } from "../../../../modules/missions/UseCases/FindMissionByName";
-import { findMissionsByFieldController } from "../../../../modules/missions/UseCases/FindMissionsByField";
-import { findMissionsByLocalController } from "../../../../modules/missions/UseCases/FindMissionsByLocal";
-import { listAgentsMissionController } from "../../../../modules/missions/UseCases/ListAgentsMission";
-import { listMissionController } from "../../../../modules/missions/UseCases/ListMission";
-import { listMissionsAgentController } from "../../../../modules/missions/UseCases/ListMissionsAgent";
+import { findMissionByNameController } from "../../../../modules/Missions/UseCases/FindMissionByName";
+import { findMissionsByFieldController } from "../../../../modules/Missions/UseCases/FindMissionsByField";
+import { findMissionsByLocalController } from "../../../../modules/Missions/UseCases/FindMissionsByLocal";
+import { listAgentsMissionController } from "../../../../modules/Missions/UseCases/ListAgentsMission";
+import { listMissionController } from "../../../../modules/Missions/UseCases/ListMission";
+import { listMissionsAgentController } from "../../../../modules/Missions/UseCases/ListMissionsAgent";
 import { listmissionsSponsorsController } from "../../../../modules/Missions/UseCases/ListMissionsSponsor";
 import { listsponsorsMissionsController } from "../../../../modules/Missions/UseCases/ListSponsorsMission";
-import { updateMissionController } from "../../../../modules/missions/UseCases/UpdateMission";
+import { updateMissionController } from "../../../../modules/Missions/UseCases/UpdateMission";
 
 
 const mission = Router()

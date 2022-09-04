@@ -9,7 +9,7 @@ import { task } from "./Task.routes";
 
 const router = Router()
 
-router.use("/agent", agent)
+router.use("/Agent", agent)
 router.use("/mission", mission)
 router.use("/action", action)
 router.use("/task", task)

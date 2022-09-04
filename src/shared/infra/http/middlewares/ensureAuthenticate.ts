@@ -1,7 +1,7 @@
 import { NextFunction, Request,Response } from "express";
 import { verify } from "jsonwebtoken";
 import { AgentTokenRepository } from "../../../../modules/accounts/userToken/infra/typeorm/repositories/AgentTokenRepository";
-import { AgentRepository } from "../../../../modules/agents/infra/typeorm/repositories/AgentRepository";
+import { AgentRepository } from "../../../../modules/Agents/infra/typeorm/repositories/AgentRepository";
 import { AppError } from "../../../errors/AppError";
 import auth from "../../../../config/auth";
 
