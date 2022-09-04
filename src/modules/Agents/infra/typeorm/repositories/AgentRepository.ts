@@ -6,7 +6,7 @@ import {  EditAgent, IAgentRepository, ResponseAgent } from "../../../repositori
 import { Agent } from "../entities/Agent"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
-import { hash } from "bcrypt"
+import { hash } from "bcryptjs"
 
 
 

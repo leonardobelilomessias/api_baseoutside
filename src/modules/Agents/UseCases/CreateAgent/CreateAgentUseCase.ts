@@ -1,4 +1,4 @@
-import { hash } from "bcrypt"
+import { hash } from "bcryptjs"
 import { AppError } from "../../../../shared/errors/AppError"
 import { cleanEmptySpace } from "../../../../utils/cleanEmptySpace"
 import { ICreateAgentDTO } from "../../DTOS/CreateAgentDTO"
