@@ -6,6 +6,7 @@ import {  EditAgent, IAgentRepository, ResponseAgent } from "../../../repositori
 import { Agent } from "../entities/Agent"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
+import { hash } from "bcrypt"
 
 
 
@@ -119,6 +120,15 @@ import { AppError } from "../../../../../shared/errors/AppError"
   async findByVocation(vocation): Promise<Agent[]>{
      const agentByVocation = await this.agentRepository.findBy({ vocation: vocation })
      return agentByVocation
+  }
+  
+  async resetPassword({ id_agent, password }: { id_agent: any; password: any }): Promise<Agent> {
+    const findAgent = await this.agentRepository.findOne({where:{id:id_agent}})
+    if(!findAgent) throw new AppError("agent not found")
+    const hashPassowrd = await hash(password,8)
+    Object.assign(findAgent,{password:hashPassowrd})
+    const resetedAgent = this.agentRepository.save(findAgent)
+    return resetedAgent
   }
 }
 

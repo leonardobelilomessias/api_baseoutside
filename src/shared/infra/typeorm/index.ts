@@ -1,7 +1,6 @@
 
 import { DataSource } from "typeorm";
-import { AgentToken } from "../../../modules/accounts/userToken/infra/typeorm/entities/AgentToken";
-import { Action } from "../../../modules/actions/infra/typeorm/entities/Action";
+import { Action } from "../../../modules/Actions/infra/typeorm/entities/Action";
 import { Departament } from "../../../modules/Actions/infra/typeorm/entities/Departament";
 import { Agent } from "../../../modules/Agents/infra/typeorm/entities/Agent";
 import { ColabAgent } from "../../../modules/Agents/infra/typeorm/entities/ColabAgent";
@@ -18,6 +17,7 @@ import  'dotenv/config';
 import { AgentAction } from "../../../modules/Actions/infra/typeorm/entities/AgentAction";
 import { AgentDepartament } from "../../../modules/Actions/infra/typeorm/entities/AgentDepartament";
 import {  TaskDepartament } from "../../../modules/Actions/infra/typeorm/entities/TaskDepartament";
+import { AgentToken } from "../../../modules/accounts/UserToken/infra/typeorm/entities/AgentToken";
 
 export const AppDataSource = new DataSource({
   type: "postgres",

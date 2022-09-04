@@ -27,12 +27,12 @@ class SendForgotPasswordUseCase{
     const token = uuidv4()
     await this.agentTokenRepository.create({
       refresh_token: token,
-      agent_id: agent.id,
+      id_agent: agent.id,
       expires_date:'2022-07-04 20:09:06'
     })
     const variables = {
       name: agent.name,
-      link:`http://localhost:3333/forgot/reset?token=${token}`
+      link:`http://localhost:3333/forgotPassword/reset?token=${token}&id=${agent.id}`
     }
     await this.mailProvider.sendMail(email, "recuperação de senha",variables,templatePath)
     return 'Messagem enviada para seu email'

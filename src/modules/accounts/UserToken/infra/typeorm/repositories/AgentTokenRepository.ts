@@ -7,7 +7,7 @@ import { AgentToken } from "../entities/AgentToken";
 class AgentTokenRepository implements IAgentTokenRepository{
   private agentTokenRepository: Repository<AgentToken>
   constructor() {
-    this.agentTokenRepository = AppDataSource.getRepository(AgentToken)
+    this.agentTokenRepository = AppDataSource.getRepository("agents_tokens")
   }
   async deleteById(id: string): Promise<void> {
     await this.agentTokenRepository.delete({id_agent:id})
@@ -23,7 +23,7 @@ class AgentTokenRepository implements IAgentTokenRepository{
 
   }
   async create({ id_agent, expires_date, refresh_token }: ICreateAgentTokenDTO): Promise<AgentToken> {
-    const userToken = this.agentTokenRepository.create({ id_agent, expires_date, refresh_token })
+    const userToken = await this.agentTokenRepository.create({ id_agent, expires_date, refresh_token })
     await this.agentTokenRepository.save(userToken)
     return userToken
   }

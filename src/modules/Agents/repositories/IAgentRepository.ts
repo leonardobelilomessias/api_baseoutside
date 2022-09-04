@@ -55,6 +55,7 @@ interface IAgentRepository{
 
   findByVocation({vocation}):Promise<Agent[]>
 
+  resetPassword({id_agent,password}):Promise<Agent>
 
 } 
 export {IAgentRepository,CreateAgent,EditAgent,ResponseAgent} 
