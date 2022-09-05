@@ -9,7 +9,6 @@ class CreateColabAgentController{
   async handle(request: Request, response: Response): Promise<Response>{
     const {id_agent,id_colab,type} = request.body
     const newColab = await this.createColabAgentUseCase.execute({ id_agent, id_colab, type })
-    
     return response.status(200).json(newColab)
   }
 }

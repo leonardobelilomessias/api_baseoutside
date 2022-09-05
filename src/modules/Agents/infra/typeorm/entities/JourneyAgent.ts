@@ -8,21 +8,23 @@ class JourneyAgent{
   @PrimaryColumn()
   id: string;
 
-  @ManyToOne(() => Agent)
-  @JoinColumn({ name: "id_agent" })
+  @Column()
   id_agent: string;
   
   @Column()
   type: string;
   
   @Column()
-  description: string;
+  id_content: string;
   
   @CreateDateColumn()
   created_at: Date;
-  
+
   @Column()
-  last_update: Date;
+  is_private:boolean;
+
+  @Column()
+  is_hidden:boolean;
 
   constructor() {
     if (!this.id) {

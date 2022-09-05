@@ -12,14 +12,14 @@ class ColabAgentRepositoryInMemory implements IColabRepository{
     this.agentRepositoryInMemory = agentRepositoryInMemory
   }
   async findIfExistentcolab({ id_agent, id_colab, type }: { id_agent: any; id_colab: any; type: any }): Promise<ColabAgent> {
-    const findColabAgent = this.colabAgentInMemory.find(colab => ((colab.id_agent_colab === id_colab && colab.id_agent === id_agent)))
+    const findColabAgent = this.colabAgentInMemory.find(colab => ((colab.id_colab === id_colab && colab.id_agent === id_agent)))
     return findColabAgent
   }
   async create({ id_agent, id_colab, type }): Promise<ColabAgent> {
-    const findColabAgent = this.colabAgentInMemory.find(colab=>((colab.id_agent_colab ===id_colab && colab.id_agent ===id_agent)))
+    const findColabAgent = this.colabAgentInMemory.find(colab=>((colab.id_colab ===id_colab && colab.id_agent ===id_agent)))
     if(findColabAgent) throw new AppError('Alredy exist colab')
     const newColab = new ColabAgent()
-    Object.assign(newColab, { id_agent, id_agent_colab:id_colab })
+    Object.assign(newColab, { id_agent, id_colab:id_colab })
     this.colabAgentInMemory.push(newColab)
     return newColab
   }
@@ -27,7 +27,7 @@ class ColabAgentRepositoryInMemory implements IColabRepository{
     const agents =[]
     const idsColabs = this.colabAgentInMemory.map(colabAgent => {
       if (colabAgent.id_agent === id_agent) {
-        return colabAgent.id_agent_colab
+        return colabAgent.id_colab
       }
     })
     const allAgents = await this.agentRepositoryInMemory.listAll()
@@ -44,7 +44,7 @@ class ColabAgentRepositoryInMemory implements IColabRepository{
     throw new Error("Method not implemented.")
   }
   async toCancelColab({id_agent, id_colab}): Promise<ColabAgent> {
-    const canceledColabIndex = await this.colabAgentInMemory.findIndex(colabAgent => ((colabAgent.id_agent === id_agent && colabAgent.id_agent_colab === id_colab)))
+    const canceledColabIndex = await this.colabAgentInMemory.findIndex(colabAgent => ((colabAgent.id_agent === id_agent && colabAgent.id_colab === id_colab)))
     const canceledColab = this.colabAgentInMemory.splice(canceledColabIndex, 1)
     return canceledColab[0]
   }

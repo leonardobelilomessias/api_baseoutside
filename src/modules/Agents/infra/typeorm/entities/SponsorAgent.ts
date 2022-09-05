@@ -13,7 +13,7 @@ class SponsorAgent{
   id_sponsor: string;
 
   @Column()
-  type: number;
+  type: string;
   
   @CreateDateColumn()
   created_at: Date;

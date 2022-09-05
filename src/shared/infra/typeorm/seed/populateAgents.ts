@@ -5,12 +5,12 @@ import '../../typeorm';
 import { faker } from '@faker-js/faker';
 
 export const AppDataSource = new DataSource({
-  type: "mysql",
+  type: "postgres",
   host: "localhost",
-  port: 3306,
-  username: "root",
-  password: "Leo175033",
-  database: "db_holdrope",
+  port: 5432,
+  username: process.env.USER_DATABASE ,
+  password: process.env.PASSWORD_DATABASE,
+  database: process.env.DB_NAME, 
   entities: [Agent],
   migrations: ["./src/database/migrations/*.ts"],
 
@@ -29,7 +29,8 @@ async function create(repository:Repository<Agent>) {
   return {
     email: faker.internet.email(),
     password: faker.internet.password(),
-    name:faker.internet.userName(),
+    name: faker.name.fullName(),
+    user_name:faker.internet.userName(),
   };
 }
 Array.from({ length: 10 }).forEach(() => {
@@ -37,8 +38,8 @@ Array.from({ length: 10 }).forEach(() => {
 });
   const newAgents = agents.map((agents) => { 
     const agent = new Agent()
-    const {name,email,password} = agents
-    Object.assign(agent, { name, email, password })
+    const {name,email,password,user_name} = agents
+    Object.assign(agent, { name, email, password,user_name })
     return agent
 })
 await repository.createQueryBuilder()

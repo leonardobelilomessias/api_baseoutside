@@ -2,19 +2,23 @@ import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { EditPublication, ICreatePublication, IPublicationsAgentRepository, ResponseCreatePublication } from "../../../DTOS/IPublicationsAgentRepository";
+import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository";
 import { Agent } from "../entities/Agent";
 import { PublicationAgent} from "../entities/PublicationAgent";
 import { AgentRepository } from "./AgentRepository";
+import { JourneyAgentRepository } from "./JourneyAgentRepository";
 import { PhotoPublicationAgentRepository } from "./PhotosPublicationAgentRepository";
 
 class PublicationsAgentRepository implements IPublicationsAgentRepository{
   private publicationsAgentRepository: Repository<PublicationAgent>
   private photosPublicationsAgent : PhotoPublicationAgentRepository
   private agentRepository:Repository<Agent>
+  private journeyAgentRepository:IJourneyAgentRepository
   constructor(photoPublicationAgentRepository:PhotoPublicationAgentRepository) {
     this.publicationsAgentRepository = AppDataSource.getRepository("publications_agents")
     this.agentRepository = AppDataSource.getRepository("agents")
     this.photosPublicationsAgent = photoPublicationAgentRepository
+    this.journeyAgentRepository = new JourneyAgentRepository()
   }
   listByAgentName(nameAgent: string): Promise<PublicationAgent[]> {
     throw new Error("Method not implemented.");
@@ -41,6 +45,7 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     Object.assign(newPublication,{id_agent,type,description})
     await this.publicationsAgentRepository.save(newPublication)
     const photosAgent = await this.photosPublicationsAgent.create(newPublication.id,content)
+    this.journeyAgentRepository.create({id_agent:id_agent,type:"create publication",id_content:newPublication.id})
     return  {id_agent:id_agent,id_publication:newPublication.id,type:newPublication.type,description:description,content:photosAgent} 
   }
   list(): Promise<PublicationAgent[]> {

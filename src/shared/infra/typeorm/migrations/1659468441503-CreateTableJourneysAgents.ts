@@ -24,18 +24,27 @@ export class CreateTableJourneysAgents1659468441503 implements MigrationInterfac
                             type: "varchar",
                             isNullable:true
                         },
-                        {
-                            name: "description",
-                            type:"varchar"
-                        },
+
                         {
                             name: "created_at",
                             type: "timestamp",
                             default:"now()"
                         },
+
                         {
-                            name: "last_update",
-                            type: "timestamp",
+                            name: "id_content",
+                            type: "varchar",
+                            length:"36"
+                        },
+                        {
+                            name: "is_hidden",
+                            type: "boolean",
+                            default:false
+                        },
+                        {
+                            name: "is_private",
+                            type:"boolean",
+                            default:false,
                             isNullable:true
                         },
                     ],

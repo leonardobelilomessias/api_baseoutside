@@ -10,7 +10,7 @@ class ColabAgent{
   id_agent: string
 
   @Column()
-  id_agent_colab: string
+  id_colab: string
 
   @CreateDateColumn()
   created_at: Date;

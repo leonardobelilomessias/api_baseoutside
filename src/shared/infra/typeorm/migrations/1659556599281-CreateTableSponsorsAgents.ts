@@ -26,8 +26,8 @@ export class CreateTableSponsorsAgents1659556599281 implements MigrationInterfac
                         },
                         {
                             name: "type",
-                            type: "int",
-                            default:0
+                            type: "varchar",
+                            length:"20"
                         },
                         {
                             name: "created_at",

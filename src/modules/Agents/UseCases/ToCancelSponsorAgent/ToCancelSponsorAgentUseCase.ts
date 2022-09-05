@@ -9,7 +9,8 @@ class ToCancelSponsorAgentUseCase{
   }
   async execute({ id_agent, id_sponsor }): Promise<SponsorAgent> {
     if(!id_agent || !id_sponsor) throw new AppError("invalid parameters")
-    const canceledSponsor = this.sponsorAgentRepository.delete({ id_agent, id_sponsor })
+
+    const canceledSponsor = await this.sponsorAgentRepository.delete({ id_agent, id_sponsor })
     return canceledSponsor
   }
 }

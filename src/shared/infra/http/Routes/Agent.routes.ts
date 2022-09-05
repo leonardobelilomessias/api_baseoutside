@@ -21,6 +21,10 @@ import { listSponsorAgentController } from "../../../../modules/Agents/UseCases/
 import { createColabAgentController } from "../../../../modules/Agents/UseCases/CreateColab";
 import { toCancelColabAgentController } from "../../../../modules/Agents/UseCases/ToCancelColabAgent";
 import { listColabsAgentController } from "../../../../modules/Agents/UseCases/ListColabsAgent";
+import { listJourneyAgentController } from "../../../../modules/Agents/UseCases/ListJourneysAgentUseCase";
+import { deletedJourneyAgentController } from "../../../../modules/Agents/UseCases/DeleteJourneyAgent";
+import { listAgentsSponsorController } from "../../../../modules/Agents/UseCases/ListAgentsSponsor";
+import { listAgentsColabController } from "../../../../modules/Agents/UseCases/ListAgentsColab";
 
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
@@ -52,18 +56,26 @@ agent.get("/listPublicationsByIdAgent",  (request, response) => {
   listPublicatonsByIdAgentController.handle(request,response)
 })
 
-agent.get("/listSponsorsAgent", (request, response) => {
-  listSponsorAgentController.handle(request,response)
+agent.get("/sponsorsAgent",async (request, response) => {
+  await listSponsorAgentController.handle(request,response)
 })
-agent.get("/listColabsAgent", (request, response) => {
-  listColabsAgentController.handle(request,response)
+agent.get("/agentsSponsor",async (request, response) => {
+  await listAgentsSponsorController.handle(request,response)
 })
 
 agent.post("/sponsorAgent",async (request, response) => {
   await createNewSponsorAgentController.handle(request,response)
 })
 
-
+agent.get("/colabsAgent", async (request, response) => {
+  await  listColabsAgentController.handle(request,response)
+})
+agent.get("/agentsColab", async (request, response) => {
+  await  listAgentsColabController.handle(request,response)
+})
+agent.post("/journeyAgent",async (request, response) => {
+  await listJourneyAgentController.handle(request,response)
+})
 
 agent.post("/", async (request, response) => {
    await createAgentController().handle(request,response)
@@ -73,7 +85,7 @@ agent.post("/photoPublication", uploadPhotosAgent.array('photos', 3), async (req
 
  await createPublicationAgentController.handle(request,response)
 })
-agent.post("/createColabAgent", async (request, response) => {
+agent.post("/colabAgent", async (request, response) => {
   await createColabAgentController.handle(request,response)
  })
 
@@ -91,10 +103,13 @@ agent.put("/",async  (request, response) => {
 agent.delete("/",async  (request, response) => {
   await deactivateAgentController.handle(request,response)
 })
-agent.delete("/toCancelSponsorAgent",async (request, response) => {
+agent.delete("/sponsorAgent",async (request, response) => {
   await toCancelSponsorAgentController.handle(request,response)
 })
-agent.delete("/toCancelColabAgent",async (request, response) => {
+agent.delete("/colabAgent",async (request, response) => {
   await toCancelColabAgentController.handle(request,response)
+})
+agent.delete("/deleteJourneyAgent",async (request, response) => {
+  await deletedJourneyAgentController.handle(request,response)
 })
 export {agent}

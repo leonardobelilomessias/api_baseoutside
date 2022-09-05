@@ -20,7 +20,7 @@ export class CreateTableColabsAgents1659566403289 implements MigrationInterface 
                             length: "36",
                         },
                         {
-                            name: "id_agent_colab",
+                            name: "id_colab",
                             type: "varchar",
                             length: "36",
                         },
@@ -58,7 +58,7 @@ export class CreateTableColabsAgents1659566403289 implements MigrationInterface 
                             name: "fk_id_colabs_colabs_agents",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
-                            columnNames:["id_agent_colab"],
+                            columnNames:["id_colab"],
                             onDelete: "CASCADE",
                             onUpdate:"CASCADE"
                         },

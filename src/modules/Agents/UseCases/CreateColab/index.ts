@@ -1,10 +1,12 @@
+import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepository";
 import { ColabAgentRepository } from "../../infra/typeorm/repositories/ColabRepository";
 import { CreateColabAgentController } from "./CreateColabController";
 import { CreateColabAgentUseCase } from "./CreateColabUseCase";
 
 
 const colabAgentRepository = new ColabAgentRepository()
-const createColabAgentUseCase = new CreateColabAgentUseCase(colabAgentRepository)
+const agentRepository = new AgentRepository()
+const createColabAgentUseCase = new CreateColabAgentUseCase(colabAgentRepository,agentRepository)
 const createColabAgentController = new CreateColabAgentController(createColabAgentUseCase)
 
 export{createColabAgentController}

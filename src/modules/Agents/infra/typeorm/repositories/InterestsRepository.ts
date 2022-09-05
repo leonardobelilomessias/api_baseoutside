@@ -2,15 +2,20 @@ import { Repository } from "typeorm/repository/Repository"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { IAgentRepository } from "../../../repositories/IAgentRepository"
 import { IInterestsRepository } from "../../../repositories/IInterestsRepository"
+import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository"
 import { Agent } from "../entities/Agent"
 import { Interests } from "../entities/Interests"
+import { JourneyAgent } from "../entities/JourneyAgent"
+import { JourneyAgentRepository } from "./JourneyAgentRepository"
 
 class InterestsRepository implements IInterestsRepository{
   interestsRepository: Repository<Interests>
   agentRepository :Repository<Agent>
+  journeyAgentRepository:IJourneyAgentRepository
    constructor() {
      this.interestsRepository = AppDataSource.getRepository("interests_agents")
      this.agentRepository = AppDataSource.getRepository('agents')
+     this.journeyAgentRepository =  new JourneyAgentRepository()
   }
   findInterestByName(interest: string): Promise<Interests[]> {
     throw new Error("Method not implemented.")
@@ -41,6 +46,7 @@ class InterestsRepository implements IInterestsRepository{
         await this.interestsRepository.save(newInterest)
       })
 
+  
       return allInterests
     }
  
