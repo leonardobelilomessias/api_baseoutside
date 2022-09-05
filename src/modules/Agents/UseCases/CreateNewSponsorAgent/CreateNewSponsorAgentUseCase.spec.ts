@@ -28,8 +28,8 @@ describe("Create new sponsor", () => {
   })
   it("Shold be able create a new sponsor to agent  ", async () => {
   
-    const agent = await agentRepository.create({ name: "agent", email: "agent@email", password: '123' })
-    const sponsorAgent = await agentRepository.create({ name: "sponsor", email: "sponsor@email", password: '123' })
+    const agent = await agentRepository.create({ name: "agent", email: "agent@email", password: '123', user_name:'neoagent' })
+    const sponsorAgent = await agentRepository.create({ name: "sponsor", email: "sponsor@email", password: '123' ,user_name:'neoagent'})
    
     const allAgents = await  agentRepository.listAll()
 

@@ -1,6 +1,5 @@
 import { AdminMission } from "../infra/typeorm/entities/AdminMission"
 
-
 interface IAdminMission{
 
   createAdminMission({ id_mission, id_agent, type }): Promise<AdminMission>

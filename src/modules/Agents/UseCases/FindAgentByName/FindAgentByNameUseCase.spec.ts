@@ -16,7 +16,7 @@ describe("Find Agent By name", () => {
     expect(agent).toBe(undefined)
   })
   it("Should be able agent by name", async () => {
-    const newAgent = await agentRepository.create({ name: 'agent', email: 'agent@email', password: '123' }) 
+    const newAgent = await agentRepository.create({ name: 'agent', email: 'agent@email', password: '123',user_name:"neoagent" }) 
     const agent = await findAgentByNameUseCase.execute(newAgent.name)
     expect(agent).toEqual(newAgent)
     })

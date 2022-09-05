@@ -19,7 +19,6 @@ import { listAgentsActionsController } from "../../../../modules/Actions/UseCase
 import { listActionController } from "../../../../modules/Actions/UseCases/ListAllActions";
 import { updateActionController } from "../../../../modules/Actions/UseCases/UpdateAction";
 
-
 const action = Router()
 
 action.post("/", async (request, response) => {

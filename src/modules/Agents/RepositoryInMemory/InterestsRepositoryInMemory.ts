@@ -1,4 +1,3 @@
-import { Agent } from "../infra/typeorm/entities/Agent";
 import { Interests } from "../infra/typeorm/entities/Interests";
 import { IAgentRepository } from "../repositories/IAgentRepository";
 import { IInterestsRepository } from "../repositories/IInterestsRepository";

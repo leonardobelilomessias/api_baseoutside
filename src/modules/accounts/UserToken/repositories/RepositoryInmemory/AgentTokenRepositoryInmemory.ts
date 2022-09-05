@@ -1,4 +1,3 @@
-import { IAgentRepository } from "../../../../Agents/repositories/IAgentRepository";
 import { AgentToken } from "../../infra/typeorm/entities/AgentToken";
 import { IAgentTokenRepository, ICreateAgentTokenDTO } from "../IAgentTokenRepository";
 

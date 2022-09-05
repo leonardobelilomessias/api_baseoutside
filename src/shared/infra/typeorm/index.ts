@@ -18,10 +18,10 @@ import { AgentDepartament } from "../../../modules/Actions/infra/typeorm/entitie
 import {  TaskDepartament } from "../../../modules/Actions/infra/typeorm/entities/TaskDepartament";
 import { AgentToken } from "../../../modules/accounts/UserToken/infra/typeorm/entities/AgentToken";
 import { Action } from "../../../modules/Actions/infra/typeorm/entities/Action";
-
+ 
 export const AppDataSource = new DataSource({
   type: "postgres",
-  host: "database",
+  host: "localhost",
   port: 5432,
   username: process.env.USER_DATABASE ,
   password: process.env.PASSWORD_DATABASE,

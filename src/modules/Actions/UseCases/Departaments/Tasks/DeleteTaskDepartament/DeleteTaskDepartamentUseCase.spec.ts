@@ -1,7 +1,6 @@
 import { TaskDepartamentRepositoryInMemory } from "../../../../repositoryInMemory/TaskDepartamentRepositoryInMemory"
 import { DeleteTaskDepartamentUseCase } from "./DeleteTaskDepartamentUseCase"
 
-
 let taskDepartamentRepositoryInMemory:TaskDepartamentRepositoryInMemory
 let deleteTaskDepartamentUseCase:DeleteTaskDepartamentUseCase
 describe("Delete Task Departament",()=>{

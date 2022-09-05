@@ -5,7 +5,6 @@ import { ICreateMissionDTO } from "../../../dtos/ICreateMissionDTO"
 import { IMissionRepository } from "../../../repositories/IMissonRepository"
 import { Mission } from "../entities/Mission"
 
-
 class MissionRepository implements IMissionRepository{
   private missionRepository:Repository<Mission>
   constructor(){

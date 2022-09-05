@@ -15,7 +15,7 @@ describe("Update image agent", () => {
     updateImageAgentUseCase = new UpdateImageAgentUseCase(agenteRepository,storageTestProvider)
   })
   it("should be able update a image of a agent ",async () => {
-    const agent = await agenteRepository.create({ name: 'agentImageUpdate', email: "agentImageUpdate@email", password: 'xxx' })
+    const agent = await agenteRepository.create({ name: 'agentImageUpdate', email: "agentImageUpdate@email", password: 'xxx' ,user_name:"neoagent"})
     const image_profile=  "./tmp/sendPhotos/01.jpg"
     await updateImageAgentUseCase.execute({ id_agent: agent.id, image_profile })
     await updateImageAgentUseCase.execute({ id_agent: agent.id, image_profile })

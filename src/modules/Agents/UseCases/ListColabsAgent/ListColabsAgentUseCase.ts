@@ -1,5 +1,4 @@
 import { Agent } from "../../infra/typeorm/entities/Agent"
-import { ColabAgent } from "../../infra/typeorm/entities/ColabAgent"
 import { IColabRepository } from "../../repositories/IColabRepositoryInMemory"
 
 class ListColabsAgentUseCase{

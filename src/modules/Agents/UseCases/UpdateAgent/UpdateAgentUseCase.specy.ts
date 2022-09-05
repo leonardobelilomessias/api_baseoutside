@@ -12,7 +12,7 @@ describe("Update a agent", () => {
     updateAgentUseCase = new UpdateAgentUseCase(agentRepository)
   })
   it("Should be able update a agent", async () => {
-    const agent = await agentRepository.create({ name: 'agent', email: "agen@email", password: "xxx" })
+    const agent = await agentRepository.create({ name: 'agent', email: "agen@email", password: "xxx",user_name:"neoagent" })
     Object.assign(agent, { skills: ['leader'], interests: ['nature'],vocation:'Tecnology',description:"'I'm valid  a updated agent" })
     const updateAgent = await updateAgentUseCase.execute(agent as EditAgent)
     expect(updateAgent.description).toEqual("'I'm valid  a updated agent")
@@ -20,7 +20,7 @@ describe("Update a agent", () => {
   it("Should't be able update a agent with not found id", async () => {
     expect(async() => {
       
-    const agent = await agentRepository.create({ name: 'agent', email: "agen@email", password: "xxx" })
+    const agent = await agentRepository.create({ name: 'agent', email: "agen@email", password: "xxx" ,user_name:"neoagent"})
     const invalidUpdateAgent = {
       id: 'n0t3x15t',
       skills: ['leader'],

@@ -1,6 +1,5 @@
 
 import { AppError } from "../../../../shared/errors/AppError";
-import { IAgentRepository } from "../../../Agents/repositories/IAgentRepository";
 import { IAgentsMissions } from "../../repositories/IAgentsMissions";
 
 class ListMissionsAgentUseCase{

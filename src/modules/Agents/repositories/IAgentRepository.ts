@@ -7,7 +7,8 @@ interface CreateAgent{
   password: string
   id?: string
   image_profile?: string
-  vocation?:string
+  vocation?:string,
+  user_name:string
 }
 
 interface EditAgent{
@@ -57,5 +58,6 @@ interface IAgentRepository{
 
   resetPassword({id_agent,password}):Promise<Agent>
 
+  findByUserName(user_name:string):Promise<Agent>
 } 
 export {IAgentRepository,CreateAgent,EditAgent,ResponseAgent} 

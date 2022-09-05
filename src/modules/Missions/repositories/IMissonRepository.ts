@@ -2,10 +2,6 @@ import { ICreateMissionDTO } from "../dtos/ICreateMissionDTO";
 import { IUpdateMission } from "../dtos/IUpdateMissionDTO";
 import { Mission } from "../infra/typeorm/entities/Mission";
 
-
-
-
-
 interface IMissionRepository{
 
   create({name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type,field}:ICreateMissionDTO): Promise<Mission>

@@ -15,7 +15,6 @@ import { listmissionsSponsorsController } from "../../../../modules/Missions/Use
 import { listsponsorsMissionsController } from "../../../../modules/Missions/UseCases/ListSponsorsMission";
 import { updateMissionController } from "../../../../modules/Missions/UseCases/UpdateMission";
 
-
 const mission = Router()
 
 mission.post("/", async (request, response) => {
@@ -28,7 +27,6 @@ mission.post("/createAgentMission", async (request, response) => {
 mission.post("/createSponsorMission", async (request, response) => {
   await createSponsorMissionController.handle(request,response)
 })
-
 mission.get("/", (request, response) => {
   listMissionController.handle(request,response)
 })

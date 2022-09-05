@@ -11,29 +11,22 @@ class CreateAgentUseCase{
   }
   async execute({ name, email, user_name, password ,description,vocation}:ICreateAgentDTO) {
     if(!name||!email||!user_name||!password) throw new AppError("You sent some invalid require value.")
+    const testFunctionClean  = await cleanEmptySpace({ name, email, user_name, password ,description,vocation})
+    console.log(testFunctionClean)
 
-    const agentExist = await this.agentRepository.findByEmail({ email })   
-    const passwordHash = await hash(password, 8)
-    if (agentExist) throw  new AppError("User already exist",200)
-    const agent = await this.agentRepository.create(
-      { 
-        name,
-        email,
-        user_name,
-        password:passwordHash,
-        description,
-        vocation}
-      )
-    return agent
-
-      
-
-  } 
+    const agentClean ={name,email,user_name,password,description,vocation}
+    const agentExistByEmail = await this.agentRepository.findByEmail({ email })   
+    const agentExistByUserName = await this.agentRepository.findByUserName(user_name)
+    if (agentExistByEmail) throw  new AppError("User with sent email already exist",200)
+    if (agentExistByUserName) throw  new AppError("User with sent user name already exist",200)
+    try{
+      const passwordHash = await hash(password, 8)
+      const agent = await this.agentRepository.create(testFunctionClean as ICreateAgentDTO)
+      return agent
+    }catch{
+      return new AppError('erro encript')
+    }
+ } 
 
 }
-
 export{CreateAgentUseCase}
-
-function next(err: any) {
-  throw new Error("Function not implemented.")
-}

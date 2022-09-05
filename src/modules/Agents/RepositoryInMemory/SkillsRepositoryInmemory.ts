@@ -32,7 +32,9 @@ class SkillsRepositoryInMemory implements ISkillsRepository{
     const indexAgent = this.skillsRepositoryInMemory.findIndex((skill) => { return id_agent === String(skill.id_agent) })
     if(indexAgent) this.skillsRepositoryInMemory.splice(indexAgent, 1)
     const newSkill = skills.map((skill) => {
-      this.skillsRepositoryInMemory.push(new Skills(id_agent, skill))
+      const oneNewSkill = new Skills()
+      Object.assign(oneNewSkill,{id_agent, skill})
+      this.skillsRepositoryInMemory.push(oneNewSkill)
       return skill
     })
     return newSkill

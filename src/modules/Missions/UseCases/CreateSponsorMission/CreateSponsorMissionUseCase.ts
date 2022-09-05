@@ -7,7 +7,6 @@ class CreateSponsorMissionUseCase{
   constructor(sponsorMissionRepository:ISponsorMissionRepository) {
     this.sponsorMissionRepository = sponsorMissionRepository
   }
-  
   async execute({ id_sponsor, id_mission, type, mission_private, sponsor_private }): Promise<SponsorMission>{
     if (!id_mission || !id_sponsor) throw new AppError('Value od mission ou sponsor is undefined')
     const foundSponsorMission = await this.sponsorMissionRepository.findSponsorMission(id_sponsor,id_mission)
@@ -15,6 +14,5 @@ class CreateSponsorMissionUseCase{
     const createdSponsorMission = await this.sponsorMissionRepository.create({ id_sponsor, id_mission, type, mission_private, sponsor_private })
     return createdSponsorMission
   }
-
 }
 export{CreateSponsorMissionUseCase}

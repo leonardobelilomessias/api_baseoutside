@@ -15,7 +15,8 @@ describe("create agent", () => {
     const requestAgent = {
       email: 'leonardo@email',
       password: "123",
-      name:"leo"
+      name:"leo",
+      user_name:'neoagent'
     }
     const newAgent = await createAgentUseCase.execute(requestAgent )
     const findAgent = await agentRepositoryInmemory.findByEmail({ email: requestAgent.email })
@@ -28,10 +29,12 @@ describe("create agent", () => {
       const requestAgent = {
         email: 'leonardo@email',
         password: "123",
-        name:"leo"
+        name:"leo",
+        user_name:'neoagent'
+
       }
-      await createAgentUseCase.execute({email:requestAgent.email,password:requestAgent.password,name:requestAgent.name})
-      await createAgentUseCase.execute({email:requestAgent.email,password:requestAgent.password,name:requestAgent.name})
+      await createAgentUseCase.execute(requestAgent)
+      await createAgentUseCase.execute(requestAgent)
   
    }).rejects.toBeInstanceOf(AppError)
 

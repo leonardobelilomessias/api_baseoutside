@@ -1,7 +1,6 @@
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn } from "typeorm";
 import {v4 as uuidv4} from 'uuid'
 
-
 @Entity("agents")
 class Agent{
   @PrimaryColumn()

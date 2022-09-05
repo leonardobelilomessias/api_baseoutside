@@ -1,7 +1,6 @@
 import { Request, Response } from "express"
 import { CreateColabAgentUseCase } from "./CreateColabUseCase"
 
-
 class CreateColabAgentController{
   private createColabAgentUseCase: CreateColabAgentUseCase
   constructor(createColabAgentUseCase: CreateColabAgentUseCase) {

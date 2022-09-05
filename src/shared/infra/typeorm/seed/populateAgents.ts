@@ -4,7 +4,6 @@ import { Agent } from "../../../../modules/Agents/infra/typeorm/entities/Agent";
 import '../../typeorm';
 import { faker } from '@faker-js/faker';
 
-
 export const AppDataSource = new DataSource({
   type: "mysql",
   host: "localhost",
@@ -23,9 +22,6 @@ AppDataSource.initialize().then(() => { console.log('DataBase initialized') })
     create(agentRepository).then(()=>{console.log("fake agents created")})
   })
   .catch((err) => { console.log(err) })
-
-
-
 
 async function create(repository:Repository<Agent>) {
   const agents = [];
@@ -50,5 +46,4 @@ await repository.createQueryBuilder()
   .into(Agent)
   .values(newAgents)
   .execute()
-
 }

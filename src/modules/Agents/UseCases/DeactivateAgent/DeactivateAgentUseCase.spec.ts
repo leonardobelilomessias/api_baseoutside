@@ -19,7 +19,7 @@ describe("Deactivate a agent", () => {
   })
 
   it("Shound be able deactivate a agent", async () => {
-    const agentActive = await agentRepository.create({ name: "agent Active", email: "agentactive@email", password: "xxx" })
+    const agentActive = await agentRepository.create({ name: "agent Active", email: "agentactive@email", password: "xxx",user_name:"neoagent" })
     const deactivateAgent = await agentRepository.deactivate(agentActive.id)
     expect(deactivateAgent.is_active).toBe(false)
   })

@@ -1,7 +1,5 @@
 import { AppError } from "../../../../shared/errors/AppError"
 import { SponsorAgent } from "../../infra/typeorm/entities/SponsorAgent"
-import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepository"
-import { SponsorsAgentsRepository } from "../../infra/typeorm/repositories/SponsorsAgentRepository.ts"
 import { IAgentRepository } from "../../repositories/IAgentRepository"
 import { ISponsorAgentRepository } from "../../repositories/ISponsorAgentRepository"
 

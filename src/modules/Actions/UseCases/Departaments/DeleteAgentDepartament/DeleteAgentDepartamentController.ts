@@ -1,7 +1,6 @@
 import { Request, Response } from "express"
 import { DeleteAgentDepartamentUseCase } from "./DeleteAgentDepartamentUseCase"
 
-
 class DeleteAgentDepartamentController{
   private deleteAgentDepartamentUseCase:DeleteAgentDepartamentUseCase
   constructor(deleteAgentDepartamentUseCase:DeleteAgentDepartamentUseCase){

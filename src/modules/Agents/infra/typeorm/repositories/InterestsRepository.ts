@@ -5,8 +5,6 @@ import { IInterestsRepository } from "../../../repositories/IInterestsRepository
 import { Agent } from "../entities/Agent"
 import { Interests } from "../entities/Interests"
 
-
-
 class InterestsRepository implements IInterestsRepository{
   interestsRepository: Repository<Interests>
   agentRepository :Repository<Agent>
@@ -48,17 +46,15 @@ class InterestsRepository implements IInterestsRepository{
  
   }
 
-  async findAgentByInterest(interest: string[]) {
-    const listInterest= interest.map(thisInterest=> ({interests:thisInterest}))
+  async findAgentByInterest(interest:string) {
+
+ // asssingning with is active to typeorm list only active agent in condition where.
     const allInterests = await this.interestsRepository.find({
-      relations: {
-        id_agent:true
-      },
-      where: listInterest
+      relations:{id_agent:true},
+      where:{interests:interest}
     })
-    
-    const foundInterests = allInterests.map(thisInterest=>({interest:thisInterest.interests, agent:thisInterest.id_agent}))
-    return foundInterests 
+
+    return allInterests
   }
 }
 export{InterestsRepository}

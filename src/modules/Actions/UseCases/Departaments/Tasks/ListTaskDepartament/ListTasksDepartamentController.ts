@@ -1,7 +1,6 @@
 import { Request, Response } from "express"
 import { ListTasksDepartamentUseCase } from "./ListTasksDepartamentUseCase"
 
-
 class ListTasksDepartamentController{
   private listTasksDepartamentUseCase:ListTasksDepartamentUseCase
   constructor(listTasksDepartamentUseCase:ListTasksDepartamentUseCase){

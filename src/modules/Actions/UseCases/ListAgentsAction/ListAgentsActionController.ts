@@ -1,7 +1,6 @@
 import { Request, Response } from "express"
 import { ListAgentsActionUseCase } from "./ListAgentsActionUseCase"
 
-
 class ListAgentActionController{
   private listAgentActionUseCase:ListAgentsActionUseCase
   constructor(listAgentActionUseCase:ListAgentsActionUseCase){

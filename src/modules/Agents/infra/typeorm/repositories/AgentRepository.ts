@@ -1,5 +1,4 @@
 import {  Repository } from "typeorm"
-
 import { SkillsRepository } from "./SkillsRepository"
 import { InterestsRepository } from "./InterestsRepository"
 import {  EditAgent, IAgentRepository, ResponseAgent } from "../../../repositories/IAgentRepository"
@@ -8,21 +7,19 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { hash } from "bcryptjs"
 
-
-
-
  class AgentRepository implements IAgentRepository {
    agentRepository: Repository<Agent>
    skillsRepository: SkillsRepository
    interestsRepository: InterestsRepository
-    
    constructor() {
      this.agentRepository = AppDataSource.getRepository("agents")
      this.skillsRepository = new SkillsRepository()
      this.interestsRepository = new InterestsRepository()
-   
   }
-
+  async findByUserName(user_name: string): Promise<Agent> {
+     const agentByUsername = await this.agentRepository.findOneBy({user_name})
+     return agentByUsername
+   }
    listAll(): Promise<Agent[]> {
      throw new Error("Method not implemented.")
    }
@@ -82,8 +79,7 @@ import { hash } from "bcryptjs"
     
   async edit({ id, description, email, name, skills, interests,vocation,image_profile}: EditAgent): Promise<ResponseAgent> {
  
-     const agentEdit = await this.agentRepository.findOneBy({ id: id }) 
-
+    const agentEdit = await this.agentRepository.findOneBy({ id: id })
     const newSkills = []
     const newInterests =[]
     if(skills) {
@@ -95,21 +91,19 @@ import { hash } from "bcryptjs"
       newInterests.push(interest)
     }
     Object.assign(agentEdit, { description, email, name ,vocation,image_profile,skills:newSkills,interests:newInterests})
-    console.log('agent em edit agent=>',agentEdit)
     await this.agentRepository.save(agentEdit)
     const responseAgent = 
     {
       id,
-      name,
-      email,
-      description,
+      name:name,
+      email:email,
+      description:description,
       skills:newSkills,
       interests:newInterests,
-      image_profile
+      image_profile:image_profile,
+      vocation:vocation
     }
     return responseAgent
-
-    
    }
    
   async findByName(name :string): Promise<Agent> {

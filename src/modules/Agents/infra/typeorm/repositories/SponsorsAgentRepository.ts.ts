@@ -4,8 +4,6 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { ISponsorAgentRepository } from "../../../repositories/ISponsorAgentRepository"
 import { SponsorAgent } from "../entities/SponsorAgent"
 
-
-
 class SponsorsAgentsRepository implements ISponsorAgentRepository{
   private sponsorsAgentsRepository:Repository<SponsorAgent>
   constructor(){

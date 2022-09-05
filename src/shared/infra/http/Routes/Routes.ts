@@ -1,5 +1,4 @@
 import {Router} from "express";
-import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 import { action } from "./Action.routes";
 import { agent } from "./Agent.routes";
 import { authenticateRoutes } from "./Authenticate.routes";

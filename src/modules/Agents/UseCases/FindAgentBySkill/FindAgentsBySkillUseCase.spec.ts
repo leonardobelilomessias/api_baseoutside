@@ -15,7 +15,7 @@ describe("Find agents by skills", () => {
     findAgentsBySkillsUseCase = new FindAgentsBySkillsUseCase(agentRepositoryInMemory,skillsRepositoryInMemory)
   })
   it("Should be able find agents by skills", async () => {
-    const agent = await agentRepositoryInMemory.create({ name: "agent", email: 'agent@email', password: "xxx" })
+    const agent = await agentRepositoryInMemory.create({ name: "agent", email: 'agent@email', password: "xxx",user_name:"neoagent" })
     await skillsRepositoryInMemory.updateSkillsAgent(['programing', 'desing'],agent.id)
     const agents = await findAgentsBySkillsUseCase.execute(['programing'])
     const foundAgent = await agentRepositoryInMemory.findById(agents[0])

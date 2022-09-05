@@ -1,9 +1,6 @@
 import { AppError } from "../../../../../../shared/errors/AppError"
 import { ICreateTaskDepartament, ITaskDepartamentRepository } from "../../../../repositories/ITaskDepartamentRepository"
 
-
-
-
 class CreateTaskDepartamentUseCase{
   private taskDepartamentRepository:ITaskDepartamentRepository
   constructor(taskRepository:ITaskDepartamentRepository) {

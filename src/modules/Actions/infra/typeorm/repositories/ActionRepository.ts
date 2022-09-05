@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { IActionRepository, ICreateAction, IUpdateAction } from "../../../repositories/IActionRepository";
+import { IActionRepository, IUpdateAction } from "../../../repositories/IActionRepository";
 import { Action } from "../entities/Action";
 
 

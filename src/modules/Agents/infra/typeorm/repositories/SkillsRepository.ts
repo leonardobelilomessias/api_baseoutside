@@ -3,8 +3,6 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { ISkillsRepository } from "../../../repositories/ISkillsRepository"
 import { Skills } from "../entities/Skills"
 
-
-
 class SkillsRepository implements ISkillsRepository{
   skillsRepository: Repository<Skills>
   constructor(){

@@ -1,6 +1,3 @@
-import { extname, resolve } from "path"
-import { copyFile } from "../../../utils/copyFiles"
-import { StorageTestProvider } from "../../../utils/providers/StorageProvider/implementations/StorageTestProvides"
 import { Agent } from "../infra/typeorm/entities/Agent"
 import { CreateAgent, EditAgent, IAgentRepository, ResponseAgent } from "../repositories/IAgentRepository"
 
@@ -9,12 +6,19 @@ class AgentInMemoryRepository implements IAgentRepository{
   constructor() {
     this.agentRepositoryInMemory = []
   }
+  async findByUserName(user_name: string): Promise<Agent> {
+    const findAgent = await this.agentRepositoryInMemory.find(agent=>(agent.user_name ===user_name))
+    return findAgent
+  }
+  async resetPassword({ id_agent, password }: { id_agent: any; password: any }): Promise<Agent> {
+    throw new Error("Method not implemented.")
+  }
   
   async listAll(): Promise<Agent[]> {
     return this.agentRepositoryInMemory
   }
 
-  async create({ name, email, password }: CreateAgent): Promise<Agent> {
+  async create({ name, email, password ,user_name}: CreateAgent): Promise<Agent> {
     const newAgent = new Agent()
     Object.assign(newAgent, { name, email, password })
      this.agentRepositoryInMemory.push(newAgent)

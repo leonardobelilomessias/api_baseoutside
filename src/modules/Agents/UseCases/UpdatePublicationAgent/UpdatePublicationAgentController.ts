@@ -1,5 +1,4 @@
-import { Request, response, Response } from "express"
-import { PublicationAgent } from "../../infra/typeorm/entities/PublicationAgent"
+import { Request,  Response } from "express"
 import { UpdatePublicationAgentUseCase } from "./UpdatePublicationAgentUseCase"
 
 class UpdatePublicationAgentController{

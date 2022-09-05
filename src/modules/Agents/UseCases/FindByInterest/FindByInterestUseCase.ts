@@ -11,13 +11,11 @@ class FindAgentsByInterestUseCase{
     this.interestRepository = interestRepository
 
   }
-  async execute(interests: string[]) {
+  async execute(interests: string) {
     if(!interests) throw new AppError("Value sent of interest is undefined.")
-    if(typeof interests!==typeof Array()) throw new AppError("Value of interests must be sent as array. ex.: ['interest1', interest2]")
-    
-    const IdAgentByInterests= await this.interestRepository.findAgentByInterest(interests)
-    return IdAgentByInterests
+    const agentsByInterests= await this.interestRepository.findAgentByInterest(interests)
+    const filterActivesAgents = await agentsByInterests.filter(agent=>(agent.id_agent.is_active ===true))
+    return filterActivesAgents
   }
-
 }
 export{FindAgentsByInterestUseCase}

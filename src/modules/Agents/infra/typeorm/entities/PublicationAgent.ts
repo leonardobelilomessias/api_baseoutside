@@ -1,6 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn , ManyToOne, JoinColumn} from "typeorm"
+import { Column, CreateDateColumn, Entity, PrimaryColumn} from "typeorm"
 import{v4 as uuidv4} from 'uuid'
-import { Agent } from "./Agent";
 
 @Entity("publications_agents")
 class PublicationAgent{

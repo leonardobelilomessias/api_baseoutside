@@ -5,7 +5,6 @@ import { IColabRepository } from "../../../repositories/IColabRepositoryInMemory
 import { Agent } from "../entities/Agent";
 import { ColabAgent } from "../entities/ColabAgent";
 
-
 class ColabAgentRepository implements IColabRepository{
   private colabAgentRepository: Repository<ColabAgent>
   constructor() {

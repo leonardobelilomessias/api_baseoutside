@@ -29,7 +29,7 @@ describe("Create a new agent Mission", () => {
   })
 
   it("should be able create agent mission", async () => {
-    const newAgent = await  agentsRepositoryInMemory.create({ name: "agent", email: "agent@email", password: "xxx" })
+    const newAgent = await  agentsRepositoryInMemory.create({ name: "agent", email: "agent@email", password: "xxx",user_name:"neoagent" })
     const newMission = await missionReposInMemory.create({ name: "newMission", creator: newAgent.id, description: "a new mission" })
     
     const newAgentMission = await createAgentMissionUseCase.execute(newMission.id,newAgent.id)

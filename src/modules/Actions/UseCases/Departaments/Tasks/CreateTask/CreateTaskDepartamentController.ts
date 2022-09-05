@@ -1,8 +1,6 @@
 import { Request, Response } from "express"
 import { CreateTaskDepartamentUseCase } from "./CreateTaskDepartamentUseCase"
 
-
-
 class CreateTaskDepartamentController{
   createTaskDepartamentUseCase: CreateTaskDepartamentUseCase
   constructor(createTaskDepartamentUseCase: CreateTaskDepartamentUseCase) { 

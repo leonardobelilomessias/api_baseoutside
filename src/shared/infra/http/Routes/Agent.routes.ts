@@ -8,7 +8,6 @@ import { findyByInterestController } from "../../../../modules/Agents/UseCases/F
 import { updateAgentController } from "../../../../modules/Agents/UseCases/UpdateAgent";
 import { updateImageAgentController } from "../../../../modules/Agents/UseCases/UpdateAgentAvatar";
 import uploadConfig from '../../../../config/upload'
-import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 import createAgentController from '../../../../modules/Agents/UseCases/CreateAgent/index'
 import { findAgentByNameController } from "../../../../modules/Agents/UseCases/FindAgentByName";
 import { listsAgentController } from "../../../../modules/Agents/UseCases/ListAgents";
@@ -23,16 +22,12 @@ import { createColabAgentController } from "../../../../modules/Agents/UseCases/
 import { toCancelColabAgentController } from "../../../../modules/Agents/UseCases/ToCancelColabAgent";
 import { listColabsAgentController } from "../../../../modules/Agents/UseCases/ListColabsAgent";
 
-
 const agent = Router()
-
 const upload_image_profile = multer(uploadConfig)
 const uploadPhotosAgent = multer(uploadConfig)
 
-
 agent.get("/",async  (request, response) => {
  await  listsAgentController.handle(request,response)
-
 })
 
 agent.get("/findByname", async (request, response) => {
@@ -93,8 +88,8 @@ agent.put("/",async  (request, response) => {
   await updateAgentController.handle(request,response)
 })
 
-agent.delete("/", (request, response) => {
-  deactivateAgentController.handle(request,response)
+agent.delete("/",async  (request, response) => {
+  await deactivateAgentController.handle(request,response)
 })
 agent.delete("/toCancelSponsorAgent",async (request, response) => {
   await toCancelSponsorAgentController.handle(request,response)

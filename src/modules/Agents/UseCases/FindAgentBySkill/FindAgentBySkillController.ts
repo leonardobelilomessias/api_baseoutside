@@ -1,7 +1,6 @@
 import { Request,Response } from "express"
 import { FindAgentsBySkillsUseCase } from "./FindAgentBySkillUseCase"
 
-
 class FindAgentsBySkillsController{
   private findAgentsBySkillsUseCase: FindAgentsBySkillsUseCase
   constructor(findAgentBySkillUseCase: FindAgentsBySkillsUseCase) {

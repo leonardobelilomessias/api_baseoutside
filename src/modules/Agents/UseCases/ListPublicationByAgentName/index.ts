@@ -4,7 +4,6 @@ import { PublicationsAgentRepository } from "../../infra/typeorm/repositories/Pu
 import { ListPublicatonsByIdAgentController } from "./ListPublicationsByIdAgentController";
 import { ListPublicationsByIdAgentUseCase } from "./ListPublicationsByIdAgentUseCase";
 
-
 const storageProvider = new LocalStorageProvider()
 const photosPublicationAgentRepository = new PhotoPublicationAgentRepository(storageProvider)
 const publicationsAgentsRepository = new PublicationsAgentRepository(photosPublicationAgentRepository)

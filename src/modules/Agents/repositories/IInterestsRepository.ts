@@ -9,7 +9,7 @@ interface IInterestsRepository{
 
   findInterestByAgent(id_agent: string): Promise<Interests[]>
   
-  findAgentByInterest(interest:string[])
+  findAgentByInterest(interest:string)
 
   updateInterests(id_agent: string, interests: string[]): Promise<string[]>
   
