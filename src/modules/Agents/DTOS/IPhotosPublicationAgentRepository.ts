@@ -1,4 +1,5 @@
 import { PhotoPublicationAgent } from "../infra/typeorm/entities/PhotoPublicationAgent"
+import { PublicationAgent } from "../infra/typeorm/entities/PublicationAgent"
 
 
 interface IFile{
@@ -12,6 +13,8 @@ interface IPhotosPublicationAgent{
   list(id_publication:string): Promise<PhotoPublicationAgent[]>
   
   delete(id_publication:string): Promise<void>
+
+  findPhotosByIdPublication(id_publication:string):Promise<PhotoPublicationAgent[]>
   
 
 }

@@ -12,7 +12,6 @@ class CreateAgentUseCase{
   async execute({ name, email, user_name, password ,description,vocation}:ICreateAgentDTO) {
     if(!name||!email||!user_name||!password) throw new AppError("You sent some invalid require value.")
     const testFunctionClean  = await cleanEmptySpace({ name, email, user_name, password ,description,vocation})
-    console.log(testFunctionClean)
 
     const agentClean ={name,email,user_name,password,description,vocation}
     const agentExistByEmail = await this.agentRepository.findByEmail({ email })   

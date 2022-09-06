@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { EditPublication, ICreatePublication, IPublicationsAgentRepository, ResponseCreatePublication } from "../../../DTOS/IPublicationsAgentRepository";
+import { EditPublication, fullPublication, ICreatePublication, IPublicationsAgentRepository, ResponseCreatePublication } from "../../../DTOS/IPublicationsAgentRepository";
 import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository";
 import { Agent } from "../entities/Agent";
 import { PublicationAgent} from "../entities/PublicationAgent";
@@ -27,12 +27,18 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     const allPublicationAgent = await this.publicationsAgentRepository.find()
     return allPublicationAgent
   }
-  async listByIdAgent(idAgent: string): Promise<PublicationAgent[]> {
+  async listByIdAgent(id_agent: string){
+
     const publicationByIdAgent = await this.publicationsAgentRepository.find({
-      where:{id_agent:idAgent}
+      where:{id_agent:id_agent}
     })
-    
-    return publicationByIdAgent
+
+    const fullPublications = await publicationByIdAgent.map(async (publication)=>{
+      const photo = await this.photosPublicationsAgent.findPhotosByIdPublication(publication.id)
+      const urlPhotos = photo.map(onePhoto=>(onePhoto.url))
+      return {publication:publication,  photos:urlPhotos}
+    })
+    return Promise.all(fullPublications)
   }
   async findPublicationById(id_publication: string): Promise<PublicationAgent> {
     const foundPublication = await this.publicationsAgentRepository.findOneBy({id:id_publication})

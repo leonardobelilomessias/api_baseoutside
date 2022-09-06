@@ -25,6 +25,7 @@ import { listJourneyAgentController } from "../../../../modules/Agents/UseCases/
 import { deletedJourneyAgentController } from "../../../../modules/Agents/UseCases/DeleteJourneyAgent";
 import { listAgentsSponsorController } from "../../../../modules/Agents/UseCases/ListAgentsSponsor";
 import { listAgentsColabController } from "../../../../modules/Agents/UseCases/ListAgentsColab";
+import { listPublicationAgentController } from "../../../../modules/Agents/UseCases/ListPublicationAgent";
 
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
@@ -73,10 +74,14 @@ agent.get("/colabsAgent", async (request, response) => {
 agent.get("/agentsColab", async (request, response) => {
   await  listAgentsColabController.handle(request,response)
 })
+
+agent.get("/listPublications",async (request, response) => {
+  await listPublicationAgentController.handle(request,response)
+})
+
 agent.post("/journeyAgent",async (request, response) => {
   await listJourneyAgentController.handle(request,response)
 })
-
 agent.post("/", async (request, response) => {
    await createAgentController().handle(request,response)
 })

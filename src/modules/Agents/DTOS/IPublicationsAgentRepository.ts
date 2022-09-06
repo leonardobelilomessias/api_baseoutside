@@ -2,6 +2,7 @@ import { PhotoPublicationAgent } from "../infra/typeorm/entities/PhotoPublicatio
 import { PublicationAgent } from "../infra/typeorm/entities/PublicationAgent"
 
 
+
 interface ICreatePublication
 {
   id_agent: string
@@ -22,13 +23,17 @@ interface ResponseCreatePublication{
   content:PhotoPublicationAgent[]
  }
 
-
+ interface fullPublication{
+  publication:PublicationAgent;
+  photos:string[]
+  
+}
 interface IPublicationsAgentRepository{
   create({id_agent,type,description,content}:ICreatePublication):Promise<ResponseCreatePublication>
 
   listAll(): Promise<PublicationAgent[]>
 
-  listByIdAgent(idAgent: string): Promise<PublicationAgent[]>
+  listByIdAgent(idAgent: string)
   
   listByAgentName(nameAgent:string): Promise<PublicationAgent[]>
 
@@ -39,4 +44,4 @@ interface IPublicationsAgentRepository{
   findPublicationById(id_publication:string):Promise<PublicationAgent>
 
 }
-export{ IPublicationsAgentRepository,ICreatePublication,EditPublication,ResponseCreatePublication}
+export{ IPublicationsAgentRepository,ICreatePublication,EditPublication,ResponseCreatePublication,fullPublication}

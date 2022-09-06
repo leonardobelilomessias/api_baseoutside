@@ -14,6 +14,10 @@ class PhotoPublicationAgentRepository implements IPhotosPublicationAgent{
     this.storageProvider = storageProvider
 
   }
+  async findPhotosByIdPublication(id_publication: string): Promise<PhotoPublicationAgent[]> {
+    const photosPublications = await this.photosPublicationAgent.find({where:{id_publication:id_publication}})
+    return photosPublications
+  }
   async create(id_publication: string, photos: string[]): Promise<PhotoPublicationAgent[]> {
     
     const promise =  photos.map(async (photo) => {
