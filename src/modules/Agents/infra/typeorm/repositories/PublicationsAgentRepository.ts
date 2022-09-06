@@ -61,9 +61,17 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     const updatePublication = await this.publicationsAgentRepository.save({ id: id_publication, description: description })
     return updatePublication
   }
-  delete(id_publication: string): Promise<PublicationAgent> {
-    throw new Error("Method not implemented.");
-  }
+  async delete(id_publication: string): Promise<PublicationAgent> {
+   await this.photosPublicationsAgent.delete(id_publication)
+   const findPublicatio= await this.publicationsAgentRepository.findOneBy({id:id_publication})
+   const deletedPublication = await this.publicationsAgentRepository.createQueryBuilder()
+   .delete()
+   .from("publications_agents")
+    .where("id = :id_publication", { id_publication:id_publication})
+   .execute()
+
+   return findPublicatio
+    }
 
 }
 export{PublicationsAgentRepository}

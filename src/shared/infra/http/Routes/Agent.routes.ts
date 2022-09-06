@@ -26,6 +26,7 @@ import { deletedJourneyAgentController } from "../../../../modules/Agents/UseCas
 import { listAgentsSponsorController } from "../../../../modules/Agents/UseCases/ListAgentsSponsor";
 import { listAgentsColabController } from "../../../../modules/Agents/UseCases/ListAgentsColab";
 import { listPublicationAgentController } from "../../../../modules/Agents/UseCases/ListPublicationAgent";
+import { deletePublicationAgentController } from "../../../../modules/Agents/UseCases/DeletePublicationAgent";
 
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
@@ -97,8 +98,8 @@ agent.post("/colabAgent", async (request, response) => {
 agent.patch("/imageProfile", upload_image_profile.single("image_profile"),async (request, response) => {
   await updateImageAgentController.handle(request,response)
 })
-agent.patch("/updatePublication",(request, response) => {
-   updatePublicationAgentController.handle(request,response)
+agent.patch("/updatePublication",async (request, response) => {
+  await  updatePublicationAgentController.handle(request,response)
 })
 agent.put("/",async  (request, response) => {
 
@@ -116,5 +117,8 @@ agent.delete("/colabAgent",async (request, response) => {
 })
 agent.delete("/deleteJourneyAgent",async (request, response) => {
   await deletedJourneyAgentController.handle(request,response)
+})
+agent.delete("/deletePublication",async (request, response) => {
+  await deletePublicationAgentController.handle(request,response)
 })
 export {agent}
