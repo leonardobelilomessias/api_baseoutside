@@ -29,6 +29,7 @@ import { listPublicationAgentController } from "../../../../modules/Agents/UseCa
 import { deletePublicationAgentController } from "../../../../modules/Agents/UseCases/DeletePublicationAgent";
 import { createCardAgentController } from "../../../../modules/Agents/UseCases/CreateCardAgent";
 import { findCardAgentController } from "../../../../modules/Agents/UseCases/FindCardAgent";
+import { editCardAgentController } from "../../../../modules/Agents/UseCases/EditCardAgent";
 
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
@@ -108,6 +109,9 @@ agent.patch("/imageProfile", upload_image_profile.single("image_profile"),async 
 })
 agent.patch("/updatePublication",async (request, response) => {
   await  updatePublicationAgentController.handle(request,response)
+})
+agent.patch("/editCard",async (request, response) => {
+  await  editCardAgentController.handle(request,response)
 })
 agent.put("/",async  (request, response) => {
 
