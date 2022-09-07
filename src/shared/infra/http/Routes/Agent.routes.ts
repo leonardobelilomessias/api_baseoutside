@@ -30,6 +30,7 @@ import { deletePublicationAgentController } from "../../../../modules/Agents/Use
 import { createCardAgentController } from "../../../../modules/Agents/UseCases/CreateCardAgent";
 import { findCardAgentController } from "../../../../modules/Agents/UseCases/FindCardAgent";
 import { editCardAgentController } from "../../../../modules/Agents/UseCases/EditCardAgent";
+import { deletedCardAgentController } from "../../../../modules/Agents/UseCases/DeleteCardAgent";
 
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
@@ -132,5 +133,9 @@ agent.delete("/deleteJourneyAgent",async (request, response) => {
 })
 agent.delete("/deletePublication",async (request, response) => {
   await deletePublicationAgentController.handle(request,response)
+})
+
+agent.delete("/deleteCard",async (request, response) => {
+  await deletedCardAgentController.handle(request,response)
 })
 export {agent}

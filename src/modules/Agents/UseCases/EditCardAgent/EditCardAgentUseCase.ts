@@ -11,7 +11,7 @@ class EditCardAgentUseCase{
     if(!id_agent)throw new AppError("Value of agent is undefined.")
     if(!title && !description) throw new AppError("Must be sent some new value")
     const findAgent = await this.cardAgentRepository.listByid(id_agent)
-    if(!findAgent) throw new AppError("Agent not found.")
+    if(!findAgent) throw new AppError("Card Agent not found.")
     const editedAgent = await this.cardAgentRepository.edit({id_agent,title,description})
     return editedAgent
   }
