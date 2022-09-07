@@ -27,6 +27,8 @@ import { listAgentsSponsorController } from "../../../../modules/Agents/UseCases
 import { listAgentsColabController } from "../../../../modules/Agents/UseCases/ListAgentsColab";
 import { listPublicationAgentController } from "../../../../modules/Agents/UseCases/ListPublicationAgent";
 import { deletePublicationAgentController } from "../../../../modules/Agents/UseCases/DeletePublicationAgent";
+import { createCardAgentController } from "../../../../modules/Agents/UseCases/CreateCardAgent";
+import { findCardAgentController } from "../../../../modules/Agents/UseCases/FindCardAgent";
 
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
@@ -79,6 +81,9 @@ agent.get("/agentsColab", async (request, response) => {
 agent.get("/listPublications",async (request, response) => {
   await listPublicationAgentController.handle(request,response)
 })
+agent.get("/findCard",async (request, response) => {
+  await findCardAgentController.handle(request,response)
+})
 
 agent.post("/journeyAgent",async (request, response) => {
   await listJourneyAgentController.handle(request,response)
@@ -88,11 +93,14 @@ agent.post("/", async (request, response) => {
 })
 
 agent.post("/photoPublication", uploadPhotosAgent.array('photos', 3), async (request, response) => {
-
  await createPublicationAgentController.handle(request,response)
 })
 agent.post("/colabAgent", async (request, response) => {
   await createColabAgentController.handle(request,response)
+ })
+
+ agent.post("/cardAgent", async (request, response) => {
+  await createCardAgentController.handle(request,response)
  })
 
 agent.patch("/imageProfile", upload_image_profile.single("image_profile"),async (request, response) => {
