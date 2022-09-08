@@ -20,6 +20,8 @@ import { AgentToken } from "../../../modules/accounts/UserToken/infra/typeorm/en
 import { Action } from "../../../modules/Actions/infra/typeorm/entities/Action";
 import { CardAgent } from "../../../modules/Agents/infra/typeorm/entities/CardAgent";
 import { AdminMission } from "../../../modules/Missions/infra/typeorm/entities/AdminMission";
+import { PublicationMission } from "../../../modules/Missions/infra/typeorm/entities/PublicationMission";
+import { PhotoPublicationMission } from "../../../modules/Missions/infra/typeorm/entities/PhotoPublicationMission";
  
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -46,7 +48,9 @@ export const AppDataSource = new DataSource({
     AgentAction,
     AgentDepartament,
     CardAgent,
-    AdminMission
+    AdminMission,
+    PublicationMission,
+    PhotoPublicationMission
   ],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"]
 

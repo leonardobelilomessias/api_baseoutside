@@ -40,7 +40,7 @@ mission.get("/", (request, response) => {
 mission.get("/agents", async (request, response) => {
  await  listAgentsMissionController.handle(request,response)
 })
-mission.get("/listMissionsAgent", async (request, response) => {
+mission.get("/missionsAgent", async (request, response) => {
   await  listMissionsAgentController.handle(request,response)
  })
 mission.get("/findByName/:name?", async(request, response) => {
