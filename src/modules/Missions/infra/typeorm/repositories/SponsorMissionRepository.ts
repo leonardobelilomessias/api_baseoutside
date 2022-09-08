@@ -16,7 +16,7 @@ class SponsorsMissionsRepository implements ISponsorMissionRepository{
       const createdSponsor = await this.sponsorsMissionsRepository.save(newSponsorMission)
       return createdSponsor
     }catch{
-      throw new AppError("There was come error.")
+      throw new AppError("There was some error.")
     }
   } 
   async findSponsorMission(id_sponsor: string, id_mission: string): Promise<SponsorMission> {
@@ -28,7 +28,7 @@ class SponsorsMissionsRepository implements ISponsorMissionRepository{
   }
   async listSponsorsMission(id_mission: string): Promise<SponsorMission[]> {
     const sponsorsMission = await this.sponsorsMissionsRepository.find({
-      where:{id_mission:id_mission}
+      where:{id_mission:id_mission,sponsor_private:false}
     })
     return sponsorsMission
   }

@@ -19,6 +19,7 @@ import {  TaskDepartament } from "../../../modules/Actions/infra/typeorm/entitie
 import { AgentToken } from "../../../modules/accounts/UserToken/infra/typeorm/entities/AgentToken";
 import { Action } from "../../../modules/Actions/infra/typeorm/entities/Action";
 import { CardAgent } from "../../../modules/Agents/infra/typeorm/entities/CardAgent";
+import { AdminMission } from "../../../modules/Missions/infra/typeorm/entities/AdminMission";
  
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -44,7 +45,8 @@ export const AppDataSource = new DataSource({
     SponsorMission,
     AgentAction,
     AgentDepartament,
-    CardAgent
+    CardAgent,
+    AdminMission
   ],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"]
 

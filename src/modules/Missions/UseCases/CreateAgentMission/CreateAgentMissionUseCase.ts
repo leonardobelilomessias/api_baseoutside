@@ -19,6 +19,8 @@ class CreateAgentMissionUseCase{
     const foundMission = await this.missionRepository.findById(id_mission)
     if (!foundMission) throw new AppError("Mission not found.")
     const foundAgent = await this.agentRepository.findById(id_agent)
+    const foundAgentInMission = await this.agentsMissionsRepository.findAgentMission({id_agent,id_mission})
+    if(foundAgentInMission) throw new AppError("Agent already are in mission.")
     if(!foundAgent) throw new AppError("Agent not found.")
     const createdAgentMission = await this.agentsMissionsRepository.create({ id_agent, id_mission })
     return createdAgentMission
