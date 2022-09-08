@@ -1,7 +1,9 @@
 import { Router } from "express";
+import multer from "multer";
 import { createAdminMissionController } from "../../../../modules/Missions/UseCases/CreateAdminMission";
 import { createAgentMissionController } from "../../../../modules/Missions/UseCases/CreateAgentMission";
 import { createMissionController } from "../../../../modules/Missions/UseCases/CreateMission";
+import { createPublicationMissionController } from "../../../../modules/Missions/UseCases/CreatePublicationMission";
 import { createSponsorMissionController } from "../../../../modules/Missions/UseCases/CreateSponsorMission";
 import { deactivateMisionController } from "../../../../modules/Missions/UseCases/DeactiveMission";
 import { deleteAdminMissionController } from "../../../../modules/Missions/UseCases/DeleteAdminMission";
@@ -18,8 +20,9 @@ import { listmissionsSponsorsController } from "../../../../modules/Missions/Use
 import { listsponsorsMissionsController } from "../../../../modules/Missions/UseCases/ListSponsorsMission";
 import { updateAdminMissionController } from "../../../../modules/Missions/UseCases/UpdateAdminMission";
 import { updateMissionController } from "../../../../modules/Missions/UseCases/UpdateMission";
-
+import uploadConfig from '../../../../config/upload'
 const mission = Router()
+const uploadPhotosMission = multer(uploadConfig)
 
 mission.post("/", async (request, response) => {
   await createMissionController.handle(request,response)
@@ -33,6 +36,9 @@ mission.post("/sponsor", async (request, response) => {
 })
 mission.post("/admin", async (request, response) => {
   await createAdminMissionController.handle(request,response)
+})
+mission.post("/publication",uploadPhotosMission.array('photos', 3) ,async (request, response) => {
+  await createPublicationMissionController.handle(request,response)
 })
 mission.get("/", (request, response) => {
   listMissionController.handle(request,response)

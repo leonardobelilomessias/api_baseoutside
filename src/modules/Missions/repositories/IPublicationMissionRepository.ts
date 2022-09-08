@@ -1,9 +1,15 @@
+import { PhotoPublicationMission } from "../infra/typeorm/entities/PhotoPublicationMission";
 import { PublicationMission } from "../infra/typeorm/entities/PublicationMission";
+
+interface IResponsePublicationMission{
+  publication: PublicationMission
+  photos:PhotoPublicationMission[];
+}
 
 
 interface IPublicationMission{
 
-  create({id_mission,type,description}):Promise<PublicationMission>
+  create({id_mission,type,description,content}):Promise<IResponsePublicationMission>
 
   list(id_mission:string):Promise<PublicationMission[]>
 
@@ -12,4 +18,4 @@ interface IPublicationMission{
   delete(id_publication:string):Promise<PublicationMission>
 
 }
-export{IPublicationMission}
+export{IPublicationMission,IResponsePublicationMission}
