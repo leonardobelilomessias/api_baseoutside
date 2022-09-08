@@ -10,6 +10,6 @@ interface IPhotoPublicationMissionRepository{
 
   list(id_publication:string):Promise<PhotoPublicationMission[]>
 
-  delete(id_publication:string):Promise<PhotoPublicationMission>
+  delete(id_publication:string):Promise<void>
 }
 export{IPhotoPublicationMissionRepository,ICreatePhotoMision}

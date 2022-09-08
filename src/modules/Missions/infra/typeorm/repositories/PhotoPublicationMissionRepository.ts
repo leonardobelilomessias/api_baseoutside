@@ -1,5 +1,6 @@
 import { url } from "inspector";
 import { Repository } from "typeorm";
+import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { IStorageProvider } from "../../../../../utils/providers/StorageProvider/IStorageProvide";
 import { ICreatePhotoMision, IPhotoPublicationMissionRepository } from "../../../repositories/IPhotoPublicationMissionRepository";
@@ -28,8 +29,22 @@ class PhotoPublicationMissionRepository implements IPhotoPublicationMissionRepos
     const photos = await this.photopublicationRepository.find({where:{id_publication}})
     return photos
   }
-  delete(id_publication: string): Promise<PhotoPublicationMission> {
-    throw new Error("Method not implemented.");
+  async delete(id_publication: string): Promise<void> {
+    try{
+      const findPhotos = await this.photopublicationRepository .find({where:{id_publication}})
+      const deletePhotos = await this.photopublicationRepository.createQueryBuilder()
+      .delete()
+      .from('photos_publications_missions')
+      .where("id_publication = :id_publication", { id_publication:id_publication})
+      .execute()
+      findPhotos.forEach(photo=>{
+        this.storageProvider.delete(photo.url,"PhotosPublicationsMissions")
+      })
+      return
+    }catch(err){
+      throw new AppError(`There was some error = ${err}`)
+    }
+
   }
 
 }

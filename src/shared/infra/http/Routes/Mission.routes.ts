@@ -23,6 +23,8 @@ import { updateMissionController } from "../../../../modules/Missions/UseCases/U
 import uploadConfig from '../../../../config/upload'
 import { listPublicationMissionController } from "../../../../modules/Missions/UseCases/ListPublicationsMission";
 import { updatePublicationMissionController } from "../../../../modules/Missions/UseCases/EditPublicationMission";
+import { deletePublicationAgentController } from "../../../../modules/Agents/UseCases/DeletePublicationAgent";
+import { deletePublicationMissionController } from "../../../../modules/Missions/UseCases/DeletePublicationMission";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
@@ -95,5 +97,8 @@ mission.delete("/sponsor", async (request, response) => {
 })
 mission.delete("/admin", async (request, response) => {
   await deleteAdminMissionController.handle(request,response)
+})
+mission.delete("/publication", async (request, response) => {
+  await deletePublicationMissionController.handle(request,response)
 })
 export {mission}

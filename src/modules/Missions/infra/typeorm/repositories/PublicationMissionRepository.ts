@@ -43,8 +43,16 @@ class PublicationMissionRepository implements IPublicationMission{
     
     return editedPublication
   }
-  delete(id_publication: string): Promise<PublicationMission> {
-    throw new Error("Method not implemented.");
+  async delete(id_publication: string): Promise<PublicationMission> {
+    await this.photoPublicationMissionRepository.delete(id_publication)
+    const findPublication= await this.publicationMissionRepository.findOneBy({id:id_publication})
+    if(!findPublication) throw new AppError("Publication not found.")
+    const deletedPublication = await this.publicationMissionRepository.createQueryBuilder()
+    .delete()
+    .from("publications_missions")
+     .where("id = :id_publication", { id_publication:id_publication})
+    .execute()
+    return findPublication
   }
 
 }
