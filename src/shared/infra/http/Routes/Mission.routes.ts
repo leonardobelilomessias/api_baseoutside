@@ -22,6 +22,7 @@ import { updateAdminMissionController } from "../../../../modules/Missions/UseCa
 import { updateMissionController } from "../../../../modules/Missions/UseCases/UpdateMission";
 import uploadConfig from '../../../../config/upload'
 import { listPublicationMissionController } from "../../../../modules/Missions/UseCases/ListPublicationsMission";
+import { updatePublicationMissionController } from "../../../../modules/Missions/UseCases/EditPublicationMission";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
@@ -79,7 +80,9 @@ mission.patch("/", async (request, response) => {
 mission.patch("/admin", async (request, response) => {
   await updateAdminMissionController.handle(request,response)
 })
-
+mission.patch("/publication", async (request, response) => {
+  await updatePublicationMissionController.handle(request,response)
+})
 
 mission.delete("/deactivateMission", async (request, response) => {
   await deactivateMisionController.handle(request,response)

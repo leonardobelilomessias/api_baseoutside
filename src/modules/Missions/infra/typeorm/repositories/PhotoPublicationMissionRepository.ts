@@ -26,7 +26,6 @@ class PhotoPublicationMissionRepository implements IPhotoPublicationMissionRepos
   }
   async list(id_publication: string): Promise<PhotoPublicationMission[]> {
     const photos = await this.photopublicationRepository.find({where:{id_publication}})
-    console.log(photos)
     return photos
   }
   delete(id_publication: string): Promise<PhotoPublicationMission> {

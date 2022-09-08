@@ -13,7 +13,7 @@ interface IPublicationMission{
 
   list(id_mission:string)
 
-  edit(id_publication:string):Promise<PublicationMission[]>
+  edit({id_publication,description}):Promise<PublicationMission>
 
   delete(id_publication:string):Promise<PublicationMission>
 

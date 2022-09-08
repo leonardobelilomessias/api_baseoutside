@@ -1,4 +1,5 @@
 import { Repository } from "typeorm";
+import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { IPhotoPublicationMissionRepository } from "../../../repositories/IPhotoPublicationMissionRepository";
 import { IPublicationMission, IResponsePublicationMission } from "../../../repositories/IPublicationMissionRepository";
@@ -34,8 +35,13 @@ class PublicationMissionRepository implements IPublicationMission{
   return Promise.all(fullPublications) 
 
   }
-  edit(id_publication: string): Promise<PublicationMission[]> {
-    throw new Error("Method not implemented.");
+  async edit({id_publication,description}): Promise<PublicationMission> {
+    const findPublication = await this.publicationMissionRepository.findOne({where:{id:id_publication}})
+    if(!findPublication) throw new AppError("Publication not found.")
+    Object.assign(findPublication,{description})
+    const editedPublication = await this.publicationMissionRepository.save(findPublication)
+    
+    return editedPublication
   }
   delete(id_publication: string): Promise<PublicationMission> {
     throw new Error("Method not implemented.");
