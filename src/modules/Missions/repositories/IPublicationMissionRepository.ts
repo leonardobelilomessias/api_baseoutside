@@ -11,7 +11,7 @@ interface IPublicationMission{
 
   create({id_mission,type,description,content}):Promise<IResponsePublicationMission>
 
-  list(id_mission:string):Promise<PublicationMission[]>
+  list(id_mission:string)
 
   edit(id_publication:string):Promise<PublicationMission[]>
 

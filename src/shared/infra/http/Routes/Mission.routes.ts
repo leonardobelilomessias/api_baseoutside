@@ -21,6 +21,7 @@ import { listsponsorsMissionsController } from "../../../../modules/Missions/Use
 import { updateAdminMissionController } from "../../../../modules/Missions/UseCases/UpdateAdminMission";
 import { updateMissionController } from "../../../../modules/Missions/UseCases/UpdateMission";
 import uploadConfig from '../../../../config/upload'
+import { listPublicationMissionController } from "../../../../modules/Missions/UseCases/ListPublicationsMission";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
@@ -68,7 +69,9 @@ mission.get("/missionSponsor", async(request, response) => {
 mission.get("/admin", async(request, response) => {
   await listAdminsMissionControler.handle(request,response)
 })
-
+mission.get("/publications", async(request, response) => {
+  await listPublicationMissionController.handle(request,response)
+})
 
 mission.patch("/", async (request, response) => {
   await updateMissionController.handle(request,response)

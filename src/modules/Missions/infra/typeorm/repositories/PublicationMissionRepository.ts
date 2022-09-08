@@ -22,8 +22,17 @@ class PublicationMissionRepository implements IPublicationMission{
     Object.assign(createdPublication)
     return {publication:createdPublication,photos}
   }
-  list(id_mission: string): Promise<PublicationMission[]> {
-    throw new Error("Method not implemented.");
+ async  list(id_mission: string){
+  const publicationByIdAgent = await this.publicationMissionRepository.find({
+    where:{id_mission:id_mission}
+  })
+  const fullPublications = await publicationByIdAgent.map(async (publication)=>{
+    const photo = await this.photoPublicationMissionRepository.list(publication.id)
+    const urlPhotos = photo.map(onePhoto=>(onePhoto.url))
+    return {publication:publication,  photos:urlPhotos}
+  })
+  return Promise.all(fullPublications) 
+
   }
   edit(id_publication: string): Promise<PublicationMission[]> {
     throw new Error("Method not implemented.");

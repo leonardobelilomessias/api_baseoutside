@@ -14,7 +14,7 @@ class PhotoPublicationMissionRepository implements IPhotoPublicationMissionRepos
   async create( {id_publication,content}:{id_publication:string,content:string[]}): Promise<PhotoPublicationMission[]> {
     const urlPhotos = content.map(async photo=>{
       const newPhoto = new PhotoPublicationMission()
-      Object.assign(newPhoto,{id_publication,url:'test'})
+      Object.assign(newPhoto,{id_publication,url:photo})
       const createdPhoto = await this.photopublicationRepository.save(newPhoto)
       this.storageProvider.save(photo,"PhotosPublicationsMissions") 
       return newPhoto
@@ -24,8 +24,10 @@ class PhotoPublicationMissionRepository implements IPhotoPublicationMissionRepos
 
     return Promise.all(urlPhotos)
   }
-  list(id_publication: string): Promise<PhotoPublicationMission[]> {
-    throw new Error("Method not implemented.");
+  async list(id_publication: string): Promise<PhotoPublicationMission[]> {
+    const photos = await this.photopublicationRepository.find({where:{id_publication}})
+    console.log(photos)
+    return photos
   }
   delete(id_publication: string): Promise<PhotoPublicationMission> {
     throw new Error("Method not implemented.");
