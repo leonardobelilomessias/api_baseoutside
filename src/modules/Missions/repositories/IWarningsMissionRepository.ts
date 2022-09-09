@@ -35,7 +35,7 @@ interface IWarningsMissionRepository{
   
   edit({id,title,content,priority,is_active,state,type}:IEditWarningsMissionDTO):Promise<WarningsMission>
 
-  delete()
+  delete(id:string):Promise<WarningsMission>
 
 }
 

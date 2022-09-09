@@ -1,4 +1,5 @@
 import { Repository } from "typeorm"
+import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { ICreateWarningsMissionDTO, IEditWarningsMissionDTO, IWarningsMissionRepository } from "../../../repositories/IWarningsMissionRepository"
 import { WarningsMission } from "../entities/WarningMission"
@@ -38,8 +39,11 @@ class WarningMissionRepository implements IWarningsMissionRepository{
     const editedWarningmission = await this.warningsMissionRepository.save(findWarning)
     return editedWarningmission
   }
-  delete() {
-    throw new Error("Method not implemented.")
+  async delete(id:string):Promise<WarningsMission> {
+    const findwarning = await this.warningsMissionRepository.findOneBy({id})
+    if(!findwarning) throw new AppError("Warning not found")
+    const deletedWarnigMission = await this.warningsMissionRepository.delete(findwarning.id)
+    return findwarning
   }
 }
 export{WarningMissionRepository}
