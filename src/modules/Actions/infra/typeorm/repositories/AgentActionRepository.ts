@@ -37,7 +37,7 @@ class AgentActionRepository implements IAgentActionRepository{
   async delete({ id_action, id_agent }: { id_action: any; id_agent: any; }): Promise<AgentAction> {
     const findAgentAction = await this.agentActionRepository.findOne({ where:{ id_action, id_agent }})
     if(!findAgentAction) throw new AppError("AgentAction not found.")
-    const deleteAgentAction = await this.agentActionRepository.delete(findAgentAction)
+    const deleteAgentAction = await this.agentActionRepository.delete(findAgentAction.id)
     return findAgentAction
   }
 

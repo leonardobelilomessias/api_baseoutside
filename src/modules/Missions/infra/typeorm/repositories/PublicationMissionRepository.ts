@@ -5,15 +5,18 @@ import { IPhotoPublicationMissionRepository } from "../../../repositories/IPhoto
 import { IPublicationMission, IResponsePublicationMission } from "../../../repositories/IPublicationMissionRepository";
 import { PhotoPublicationMission } from "../entities/PhotoPublicationMission";
 import { PublicationMission } from "../entities/PublicationMission";
+import { JourneyMissionRepository } from "./JourneyMissionRepository";
 import { PhotoPublicationMissionRepository } from "./PhotoPublicationMissionRepository";
 
 
 class PublicationMissionRepository implements IPublicationMission{
   private publicationMissionRepository:Repository<PublicationMission>
   private photoPublicationMissionRepository:IPhotoPublicationMissionRepository
+  private JourneyMissionRepository:JourneyMissionRepository
   constructor(photoPublicationMissionRepository:IPhotoPublicationMissionRepository){
     this.publicationMissionRepository = AppDataSource.getRepository(PublicationMission)
     this.photoPublicationMissionRepository = photoPublicationMissionRepository
+    this.JourneyMissionRepository = new JourneyMissionRepository()
   }
   async   create({id_mission,type,description,content}):Promise<IResponsePublicationMission> {
     const newPublication = new PublicationMission()
@@ -21,6 +24,7 @@ class PublicationMissionRepository implements IPublicationMission{
     const createdPublication = await this.publicationMissionRepository.save(newPublication)
     const photos = await this.photoPublicationMissionRepository.create({id_publication:createdPublication.id,content})
     Object.assign(createdPublication)
+    this.JourneyMissionRepository.create({id_mission,type,id_content:newPublication.id})
     return {publication:createdPublication,photos}
   }
  async  list(id_mission: string){

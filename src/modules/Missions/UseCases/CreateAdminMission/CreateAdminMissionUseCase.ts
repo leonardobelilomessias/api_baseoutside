@@ -10,6 +10,10 @@ class CreateAdminMissionUseCase{
   }
   async execute({id_mission,id_agent,type}):Promise<AdminMission> {
     if (!id_mission || !id_agent ||!type) throw new AppError("Some required value is undefined.")
+    const agentParticipesMission = await this.adminmissionRepository.findAgentInMission({id_agent,id_mission})
+    if(!agentParticipesMission) throw new AppError("Only agents that have beem participate of mission can be admins.")
+    const alreadyAdmin = await this.adminmissionRepository.findAdminMission({id_agent,id_mission})
+    if(alreadyAdmin) throw new AppError("Agent alredy is admin of this mission.")
     const createdAgent = await this.adminmissionRepository.createAdminMission({ id_agent, id_mission, type })
 
     return createdAgent

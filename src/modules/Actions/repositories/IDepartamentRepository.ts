@@ -23,6 +23,8 @@ interface IDepartamentRepository{
   listAll(id_action:string):Promise<Departament[]>
 
   listDepartamentAgent(id_agent:string):Promise<Departament[]>
+  
+  findAgentDepartament({id_agent,id_departament}):Promise<AgentDepartament>
 
   edit({id,name,description,agents_limit,agents_necessary}:IEditDepartement):Promise<Departament>
 

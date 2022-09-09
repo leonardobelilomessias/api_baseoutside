@@ -25,6 +25,8 @@ import { listPublicationMissionController } from "../../../../modules/Missions/U
 import { updatePublicationMissionController } from "../../../../modules/Missions/UseCases/EditPublicationMission";
 import { deletePublicationAgentController } from "../../../../modules/Agents/UseCases/DeletePublicationAgent";
 import { deletePublicationMissionController } from "../../../../modules/Missions/UseCases/DeletePublicationMission";
+import { listJourneyMissionController } from "../../../../modules/Missions/UseCases/ListJourneysMissionUseCase";
+import { listJourneysMissionController } from "../../../../modules/Missions/UseCases/ListJourneyMission";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
@@ -74,6 +76,9 @@ mission.get("/admin", async(request, response) => {
 })
 mission.get("/publications", async(request, response) => {
   await listPublicationMissionController.handle(request,response)
+})
+mission.get("/journey", async(request, response) => {
+  await listJourneysMissionController.handle(request,response)
 })
 
 mission.patch("/", async (request, response) => {

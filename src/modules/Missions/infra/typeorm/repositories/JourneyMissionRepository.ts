@@ -6,7 +6,7 @@ import { JourneyMission } from "../entities/JourneyMission"
 class JourneyMissionRepository implements IJourneyMissionRepository{
   private journeyMissionRepository:Repository<JourneyMission>
   constructor(){
-    this.journeyMissionRepository = AppDataSource.getRepository("journeys_Missions")
+    this.journeyMissionRepository = AppDataSource.getRepository("journeys_mission")
   }
   async create({id_mission,type,id_content,is_hidden,is_private }:ICreateJourneyMission): Promise<JourneyMission> {
     const newJourneyMission = new JourneyMission()

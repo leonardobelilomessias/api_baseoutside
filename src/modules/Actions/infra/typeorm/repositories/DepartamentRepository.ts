@@ -13,10 +13,14 @@ class DepartamentRepository implements IDepartamentRepository{
   private agentDepartamentRepository:Repository<AgentDepartament>
   private taskDepartamentRepository:Repository<TaskDepartament>
   constructor(){
-    this.agentDepartamentRepository = AppDataSource.getRepository(AgentDepartament)
+    this.agentDepartamentRepository = AppDataSource.getRepository("agents_departament")
     this.departamentRepository = AppDataSource.getRepository(Departament)
     this.taskDepartamentRepository = AppDataSource.getRepository(TaskDepartament)
 
+  }
+  async findAgentDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any; }): Promise<AgentDepartament> {
+    const agentDepartament = await this.agentDepartamentRepository.findOne({where:{id_agent,id_departament}})
+    return agentDepartament
   }
 
   async create({ id_action, name, description, agents_limit, agents_necessary }: ICreateDepartament): Promise<Departament> {
@@ -55,8 +59,8 @@ class DepartamentRepository implements IDepartamentRepository{
       Object.assign(newAgentDepartament,{id_agent,id_departament})
       const createAgentDepartament = await this.agentDepartamentRepository.save(newAgentDepartament)
       return createAgentDepartament
-    }catch{
-      throw new AppError("Some value is wrong. Confirm if there is the agent or departament")
+    }catch(e){
+      throw new AppError(`Some value is wrong. Confirm if there is the agent or departament${e}`,)
     }
   }
  async  listAgentsDepartament(id_departament: any): Promise<AgentDepartament[]> {

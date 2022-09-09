@@ -2,12 +2,24 @@ import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { IAdminMissionRepository } from "../../../repositories/IAdminMissionRepository";
+import { IMissionRepository } from "../../../repositories/IMissonRepository";
 import { AdminMission } from "../entities/AdminMission";
+import { AgentMission } from "../entities/AgentMission";
+import { Mission } from "../entities/Mission";
+import { MissionRepository } from "./MissionReposioty";
+import {IAgentsMissions} from "../../../repositories/IAgentsMissions"
+import { AgentsMissionRepository } from "./AgentsMissionRepository";
 
 class AdminMissionRepository implements IAdminMissionRepository{
   private adminMissionRepository :Repository<AdminMission>
+  private agentMissionRepository:IAgentsMissions
   constructor(){
     this.adminMissionRepository = AppDataSource.getRepository(AdminMission)
+    this.agentMissionRepository = new AgentsMissionRepository()
+  }
+  async findAgentInMission({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {
+    const agentMission = await this.agentMissionRepository.findAgentMission({id_agent,id_mission})
+    return agentMission
   }
  async  listAdminsMission(id_mission: string): Promise<AdminMission[]> {
     const foundAdmininMission = await this.adminMissionRepository.find({where:{id_mission}})
