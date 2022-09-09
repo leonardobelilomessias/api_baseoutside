@@ -32,6 +32,7 @@ import { deletedCardMissionController } from "../../../../modules/Missions/UseCa
 import { editCardMissionController } from "../../../../modules/Missions/UseCases/EditCardMission";
 import { findCardMissionController } from "../../../../modules/Missions/UseCases/FindCardMission";
 import { createWarningMissionController } from "../../../../modules/Missions/UseCases/CreateWarningMission";
+import { listwarnigsMissionController } from "../../../../modules/Missions/UseCases/listWarningsMission";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
@@ -94,7 +95,9 @@ mission.get("/journey", async(request, response) => {
 mission.get("/card", async(request, response) => {
   await findCardMissionController.handle(request,response)
 })
-
+mission.get("/warnings", async(request, response) => {
+  await listwarnigsMissionController.handle(request,response)
+})
 mission.patch("/", async (request, response) => {
   await updateMissionController.handle(request,response)
 })
