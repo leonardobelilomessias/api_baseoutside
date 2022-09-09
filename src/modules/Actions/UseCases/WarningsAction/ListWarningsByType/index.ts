@@ -1,9 +1,9 @@
-import { WarningMissionRepository } from "../../infra/typeorm/repositories/WarningsMissionRepository";
-import { ListWarningsMissionBySatusController } from "./ListWarningsMissionByTypeController";
+import { WarningActionRepository } from "../../../infra/typeorm/repositories/WarningsActionRepository";
+import { ListWarningsActionBySatusController } from "./ListWarningsActionByTypeController";
 
-import { ListWarningsMissionByTypeUseCase } from "./ListWarningsMissionByTypeUseCase";
+import { ListWarningsActionByTypeUseCase } from "./ListWarningsActionByTypeUseCase";
 
-const warningsMissionRepository = new WarningMissionRepository()
-const listwarnigsMissionUseCase = new ListWarningsMissionByTypeUseCase(warningsMissionRepository)
-const listwarnigsMissionByTypeController = new ListWarningsMissionBySatusController(listwarnigsMissionUseCase)
-export{listwarnigsMissionByTypeController}
+const warningsActionRepository = new WarningActionRepository()
+const listwarnigsActionUseCase = new ListWarningsActionByTypeUseCase(warningsActionRepository)
+const listwarnigsActionByTypeController = new ListWarningsActionBySatusController(listwarnigsActionUseCase)
+export{listwarnigsActionByTypeController}

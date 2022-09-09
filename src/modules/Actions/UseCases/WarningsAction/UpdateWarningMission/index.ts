@@ -1,8 +1,8 @@
-import { WarningMissionRepository } from "../../infra/typeorm/repositories/WarningsMissionRepository";
-import { UpdateWarningMissionController } from "./updateWarningMissionController";
-import { UpdateWarningMissionUseCase } from "./UpdateWarningMissionUseCase";
+import { WarningActionRepository } from "../../../infra/typeorm/repositories/WarningsActionRepository";
+import { UpdateWarningActionController } from "./updateWarningActionController";
+import { UpdateWarningActionUseCase } from "./UpdateWarningActionUseCase";
 
-const warningMissionRepository = new WarningMissionRepository()
-const updateWarningMissionUseCase = new UpdateWarningMissionUseCase(warningMissionRepository)
-const updateWarningMissionController = new UpdateWarningMissionController(updateWarningMissionUseCase)
-export{updateWarningMissionController}
+const warningActionRepository = new WarningActionRepository()
+const updateWarningActionUseCase = new UpdateWarningActionUseCase(warningActionRepository)
+const updateWarningActionController = new UpdateWarningActionController(updateWarningActionUseCase)
+export{updateWarningActionController}

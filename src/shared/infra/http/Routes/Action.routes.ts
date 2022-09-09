@@ -26,6 +26,8 @@ import { deletedWarnigActionController } from "../../../../modules/Actions/UseCa
 import { listwarnigsActionByStateController } from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningByStatus";
 import { listWarnigsActionController } from "../../../../modules/Actions/UseCases/WarningsAction/listWarningsAction";
 import { listWarnigsActionByPriorityController } from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningsByPriority";
+import { listwarnigsActionByTypeController } from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningsByType";
+import { updateWarningActionController } from "../../../../modules/Actions/UseCases/WarningsAction/UpdateWarningMission";
 
 const action = Router()
 
@@ -71,6 +73,9 @@ action.get("/warningsByState", async (request, response) => {
 action.get("/warningsByPriority", async (request, response) => {
   await listWarnigsActionByPriorityController.handle(request,response)
 })
+action.get("/warningsByType", async (request, response) => {
+  await listwarnigsActionByTypeController.handle(request,response)
+})
 action.patch("/",async(request,response)=>{
   await updateActionController.handle(request,response)
 })
@@ -81,6 +86,10 @@ action.patch("/updateTaskDepartament",async(request,response)=>{
 action.patch("/departament",async(request,response)=>{
   await updateDepartamentController.handle(request,response)
 })
+action.patch("/warning",async(request,response)=>{
+  await updateWarningActionController.handle(request,response)
+})
+
 
 action.post("/createAgentAction",async(request,response)=>{
   await createAgentActionController.handle(request,response)
