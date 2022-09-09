@@ -28,8 +28,9 @@ class WarningMissionRepository implements IWarningsMissionRepository{
     const findWarning = await this.warningsMissionRepository.find({where:{state,id_mission}})
     return findWarning
   }
-  listByPriority(priority: string): Promise<WarningsMission[]> {
-    throw new Error("Method not implemented.")
+  async listByPriority({priority,id_mission}): Promise<WarningsMission[]> {
+    const findWarning = await this.warningsMissionRepository.find({where:{priority,id_mission}})
+    return findWarning
   }
   listByType(type: number): Promise<WarningsMission[]> {
     throw new Error("Method not implemented.")

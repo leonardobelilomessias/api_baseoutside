@@ -29,7 +29,7 @@ interface IWarningsMissionRepository{
 
   listByStatus({state,id_mission}):Promise<WarningsMission[]>
 
-  listByPriority(priority:string):Promise<WarningsMission[]>
+  listByPriority({priority,id_mission}):Promise<WarningsMission[]>
 
   listByType(type:number):Promise<WarningsMission[]>
   
