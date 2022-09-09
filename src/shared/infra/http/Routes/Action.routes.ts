@@ -19,6 +19,7 @@ import { deletedWarnigDepartamentController } from "../../../../modules/Actions/
 import { listWarningsDepartamentByStateController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/ListWarningDepartamentByStatus";
 import { listWarningsDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/listWarningsDepartament";
 import { listWarningsDepartamentByPriorityController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/ListWarningsDepartamentByPriority";
+import { listwarningsDepartamentByTypeController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/ListWarningsDepartamentByType";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
 import { listActionsAgentController } from "../../../../modules/Actions/UseCases/ListActionsAgent";
@@ -90,7 +91,9 @@ action.get("/warningsDepartament", async (request, response) => {
 action.get("/warningsDepartamentByPriority", async (request, response) => {
   await listWarningsDepartamentByPriorityController.handle(request,response)
 })
-
+action.get("/warningsDepartamentByType", async (request, response) => {
+  await listwarningsDepartamentByTypeController.handle(request,response)
+})
 action.patch("/",async(request,response)=>{
   await updateActionController.handle(request,response)
 })
