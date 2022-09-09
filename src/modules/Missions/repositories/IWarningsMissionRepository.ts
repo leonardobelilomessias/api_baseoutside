@@ -23,6 +23,8 @@ interface IWarningsMissionRepository{
 
   create({id_mission,id_creator,title,content,priority,is_active,state,type}:ICreateWarningsMissionDTO):Promise<WarningsMission>
 
+  findById(id:string):Promise<WarningsMission>
+
   listByIdMission(id_mission:string):Promise<WarningsMission[]>
 
   listByStatus(state:number):Promise<WarningsMission[]>

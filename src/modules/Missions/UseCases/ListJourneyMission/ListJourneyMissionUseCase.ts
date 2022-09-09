@@ -9,7 +9,7 @@ class ListJourneyMissionUseCase{
   }
   async execute(id_mission:string):Promise<JourneyMission[]>{
     if(!id_mission)throw new AppError("Value sent of mission is undefined.")
-    console.log(id_mission)
+
     const findJourneyMission = await this.journerMissionRepository.listByIdMission(id_mission)
     return findJourneyMission
   }

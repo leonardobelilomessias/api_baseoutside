@@ -19,7 +19,7 @@ class WarningsMission{
   content:string;
 
   @Column()
-  priority:string;
+  priority:number;
 
   @CreateDateColumn()
   created_at:Date;

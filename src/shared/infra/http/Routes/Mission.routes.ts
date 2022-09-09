@@ -33,6 +33,7 @@ import { editCardMissionController } from "../../../../modules/Missions/UseCases
 import { findCardMissionController } from "../../../../modules/Missions/UseCases/FindCardMission";
 import { createWarningMissionController } from "../../../../modules/Missions/UseCases/CreateWarningMission";
 import { listwarnigsMissionController } from "../../../../modules/Missions/UseCases/listWarningsMission";
+import { updateWarningMissionController } from "../../../../modules/Missions/UseCases/UpdateWarningMission";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
@@ -109,6 +110,10 @@ mission.patch("/publication", async (request, response) => {
 })
 mission.patch("/card", async (request, response) => {
   await editCardMissionController.handle(request,response)
+})
+
+mission.patch("/warning", async (request, response) => {
+  await updateWarningMissionController.handle(request,response)
 })
 
 mission.delete("/deactivateMission", async (request, response) => {
