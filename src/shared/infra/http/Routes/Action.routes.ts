@@ -14,6 +14,10 @@ import { deleteTaskDepartamentController } from "../../../../modules/Actions/Use
 import { listTasksDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/ListTaskDepartament";
 import { updateTaskDepartementController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/UpdateTaskDepartament";
 import { updateDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/UpdateDepartament";
+import { createWarningDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/CreateWarningDepartament";
+import { deletedWarnigDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/DeleteWarningDepartament";
+import { listWarningsDepartamentByStateController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/ListWarningDepartamentByStatus";
+import { listWarningsDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/listWarningsDepartament";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
 import { listActionsAgentController } from "../../../../modules/Actions/UseCases/ListActionsAgent";
@@ -25,6 +29,7 @@ import { createWarningActionController } from "../../../../modules/Actions/UseCa
 import { deletedWarnigActionController } from "../../../../modules/Actions/UseCases/WarningsAction/DeleteWarningMission";
 import { listwarnigsActionByStateController } from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningByStatus";
 import { listWarnigsActionController } from "../../../../modules/Actions/UseCases/WarningsAction/listWarningsAction";
+
 import { listWarnigsActionByPriorityController } from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningsByPriority";
 import { listwarnigsActionByTypeController } from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningsByType";
 import { updateWarningActionController } from "../../../../modules/Actions/UseCases/WarningsAction/UpdateWarningMission";
@@ -60,7 +65,6 @@ action.get("/actionsAgent", async (request, response) => {
   await listActionsAgentController.handle(request,response)
 })
 
-
 action.get("/listTasksDepartament", async (request, response) => {
   await listTasksDepartamentController.handle(request,response)
 })
@@ -76,6 +80,13 @@ action.get("/warningsByPriority", async (request, response) => {
 action.get("/warningsByType", async (request, response) => {
   await listwarnigsActionByTypeController.handle(request,response)
 })
+action.get("/warningsDepartamentByState", async (request, response) => {
+  await listWarningsDepartamentByStateController.handle(request,response)
+})
+action.get("/warningsDepartament", async (request, response) => {
+  await listWarningsDepartamentController.handle(request,response)
+})
+
 action.patch("/",async(request,response)=>{
   await updateActionController.handle(request,response)
 })
@@ -110,6 +121,11 @@ action.post("/warning",async(request,response)=>{
   await createWarningActionController.handle(request,response)
 })
 
+action.post("/warningDepartament",async(request,response)=>{
+  await createWarningDepartamentController.handle(request,response)
+})
+
+
 action.delete("/",async(request,response)=>{
   await cancelActionController.handle(request,response)
 })
@@ -129,5 +145,8 @@ action.delete("/deleteTaskDepartament",async(request,response)=>{
 })
 action.delete("/warning",async(request,response)=>{
   await   deletedWarnigActionController.handle(request,response)
+})
+action.delete("/warningDepartament",async(request,response)=>{
+  await   deletedWarnigDepartamentController.handle(request,response)
 })
 export {action}
