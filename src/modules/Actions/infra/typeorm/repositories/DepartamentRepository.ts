@@ -39,8 +39,11 @@ class DepartamentRepository implements IDepartamentRepository{
   listDepartamentAgent(id_agent: string): Promise<Departament[]> {
     throw new Error("Method not implemented.");
   }
-  edit({ id, name, description, agents_limit, agents_necessary }: IEditDepartement): Promise<Departament> {
-    throw new Error("Method not implemented.");
+  async edit({ id, name, description, agents_limit, agents_necessary }: IEditDepartement): Promise<Departament> {
+    const findDepartament = await this.departamentRepository.findOne({where:{id}})
+    Object.assign(findDepartament,{name, description, agents_limit, agents_necessary })
+    const updatedDepartament = await this.departamentRepository.save(findDepartament)
+    return updatedDepartament
   }
   async delete(id: string): Promise<Departament> {
     const findDepartament = await this.departamentRepository.findOneBy({id})
