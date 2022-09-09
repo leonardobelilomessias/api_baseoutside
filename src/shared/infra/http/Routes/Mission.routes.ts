@@ -28,6 +28,7 @@ import { deletePublicationMissionController } from "../../../../modules/Missions
 import { listJourneyMissionController } from "../../../../modules/Missions/UseCases/ListJourneysMissionUseCase";
 import { listJourneysMissionController } from "../../../../modules/Missions/UseCases/ListJourneyMission";
 import { createCardMissionController } from "../../../../modules/Missions/UseCases/CreateCardMission";
+import { deletedCardMissionController } from "../../../../modules/Missions/UseCases/DeleteCardMission";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
@@ -109,5 +110,8 @@ mission.delete("/admin", async (request, response) => {
 })
 mission.delete("/publication", async (request, response) => {
   await deletePublicationMissionController.handle(request,response)
+})
+mission.delete("/card", async (request, response) => {
+  await deletedCardMissionController.handle(request,response)
 })
 export {mission}
