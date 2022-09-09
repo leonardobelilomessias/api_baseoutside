@@ -31,7 +31,7 @@ interface IWarningsMissionRepository{
 
   listByPriority({priority,id_mission}):Promise<WarningsMission[]>
 
-  listByType(type:number):Promise<WarningsMission[]>
+  listByType({type,id_mission}):Promise<WarningsMission[]>
   
   edit({id,title,content,priority,is_active,state,type}:IEditWarningsMissionDTO):Promise<WarningsMission>
 

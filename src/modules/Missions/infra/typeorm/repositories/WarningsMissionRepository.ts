@@ -21,7 +21,6 @@ class WarningMissionRepository implements IWarningsMissionRepository{
   }
   async listByIdMission(id_mission: string): Promise<WarningsMission[]> {
     const listWarningsMission = await this.warningsMissionRepository.find({where:{id_mission}})
-
     return listWarningsMission
   }
   async listByStatus({state,id_mission}): Promise<WarningsMission[]> {
@@ -32,8 +31,9 @@ class WarningMissionRepository implements IWarningsMissionRepository{
     const findWarning = await this.warningsMissionRepository.find({where:{priority,id_mission}})
     return findWarning
   }
-  listByType(type: number): Promise<WarningsMission[]> {
-    throw new Error("Method not implemented.")
+  async listByType({type,id_mission}): Promise<WarningsMission[]> {
+    const findWarning = await this.warningsMissionRepository.find({where:{type,id_mission}})
+    return findWarning
   }
   async edit({ id, title, content, priority, is_active, state, type }: IEditWarningsMissionDTO): Promise<WarningsMission> {
     const findWarning = await this.warningsMissionRepository.findOneBy({id})
