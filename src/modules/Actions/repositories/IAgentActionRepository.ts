@@ -6,7 +6,7 @@ interface IAgentActionRepository{
 
   listAgentsAction(id_action):Promise<AgentAction[]>
 
-  listActionsAgent(id_agent):Promise<AgentAction>
+  listActionsAgent(id_agent):Promise<AgentAction[]>
 
   findAgentAction({id_action,id_agent}):Promise<AgentAction>
 

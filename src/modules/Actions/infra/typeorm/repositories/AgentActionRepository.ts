@@ -31,8 +31,9 @@ class AgentActionRepository implements IAgentActionRepository{
     return agentsActions
 
   }
-  listActionsAgent(id_agent: any): Promise<AgentAction> {
-    throw new Error("Method not implemented.");
+ async  listActionsAgent(id_agent: any): Promise<AgentAction[]> {
+    const findActionsAgent = await this.agentActionRepository.find({where:{id_agent}})
+    return findActionsAgent
   }
   async delete({ id_action, id_agent }: { id_action: any; id_agent: any; }): Promise<AgentAction> {
     const findAgentAction = await this.agentActionRepository.findOne({ where:{ id_action, id_agent }})

@@ -38,6 +38,7 @@ import { deletedWarnigMissionController } from "../../../../modules/Missions/Use
 import { listwarnigsMissionByStateController } from "../../../../modules/Missions/UseCases/ListWarningByStatus";
 import { listwarnigsMissionByPriorityController } from "../../../../modules/Missions/UseCases/ListWarningsByPriority";
 import { listwarnigsMissionByTypeController } from "../../../../modules/Missions/UseCases/ListWarningsByType";
+import { deletedJourneyMissionController } from "../../../../modules/Missions/UseCases/DeleteJourneyMission";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
@@ -149,5 +150,8 @@ mission.delete("/card", async (request, response) => {
 })
 mission.delete("/warning", async (request, response) => {
   await deletedWarnigMissionController.handle(request,response)
+})
+mission.delete("/journey", async (request, response) => {
+  await deletedJourneyMissionController.handle(request,response)
 })
 export {mission}
