@@ -27,6 +27,7 @@ import { deletePublicationAgentController } from "../../../../modules/Agents/Use
 import { deletePublicationMissionController } from "../../../../modules/Missions/UseCases/DeletePublicationMission";
 import { listJourneyMissionController } from "../../../../modules/Missions/UseCases/ListJourneysMissionUseCase";
 import { listJourneysMissionController } from "../../../../modules/Missions/UseCases/ListJourneyMission";
+import { createCardMissionController } from "../../../../modules/Missions/UseCases/CreateCardMission";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
@@ -36,6 +37,9 @@ mission.post("/", async (request, response) => {
 
 mission.post("/agent", async (request, response) => {
   await createAgentMissionController.handle(request,response)
+})
+mission.post("/card", async (request, response) => {
+  await createCardMissionController.handle(request,response)
 })
 mission.post("/sponsor", async (request, response) => {
   await createSponsorMissionController.handle(request,response)

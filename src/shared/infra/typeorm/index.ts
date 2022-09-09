@@ -23,6 +23,7 @@ import { AdminMission } from "../../../modules/Missions/infra/typeorm/entities/A
 import { PublicationMission } from "../../../modules/Missions/infra/typeorm/entities/PublicationMission";
 import { PhotoPublicationMission } from "../../../modules/Missions/infra/typeorm/entities/PhotoPublicationMission";
 import { JourneyMission } from "../../../modules/Missions/infra/typeorm/entities/JourneyMission";
+import { CardMission } from "../../../modules/Missions/infra/typeorm/entities/CardMission";
  
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -52,7 +53,8 @@ export const AppDataSource = new DataSource({
     AdminMission,
     PublicationMission,
     PhotoPublicationMission,
-    JourneyMission
+    JourneyMission,
+    CardMission
   ],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"]
 
