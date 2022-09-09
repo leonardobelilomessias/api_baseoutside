@@ -20,6 +20,7 @@ import { listWarningsDepartamentByStateController } from "../../../../modules/Ac
 import { listWarningsDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/listWarningsDepartament";
 import { listWarningsDepartamentByPriorityController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/ListWarningsDepartamentByPriority";
 import { listwarningsDepartamentByTypeController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/ListWarningsDepartamentByType";
+import { updateWarningDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/WarningsDepartament/UpdateWarningDepartament";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
 import { listActionsAgentController } from "../../../../modules/Actions/UseCases/ListActionsAgent";
@@ -106,6 +107,9 @@ action.patch("/departament",async(request,response)=>{
 })
 action.patch("/warning",async(request,response)=>{
   await updateWarningActionController.handle(request,response)
+})
+action.patch("/warningDepartament",async(request,response)=>{
+  await updateWarningDepartamentController.handle(request,response)
 })
 
 
