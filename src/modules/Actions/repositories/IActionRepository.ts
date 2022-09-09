@@ -30,6 +30,8 @@ interface IActionRepository{
   listAll(): Promise<Action[]>
   
   findById(id:string): Promise<Action>
+
+  findByIdMission(id_mission:string): Promise<Action[]>
   
   findByName(name:string): Promise<Action[]>
 

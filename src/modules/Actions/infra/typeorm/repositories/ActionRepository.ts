@@ -10,6 +10,10 @@ class ActionRepository implements IActionRepository{
   constructor() {
     this.actionRepository = AppDataSource.getRepository("actions")
   }
+  async findByIdMission(id_mission: string): Promise<Action[]> {
+    const findActionsByMission = await this.actionRepository.find({where:{id_mission}})
+    return findActionsByMission
+  }
   async create({ name, description, date_start, date_end, value, id_mission,local }): Promise<Action> {
     try{
       const action = new Action()

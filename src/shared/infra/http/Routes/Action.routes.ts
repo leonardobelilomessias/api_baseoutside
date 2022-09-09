@@ -15,6 +15,7 @@ import { listTasksDepartamentController } from "../../../../modules/Actions/UseC
 import { updateTaskDepartementController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/UpdateTaskDepartament";
 import { findActionByLocalController } from "../../../../modules/Actions/UseCases/FindActionByLocal";
 import { findActionByNameController } from "../../../../modules/Actions/UseCases/FindActionByName";
+import { listActionByMissionController } from "../../../../modules/Actions/UseCases/ListActionsByMission";
 import { listAgentsActionsController } from "../../../../modules/Actions/UseCases/ListAgentsAction";
 import { listActionController } from "../../../../modules/Actions/UseCases/ListAllActions";
 import { updateActionController } from "../../../../modules/Actions/UseCases/UpdateAction";
@@ -43,6 +44,10 @@ action.get("/listdepartaments", async (request, response) => {
 action.get("/listAgentsDepartaments", async (request, response) => {
   await listAgentsDepartmentController.handle(request,response)
 })
+action.get("/byIdMission", async (request, response) => {
+  await listActionByMissionController.handle(request,response)
+})
+
 
 action.get("/listTasksDepartament", async (request, response) => {
   await listTasksDepartamentController.handle(request,response)
