@@ -25,6 +25,7 @@ import { PhotoPublicationMission } from "../../../modules/Missions/infra/typeorm
 import { JourneyMission } from "../../../modules/Missions/infra/typeorm/entities/JourneyMission";
 import { CardMission } from "../../../modules/Missions/infra/typeorm/entities/CardMission";
 import { WarningsMission } from "../../../modules/Missions/infra/typeorm/entities/WarningMission";
+import { WarningsAction } from "../../../modules/Actions/infra/typeorm/entities/WarningAction";
  
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -56,7 +57,8 @@ export const AppDataSource = new DataSource({
     PhotoPublicationMission,
     JourneyMission,
     CardMission,
-    WarningsMission
+    WarningsMission,
+    WarningsAction
   ],
   migrations: ["./src/shared/infra/typeorm/migrations/*.ts"]
 

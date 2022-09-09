@@ -21,6 +21,11 @@ import { listActionByMissionController } from "../../../../modules/Actions/UseCa
 import { listAgentsActionsController } from "../../../../modules/Actions/UseCases/ListAgentsAction";
 import { listActionController } from "../../../../modules/Actions/UseCases/ListAllActions";
 import { updateActionController } from "../../../../modules/Actions/UseCases/UpdateAction";
+import { createWarningActionController } from "../../../../modules/Actions/UseCases/WarningsAction/CreateWarningAction";
+import { deletedWarnigActionController } from "../../../../modules/Actions/UseCases/WarningsAction/DeleteWarningMission";
+import { listwarnigsActionByStateController } from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningByStatus";
+import { listWarnigsActionController } from "../../../../modules/Actions/UseCases/WarningsAction/listWarningsAction";
+import { listWarnigsActionByPriorityController } from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningsByPriority";
 
 const action = Router()
 
@@ -57,7 +62,15 @@ action.get("/actionsAgent", async (request, response) => {
 action.get("/listTasksDepartament", async (request, response) => {
   await listTasksDepartamentController.handle(request,response)
 })
-
+action.get("/warnings", async (request, response) => {
+  await listWarnigsActionController.handle(request,response)
+})
+action.get("/warningsByState", async (request, response) => {
+  await listwarnigsActionByStateController.handle(request,response)
+})
+action.get("/warningsByPriority", async (request, response) => {
+  await listWarnigsActionByPriorityController.handle(request,response)
+})
 action.patch("/",async(request,response)=>{
   await updateActionController.handle(request,response)
 })
@@ -84,6 +97,10 @@ action.post("/createTaskDepartament",async(request,response)=>{
   await createTaskDepartamentController.handle(request,response)
 })
 
+action.post("/warning",async(request,response)=>{
+  await createWarningActionController.handle(request,response)
+})
+
 action.delete("/",async(request,response)=>{
   await cancelActionController.handle(request,response)
 })
@@ -100,5 +117,8 @@ action.delete("/deleteAgentDepartament",async(request,response)=>{
 
 action.delete("/deleteTaskDepartament",async(request,response)=>{
   await   deleteTaskDepartamentController.handle(request,response)
+})
+action.delete("/warning",async(request,response)=>{
+  await   deletedWarnigActionController.handle(request,response)
 })
 export {action}
