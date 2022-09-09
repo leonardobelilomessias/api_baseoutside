@@ -35,6 +35,7 @@ import { createWarningMissionController } from "../../../../modules/Missions/Use
 import { listwarnigsMissionController } from "../../../../modules/Missions/UseCases/listWarningsMission";
 import { updateWarningMissionController } from "../../../../modules/Missions/UseCases/UpdateWarningMission";
 import { deletedWarnigMissionController } from "../../../../modules/Missions/UseCases/DeleteWarningMission";
+import { listwarnigsMissionByStateController } from "../../../../modules/Missions/UseCases/ListWarningByStatus";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
@@ -99,6 +100,9 @@ mission.get("/card", async(request, response) => {
 })
 mission.get("/warnings", async(request, response) => {
   await listwarnigsMissionController.handle(request,response)
+})
+mission.get("/warningsByState", async(request, response) => {
+  await listwarnigsMissionByStateController.handle(request,response)
 })
 mission.patch("/", async (request, response) => {
   await updateMissionController.handle(request,response)
