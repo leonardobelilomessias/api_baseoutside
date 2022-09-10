@@ -9,7 +9,7 @@ class ListJourneysAgentUseCase{
   }
   async execute(id_agent:string):Promise<JourneyAgent[]>{
     if(!id_agent) throw new AppError("Value sent is undefined")
-    const journeysAgent = this.journeyAgentRepository.listByIdAgent(id_agent)
+    const journeysAgent =await  this.journeyAgentRepository.listByIdAgent(id_agent)
     return journeysAgent
   }
 }

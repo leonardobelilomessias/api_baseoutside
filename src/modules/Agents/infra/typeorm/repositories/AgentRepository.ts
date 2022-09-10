@@ -17,7 +17,7 @@ import { hash,compare } from "bcryptjs"
      this.interestsRepository = new InterestsRepository()
   }
   async findByUserName(user_name: string): Promise<Agent> {
-     const agentByUsername = await this.agentRepository.findOneBy({user_name})
+     const agentByUsername = await this.agentRepository.findOne({where:{user_name:user_name,is_active:true}})
      return agentByUsername
    }
    listAll(): Promise<Agent[]> {
@@ -108,7 +108,7 @@ import { hash,compare } from "bcryptjs"
    }
    
   async findByName(name :string): Promise<Agent> {
-    const foundAgent = await  this.agentRepository.findOneBy({ name: name })
+    const foundAgent = await  this.agentRepository.findOne({ where:{name:name,is_active:true} })
     return foundAgent
    }
 

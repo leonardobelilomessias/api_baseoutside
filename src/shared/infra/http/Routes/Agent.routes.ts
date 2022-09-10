@@ -70,7 +70,7 @@ agent.get("/agentsSponsor",async (request, response) => {
   await listAgentsSponsorController.handle(request,response)
 })
 
-agent.post("/sponsorAgent",async (request, response) => {
+agent.post("/sponsorAgent",ensureAuthenticate, async (request, response) => {
   await createNewSponsorAgentController.handle(request,response)
 })
 
@@ -88,7 +88,7 @@ agent.get("/findCard",async (request, response) => {
   await findCardAgentController.handle(request,response)
 })
 
-agent.post("/journeyAgent", async (request, response) => {
+agent.get("/journey", async (request, response) => {
   await listJourneyAgentController.handle(request,response)
 })
 agent.post("/", async (request, response) => {
@@ -129,14 +129,14 @@ agent.delete("/sponsorAgent",ensureAuthenticate, async (request, response) => {
 agent.delete("/colabAgent",ensureAuthenticate,async (request, response) => {
   await toCancelColabAgentController.handle(request,response)
 })
-agent.delete("/deleteJourneyAgent",async (request, response) => {
+agent.delete("/journey",async (request, response) => {
   await deletedJourneyAgentController.handle(request,response)
 })
-agent.delete("/deletePublication",async (request, response) => {
+agent.delete("/deletePublication",ensureAuthenticate,async (request, response) => {
   await deletePublicationAgentController.handle(request,response)
 })
 
-agent.delete("/deleteCard",async (request, response) => {
+agent.delete("/deleteCard",ensureAuthenticate,async (request, response) => {
   await deletedCardAgentController.handle(request,response)
 })
 export {agent}

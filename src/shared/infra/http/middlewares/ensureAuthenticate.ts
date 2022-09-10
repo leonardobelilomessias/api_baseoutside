@@ -17,9 +17,7 @@ export async function ensureAuthenticate(request: Request, response: Response, n
   const [, token] = authHeader.split(" ")
   try {
     const {sub:agent_id} =    verify(token, auth.secret_token) as IPayload
-    request.user = {
-      id:agent_id
-    }
+    request.user = {id:agent_id}
     next()
   }catch (err){
     throw err   

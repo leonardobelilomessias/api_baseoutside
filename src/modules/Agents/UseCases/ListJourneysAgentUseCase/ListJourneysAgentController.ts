@@ -8,7 +8,7 @@ class ListJourneysAgentController{
   }
   async handle(request:Request,response:Response){
     const {id_agent} = request.body
-    const journeysAgent = this.listJourneysAgentUseCase.execute(id_agent)
+    const journeysAgent =await  this.listJourneysAgentUseCase.execute(id_agent)
     return response.status(200).json(journeysAgent)
   }
 }

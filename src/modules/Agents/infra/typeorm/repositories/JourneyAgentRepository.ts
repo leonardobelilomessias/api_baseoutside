@@ -1,4 +1,5 @@
 import { Repository } from "typeorm"
+import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { ICreateJourneyAgent, IJourneyAgentRepository } from "../../../repositories/IJourneyRepository"
 import { JourneyAgent } from "../entities/JourneyAgent"
@@ -36,7 +37,8 @@ class JourneyAgentRepository implements IJourneyAgentRepository{
   }
   async delete(id: string): Promise<JourneyAgent> {
     const findJourney = await this.journeyAgentRepository.findOneBy({id})
-    const journeyDelete = await this.journeyAgentRepository.delete(findJourney)
+    if(!findJourney) throw new AppError("Journey not found")
+    const journeyDelete = await this.journeyAgentRepository.delete(findJourney.id)
     return findJourney
   }
 }
