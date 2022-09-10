@@ -38,7 +38,7 @@ interface IAgentRepository{
 
   listAll(): Promise<Agent[]>
   
-  deactivate( id:string ): Promise<Agent>
+  deactivate( {id,password}): Promise<Agent>
   
   activate({email}):Promise<void>
 

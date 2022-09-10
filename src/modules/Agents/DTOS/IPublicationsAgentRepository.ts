@@ -33,9 +33,9 @@ interface IPublicationsAgentRepository{
 
   listAll(): Promise<PublicationAgent[]>
 
-  listByIdAgent(idAgent: string)
+  listByIdAgent(id_agent: string)
   
-  listByAgentName(nameAgent:string): Promise<PublicationAgent[]>
+  listByAgentName(name:string): Promise<PublicationAgent[]>
 
   edit({id_publication,description}:EditPublication):Promise<PublicationAgent>
 

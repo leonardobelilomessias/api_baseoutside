@@ -8,10 +8,11 @@ class DeactivateAgentUseCase{
   constructor(agentRepository:IAgentRepository) {
     this.agentRepository = agentRepository
   }
-  async execute( id:string ): Promise<Agent> {
+  async execute( {id, password}): Promise<Agent> {
+    if(!id||!password)throw new AppError("Value of password or id is undefined")
     const existAgent = await  this.agentRepository.findById(id)
     if(!existAgent) throw new AppError("agent does not exist") 
-    const agentWillBeDeactivate = await this.agentRepository.deactivate(id )
+    const agentWillBeDeactivate = await this.agentRepository.deactivate({id,password} )
     
     return agentWillBeDeactivate
   }

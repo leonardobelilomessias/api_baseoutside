@@ -8,8 +8,7 @@ class ListPublicationAgentController{
   }
   async handle(request:Request,response:Response){
     const {id_agent} = request.body
-
-    const listAgentPublication = await this.listPublicationAgentUseCase.execute(id_agent)
+     const listAgentPublication = await this.listPublicationAgentUseCase.execute(id_agent)
     return response.status(200).json(listAgentPublication)
   }
 }

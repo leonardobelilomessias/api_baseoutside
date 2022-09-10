@@ -20,7 +20,7 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     this.photosPublicationsAgent = photoPublicationAgentRepository
     this.journeyAgentRepository = new JourneyAgentRepository()
   }
-  listByAgentName(nameAgent: string): Promise<PublicationAgent[]> {
+  listByAgentName(name: string): Promise<PublicationAgent[]> {
     throw new Error("Method not implemented.");
   }
   async listAll(): Promise<PublicationAgent[]> {

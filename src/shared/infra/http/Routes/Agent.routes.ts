@@ -31,6 +31,7 @@ import { createCardAgentController } from "../../../../modules/Agents/UseCases/C
 import { findCardAgentController } from "../../../../modules/Agents/UseCases/FindCardAgent";
 import { editCardAgentController } from "../../../../modules/Agents/UseCases/EditCardAgent";
 import { deletedCardAgentController } from "../../../../modules/Agents/UseCases/DeleteCardAgent";
+import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
@@ -55,10 +56,10 @@ agent.get("/findByInterest", async (request, response) => {
   await findyByInterestController.handle(request,response)
 
 })
-agent.get("/listAllPublicationsAgents",  (request, response) => {
+agent.get("/allPublications",  (request, response) => {
    listAllPublicationsAgentsController.handle(request,response)
 })
-agent.get("/listPublicationsByIdAgent",  (request, response) => {
+agent.get("/publications",  (request, response) => {
   listPublicatonsByIdAgentController.handle(request,response)
 })
 
@@ -87,45 +88,45 @@ agent.get("/findCard",async (request, response) => {
   await findCardAgentController.handle(request,response)
 })
 
-agent.post("/journeyAgent",async (request, response) => {
+agent.post("/journeyAgent", async (request, response) => {
   await listJourneyAgentController.handle(request,response)
 })
 agent.post("/", async (request, response) => {
    await createAgentController().handle(request,response)
 })
 
-agent.post("/photoPublication", uploadPhotosAgent.array('photos', 3), async (request, response) => {
+agent.post("/photoPublication",ensureAuthenticate, uploadPhotosAgent.array('photos', 3), async (request, response) => {
  await createPublicationAgentController.handle(request,response)
 })
-agent.post("/colabAgent", async (request, response) => {
+agent.post("/colabAgent",ensureAuthenticate, async (request, response) => {
   await createColabAgentController.handle(request,response)
  })
 
- agent.post("/cardAgent", async (request, response) => {
+ agent.post("/cardAgent",ensureAuthenticate, async (request, response) => {
   await createCardAgentController.handle(request,response)
  })
 
-agent.patch("/imageProfile", upload_image_profile.single("image_profile"),async (request, response) => {
+agent.patch("/imageProfile",ensureAuthenticate, upload_image_profile.single("image_profile"),async (request, response) => {
   await updateImageAgentController.handle(request,response)
 })
-agent.patch("/updatePublication",async (request, response) => {
+agent.patch("/updatePublication",ensureAuthenticate,async (request, response) => {
   await  updatePublicationAgentController.handle(request,response)
 })
-agent.patch("/editCard",async (request, response) => {
+agent.patch("/editCard",ensureAuthenticate,async (request, response) => {
   await  editCardAgentController.handle(request,response)
 })
-agent.put("/",async  (request, response) => {
+agent.patch("/",ensureAuthenticate,async  (request, response) => {
 
   await updateAgentController.handle(request,response)
 })
 
-agent.delete("/",async  (request, response) => {
+agent.delete("/",ensureAuthenticate,async  (request, response) => {
   await deactivateAgentController.handle(request,response)
 })
-agent.delete("/sponsorAgent",async (request, response) => {
+agent.delete("/sponsorAgent",ensureAuthenticate, async (request, response) => {
   await toCancelSponsorAgentController.handle(request,response)
 })
-agent.delete("/colabAgent",async (request, response) => {
+agent.delete("/colabAgent",ensureAuthenticate,async (request, response) => {
   await toCancelColabAgentController.handle(request,response)
 })
 agent.delete("/deleteJourneyAgent",async (request, response) => {

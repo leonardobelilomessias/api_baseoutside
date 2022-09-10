@@ -5,7 +5,7 @@ import {  EditAgent, IAgentRepository, ResponseAgent } from "../../../repositori
 import { Agent } from "../entities/Agent"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
-import { hash } from "bcryptjs"
+import { hash,compare } from "bcryptjs"
 
  class AgentRepository implements IAgentRepository {
    agentRepository: Repository<Agent>
@@ -64,8 +64,10 @@ import { hash } from "bcryptjs"
      return newQuery
    }
 
-  async deactivate(id:string ): Promise<Agent> {
-    const agentWillBeDelete = await this.agentRepository.findOneBy({ id: id })  
+  async deactivate({id,password} ): Promise<Agent> {
+    const agentWillBeDelete = await this.agentRepository.findOneBy({ id: id })
+    const passwordMatch = await compare(password, agentWillBeDelete.password)
+    if(!passwordMatch)throw new AppError("Password  incorrect.")
     agentWillBeDelete.is_active = false
     this.agentRepository.save(agentWillBeDelete)
     return  agentWillBeDelete
@@ -78,7 +80,6 @@ import { hash } from "bcryptjs"
    }
     
   async edit({ id, description, email, name, skills, interests,vocation,image_profile}: EditAgent): Promise<ResponseAgent> {
- 
     const agentEdit = await this.agentRepository.findOneBy({ id: id })
     const newSkills = []
     const newInterests =[]
@@ -120,7 +121,7 @@ import { hash } from "bcryptjs"
     const findAgent = await this.agentRepository.findOne({where:{id:id_agent}})
     if(!findAgent) throw new AppError("agent not found")
     const hashPassowrd = await hash(password,8)
-    Object.assign(findAgent,{password:hashPassowrd})
+    findAgent.password = hashPassowrd
     const resetedAgent = this.agentRepository.save(findAgent)
     return resetedAgent
   }

@@ -6,8 +6,8 @@ class ListPublicationsByIdAgentUseCase{
   constructor(publicationsAgentsRepository: IPublicationsAgentRepository) {
     this.publicationsAgentsRepository = publicationsAgentsRepository
   }
-  async execute(idAgent:string): Promise<PublicationAgent[]>{
-    const publicationByAgentName = await this.publicationsAgentsRepository.listByIdAgent(idAgent)
+  async execute(id_agent:string): Promise<PublicationAgent[]>{
+    const publicationByAgentName = await this.publicationsAgentsRepository.listByIdAgent(id_agent)
     return publicationByAgentName
   }
 }

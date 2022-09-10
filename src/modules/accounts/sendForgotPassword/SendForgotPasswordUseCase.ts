@@ -28,7 +28,7 @@ class SendForgotPasswordUseCase{
     await this.agentTokenRepository.create({
       refresh_token: token,
       id_agent: agent.id,
-      expires_date:'2022-07-04 20:09:06'
+      expires_date:'2023-07-04 20:09:06'
     })
     const variables = {
       name: agent.name,
