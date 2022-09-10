@@ -1,8 +1,9 @@
 import { DeactivateAgentController } from "../../../Agents/UseCases/DeactivateAgent/DeactivateAgentController";
 import { MissionRepository } from "../../infra/typeorm/repositories/MissionReposioty";
 import { DeactivateMissionUseCase } from "./DeactiveMissionUseCase";
+import {DeactiveMissionController } from "./DeactiveMissionController";
 
 const missionRepository = new MissionRepository()
 const deactivateMissionUseCase = new DeactivateMissionUseCase(missionRepository)
-const deactivateMisionController = new DeactivateAgentController(deactivateMissionUseCase)
+const deactivateMisionController = new DeactiveMissionController(deactivateMissionUseCase)
 export{deactivateMisionController}

@@ -2,7 +2,6 @@ interface IUpdateMission{
   id?: string;
   name?: string;
   description?: string;
-  creator?: string,
   local?:string
   image_profile?: string;
   duration?: number;

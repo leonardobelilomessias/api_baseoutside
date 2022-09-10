@@ -70,10 +70,6 @@ agent.get("/agentsSponsor",async (request, response) => {
   await listAgentsSponsorController.handle(request,response)
 })
 
-agent.post("/sponsorAgent",ensureAuthenticate, async (request, response) => {
-  await createNewSponsorAgentController.handle(request,response)
-})
-
 agent.get("/colabsAgent", async (request, response) => {
   await  listColabsAgentController.handle(request,response)
 })
@@ -93,6 +89,9 @@ agent.get("/journey", async (request, response) => {
 })
 agent.post("/", async (request, response) => {
    await createAgentController().handle(request,response)
+})
+agent.post("/sponsorAgent",ensureAuthenticate, async (request, response) => {
+  await createNewSponsorAgentController.handle(request,response)
 })
 
 agent.post("/photoPublication",ensureAuthenticate, uploadPhotosAgent.array('photos', 3), async (request, response) => {

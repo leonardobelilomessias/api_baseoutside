@@ -10,9 +10,9 @@ class UpdateMissionUseCase{
   constructor(missionRepository: IMissionRepository) {
     this.missionRepository = missionRepository
   }
-  async execute({id, name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type,field}:IUpdateMission): Promise<Mission>{
+  async execute({id, name,description,image_profile,date_end,date_start,duration,is_private,local,type,field}:IUpdateMission): Promise<Mission>{
     const cleanFieldsMission = cleanEmptySpace({name,description,image_profile,local,field})
-    Object.assign(cleanFieldsMission,{id,creator,date_end,date_start,duration,is_private,type})
+    Object.assign(cleanFieldsMission,{id,date_end,date_start,duration,is_private,type})
     const updatedMission = await this.missionRepository.updateMission(cleanFieldsMission)
     return updatedMission
   }

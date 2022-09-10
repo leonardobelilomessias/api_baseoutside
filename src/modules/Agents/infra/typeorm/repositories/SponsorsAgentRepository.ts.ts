@@ -16,7 +16,7 @@ class SponsorsAgentsRepository implements ISponsorAgentRepository{
   }
   async listSponsorsAgent(id_agent: string): Promise<SponsorAgent[]> {
     if(!id_agent) throw new AppError("Invalid agent")
-    const sponsorsAgent = await this.sponsorsAgentsRepository.findBy({ id_agent: id_agent })
+    const sponsorsAgent = await this.sponsorsAgentsRepository.find({where:{id_agent:id_agent,sponsor_private:false}})
     return sponsorsAgent
   }
 
@@ -28,7 +28,8 @@ class SponsorsAgentsRepository implements ISponsorAgentRepository{
   }
   async listAgentsSponsor(id_sponsor: string): Promise<SponsorAgent[]> {
     if(!id_sponsor) throw new AppError("Invalid agent")
-    const sponsorsAgent = await this.sponsorsAgentsRepository.findBy({ id_sponsor:id_sponsor })
+    const sponsorsAgent = await this.sponsorsAgentsRepository.find({
+      where:{id_sponsor:id_sponsor,agent_private:false}})
     return sponsorsAgent
   }
   async delete({ id_agent, id_sponsor }: { id_agent: any; id_sponsor: any }): Promise<SponsorAgent> {

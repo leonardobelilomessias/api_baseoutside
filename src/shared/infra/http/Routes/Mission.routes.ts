@@ -39,29 +39,30 @@ import { listwarnigsMissionByStateController } from "../../../../modules/Mission
 import { listwarnigsMissionByPriorityController } from "../../../../modules/Missions/UseCases/ListWarningsByPriority";
 import { listwarnigsMissionByTypeController } from "../../../../modules/Missions/UseCases/ListWarningsByType";
 import { deletedJourneyMissionController } from "../../../../modules/Missions/UseCases/DeleteJourneyMission";
+import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
-mission.post("/", async (request, response) => {
+mission.post("/",ensureAuthenticate, async (request, response) => {
   await createMissionController.handle(request,response)
 })
 
-mission.post("/agent", async (request, response) => {
+mission.post("/agent",ensureAuthenticate, async (request, response) => {
   await createAgentMissionController.handle(request,response)
 })
-mission.post("/card", async (request, response) => {
+mission.post("/card",ensureAuthenticate, async (request, response) => {
   await createCardMissionController.handle(request,response)
 })
-mission.post("/sponsor", async (request, response) => {
+mission.post("/sponsor",ensureAuthenticate, async (request, response) => {
   await createSponsorMissionController.handle(request,response)
 })
-mission.post("/admin", async (request, response) => {
+mission.post("/admin",ensureAuthenticate, async (request, response) => {
   await createAdminMissionController.handle(request,response)
 })
-mission.post("/publication",uploadPhotosMission.array('photos', 3) ,async (request, response) => {
+mission.post("/publication",ensureAuthenticate, uploadPhotosMission.array('photos', 3) ,async (request, response) => {
   await createPublicationMissionController.handle(request,response)
 })
-mission.post("/warning",uploadPhotosMission.array('photos', 3) ,async (request, response) => {
+mission.post("/warning",ensureAuthenticate,uploadPhotosMission.array('photos', 3) ,async (request, response) => {
   await createWarningMissionController.handle(request,response)
 })
 mission.get("/", (request, response) => {
@@ -113,45 +114,45 @@ mission.get("/warningsByPriority", async(request, response) => {
 mission.get("/warningsBytype", async(request, response) => {
   await listwarnigsMissionByTypeController.handle(request,response)
 })
-mission.patch("/", async (request, response) => {
+mission.patch("/",ensureAuthenticate, async (request, response) => {
   await updateMissionController.handle(request,response)
 })
-mission.patch("/admin", async (request, response) => {
+mission.patch("/admin",ensureAuthenticate, async (request, response) => {
   await updateAdminMissionController.handle(request,response)
 })
-mission.patch("/publication", async (request, response) => {
+mission.patch("/publication",ensureAuthenticate, async (request, response) => {
   await updatePublicationMissionController.handle(request,response)
 })
-mission.patch("/card", async (request, response) => {
+mission.patch("/card",ensureAuthenticate, async (request, response) => {
   await editCardMissionController.handle(request,response)
 })
 
-mission.patch("/warning", async (request, response) => {
+mission.patch("/warning",ensureAuthenticate, async (request, response) => {
   await updateWarningMissionController.handle(request,response)
 })
 
-mission.delete("/deactivateMission", async (request, response) => {
+mission.delete("/deactivateMission",ensureAuthenticate, async (request, response) => {
   await deactivateMisionController.handle(request,response)
 })
-mission.delete("/agent", async (request, response) => {
+mission.delete("/agent",ensureAuthenticate, async (request, response) => {
   await deleteAgentMissionController.handle(request,response)
 })
-mission.delete("/sponsor", async (request, response) => {
+mission.delete("/sponsor",ensureAuthenticate, async (request, response) => {
   await deleteSponsorMissionController.handle(request,response)
 })
-mission.delete("/admin", async (request, response) => {
+mission.delete("/admin",ensureAuthenticate, async (request, response) => {
   await deleteAdminMissionController.handle(request,response)
 })
-mission.delete("/publication", async (request, response) => {
+mission.delete("/publication",ensureAuthenticate, async (request, response) => {
   await deletePublicationMissionController.handle(request,response)
 })
-mission.delete("/card", async (request, response) => {
+mission.delete("/card",ensureAuthenticate, async (request, response) => {
   await deletedCardMissionController.handle(request,response)
 })
-mission.delete("/warning", async (request, response) => {
+mission.delete("/warning",ensureAuthenticate, async (request, response) => {
   await deletedWarnigMissionController.handle(request,response)
 })
-mission.delete("/journey", async (request, response) => {
+mission.delete("/journey",ensureAuthenticate, async (request, response) => {
   await deletedJourneyMissionController.handle(request,response)
 })
 export {mission}

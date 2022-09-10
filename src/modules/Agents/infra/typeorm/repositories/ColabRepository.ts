@@ -34,7 +34,7 @@ class ColabAgentRepository implements IColabRepository{
       return newColab
     } catch (err) {
       if(err.code ==='ER_NO_REFERENCED_ROW_2')
-      throw new AppError('Invalid agent ou sponsor')
+      throw new AppError('Invalid agent ou colab')
     }
   }
   async listColabAgent(id_agent: string): Promise<Agent[]> {

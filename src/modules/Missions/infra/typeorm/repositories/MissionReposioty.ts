@@ -8,7 +8,7 @@ import { Mission } from "../entities/Mission"
 class MissionRepository implements IMissionRepository{
   private missionRepository:Repository<Mission>
   constructor(){
-    this.missionRepository = AppDataSource.getRepository(Mission)
+    this.missionRepository = AppDataSource.getRepository("missions")
   }
   async findById(id: string): Promise<Mission> {
     const foundMissionById = await this.missionRepository.findOneBy({ id: id })
@@ -25,7 +25,7 @@ class MissionRepository implements IMissionRepository{
     }
   }
   async listAllMissions(): Promise<Mission[]> {
-    const allMissions =await this.missionRepository.find()
+    const allMissions =await this.missionRepository.find({where:{is_active:true}})
     return allMissions
   }
   async findByName(name: string): Promise<Mission> {
