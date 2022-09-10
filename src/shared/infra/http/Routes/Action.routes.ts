@@ -43,10 +43,11 @@ import { listWarnigsActionController } from "../../../../modules/Actions/UseCase
 import { listWarnigsActionByPriorityController } from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningsByPriority";
 import { listwarnigsActionByTypeController } from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningsByType";
 import { updateWarningActionController } from "../../../../modules/Actions/UseCases/WarningsAction/UpdateWarningMission";
+import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 
 const action = Router()
 
-action.post("/", async (request, response) => {
+action.post("/",ensureAuthenticate, async (request, response) => {
  await  createActionController.handle(request,response)
 })
 
@@ -114,78 +115,78 @@ action.get("/warningsTaskByPriority", async (request, response) => {
 action.get("/warningsTaskByType", async (request, response) => {
   await listwarningsTaskByTypeController.handle(request,response)
 })
-action.patch("/",async(request,response)=>{
+action.patch("/",ensureAuthenticate, async(request,response)=>{
   await updateActionController.handle(request,response)
 })
 
-action.patch("/updateTaskDepartament",async(request,response)=>{
+action.patch("/updateTaskDepartament",ensureAuthenticate, async(request,response)=>{
   await updateTaskDepartementController.handle(request,response)
 })
-action.patch("/departament",async(request,response)=>{
+action.patch("/departament",ensureAuthenticate, async(request,response)=>{
   await updateDepartamentController.handle(request,response)
 })
-action.patch("/warning",async(request,response)=>{
+action.patch("/warning",ensureAuthenticate, async(request,response)=>{
   await updateWarningActionController.handle(request,response)
 })
 action.patch("/warningDepartament",async(request,response)=>{
   await updateWarningDepartamentController.handle(request,response)
 })
-action.patch("/warningTask",async(request,response)=>{
+action.patch("/warningTask",ensureAuthenticate, async(request,response)=>{
   await updateWarningTaskController.handle(request,response)
 })
 
 
-action.post("/createAgentAction",async(request,response)=>{
+action.post("/createAgentAction",ensureAuthenticate, async(request,response)=>{
   await createAgentActionController.handle(request,response)
 })
-action.post("/createDepartament",async(request,response)=>{
+action.post("/createDepartament",ensureAuthenticate, async(request,response)=>{
   await createDepartamentController.handle(request,response)
 })
 
-action.post("/createAgentDepartament",async(request,response)=>{
+action.post("/createAgentDepartament",ensureAuthenticate, async(request,response)=>{
   await createAgentDepartamentController.handle(request,response)
 })
 
-action.post("/createTaskDepartament",async(request,response)=>{
+action.post("/createTaskDepartament",ensureAuthenticate, async(request,response)=>{
   await createTaskDepartamentController.handle(request,response)
 })
 
-action.post("/warning",async(request,response)=>{
+action.post("/warning",ensureAuthenticate, async(request,response)=>{
   await createWarningActionController.handle(request,response)
 })
 
-action.post("/warningDepartament",async(request,response)=>{
+action.post("/warningDepartament",ensureAuthenticate, async(request,response)=>{
   await createWarningDepartamentController.handle(request,response)
 })
-action.post("/warningTask",async(request,response)=>{
+action.post("/warningTask",ensureAuthenticate, async(request,response)=>{
   await createWarningTaskController.handle(request,response)
 })
 
 
-action.delete("/",async(request,response)=>{
+action.delete("/",ensureAuthenticate, async(request,response)=>{
   await cancelActionController.handle(request,response)
 })
-action.delete("/cancelAgentAction",async(request,response)=>{
+action.delete("/cancelAgentAction",ensureAuthenticate, async(request,response)=>{
   await cancelAgentActionController.handle(request,response)
 })
-action.delete("/deleteDepartament",async(request,response)=>{
+action.delete("/deleteDepartament",ensureAuthenticate, async(request,response)=>{
   await deleteDepartamentController.handle(request,response)
 })
 
-action.delete("/deleteAgentDepartament",async(request,response)=>{
+action.delete("/deleteAgentDepartament",ensureAuthenticate, async(request,response)=>{
   await deleteAgentDepartamentController.handle(request,response)
 })
 
-action.delete("/deleteTaskDepartament",async(request,response)=>{
+action.delete("/deleteTaskDepartament",ensureAuthenticate, async(request,response)=>{
   await   deleteTaskDepartamentController.handle(request,response)
 })
-action.delete("/warning",async(request,response)=>{
+action.delete("/warning",ensureAuthenticate, async(request,response)=>{
   await   deletedWarnigActionController.handle(request,response)
 })
-action.delete("/warningDepartament",async(request,response)=>{
+action.delete("/warningDepartament",ensureAuthenticate, async(request,response)=>{
   await   deletedWarnigDepartamentController.handle(request,response)
 })
-action.delete("/warningTask",async(request,response)=>{
+action.delete("/warningTask",ensureAuthenticate, async(request,response)=>{
   await   deletedWarnigTaskController.handle(request,response)
 })
 export {action}

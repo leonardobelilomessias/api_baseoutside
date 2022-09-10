@@ -8,7 +8,7 @@ class UpdateAdminMissionUseCase{
     this.adminMissionRepository = adminMissionRepository
   }
   async execute({id_agent,id_mission,type}):Promise<AdminMission>{
-    if(!id_agent||!id_mission||type) throw new AppError("Some required value is undefined.")
+    if(!id_agent||!id_mission||!type) throw new AppError("Some required value is undefined.")
     const editedAdmin = await this.adminMissionRepository.updateAdminMission({id_agent,id_mission,type})
     return editedAdmin
   } 

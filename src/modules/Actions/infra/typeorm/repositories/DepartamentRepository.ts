@@ -77,7 +77,7 @@ class DepartamentRepository implements IDepartamentRepository{
       id_agent,id_departament
     }})
     if(!findAgentDepartament) throw new AppError("Not found register of agent departament")
-    const deleteAgentDepartament = await this.agentDepartamentRepository.delete(findAgentDepartament)
+    const deleteAgentDepartament = await this.agentDepartamentRepository.delete(findAgentDepartament.id)
     return findAgentDepartament
   }
 

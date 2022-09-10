@@ -44,7 +44,8 @@ class AdminMissionRepository implements IAdminMissionRepository{
     try{
       const findAdminMission = await this.adminMissionRepository.findOne({where:{id_agent,id_mission}})
       findAdminMission.type = type
-      return findAdminMission
+      const updatedAdmin = await this.adminMissionRepository.save(findAdminMission)
+      return updatedAdmin
     }catch{
       throw new AppError("there was some error. Verify if value are correct.")
     }
