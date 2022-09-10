@@ -18,7 +18,6 @@ class CreateAgentUseCase{
     try{
       const passwordHash = await hash(password, 8)
       const agentClean  = await cleanEmptySpace({ name, email, user_name, password:passwordHash ,description,vocation})
-      console.log(passwordHash)
       const agent = await this.agentRepository.create(agentClean as ICreateAgentDTO)
       
       return agent

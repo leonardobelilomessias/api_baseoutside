@@ -10,7 +10,7 @@ class ListWarningsActionByStatusUseCase{
   async execute({state,id_action}):Promise<WarningsAction[]>{
     if(!state) throw new AppError("Value of status is undefined")
     if(typeof state !== typeof Number()&& !!state)throw new AppError("Value of state must be a number.")
-    console.log(state,id_action)
+  
     const listWarningsByStatus = this.warningsActionRepository.listByStatus({state,id_action})
     return listWarningsByStatus
   }

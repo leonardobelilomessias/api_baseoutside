@@ -10,7 +10,6 @@ class ListWarningsTaskByStatusUseCase{
   async execute({state,id_task}):Promise<WarningsTask[]>{
     if(!state) throw new AppError("Value of status is undefined")
     if(typeof state !== typeof Number()&& !!state)throw new AppError("Value of state must be a number.")
-    console.log(state,id_task)
     const listWarningsByStatus = this.warningsTaskRepository.listByStatus({state,id_task})
     return listWarningsByStatus
   }
