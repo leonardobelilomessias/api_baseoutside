@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
 
-    "build": "babel src --extensions \".js, .ts\" --out-dir dist --copy-files",
+    "build": "babel src --extensions \".js,.ts\" --out-dir dist",
     "dev": " ts-node-dev --transpile-only --ignore-watch node_modules --respawn ./src/shared/infra/http/server.ts ",
     "typeorm": "typeorm-ts-node-esm",
     "migration:create": "typeorm migration:create  src/database/migrations",
