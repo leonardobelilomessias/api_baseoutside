@@ -11,6 +11,9 @@ class DepartamentRepositoryInMemory implements IDepartamentRepository{
       this.agentsDepartamentRepositoryInMemory = []
 
     }
+  findAgentDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any; }): Promise<AgentDepartament> {
+    throw new Error("Method not implemented.");
+  }
 
 
   async create({ id_action, name, description, agents_limit, agents_necessary }: ICreateDepartament): Promise<Departament> {

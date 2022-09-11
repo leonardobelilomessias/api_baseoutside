@@ -6,6 +6,12 @@ class SponsorAgentRepositoryInMemory implements ISponsorAgentRepository{
   constructor() {
     this.sponsorAgentRepositoryInMemory = []
   }
+  listAgentsSponsor(id_sponsor: string): Promise<SponsorAgent[]> {
+    throw new Error("Method not implemented.");
+  }
+  findSponsorRecurent({ id_agent, id_sponsor }: { id_agent: any; id_sponsor: any; }): Promise<SponsorAgent> {
+    throw new Error("Method not implemented.");
+  }
   async listSponsorsAgent(id_agent: string): Promise<SponsorAgent[]> {
     const sponsors = await this.sponsorAgentRepositoryInMemory.filter((sponsors) => ( sponsors.id_agent === id_agent ))
     return sponsors

@@ -9,6 +9,9 @@ class ActionInMemoryRepository implements IActionRepository{
   constructor(){
     this.actionRepositoryInMemory = []
   }
+  findByIdMission(id_mission: string): Promise<Action[]> {
+    throw new Error("Method not implemented.")
+  }
 
   async create({ name, description, date_start, date_end, value, id_mission,local }:ICreateAction): Promise<Action> {
     const newAction= new Action()

@@ -6,6 +6,7 @@
   "author": "leonardobmessias <71788533+leonardobmessias@users.noreply.github.com>",
   "license": "MIT",
   "scripts": {
+    "build":"tsc",
     "dev": " ts-node-dev --transpile-only --ignore-watch node_modules --respawn ./src/shared/infra/http/server.ts ",
     "typeorm": "typeorm-ts-node-esm",
     "migration:create": "typeorm migration:create  src/database/migrations",

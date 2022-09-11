@@ -1,3 +1,4 @@
+import { AgentAction } from "../../Actions/infra/typeorm/entities/AgentAction"
 import { Agent } from "../infra/typeorm/entities/Agent"
 import { CreateAgent, EditAgent, IAgentRepository, ResponseAgent } from "../repositories/IAgentRepository"
 
@@ -104,10 +105,13 @@ class AgentInMemoryRepository implements IAgentRepository{
   async activate({email}):Promise<void> {
     return
   }
-  async deactivate(id:string):Promise<Agent> {
-    const agent = await  this.agentRepositoryInMemory.find(agent => agent.id === id)
+  async deactivate({id,password}):Promise<Agent> {
+    const agent = await  this.agentRepositoryInMemory.find(agent => (agent.id === id && agent.password ===password))
     Object.assign(agent, { is_active: false })
     return agent
+  }
+  listActionsAgent(id_agent: any): Promise<AgentAction> {
+    throw new Error("Method not implemented.")
   }
 
 }

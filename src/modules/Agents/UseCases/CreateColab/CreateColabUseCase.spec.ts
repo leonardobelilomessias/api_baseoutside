@@ -10,7 +10,7 @@ describe("Create Colab ", () => {
   beforeEach(() => {
     agentRepositoryInMemory = new AgentInMemoryRepository()
     colabAgentRepositoryInMemory = new ColabAgentRepositoryInMemory(agentRepositoryInMemory)
-    createColabUseCase = new CreateColabAgentUseCase(colabAgentRepositoryInMemory)
+    createColabUseCase = new CreateColabAgentUseCase(colabAgentRepositoryInMemory,agentRepositoryInMemory)
   })
   it("should be able create a new colab", async () => {
     const newColab = await createColabUseCase.execute({ id_agent: '01', id_colab: '02', type: 0 })

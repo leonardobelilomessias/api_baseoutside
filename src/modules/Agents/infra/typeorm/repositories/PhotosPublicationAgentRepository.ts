@@ -41,7 +41,7 @@ class PhotoPublicationAgentRepository implements IPhotosPublicationAgent{
       const deletePhotos = await this.photosPublicationAgent.createQueryBuilder()
       .delete()
       .from('photos_publications_agents')
-        .where("id_publication = :id_publication", { id_publication:id_publication})
+      .where("id_publication = :id_publication", { id_publication:id_publication})
       .execute()
       findPhotos.forEach(photo=>{
         this.storageProvider.delete(photo.url,"PhotosPublications")

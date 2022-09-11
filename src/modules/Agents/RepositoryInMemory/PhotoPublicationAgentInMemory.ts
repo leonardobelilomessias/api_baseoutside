@@ -6,6 +6,9 @@ import {resolve,extname} from 'path'
 
 
 class PhotosPublicationAgentInMemory implements IPhotosPublicationAgent{
+  findPhotosByIdPublication(id_publication: string): Promise<PhotoPublicationAgent[]> {
+    throw new Error("Method not implemented.")
+  }
   photoPublicationAgentRepositoryInMemory:PhotoPublicationAgent[] = []
   async create(id_publication: string, photos: string[]): Promise<PhotoPublicationAgent[]> {
     /*const photosCreated = photos.map((photo) => {

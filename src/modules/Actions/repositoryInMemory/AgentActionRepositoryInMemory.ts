@@ -6,6 +6,9 @@ class AgentActionRepositoryInMemory implements IAgentActionRepository{
   constructor(){
     this.agentActionRepositoryInMemory = []
   }
+  listActionsAgent(id_agent: any): Promise<AgentAction[]> {
+    throw new Error("Method not implemented.")
+  }
   async findAgentAction({ id_action, id_agent }): Promise<AgentAction> {
     const agentAction = await this.agentActionRepositoryInMemory.find(agentAction=>((agentAction.id_action=== id_action && agentAction.id_agent === id_agent)))
     return agentAction
@@ -21,9 +24,7 @@ class AgentActionRepositoryInMemory implements IAgentActionRepository{
     const agentsActions = await this.agentActionRepositoryInMemory.filter(agentAction=>(agentAction.id_action ===id_action))
     return agentsActions
   }
-  listActionsAgent(id_agent: any): Promise<AgentAction> {
-    throw new Error("Method not implemented.")
-  }
+
   async delete({ id_action, id_agent }: { id_action: any; id_agent: any }): Promise<AgentAction> {
     const findAgentAction = await this.agentActionRepositoryInMemory.findIndex(agentAction=>(agentAction.id_action ===id_action && agentAction.id_agent ===id_agent))
     const deletedAgentAction = await this.agentActionRepositoryInMemory.slice(findAgentAction,1)

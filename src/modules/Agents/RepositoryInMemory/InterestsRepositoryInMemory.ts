@@ -9,26 +9,14 @@ class InterestsRepositoryInMemory implements IInterestsRepository{
     this.interestsRepositoryInMemory = []
     this.agentRTepositoryInmemory = agentRepository
   }
+  findAgentByInterest(interest: string) {
+    throw new Error("Method not implemented.");
+  }
   async findInterestByAgent(id_agent: string): Promise<Interests[]> {
     const interests = this.interestsRepositoryInMemory.filter(interest => String(interest.id_agent) === id_agent)
     return interests
   }
-  async findAgentByInterest(interest:string[]) {
-    const idsAgents = []
-    const interestFound = interest.forEach((thisInterest) => {
-      
-      this.interestsRepositoryInMemory.forEach((interestAgent) => {
-        for (let key of interestAgent.interests) {
-          if (key === thisInterest) {
-            idsAgents.push(interestAgent.id_agent)
-          }
-        }
-      })
-    })
 
-    const foundAgent = this.agentRTepositoryInmemory.findByInterest(idsAgents)
-    return foundAgent
-  }
   async updateInterests(id_agent: string, interests: string[]): Promise<string[]> {
     const IndexAgentInterest = this.interestsRepositoryInMemory.findIndex(interests => String(interests.id_agent) === id_agent)
     if (IndexAgentInterest) this.interestsRepositoryInMemory.splice(IndexAgentInterest, 1)

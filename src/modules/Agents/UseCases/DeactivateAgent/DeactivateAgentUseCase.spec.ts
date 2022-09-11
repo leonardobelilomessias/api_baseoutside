@@ -14,13 +14,14 @@ describe("Deactivate a agent", () => {
   it("Shouldn't be able deactivate a agentwith invalid id", async () => {
     expect(async () => {
       const id = "3"
-      await deactivateAgentUseCase.execute(id)
+      const password='3'
+      await deactivateAgentUseCase.execute({id,password})
     }).rejects.toBeInstanceOf(AppError)
   })
 
   it("Shound be able deactivate a agent", async () => {
     const agentActive = await agentRepository.create({ name: "agent Active", email: "agentactive@email", password: "xxx",user_name:"neoagent" })
-    const deactivateAgent = await agentRepository.deactivate(agentActive.id)
+    const deactivateAgent = await agentRepository.deactivate({id:agentActive.id,password:agentActive.password})
     expect(deactivateAgent.is_active).toBe(false)
   })
 })
