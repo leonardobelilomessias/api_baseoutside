@@ -2,4 +2,7 @@
 node_modules
 dist
 docs
+coverage
 .env
+tmp/*
+!tmp/.gitkeep
