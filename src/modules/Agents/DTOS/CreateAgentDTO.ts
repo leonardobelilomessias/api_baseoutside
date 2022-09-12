@@ -9,4 +9,21 @@ interface ICreateAgentDTO{
   user_name:string;
 }
 
-export{ICreateAgentDTO}
+interface IResponseAgentDTO{
+  id: string;
+  email: string;
+  password: string;
+  name: string;
+  user_name: string;
+  description: null;
+  balance: string;
+  is_active: boolean;
+  level: number;
+  image_profile: string | null
+  vocation: string;
+  state: number
+  skills: [] | string[],
+  interests: [] | string[],
+  owner_mission: [] | string[]
+}
+export{ICreateAgentDTO,IResponseAgentDTO}
