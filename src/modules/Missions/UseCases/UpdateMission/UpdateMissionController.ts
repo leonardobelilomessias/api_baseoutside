@@ -8,7 +8,8 @@ class UpdateMissionController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const { id, name, description, image_profile, date_end, date_start, duration, is_private, local, type, field } = request.body
-    const updateMission = await this.updateMissionUseCase.execute({ id, name, description, image_profile, date_end, date_start, duration, is_private, local, type, field })
+    const id_agent_token = request.user.id
+    const updateMission = await this.updateMissionUseCase.execute({ id_agent_token, id, name, description, image_profile, date_end, date_start, duration, is_private, local, type, field })
     return response.status(201).json(updateMission)
   }
 }

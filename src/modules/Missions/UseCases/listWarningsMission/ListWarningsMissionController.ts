@@ -8,7 +8,8 @@ class ListWarningsMissionController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const {id_mission} = request.body
-    const listWarnings = await this.listwarnigsMissionUseCase.execute(id_mission)
+    const id_agent_token = request.user.id
+    const listWarnings = await this.listwarnigsMissionUseCase.execute({id_mission, id_agent_token})
     return response.status(200).json(listWarnings)
   }
 }

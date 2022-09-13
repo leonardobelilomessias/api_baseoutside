@@ -7,7 +7,7 @@ class ListWarningsMissionUseCase{
   constructor(warningsMissionRepository:IWarningsMissionRepository){
     this.warningsMissionRepository = warningsMissionRepository
   }
-  async execute(id_mission:string):Promise<WarningsMission[]>{
+  async execute({id_mission, id_agent_token}):Promise<WarningsMission[]>{
     if(!id_mission) throw new AppError("Value of mission is undefined")
     const listWarnings = this.warningsMissionRepository.listByIdMission(id_mission)
     return listWarnings
