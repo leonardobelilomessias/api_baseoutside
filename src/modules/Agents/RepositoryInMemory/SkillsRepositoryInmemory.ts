@@ -18,14 +18,8 @@ class SkillsRepositoryInMemory implements ISkillsRepository{
     return AgentSkill
   }
 
-  async findAgentBySkill(namesSkills: string[]) {
-    const agentsSkills = []
-    this.skillsRepositoryInMemory.forEach(skillRepository => {
-      namesSkills.forEach(skill => {
-        if(skill ===skillRepository.skill) agentsSkills.push(skillRepository.id_agent)
-      })
-    })
-    return agentsSkills
+  async findAgentBySkill(skill: string) {
+    throw new Error("Method not implemnted")
   }
   
   async updateSkillsAgent(skills: string[], id_agent: string): Promise<string[]> {

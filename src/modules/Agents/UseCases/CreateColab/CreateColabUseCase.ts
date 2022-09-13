@@ -11,7 +11,8 @@ class CreateColabAgentUseCase{
     this.colabRepository = colabRepository
     this.agentRepository = agentRepository
   }
-  async execute({ id_agent, id_colab, type }): Promise<ColabAgent>{
+  async execute({id_agent_token, id_agent, id_colab, type }): Promise<ColabAgent>{
+    if(id_agent !== id_agent_token) throw new AppError("Token sen not to own agent authenticate ")
     if (!id_agent || !id_colab) throw new AppError('Value of agent or colab is undefined. ')
     if (id_agent===id_colab ) throw new AppError('Dont is allow be get colab some value of agent ')
     if (typeof type !== typeof Number() ) throw new AppError('Value of type must be a number ')

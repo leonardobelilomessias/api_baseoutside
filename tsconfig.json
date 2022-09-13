@@ -1,16 +1,15 @@
 {
   "compilerOptions": {
-  // "rootDir": "./src",
-  "target": "es2016",                              
+
+    "target": "es2016",                              
     "emitDecoratorMetadata": true,                  
     "experimentalDecorators": true,
-   
-    /* Modules */
     "module": "commonjs",                               
     "outDir": "./dist",                                   
     "esModuleInterop": true,                            
     "forceConsistentCasingInFileNames": true,          
-    "skipLibCheck": true   ,                              /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true   ,  
+    "resolveJsonModule": true  
 
   }
 }

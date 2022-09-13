@@ -11,13 +11,10 @@ class FindAgentsBySkillsUseCase{
     this.agentRepository = agentRepository
   }
 
-  async execute(skills:string[]){
-    if(typeof skills !== typeof Array()) throw new AppError("Values of skills must be sent as array.")
-    const someIsEmpty = skills.every(skill=>(skill === "" ))
-    if(someIsEmpty) throw new AppError('Some value is undefined')
-    const agentBySkills = await this.skillsRepository.findAgentBySkill(skills)
-    const filterActiveAgents= agentBySkills.filter(agents=>(agents.agent.is_active===true))
-    return filterActiveAgents
+  async execute(skill:string){
+    if(!skill) throw new AppError('Some value is undefined')
+    const agentBySkills = await this.skillsRepository.findAgentBySkill(skill)
+    return agentBySkills
   }
 
 }

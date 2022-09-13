@@ -14,12 +14,11 @@ class Interests {
   @JoinColumn({name:"id_agent"})
   id_agent: Agent 
   
-  constructor(/* id_agent,interests */) {
+  constructor() {
     if (!this.id) {
       this.id = uuidv4()
     }
-/*     this.id_agent = id_agent
-    this.interests = interests */
+
   }
   
 }
