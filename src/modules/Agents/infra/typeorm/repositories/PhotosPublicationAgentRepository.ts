@@ -43,8 +43,9 @@ class PhotoPublicationAgentRepository implements IPhotosPublicationAgent{
       .from('photos_publications_agents')
       .where("id_publication = :id_publication", { id_publication:id_publication})
       .execute()
-      findPhotos.forEach(photo=>{
-        this.storageProvider.delete(photo.url,"PhotosPublications")
+      findPhotos.forEach(async photo=>{
+        console.log(photo)
+        await this.storageProvider.delete(photo.url,"PhotosPublications")
       })
     }catch(err){
       throw new AppError(`There was some error = ${err}`)

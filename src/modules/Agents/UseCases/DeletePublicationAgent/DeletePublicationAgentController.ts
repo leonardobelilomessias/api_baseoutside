@@ -8,7 +8,8 @@ class DeletePublicationAgentController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const {id_publication} = request.body
-    const deletedPublication = await this.deletePublicationAgentUseCase.execute(id_publication)
+    const id_agent_token = request.user.id
+    const deletedPublication = await this.deletePublicationAgentUseCase.execute({id_agent_token, id_publication})
     return response.status(200).json(deletedPublication)
   }
 }
