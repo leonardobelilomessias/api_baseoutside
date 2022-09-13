@@ -8,9 +8,9 @@ class ToCancelSponsorAgentController{
     this.toCancelSponsotUseCase = toCancelSponsotUseCase
   }
   async handle(request: Request, response: Response): Promise<Response> {
-    
+      const id_agent_token = request.user.id
       const { id_agent, id_sponsor } = request.body 
-      const canceledSponsor = await this.toCancelSponsotUseCase.execute({ id_agent, id_sponsor })
+      const canceledSponsor = await this.toCancelSponsotUseCase.execute({id_agent_token, id_agent, id_sponsor })
       return response.status(200).json(canceledSponsor)
 
   }

@@ -12,8 +12,9 @@ class CreateNewSponsorAgentUseCase{
     this.agentRepository = agentRepository
   }
 
-  async execute({ id_agent, id_sponsor, type, agent_private, sponsor_private }): Promise<SponsorAgent> {
+  async execute({ id_agent, id_sponsor, type, agent_private, sponsor_private , id_agent_token}): Promise<SponsorAgent> {
     if (!id_agent || !id_sponsor) throw new AppError('invalid sponsor or agent')
+    if(id_agent !== id_agent_token) throw new AppError("Token sen not to own agent authenticate ")
     if(id_agent ===id_sponsor) throw new AppError("Value of agent and sponsor can't be the same")
     const existAgent = await this.agentRepository.findById(id_agent)
     const existSponsor = await this.agentRepository.findById(id_sponsor)
