@@ -9,7 +9,8 @@ class DeleteCardAgentController{
   }
   async handle(request:Request,response:Response):Promise<Response>{ 
     const{id_agent} = request.body
-    const deletedAgent = await this.deleteCardAgentUseCase.execute(id_agent)
+    const id_agent_token = request.user.id
+    const deletedAgent = await this.deleteCardAgentUseCase.execute({id_agent_token, id_agent})
     return response.status(200).json(deletedAgent)
   }
 }
