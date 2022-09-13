@@ -22,7 +22,8 @@ class CreateMissionController{
   }
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field}: IRequest = request.body
-    const mission = await this.createMissionUseCase.execute({ name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field})
+    const id_agent_token = request.user.id
+    const mission = await this.createMissionUseCase.execute({ id_agent_token,name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field})
     return response.status(201).json((mission))
   }
 }
