@@ -1,4 +1,4 @@
-interface ICreateAgentDTO{
+interface IInputCreateAgentDTO{
   name: string
   email: string
   password: string
@@ -9,7 +9,7 @@ interface ICreateAgentDTO{
   user_name:string;
 }
 
-interface IResponseAgentDTO{
+interface IOutputAgentDTO{
   id: string;
   email: string;
   password: string;
@@ -26,4 +26,4 @@ interface IResponseAgentDTO{
   interests: [] | string[],
   owner_mission: [] | string[]
 }
-export{ICreateAgentDTO,IResponseAgentDTO}
+export{IInputCreateAgentDTO,IOutputAgentDTO}

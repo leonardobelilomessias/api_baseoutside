@@ -1,5 +1,5 @@
 import { AppError } from "../../../../shared/errors/AppError"
-import { ICreatePublication, IPublicationsAgentRepository, ResponseCreatePublication } from "../../DTOS/IPublicationsAgentRepository"
+import { IPublicationsAgentRepository, ResponseCreatePublication } from "../../repositories/IPublicationsAgentRepository"
 
 class CreatePublicationAgentUseCase{
   private publicationAgentRepository: IPublicationsAgentRepository

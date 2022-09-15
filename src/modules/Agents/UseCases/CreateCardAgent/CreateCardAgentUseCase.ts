@@ -1,4 +1,5 @@
 import { AppError } from "../../../../shared/errors/AppError"
+import { ICreateCardAgentDTO} from "../../DTOS/ICreateCardAgent"
 import { CardAgent } from "../../infra/typeorm/entities/CardAgent"
 import { ICardAgentRepository } from "../../repositories/ICardAgentRepository"
 
@@ -7,7 +8,7 @@ class CreateCardAgentUseCase{
   constructor(cardAgentReposotory:ICardAgentRepository){
     this.cardAgentReposotory = cardAgentReposotory
   }
-  async execute({id_agent_token, id_agent,description,title}):Promise<CardAgent>{
+  async execute({id_agent_token, id_agent,description,title}:ICreateCardAgentDTO):Promise<CardAgent>{
     if(!id_agent||!description||!title) throw new AppError(" Some Value required is undefined")
     if(id_agent !== id_agent_token) throw new AppError("Token sen not to own agent authenticate ")
     const findCard = await this.cardAgentReposotory.listByid(id_agent)

@@ -19,9 +19,10 @@ describe("Create new sponsor", () => {
       const newSponsor = {
         id_agent: '',
         id_sponsor: '',
-        type: 0,
         agent_private: false,
         sponsor_private: false,
+        type: "current",
+        id_agent_token:"01"
       };
       const sponsor = await createNewSponsorAgentUseCase.execute(newSponsor)
    }).rejects.toBeInstanceOf(AppError)
@@ -36,9 +37,10 @@ describe("Create new sponsor", () => {
     const newSponsor = {
     id_agent: agent.id,
     id_sponsor: sponsorAgent.id,
-    type: 0,
     agent_private: false,
     sponsor_private: false,
+    type: "current",
+    id_agent_token:"01"
   };
     const sponsor = await createNewSponsorAgentUseCase.execute(newSponsor)
 
@@ -49,9 +51,10 @@ describe("Create new sponsor", () => {
           expect(async ()=>{const newSponsor = {
             id_agent: '123',
             id_sponsor: '321',
-            type: 0,
             agent_private: false,
             sponsor_private: false,
+            type: "current",
+            id_agent_token:"123"
           };
           const sponsor = await createNewSponsorAgentUseCase.execute(newSponsor)
             
