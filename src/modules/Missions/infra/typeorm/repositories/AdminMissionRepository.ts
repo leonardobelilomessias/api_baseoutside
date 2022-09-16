@@ -13,9 +13,15 @@ import { AgentsMissionRepository } from "./AgentsMissionRepository";
 class AdminMissionRepository implements IAdminMissionRepository{
   private adminMissionRepository :Repository<AdminMission>
   private agentMissionRepository:IAgentsMissions
+  private missionRepository:IMissionRepository
   constructor(){
     this.adminMissionRepository = AppDataSource.getRepository(AdminMission)
     this.agentMissionRepository = new AgentsMissionRepository()
+    this.missionRepository = new MissionRepository()
+  }
+  async findCreatorMission(id_mission: string): Promise<string> {
+    const findMission = await this.missionRepository.findById(id_mission)
+    return findMission.creator
   }
   async findAgentInMission({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {
     const agentMission = await this.agentMissionRepository.findAgentMission({id_agent,id_mission})

@@ -12,7 +12,10 @@ interface IAdminMissionRepository{
   deleteAdminMission({id_agent,id_mission}):Promise<AdminMission> 
 
   listAdminsMission(id_mission:string):Promise<AdminMission[]>
+  
+  findCreatorMission(id_mission:string):Promise<string>
 
   findAgentInMission({id_agent,id_mission}):Promise<AgentMission>
+
 }
 export{IAdminMissionRepository}

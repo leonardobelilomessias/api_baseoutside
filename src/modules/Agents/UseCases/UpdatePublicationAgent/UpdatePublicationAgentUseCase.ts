@@ -1,6 +1,6 @@
 import { AppError } from "../../../../shared/errors/AppError";
-import { IPublicationsAgentRepository } from "../../DTOS/IPublicationsAgentRepository";
 import { PublicationAgent } from "../../infra/typeorm/entities/PublicationAgent";
+import { IPublicationsAgentRepository } from "../../repositories/IPublicationsAgentRepository";
 
 class UpdatePublicationAgentUseCase{
   private publicationsAgentRepository: IPublicationsAgentRepository

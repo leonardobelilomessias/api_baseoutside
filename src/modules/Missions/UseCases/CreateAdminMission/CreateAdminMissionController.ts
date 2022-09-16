@@ -9,7 +9,8 @@ class CreateAdminMissionController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const {id_agent,id_mission,type} = request.body
-    const createAdminMission = await this.createAdminMissionUseCase.execute({id_agent,type,id_mission})
+    const id_agent_token = request.user.id 
+    const createAdminMission = await this.createAdminMissionUseCase.execute({id_agent_token,id_agent,type,id_mission})
     return response.status(200).json(createAdminMission)
   }
 }

@@ -5,11 +5,14 @@ import { IMissionRepository } from "../../repositories/IMissonRepository";
 
 class CreateAdminMissionUseCase{
   private adminmissionRepository: IAdminMissionRepository
-  constructor(missionRepository: IAdminMissionRepository) {
-    this.adminmissionRepository = missionRepository
+  constructor(adminMissionRepository: IAdminMissionRepository,) {
+    this.adminmissionRepository = adminMissionRepository
+    
   }
-  async execute({id_mission,id_agent,type}):Promise<AdminMission> {
+  async execute({id_agent_token,id_mission,id_agent,type}):Promise<AdminMission> {
     if (!id_mission || !id_agent ||!type) throw new AppError("Some required value is undefined.")
+    const creatorMission = await this.adminmissionRepository.findCreatorMission(id_mission)
+    if(creatorMission !== id_agent_token) throw new AppError("Agent authenticate dont have permission to create a admin ")
     const agentParticipesMission = await this.adminmissionRepository.findAgentInMission({id_agent,id_mission})
     if(!agentParticipesMission) throw new AppError("Only agents that have beem participate of mission can be admins.")
     const alreadyAdmin = await this.adminmissionRepository.findAdminMission({id_agent,id_mission})
