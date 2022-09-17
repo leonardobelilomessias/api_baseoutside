@@ -14,10 +14,11 @@ class CreateAgentMissionUseCase{
     this.agentRepository = agentRepository
     this.missionRepository = missionRepository
   }
-  async execute(id_mission:string,id_agent:string):Promise<AgentMission> {
+  async execute({id_agent_token,id_mission,id_agent}):Promise<AgentMission> {
     if(!id_mission||!id_agent) throw new AppError("Value of  mission or agent cannot be undefined.")
     const foundMission = await this.missionRepository.findById(id_mission)
     if (!foundMission) throw new AppError("Mission not found.")
+    if(id_agent_token!== id_agent) throw new AppError("Agent authenticade not have permission to that action")
     const foundAgent = await this.agentRepository.findById(id_agent)
     const foundAgentInMission = await this.agentsMissionsRepository.findAgentMission({id_agent,id_mission})
     if(foundAgentInMission) throw new AppError("Agent already are in mission.")

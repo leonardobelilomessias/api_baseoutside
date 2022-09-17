@@ -7,7 +7,8 @@ class CreateAgentMissionController{
   }
   async handle(request: Request, response: Response): Promise<Response>{
     const { id_agent, id_mission } = request.body
-    const createAgentMission = await this.createAgentMissionUseCase.execute(id_mission, id_agent)
+    const  id_agent_token = request.user.id
+    const createAgentMission = await this.createAgentMissionUseCase.execute({id_agent_token,id_mission, id_agent})
     return response.status(200).json(createAgentMission)
   }
 
