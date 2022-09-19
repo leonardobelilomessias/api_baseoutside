@@ -18,6 +18,7 @@ class AdminMissionRepository implements IAdminMissionRepository{
     this.adminMissionRepository = AppDataSource.getRepository(AdminMission)
     this.agentMissionRepository = new AgentsMissionRepository()
     this.missionRepository = new MissionRepository()
+    
   }
   async findCreatorMission(id_mission: string): Promise<string> {
     const findMission = await this.missionRepository.findById(id_mission)
