@@ -1,16 +1,23 @@
 import { AppError } from "../../../../shared/errors/AppError"
 import { AgentMission } from "../../infra/typeorm/entities/AgentMission"
+import { MenagerPermissionRespository } from "../../infra/typeorm/repositories/MenagerPermissionRepository"
 import { IAgentsMissions } from "../../repositories/IAgentsMissions"
 
 class DeleteAgentMissionUseCase{
   private agentsMissionsRepository: IAgentsMissions
-  constructor(agentsMissionsRepository: IAgentsMissions) {
+  private menageMissionsPermissions:MenagerPermissionRespository
+  constructor(agentsMissionsRepository: IAgentsMissions,) {
     this.agentsMissionsRepository = agentsMissionsRepository
+    this.menageMissionsPermissions = new MenagerPermissionRespository()
   }
-  async execute(id_agent: string, id_mission: string): Promise<AgentMission>{
+  async execute({id_agent,id_mission, id_agent_token}): Promise<AgentMission>{
     if(!id_agent||!id_mission) throw new AppError("Value of agent or mission is undefined")
+    const alowDeleteAgentMission = await this.menageMissionsPermissions.confirmePermissionMission({id_agent_token})
+    console.log((id_agent !==id_agent_token || !alowDeleteAgentMission === true))
+    console.log(alowDeleteAgentMission)
+    if(id_agent !==id_agent_token || !alowDeleteAgentMission === true) throw new AppError("Agent does not authorized to execute this action.")
     const findAgentMission = await this.agentsMissionsRepository.findAgentMission({ id_agent, id_mission })
-    if (!findAgentMission) throw new AppError("Colab not found")
+    if (!findAgentMission) throw new AppError("Agent not found")
     const deletedAgentMission = await this.agentsMissionsRepository.delete({id_agent,id_mission})
     return deletedAgentMission    
   }

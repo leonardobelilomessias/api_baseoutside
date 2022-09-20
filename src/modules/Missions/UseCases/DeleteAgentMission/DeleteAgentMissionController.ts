@@ -8,7 +8,8 @@ class DeleteAgentMissionController{
   }
   async handle(request: Request, response: Response): Promise<Response>{
     const { id_agent, id_mission } = request.body
-    const deletedAgentMission = await this.deleteAgentMissionUseCase.execute(id_agent, id_mission)
+    const id_agent_token = request.user.id
+    const deletedAgentMission = await this.deleteAgentMissionUseCase.execute({id_agent_token,id_agent, id_mission})
     return response.status(200).json(deletedAgentMission)
   }
 }

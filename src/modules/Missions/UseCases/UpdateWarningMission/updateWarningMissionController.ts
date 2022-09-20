@@ -8,7 +8,8 @@ class UpdateWarningMissionController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const { id, title, content, priority, is_active, state, type } = request.body
-    const editedWarningMission = await this.updateWarningMissionUseCase.execute({ id, title, content, priority, is_active, state, type }) 
+    const id_agent_token = request.user.id
+    const editedWarningMission = await this.updateWarningMissionUseCase.execute({id_agent_token, id, title, content, priority, is_active, state, type }) 
     return response.status(200).json(editedWarningMission)
   }
 }

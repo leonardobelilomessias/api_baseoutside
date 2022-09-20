@@ -8,7 +8,8 @@ class CreateCardMissionController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const {id_mission,description,title} = request.body
-    const createCardMission = await this.createCardMissionUseCase.execute({id_mission,description,title})
+    const id_agent_token = request.user.id
+    const createCardMission = await this.createCardMissionUseCase.execute({id_agent_token ,id_mission,description,title})
     return response.status(200).json(createCardMission)
   }
 }

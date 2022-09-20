@@ -8,7 +8,8 @@ class EditCardMissionController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const {id_mission,title,description} = request.body
-    const editMission =await  this.editCardMissionRepository.execute({id_mission,title,description})
+    const id_agent_token = request.user.id
+    const editMission =await  this.editCardMissionRepository.execute({id_agent_token,id_mission,title,description})
     return response.status(200).json(editMission)
   }
 }

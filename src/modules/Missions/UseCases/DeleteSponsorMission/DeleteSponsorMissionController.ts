@@ -8,7 +8,8 @@ class DeleteSponsorMissionController {
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const{id_sponsor,id_mission} = request.body
-    const deleteSponsorMission = await this.deleteSponsorMissionUseCase.execute({id_sponsor,id_mission})
+    const id_agent_token = request.user.id
+    const deleteSponsorMission = await this.deleteSponsorMissionUseCase.execute({id_agent_token,id_sponsor,id_mission})
     return response.status(200).json(deleteSponsorMission)
   }
 }

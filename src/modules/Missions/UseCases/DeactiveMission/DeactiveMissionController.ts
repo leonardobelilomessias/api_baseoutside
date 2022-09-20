@@ -8,7 +8,8 @@ class DeactiveMissionController{
   }
   async handle(request: Request, response: Response): Promise<Response>{
     const { id } = request.body
-    const deactivateMision = await this.deactivateMissionUseCase.execute(id)
+    const id_agent_token = request.user.id
+    const deactivateMision = await this.deactivateMissionUseCase.execute({id, id_agent_token})
     return response.status(200).json(deactivateMision)
   }
 }

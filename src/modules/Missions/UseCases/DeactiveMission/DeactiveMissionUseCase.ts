@@ -7,8 +7,11 @@ class DeactivateMissionUseCase{
   constructor(missionRepository: IMissionRepository) {
     this.missionRepository = missionRepository
   }
-  async execute(id: string): Promise<Mission> {
+  async execute({id,id_agent_token}): Promise<Mission> {
     if (!id) throw new AppError("Value of id mission cannot be undefined")
+    const findMission = await this.missionRepository.findById(id)
+
+    if(id_agent_token !== findMission.creator ) throw new AppError("Agent authenticate haven't authorization to this action.")
     const deactivedMission = await this.missionRepository.deactivate(id)
     return deactivedMission
   }

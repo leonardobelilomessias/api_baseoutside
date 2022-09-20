@@ -9,10 +9,11 @@ class SponsorsMissionsRepository implements ISponsorMissionRepository{
   constructor(){
     this.sponsorsMissionsRepository = AppDataSource.getRepository("sponsors_missions")
   }
-  async create({ id_sponsor, id_mission, type, sponsor_private, mission_private }: { id_sponsor: any; id_mission: any; type: any; sponsor_private: any; mission_private: any; }): Promise<SponsorMission> {
+  async create({ id_sponsor, id_mission, type, sponsor_private, mission_private }): Promise<SponsorMission> {
     try{
       const newSponsorMission = new SponsorMission()
-      Object.assign(newSponsorMission,{ id_sponsor, id_mission, type, sponsor_private, mission_private })
+      Object.assign(newSponsorMission,{ id_sponsor, id_mission, type:1, sponsor_private, mission_private })
+      console.log(newSponsorMission)
       const createdSponsor = await this.sponsorsMissionsRepository.save(newSponsorMission)
       return createdSponsor
     }catch{
