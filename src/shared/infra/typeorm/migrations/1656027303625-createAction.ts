@@ -31,6 +31,11 @@ export class createAction1656027303625 implements MigrationInterface {
                         type: "varchar(36)",
                     },
                     {
+                        name: "creator",
+                        type: "varchar",
+                        length:"36",
+                    },
+                    {
                         name: "created_at",
                         type: "timestamp",
                         default:"now()"
@@ -73,6 +78,14 @@ export class createAction1656027303625 implements MigrationInterface {
                         referencedTableName: "missions",
                         referencedColumnNames: ["id"],
                         columnNames:["id_mission"],
+                        onDelete: "CASCADE",
+                        onUpdate:"CASCADE"
+                    },
+                    {
+                        name: "fk_creator_action",
+                        referencedTableName: "agents",
+                        referencedColumnNames: ["id"],
+                        columnNames:["creator"],
                         onDelete: "CASCADE",
                         onUpdate:"CASCADE"
                     }

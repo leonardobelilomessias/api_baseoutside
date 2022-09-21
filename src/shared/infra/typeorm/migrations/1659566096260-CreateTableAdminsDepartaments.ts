@@ -31,8 +31,9 @@ export class CreateTableAdminsDepartaments1659566096260 implements MigrationInte
                         },
                         {
                             name: "type",
-                            type: "int",
-                            default:0
+                            type: "varchar",
+                            length:"15",
+                            default:null
                         },
                     ],
                     foreignKeys: [

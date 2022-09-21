@@ -40,7 +40,9 @@ export class CreateAgent1655849858546 implements MigrationInterface {
                         },
                         {
                             name: "balance",
-                            type: "decimal(15,2)",
+                            type: "decimal",
+                            precision:10,
+                            scale:2,
                             default:0.00
                         },
                         {

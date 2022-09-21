@@ -14,6 +14,10 @@ export class mission1656014397876 implements MigrationInterface {
                         isPrimary:true
                     },
                     {
+                        name: "identifier",
+                        type: "varchar",
+                    },
+                    {
                         name: "name",
                         type: "varchar",
                     },

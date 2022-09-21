@@ -43,7 +43,15 @@ export class CreateTableSponsorsMissions1659563319041 implements MigrationInterf
                             name: "sponsor_private",
                             type: "boolean",
                             default:false
+                        },
+                        {
+                            name:"value",
+                            type:"decimal",
+                            precision:10,
+                            scale:2
+                            
                         }
+
                     ],
                     foreignKeys: [
                         {

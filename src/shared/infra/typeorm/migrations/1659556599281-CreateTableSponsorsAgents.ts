@@ -40,6 +40,13 @@ export class CreateTableSponsorsAgents1659556599281 implements MigrationInterfac
                             default:false
                         },
                         {
+                            name:"value",
+                            type:"decimal",
+                            precision:10,
+                            scale:2
+                            
+                        },
+                        {
                             name: "sponsor_private",
                             type: "boolean",
                             default:false

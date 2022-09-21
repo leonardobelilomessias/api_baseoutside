@@ -64,7 +64,7 @@ export const AppDataSource = new DataSource({
     WarningsDepartament,
     WarningsTask
   ],
-  migrations: ["../../shared/infra/typeorm/migrations/*ts"]
+  migrations: ["./src/shared/infra/typeorm/migrations/*ts"]
 
 })
 

@@ -31,8 +31,9 @@ export class CreateTableAdinsMission1659563958287 implements MigrationInterface 
                         },
                         {
                             name: "type",
-                            type: "int",
-                            default:0
+                            type: "varchar",
+                            length:"15",
+                            default:null
                         },
                     ],
                     foreignKeys: [
