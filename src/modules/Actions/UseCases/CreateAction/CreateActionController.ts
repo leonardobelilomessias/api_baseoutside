@@ -10,7 +10,8 @@ class CreateActionController{
 
   async handle(request:Request,response:Response){
     const { name, description, date_start, date_end, value, id_mission,local } = request.body
-    const newAction = await this.createActionUseCase.execute({ name, description, date_start, date_end, value, id_mission,local })
+    const id_agent_token = request.user.id
+    const newAction = await this.createActionUseCase.execute({ id_agent_token,name, description, date_start, date_end, value, id_mission,local })
     return response.status(200).json(newAction)
   }
 }

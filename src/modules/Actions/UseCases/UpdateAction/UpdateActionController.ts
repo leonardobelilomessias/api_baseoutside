@@ -8,7 +8,8 @@ class UpdateActionController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const { id, name,description,date_start,date_end,value,state,local} = request.body
-    const updatedAction = await this.updateActionUseCase.execute({ id, name,description,date_start,date_end,value,state,local})
+    const id_agent_token = request.user.id
+    const updatedAction = await this.updateActionUseCase.execute({id_agent_token, id, name,description,date_start,date_end,value,state,local})
     return response.status(200).json(updatedAction)
   }
 }

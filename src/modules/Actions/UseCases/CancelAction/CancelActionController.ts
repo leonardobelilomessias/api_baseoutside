@@ -7,8 +7,10 @@ class CancelActionController{
     this.cancelActionUseCase = cancelActionUseCase
   }
   async handle(request:Request,response:Response):Promise<Response>{
-    const {id} = request.body
-    const canceledAction = await this.cancelActionUseCase.execute(id)
+    const {id} = request.body    
+    const id_agent_token = request.user.id
+    
+    const canceledAction = await this.cancelActionUseCase.execute({id,id_agent_token})
     return response.status(200).json(canceledAction)
   }
 }
