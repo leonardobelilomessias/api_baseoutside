@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { IColabRepository } from "../../../repositories/IColabRepositoryInMemory";
+import { IColabRepository } from "../../../repositories/IColabRepository";
 import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository";
 import { Agent } from "../entities/Agent";
 import { ColabAgent } from "../entities/ColabAgent";
@@ -15,7 +15,7 @@ class ColabAgentRepository implements IColabRepository{
     this.colabAgentRepository = AppDataSource.getRepository("colabs_agents")
     this.journeyAgentRepository = new JourneyAgentRepository()
   }
-  async findIfExistentcolab({ id_agent, id_colab}: { id_agent: any; id_colab: any; type: any; }): Promise<ColabAgent> {
+  async findIfExistentcolab({ id_agent, id_colab}): Promise<ColabAgent> {
     const findColabAgent = this.colabAgentRepository.findOne({
       where: {
         id_colab: id_colab,

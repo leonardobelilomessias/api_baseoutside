@@ -1,7 +1,7 @@
 import { AppError } from "../../../../shared/errors/AppError"
 import { IOutputGenericAgentDTO } from "../../DTOS/IAgentDTOS"
 import { Agent } from "../../infra/typeorm/entities/Agent"
-import { MapResponseCreateAgent } from "../../MapFields/MapResponseCreateAgent"
+import { MapResponseAgent } from "../../MapFields/MapResponseAgent"
 import { IAgentRepository } from "../../repositories/IAgentRepository"
 
 
@@ -14,7 +14,7 @@ class FindAgentByNameUseCase{
     if(!name) throw new AppError("Value of field names is empty.")
     const handleName = name.trim()
     const foundAgent = await  this.agentRepository.findByName(handleName)
-    const responseMapFieldsAgent = MapResponseCreateAgent.mapFields(foundAgent)
+    const responseMapFieldsAgent = MapResponseAgent.mapFields(foundAgent)
     return responseMapFieldsAgent
   }
 

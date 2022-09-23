@@ -2,7 +2,7 @@ import { AppError } from "../../../../shared/errors/AppError"
 import { IOutputGenericAgentDTO } from "../../DTOS/IAgentDTOS"
 import { Agent } from "../../infra/typeorm/entities/Agent"
 import { InterestsRepository } from "../../infra/typeorm/repositories/InterestsRepository"
-import { MapResponseCreateAgent } from "../../MapFields/MapResponseCreateAgent"
+import { MapResponseAgent } from "../../MapFields/MapResponseAgent"
 import { IAgentRepository } from "../../repositories/IAgentRepository"
 import { IInterestsRepository } from "../../repositories/IInterestsRepository"
 

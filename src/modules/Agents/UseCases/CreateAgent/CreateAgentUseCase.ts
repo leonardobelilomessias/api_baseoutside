@@ -2,7 +2,7 @@ import { hash } from "bcryptjs"
 import { AppError } from "../../../../shared/errors/AppError"
 import { cleanEmptySpace } from "../../../../utils/cleanEmptySpace"
 import { IInputCreateAgentDTO, IOutputCreateAgentDTO } from "../../DTOS/IAgentDTOS"
-import { MapResponseCreateAgent } from "../../MapFields/MapResponseCreateAgent"
+import { MapResponseAgent } from "../../MapFields/MapResponseAgent"
 import { IAgentRepository } from "../../repositories/IAgentRepository"
 
 class CreateAgentUseCase{
@@ -20,7 +20,7 @@ class CreateAgentUseCase{
       const passwordHash = await hash(password, 8)
       const agentClean  = await cleanEmptySpace({ name, email, user_name, password:passwordHash ,description,vocation})
       const agent = await this.agentRepository.create(agentClean as IInputCreateAgentDTO)
-      const AgentMapFields = MapResponseCreateAgent.mapFields(agent)
+      const AgentMapFields = MapResponseAgent.mapFields(agent)
       return AgentMapFields 
     }catch{
       throw new AppError('erro encript')

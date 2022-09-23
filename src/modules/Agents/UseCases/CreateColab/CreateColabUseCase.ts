@@ -1,4 +1,5 @@
 import { AppError } from "../../../../shared/errors/AppError"
+import { IInputCreateColabAgentDTO, IOutputGenericColabAgentDTO } from "../../DTOS/IColabAgentDTOS"
 import { ColabAgent } from "../../infra/typeorm/entities/ColabAgent"
 import { IAgentRepository } from "../../repositories/IAgentRepository"
 import { IColabRepository } from "../../repositories/IColabRepository"
@@ -10,7 +11,7 @@ class CreateColabAgentUseCase{
     this.colabRepository = colabRepository
     this.agentRepository = agentRepository
   }
-  async execute({id_agent_token, id_agent, id_colab, type }): Promise<ColabAgent>{
+  async execute({id_agent_token, id_agent, id_colab, type }:IInputCreateColabAgentDTO): Promise<IOutputGenericColabAgentDTO>{
     console.log(id_agent_token)
     if(id_agent!== id_agent_token) throw new AppError("Token sen not to own agent authenticate ")
     if (!id_agent || !id_colab) throw new AppError('Value of agent or colab is undefined. ')

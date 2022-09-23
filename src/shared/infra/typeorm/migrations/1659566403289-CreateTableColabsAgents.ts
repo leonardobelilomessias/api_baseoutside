@@ -32,8 +32,7 @@ export class CreateTableColabsAgents1659566403289 implements MigrationInterface 
                         {
                             name: "type",
                             type: "varchar",
-                            length:"20",
-                            default:"simple"
+                            default:0
                         },
                         {
                             name: "state",

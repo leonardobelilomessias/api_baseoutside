@@ -1,7 +1,7 @@
 import { IOutputCreateAgentDTO } from "../DTOS/IAgentDTOS";
 import { Agent } from "../infra/typeorm/entities/Agent";
 
-class MapResponseCreateAgent{
+class MapResponseAgent{
   agent:Agent
   constructor(agent:Agent){
     this.agent = agent
@@ -12,4 +12,4 @@ class MapResponseCreateAgent{
     return agent as IOutputCreateAgentDTO
   }
 }
-export{MapResponseCreateAgent}
+export{MapResponseAgent}
