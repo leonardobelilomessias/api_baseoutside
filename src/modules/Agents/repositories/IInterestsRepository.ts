@@ -1,10 +1,7 @@
 import { Agent } from "../infra/typeorm/entities/Agent"
 import { Interests } from "../infra/typeorm/entities/Interests"
 
-interface IResponseFindyAgentByInterestDTO{
-  interest:string
-  agent: Agent
-}
+
 interface IInterestsRepository{
 
   findInterestByAgent(id_agent: string): Promise<Interests[]>

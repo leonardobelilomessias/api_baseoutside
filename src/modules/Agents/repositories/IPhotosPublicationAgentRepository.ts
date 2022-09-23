@@ -2,9 +2,6 @@ import { PhotoPublicationAgent } from "../infra/typeorm/entities/PhotoPublicatio
 import { PublicationAgent } from "../infra/typeorm/entities/PublicationAgent"
 
 
-interface IFile{
-  filename:string
-}
 
 interface IPhotosPublicationAgent{
 
@@ -19,4 +16,4 @@ interface IPhotosPublicationAgent{
 
 }
 
-export{IPhotosPublicationAgent,IFile}
+export{IPhotosPublicationAgent}

@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { IActionRepository, IUpdateAction } from "../../../repositories/IActionRepository";
+import { IActionRepository } from "../../../repositories/IActionRepository";
 import { Action } from "../entities/Action";
 
 
@@ -14,10 +14,10 @@ class ActionRepository implements IActionRepository{
     const findActionsByMission = await this.actionRepository.find({where:{id_mission}})
     return findActionsByMission
   }
-  async create({ name, description, date_start, date_end, value, id_mission,local }): Promise<Action> {
+  async create({creator, name, description, date_start, date_end, value, id_mission,local }): Promise<Action> {
     try{
       const action = new Action()
-      Object.assign(action,{ name, description, date_start, date_end, value, id_mission,local })
+      Object.assign(action,{creator, name, description, date_start, date_end, value, id_mission,local })
       const newAction = await this.actionRepository.save(action)
       return newAction
     }catch(err){
@@ -44,7 +44,7 @@ class ActionRepository implements IActionRepository{
   findByField(field: string): Promise<Action> {
     throw new Error("Method not implemented.");
   }
-  async edit({ id, name,description,date_start,date_end,value,state,local}:IUpdateAction): Promise<Action> {
+  async edit({ id, name,description,date_start,date_end,value,state,local}): Promise<Action> {
       const updatedAction = await this.actionRepository.save({ id, name,description,date_start,date_end,value,state,local})
       return updatedAction
   }

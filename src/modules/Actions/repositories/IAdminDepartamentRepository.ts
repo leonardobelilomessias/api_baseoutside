@@ -4,19 +4,19 @@ import { AgentDepartament } from "../infra/typeorm/entities/AgentDepartament"
 
 interface IAdminDepartamentRepository{
 
-  createAdminDepartament({ id_mission, id_agent, type }): Promise<AdminDepartament>
+  createAdminDepartament({ id_departament, id_agent, type }): Promise<AdminDepartament>
 
-  findAdminDepartament({id_agent,id_mission}):Promise<AdminDepartament>
+  findAdminDepartament({id_agent,id_departament}):Promise<AdminDepartament>
   
-  updateAdminDepartament({ id_agent, id_mission ,type}): Promise<AdminDepartament>
+  updateAdminDepartament({ id_agent, id_departament ,type}): Promise<AdminDepartament>
   
-  deleteAdminDepartament({id_agent,id_mission}):Promise<AdminDepartament> 
+  deleteAdminDepartament({id_agent,id_departament}):Promise<AdminDepartament> 
 
-  listAdminsMission(id_mission:string):Promise<AdminDepartament[]>
+  listAdminsdepartament(id_departament:string):Promise<AdminDepartament[]>
   
-  findCreatorMission(id_mission:string):Promise<string>
+  findCreatordepartament(id_departament:string):Promise<string>
 
-  findAgentInMission({id_agent,id_mission}):Promise<AgentDepartament>
+  findAgentIndepartament({id_agent,id_departament}):Promise<AgentDepartament>
 
 }
 export{IAdminDepartamentRepository}

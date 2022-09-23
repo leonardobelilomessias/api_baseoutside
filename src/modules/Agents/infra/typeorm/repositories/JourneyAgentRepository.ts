@@ -1,7 +1,8 @@
 import { Repository } from "typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
-import { ICreateJourneyAgent, IJourneyAgentRepository } from "../../../repositories/IJourneyRepository"
+import { ICreateJourneyAgent } from "../../../DTOS/IJourneyAgentDTOS"
+import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository"
 import { JourneyAgent } from "../entities/JourneyAgent"
 
 class JourneyAgentRepository implements IJourneyAgentRepository{

@@ -2,30 +2,10 @@ import { Action } from "../infra/typeorm/entities/Action";
 
 
 
-interface ICreateAction{
-  name: string;
-  description: string
-  date_start?: string
-  date_end?: string
-  id_mission: string
-  value?:number;
-  state?:number;
-  local?:string
-}
-interface IUpdateAction{
-  id:string;
-  name?: string;
-  description?: string
-  date_start?: Date;
-  date_end?: Date;
-  value?:number;
-  state?:number;
-  local?:string
-}
 
 interface IActionRepository{
 
-  create({name,description,date_start,date_end,value,id_mission,state,local}:ICreateAction):Promise<Action>
+  create({creator, name,description,date_start,date_end,value,id_mission,state,local}):Promise<Action>
   
   listAll(): Promise<Action[]>
   
@@ -39,11 +19,11 @@ interface IActionRepository{
 
   findByField(field:string): Promise<Action>
 
-  edit({ id, name,description,date_start,date_end,value,state,local}:IUpdateAction): Promise<Action>
+  edit({ id, name,description,date_start,date_end,value,state,local}): Promise<Action>
   
   delete(Action:Action): Promise<Action>
 
 }
 
 export{
-  IActionRepository,ICreateAction,IUpdateAction}
+  IActionRepository}

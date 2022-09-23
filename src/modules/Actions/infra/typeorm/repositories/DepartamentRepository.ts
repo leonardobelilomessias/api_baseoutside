@@ -18,6 +18,10 @@ class DepartamentRepository implements IDepartamentRepository{
     this.taskDepartamentRepository = AppDataSource.getRepository(TaskDepartament)
 
   }
+  async findDepartamentById({ id_departament }): Promise<Departament> {
+    const findDepartament = await this.departamentRepository.findOne({where:{id:id_departament}})
+    return findDepartament
+  }
   async findAgentDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any; }): Promise<AgentDepartament> {
     const agentDepartament = await this.agentDepartamentRepository.findOne({where:{id_agent,id_departament}})
     return agentDepartament

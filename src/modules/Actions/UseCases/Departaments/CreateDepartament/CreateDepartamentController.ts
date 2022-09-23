@@ -9,7 +9,8 @@ class CreateDepartamentController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const { id_action, name, description, agents_limit, agents_necessary } = request.body
-    const createdDepartament = await this.createDepartamentUseCase.execute({ id_action, name, description, agents_limit, agents_necessary })
+    const id_agent_token = request.user.id
+    const createdDepartament = await this.createDepartamentUseCase.execute({id_agent_token, id_action, name, description, agents_limit, agents_necessary })
     return response.status(200).json(createdDepartament)
   }
 }

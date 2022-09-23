@@ -10,25 +10,25 @@ class AdminDepartamentRepository implements IAdminDepartamentRepository{
   constructor(){
 
   }
-  createAdminDepartament({ id_mission, id_agent, type }: { id_mission: any; id_agent: any; type: any }): Promise<AdminDepartament> {
+  createAdminDepartament({ id_departament, id_agent, type }: { id_departament: any; id_agent: any; type: any }): Promise<AdminDepartament> {
     throw new Error("Method not implemented.")
   }
-  findAdminDepartament({ id_agent, id_mission }: { id_agent: any; id_mission: any }): Promise<AdminDepartament> {
+  findAdminDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any }): Promise<AdminDepartament> {
     throw new Error("Method not implemented.")
   }
-  updateAdminDepartament({ id_agent, id_mission, type }: { id_agent: any; id_mission: any; type: any }): Promise<AdminDepartament> {
+  updateAdminDepartament({ id_agent, id_departament, type }: { id_agent: any; id_departament: any; type: any }): Promise<AdminDepartament> {
     throw new Error("Method not implemented.")
   }
-  deleteAdminDepartament({ id_agent, id_mission }: { id_agent: any; id_mission: any }): Promise<AdminDepartament> {
+  deleteAdminDepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any }): Promise<AdminDepartament> {
     throw new Error("Method not implemented.")
   }
-  listAdminsMission(id_mission: string): Promise<AdminDepartament[]> {
+  listAdminsdepartament(id_departament: string): Promise<AdminDepartament[]> {
     throw new Error("Method not implemented.")
   }
-  findCreatorMission(id_mission: string): Promise<string> {
+  findCreatordepartament(id_departament: string): Promise<string> {
     throw new Error("Method not implemented.")
   }
-  findAgentInMission({ id_agent, id_mission }: { id_agent: any; id_mission: any }): Promise<AgentDepartament> {
+  findAgentIndepartament({ id_agent, id_departament }: { id_agent: any; id_departament: any }): Promise<AgentDepartament> {
     throw new Error("Method not implemented.")
   }
   

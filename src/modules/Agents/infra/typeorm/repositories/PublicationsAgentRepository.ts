@@ -1,8 +1,9 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { EditPublication, fullPublication, ICreatePublication, IPublicationsAgentRepository, ResponseCreatePublication } from "../../../DTOS/IPublicationsAgentRepository";
+import { EditPublicationDTO, ICreatePublicationDTO, ResponseCreatePublicationDTO} from "../../../DTOS/IPublicationAgentDTOS";
 import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository";
+import { IPublicationsAgentRepository } from "../../../repositories/IPublicationsAgentRepository";
 import { Agent } from "../entities/Agent";
 import { PublicationAgent} from "../entities/PublicationAgent";
 import { AgentRepository } from "./AgentRepository";
@@ -44,7 +45,7 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     const foundPublication = await this.publicationsAgentRepository.findOneBy({id:id_publication})
     return foundPublication
   }
-  async create({id_agent, type, description ,content}:ICreatePublication): Promise<ResponseCreatePublication> {
+  async create({id_agent, type, description ,content}:ICreatePublicationDTO): Promise<ResponseCreatePublicationDTO> {
     const agent = await this.agentRepository.findOne({where:{id:id_agent}})
     if(!agent) throw new AppError("Agent not found.")
     const newPublication = new PublicationAgent()
@@ -57,7 +58,7 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
   list(): Promise<PublicationAgent[]> {
     return this.publicationsAgentRepository.find()
   }
-  async edit({ id_publication, description }: EditPublication): Promise<PublicationAgent> {
+  async edit({ id_publication, description }: EditPublicationDTO): Promise<PublicationAgent> {
     const updatePublication = await this.publicationsAgentRepository.save({ id: id_publication, description: description })
     return updatePublication
   }

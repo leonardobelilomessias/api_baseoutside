@@ -12,7 +12,7 @@ class CreateActionUseCase{
     this.actionRepository = actionRepository
   }
 
-  async execute({id_agent_token,name,description,date_start,date_end,value,id_mission,local}):Promise<Action>{
+  async execute({id_agent_token,creator,name,description,date_start,date_end,value,id_mission,local}):Promise<Action>{
     const minimunDateStart = 24
     const minimunDateEnd = 48
     const dateNow = DateProvider.dateNow()
@@ -23,7 +23,7 @@ class CreateActionUseCase{
     const compareDateEnd = DateProvider.compairInHours(date_end,dateNow)
     if(compareDateStart < minimunDateStart) throw new AppError(" minimund date Start is 24 hours")
     if(compareDateEnd < minimunDateEnd) throw new AppError(" minimund date Start is 48 hours")
-    const newAction = await this.actionRepository.create({name,description,date_start,date_end,value,id_mission,local})
+    const newAction = await this.actionRepository.create({state,creator,name,description,date_start,date_end,value,id_mission,local})
     return newAction
   }
 }

@@ -36,6 +36,8 @@ interface IDepartamentRepository{
 
   deleteAgentDepartament({id_agent,id_departament}):Promise<AgentDepartament>
 
+  findDepartamentById({id_departament}):Promise<Departament>
+
 
 }
 export{IDepartamentRepository,ICreateDepartament,IEditDepartement}

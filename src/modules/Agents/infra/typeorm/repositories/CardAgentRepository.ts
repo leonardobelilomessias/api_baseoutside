@@ -1,7 +1,8 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { ICardAgentRepository, ICreateCardAgent, IEditCardAgent } from "../../../repositories/ICardAgentRepository";
+import { ICreateCardAgentDTO } from "../../../DTOS/ICardAgentDTOS";
+import { ICardAgentRepository} from "../../../repositories/ICardAgentRepository";
 import { CardAgent } from "../entities/CardAgent";
   
 class CardAgentRepository implements ICardAgentRepository{
@@ -9,7 +10,7 @@ class CardAgentRepository implements ICardAgentRepository{
   constructor(){
     this.cardAgentRepository = AppDataSource.getRepository("card_agent")
   }
-  async create({ id_agent, description,title }: ICreateCardAgent): Promise<CardAgent> {
+  async create({ id_agent, description,title }: ICreateCardAgentDTO): Promise<CardAgent> {
     try{
       const newAgent = new CardAgent()
       Object.assign(newAgent,{id_agent:id_agent,description:description,title:title})
@@ -20,7 +21,7 @@ class CardAgentRepository implements ICardAgentRepository{
     }
 
   }
-  async edit({ description, id_agent,title }: IEditCardAgent): Promise<CardAgent> {
+  async edit({ description, id_agent,title }: ICreateCardAgentDTO): Promise<CardAgent> {
     const editAgent = await this.cardAgentRepository.findOne({where:{id_agent:id_agent}})
     Object.assign(editAgent,{description:description,id_agent:id_agent,title:title})
     const editedAgent = await this.cardAgentRepository.save(editAgent)

@@ -2,10 +2,8 @@ import { Repository } from "typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { IStorageProvider } from "../../../../../utils/providers/StorageProvider/IStorageProvide"
-import { IPhotosPublicationAgent } from "../../../DTOS/IPhotosPublicationAgentRepository"
-import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository"
+import { IPhotosPublicationAgent } from "../../../repositories/IPhotosPublicationAgentRepository"
 import { PhotoPublicationAgent } from "../entities/PhotoPublicationAgent"
-import { JourneyAgentRepository } from "./JourneyAgentRepository"
 
 class PhotoPublicationAgentRepository implements IPhotosPublicationAgent{
   private photosPublicationAgent: Repository<PhotoPublicationAgent>

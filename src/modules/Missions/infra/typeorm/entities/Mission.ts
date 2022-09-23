@@ -11,6 +11,9 @@ class Mission {
   name: string;
 
   @Column()
+  identifier:string;
+
+  @Column()
   creator: string;
 
   @Column()

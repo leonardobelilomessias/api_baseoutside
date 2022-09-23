@@ -1,11 +1,13 @@
 import {  Repository } from "typeorm"
 import { SkillsRepository } from "./SkillsRepository"
 import { InterestsRepository } from "./InterestsRepository"
-import {  EditAgent, IAgentRepository, ResponseAgent } from "../../../repositories/IAgentRepository"
+import {  IAgentRepository} from "../../../repositories/IAgentRepository"
 import { Agent } from "../entities/Agent"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { hash,compare } from "bcryptjs"
+import { IEditAgentDTO, IResponseAgentDTO} from "../../../DTOS/IAgentDTOS"
+
 
  class AgentRepository implements IAgentRepository {
    agentRepository: Repository<Agent>
@@ -16,13 +18,7 @@ import { hash,compare } from "bcryptjs"
      this.skillsRepository = new SkillsRepository()
      this.interestsRepository = new InterestsRepository()
   }
-  async findByUserName(user_name: string): Promise<Agent> {
-     const agentByUsername = await this.agentRepository.findOne({where:{user_name:user_name,is_active:true}})
-     return agentByUsername
-   }
-   listAll(): Promise<Agent[]> {
-     throw new Error("Method not implemented.")
-   }
+
    
    async findBySkills(skills): Promise<Agent[]> {
     const agentsWithSkill = await this.agentRepository.createQueryBuilder("agents")
@@ -79,7 +75,7 @@ import { hash,compare } from "bcryptjs"
     await this.agentRepository.save(agentActivate)
    }
     
-  async edit({ id, description, email, name, skills, interests,vocation,image_profile}: EditAgent): Promise<ResponseAgent> {
+  async edit({ id, description, email, name, skills, interests,vocation,image_profile}: IEditAgentDTO): Promise<IResponseAgentDTO> {
     const agentEdit = await this.agentRepository.findOneBy({ id: id })
     const newSkills = []
     const newInterests =[]
@@ -124,6 +120,13 @@ import { hash,compare } from "bcryptjs"
     findAgent.password = hashPassowrd
     const resetedAgent = this.agentRepository.save(findAgent)
     return resetedAgent
+  }
+  async findByUserName(user_name: string): Promise<Agent> {
+    const agentByUsername = await this.agentRepository.findOne({where:{user_name:user_name,is_active:true}})
+    return agentByUsername
+  }
+  listAll(): Promise<Agent[]> {
+    throw new Error("Method not implemented.")
   }
 }
 

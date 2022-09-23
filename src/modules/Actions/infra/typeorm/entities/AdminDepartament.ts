@@ -1,13 +1,13 @@
 import { Column, CreateDateColumn, Entity, PrimaryColumn } from "typeorm";
 import { v4 as uuidv4 } from 'uuid';
-@Entity("admins_departaments")
+@Entity("admins_missions")
 class AdminDepartament{
 
   @PrimaryColumn()
   id: string;
 
   @Column()
-  id_action:string;
+  id_departament:string;
 
   @Column()
   id_agent: string;

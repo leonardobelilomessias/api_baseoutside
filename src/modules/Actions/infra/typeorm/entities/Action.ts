@@ -8,6 +8,9 @@ class Action{
 
   @Column()
   name: string;
+  
+  @Column()
+  creator: string;
 
   @Column()
   description: string;

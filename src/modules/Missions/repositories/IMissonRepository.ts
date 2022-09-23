@@ -4,7 +4,7 @@ import { Mission } from "../infra/typeorm/entities/Mission";
 
 interface IMissionRepository{
 
-  create({name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type,field}:ICreateMissionDTO): Promise<Mission>
+  create({identifier, name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type,field}): Promise<Mission>
   
   listAllMissions(): Promise<Mission[]>
 

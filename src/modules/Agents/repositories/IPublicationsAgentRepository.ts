@@ -1,35 +1,11 @@
-import { PhotoPublicationAgent } from "../infra/typeorm/entities/PhotoPublicationAgent"
+
+import { EditPublicationDTO, ICreatePublicationDTO, ResponseCreatePublicationDTO } from "../DTOS/IPublicationAgentDTOS"
 import { PublicationAgent } from "../infra/typeorm/entities/PublicationAgent"
 
 
 
-interface ICreatePublication
-{
-  id_agent: string
-  type: string
-  description?: string
-  content: string[]
-}
-interface EditPublication{
-  id_publication: string
-  description?:string
-}
-
-interface ResponseCreatePublication{
-  id_agent: string;
-  id_publication: string;
-  type: string;
-  description?: string;
-  content:PhotoPublicationAgent[]
- }
-
- interface fullPublication{
-  publication:PublicationAgent;
-  photos:string[]
-  
-}
 interface IPublicationsAgentRepository{
-  create({id_agent,type,description,content}:ICreatePublication):Promise<ResponseCreatePublication>
+  create({id_agent,type,description,content}:ICreatePublicationDTO):Promise<ResponseCreatePublicationDTO>
 
   listAll(): Promise<PublicationAgent[]>
 
@@ -37,11 +13,11 @@ interface IPublicationsAgentRepository{
   
   listByAgentName(name:string): Promise<PublicationAgent[]>
 
-  edit({id_publication,description}:EditPublication):Promise<PublicationAgent>
+  edit({id_publication,description}:EditPublicationDTO):Promise<PublicationAgent>
 
   delete(id_publication: string): Promise<PublicationAgent>
   
   findPublicationById(id_publication:string):Promise<PublicationAgent>
 
 }
-export{ IPublicationsAgentRepository,ICreatePublication,EditPublication,ResponseCreatePublication,fullPublication}
+export{ IPublicationsAgentRepository}

@@ -1,11 +1,7 @@
+import { ICreateColab } from "../DTOS/IColabAgentDTOS";
 import { Agent } from "../infra/typeorm/entities/Agent";
 import { ColabAgent } from "../infra/typeorm/entities/ColabAgent";
 
-interface ICreateColab{
-  id_agent: string;
-  id_colab: string;
-  type:number
-}
 
 interface IColabRepository{
   create({ id_agent, id_colab, type }: ICreateColab): Promise<ColabAgent>

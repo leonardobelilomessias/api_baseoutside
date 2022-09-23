@@ -14,10 +14,10 @@ class MissionRepository implements IMissionRepository{
     const foundMissionById = await this.missionRepository.findOneBy({ id: id })
     return foundMissionById
   }
-  async create({ name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field}: ICreateMissionDTO): Promise<Mission> {
+  async create({identifier, name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field}): Promise<Mission> {
     try{
       const newMission = new Mission()
-      Object.assign(newMission, { name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field})
+      Object.assign(newMission, {identifier, name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field})
       const mission = await this.missionRepository.save(newMission)
       return mission
     }catch{
