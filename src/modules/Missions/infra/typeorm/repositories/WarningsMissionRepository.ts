@@ -1,7 +1,8 @@
 import { Repository } from "typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
-import { ICreateWarningsMissionDTO, IEditWarningsMissionDTO, IWarningsMissionRepository } from "../../../repositories/IWarningsMissionRepository"
+import { ICreateWarningsMissionDTOS } from "../../../dtos/IWarningsMissionDTOS"
+import {IEditWarningsMissionDTO, IWarningsMissionRepository } from "../../../repositories/IWarningsMissionRepository"
 import { WarningsMission } from "../entities/WarningMission"
 
 class WarningMissionRepository implements IWarningsMissionRepository{
@@ -13,7 +14,7 @@ class WarningMissionRepository implements IWarningsMissionRepository{
     const findwarning = await this.warningsMissionRepository.findOne({where:{id}})
     return findwarning
   }
-  async create({ id_mission, id_creator, title, content, priority, is_active, state, type }: ICreateWarningsMissionDTO): Promise<WarningsMission> {
+  async create({ id_mission, id_creator, title, content, priority, is_active, state, type }: ICreateWarningsMissionDTOS): Promise<WarningsMission> {
     const newWarning = new WarningsMission()
     Object.assign(newWarning,{ id_mission, id_creator, title, content, priority, is_active, state, type })
     const createdWarning = await this.warningsMissionRepository.save(newWarning)

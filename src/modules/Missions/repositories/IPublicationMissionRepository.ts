@@ -17,5 +17,7 @@ interface IPublicationMission{
 
   delete(id_publication:string):Promise<PublicationMission>
 
+  findById(id_publication:string):Promise<PublicationMission>
+
 }
 export{IPublicationMission,IResponsePublicationMission}

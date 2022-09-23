@@ -8,7 +8,8 @@ class DeletePublicationMissionController{
   }
   async handle(request:Request,response:Response):Promise<Response>{ 
     const {id_publication} = request.body
-    const deletedPublication = await this.deletePublicationMissionUseCase.execute(id_publication)
+    const id_agent_token = request.user?.id
+    const deletedPublication = await this.deletePublicationMissionUseCase.execute({id_publication,id_agent_token})
     return response.status(200).json(deletedPublication)
   }
 }

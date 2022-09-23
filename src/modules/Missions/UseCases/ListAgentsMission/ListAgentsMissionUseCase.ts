@@ -1,5 +1,5 @@
 import { AppError } from "../../../../shared/errors/AppError";
-import { IAgentRepository } from "../../../Agents/repositories/IAgentRepository";
+import { IOutputGenericAgentMissionDTO } from "../../dtos/IAgentMissionDTOS";
 import { IAgentsMissions } from "../../repositories/IAgentsMissions";
 
 class ListAgentsMissionUseCase{
@@ -7,8 +7,7 @@ class ListAgentsMissionUseCase{
   constructor(agentsMissionsRepository: IAgentsMissions) {
     this.agentsMissionsRepository = agentsMissionsRepository
   }
-  
-  async execute(id_mission: string) {
+  async execute(id_mission: string):Promise<IOutputGenericAgentMissionDTO[]> {
     if(!id_mission) throw new AppError("Value of mission is undefined")
     const lisAgentsMission = await this.agentsMissionsRepository.findAllAgentsMission(id_mission)
     if(!lisAgentsMission) throw new AppError("Mission not found")

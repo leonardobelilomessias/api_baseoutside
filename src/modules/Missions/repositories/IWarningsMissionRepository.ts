@@ -1,27 +1,9 @@
+import { ICreateWarningsMissionDTOS, IEditWarningsMissionDTO } from "../dtos/IWarningsMissionDTOS";
 import { WarningsMission } from "../infra/typeorm/entities/WarningMission";
 
-interface ICreateWarningsMissionDTO{
-  id_mission:string;
-  id_creator:string;
-  title:string;
-  content:string;
-  priority?:string;
-  type?:number;
-  state?:number;
-  is_active?:boolean;
-}
-interface IEditWarningsMissionDTO{
-  id:string;
-  title:string;
-  content:string;
-  priority?:string;
-  type?:number;
-  state?:number;
-  is_active?:boolean;
-}
 interface IWarningsMissionRepository{
 
-  create({id_mission,id_creator,title,content,priority,is_active,state,type}:ICreateWarningsMissionDTO):Promise<WarningsMission>
+  create({id_mission,id_creator,title,content,priority,is_active,state,type}:ICreateWarningsMissionDTOS):Promise<WarningsMission>
 
   findById(id:string):Promise<WarningsMission>
 
@@ -39,4 +21,4 @@ interface IWarningsMissionRepository{
 
 }
 
-export{ICreateWarningsMissionDTO,IEditWarningsMissionDTO,IWarningsMissionRepository}
+export{IEditWarningsMissionDTO,IWarningsMissionRepository}

@@ -1,5 +1,6 @@
 import { AppError } from "../../../../shared/errors/AppError"
 import { IAgentRepository } from "../../../Agents/repositories/IAgentRepository"
+import { IInputCreateAgentMissionDTO, IOutputGenericAgentMissionDTO } from "../../dtos/IAgentMissionDTOS"
 import { AgentMission } from "../../infra/typeorm/entities/AgentMission"
 import { IAgentsMissions } from "../../repositories/IAgentsMissions"
 import { IMissionRepository } from "../../repositories/IMissonRepository"
@@ -14,7 +15,7 @@ class CreateAgentMissionUseCase{
     this.agentRepository = agentRepository
     this.missionRepository = missionRepository
   }
-  async execute({id_agent_token,id_mission,id_agent}):Promise<AgentMission> {
+  async execute({id_agent_token,id_mission,id_agent}:IInputCreateAgentMissionDTO):Promise<IOutputGenericAgentMissionDTO> {
     if(!id_mission||!id_agent) throw new AppError("Value of  mission or agent cannot be undefined.")
     const foundMission = await this.missionRepository.findById(id_mission)
     if (!foundMission) throw new AppError("Mission not found.")

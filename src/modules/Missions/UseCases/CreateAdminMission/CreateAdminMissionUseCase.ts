@@ -1,15 +1,18 @@
 import { AppError } from "../../../../shared/errors/AppError";
+import { IInputCreateAdminMissionDTO, IOutputCreateAdminMissionDTO } from "../../dtos/IAdminMissionDTOS";
 import { AdminMission } from "../../infra/typeorm/entities/AdminMission";
+import { MenagerPermissionRespository } from "../../infra/typeorm/repositories/MenagerPermissionRepository";
 import { IAdminMissionRepository } from "../../repositories/IAdminMissionRepository";
 import { IMissionRepository } from "../../repositories/IMissonRepository";
 
 class CreateAdminMissionUseCase{
   private adminmissionRepository: IAdminMissionRepository
+  
   constructor(adminMissionRepository: IAdminMissionRepository,) {
     this.adminmissionRepository = adminMissionRepository
     
   }
-  async execute({id_agent_token,id_mission,id_agent,type}):Promise<AdminMission> {
+  async execute({id_agent_token,id_mission,id_agent,type}:IInputCreateAdminMissionDTO):Promise<IOutputCreateAdminMissionDTO> {
     if (!id_mission || !id_agent ||!type) throw new AppError("Some required value is undefined.")
     const creatorMission = await this.adminmissionRepository.findCreatorMission(id_mission)
     if(creatorMission !== id_agent_token) throw new AppError("Agent authenticate dont have permission to create a admin ")

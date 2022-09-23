@@ -3,10 +3,8 @@ import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { IPhotoPublicationMissionRepository } from "../../../repositories/IPhotoPublicationMissionRepository";
 import { IPublicationMission, IResponsePublicationMission } from "../../../repositories/IPublicationMissionRepository";
-import { PhotoPublicationMission } from "../entities/PhotoPublicationMission";
 import { PublicationMission } from "../entities/PublicationMission";
 import { JourneyMissionRepository } from "./JourneyMissionRepository";
-import { PhotoPublicationMissionRepository } from "./PhotoPublicationMissionRepository";
 
 
 class PublicationMissionRepository implements IPublicationMission{
@@ -17,6 +15,10 @@ class PublicationMissionRepository implements IPublicationMission{
     this.publicationMissionRepository = AppDataSource.getRepository(PublicationMission)
     this.photoPublicationMissionRepository = photoPublicationMissionRepository
     this.JourneyMissionRepository = new JourneyMissionRepository()
+  }
+  async findById(id_publication: string): Promise<PublicationMission> {
+    const findpublication = await this.publicationMissionRepository.findOne({where:{id:id_publication}})
+    return findpublication
   }
   async   create({id_mission,type,description,content}):Promise<IResponsePublicationMission> {
     const newPublication = new PublicationMission()

@@ -17,6 +17,8 @@ class SponsorMission{
   @CreateDateColumn()
   created_at: Date;
 
+  @Column()
+  value:number;
 
   @Column()
   sponsor_private: boolean;

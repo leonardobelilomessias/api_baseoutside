@@ -87,7 +87,7 @@ mission.get("/findByLocal/:local?", async(request, response) => {
 mission.get("/sponsors", async(request, response) => {
   await listsponsorsMissionsController.handle(request,response)
 })
-mission.get("/missionSponsor", async(request, response) => {
+mission.get("/missionsSponsor", async(request, response) => {
   await listmissionsSponsorsController.handle(request,response)
 })
 mission.get("/admin", async(request, response) => {
