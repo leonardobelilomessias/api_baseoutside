@@ -8,7 +8,8 @@ class EditCardAgentController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const {id_agent,title,description} = request.body
-    const editAgent =await  this.editCardAgentRepository.execute({id_agent,title,description})
+    const id_agent_token = request.user.id
+    const editAgent =await  this.editCardAgentRepository.execute({id_agent_token,id_agent,title,description})
     return response.status(200).json(editAgent)
   }
 }

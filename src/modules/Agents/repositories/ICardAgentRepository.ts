@@ -1,5 +1,5 @@
 
-import { ICreateCardAgentDTO, IEditCardAgent } from "../DTOS/ICardAgentDTOS";
+import { ICreateCardAgentDTO, IEditCardAgentDTO } from "../DTOS/ICardAgentDTOS";
 import { CardAgent } from "../infra/typeorm/entities/CardAgent";
 
 
@@ -9,7 +9,7 @@ interface ICardAgentRepository{
 
   create({id_agent,description}:ICreateCardAgentDTO):Promise<CardAgent>
 
-  edit({description,id_agent}:IEditCardAgent):Promise<CardAgent>
+  edit({description,id_agent}:IEditCardAgentDTO):Promise<CardAgent>
 
   listByid(id_agent:string):Promise<CardAgent>
 
