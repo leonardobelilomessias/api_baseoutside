@@ -6,7 +6,7 @@ import { IMissionRepository } from "../../../repositories/IMissonRepository";
 import { AdminMission } from "../entities/AdminMission";
 import { AgentMission } from "../entities/AgentMission";
 import { Mission } from "../entities/Mission";
-import { MissionRepository } from "./MissionReposioty";
+import { MissionRepository } from "./MissionRepository";
 import {IAgentsMissions} from "../../../repositories/IAgentsMissions"
 import { AgentsMissionRepository } from "./AgentsMissionRepository";
 

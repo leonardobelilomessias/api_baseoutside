@@ -1,5 +1,5 @@
 
-import { MissionRepository } from "../../infra/typeorm/repositories/MissionReposioty";
+import { MissionRepository } from "../../infra/typeorm/repositories/MissionRepository";
 import { FindMissionsByLocalUseCaseController } from "./FindMissionsByLocalController";
 import { FindMissionsByLocalUseCase } from "./FindMissionsByLocalUseCase";
 

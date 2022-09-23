@@ -1,10 +1,10 @@
-import { ICreateMissionDTO } from "../dtos/ICreateMissionDTO";
-import { IUpdateMission } from "../dtos/IUpdateMissionDTO";
+
+import { ICreateMissionDTO, IUpdateMissionDTO } from "../dtos/IMissionDTO";
 import { Mission } from "../infra/typeorm/entities/Mission";
 
 interface IMissionRepository{
 
-  create({identifier, name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type,field}): Promise<Mission>
+  create({identifier, name,description,creator,image_profile,date_end,date_start,duration,is_private,local,type,field}:ICreateMissionDTO): Promise<Mission>
   
   listAllMissions(): Promise<Mission[]>
 
@@ -16,7 +16,7 @@ interface IMissionRepository{
 
   findMissionByLocal(local:string):Promise<Mission[]>
   
-  updateMission({name,description,image_profile,date_end,date_start,duration,is_private,local,type,field}:IUpdateMission): Promise<Mission>
+  updateMission({name,description,image_profile,date_end,date_start,duration,is_private,local,type,field}:IUpdateMissionDTO): Promise<Mission>
   
   deactivate(id:string): Promise<Mission>
 

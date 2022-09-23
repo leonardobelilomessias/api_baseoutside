@@ -1,6 +1,7 @@
 import { AppError } from "../../../../shared/errors/AppError"
 import { cleanEmptySpace } from "../../../../utils/cleanEmptySpace"
-import { IUpdateMission } from "../../dtos/IUpdateMissionDTO"
+import { IInputUpdateMissionDTO, IOutputGenericMissionDTO } from "../../dtos/IMissionDTO"
+
 import { Mission } from "../../infra/typeorm/entities/Mission"
 import { MenagerPermissionRespository } from "../../infra/typeorm/repositories/MenagerPermissionRepository"
 import { IMissionRepository } from "../../repositories/IMissonRepository"
@@ -13,7 +14,7 @@ class UpdateMissionUseCase{
     this.missionRepository = missionRepository
     this.menagerMissionPermissionRepository = new MenagerPermissionRespository()
   }
-  async execute({ id_agent_token,id, name,description,image_profile,date_end,date_start,duration,is_private,local,type,field}): Promise<Mission>{
+  async execute({ id_agent_token,id, name,description,image_profile,date_end,date_start,duration,is_private,local,type,field}:IInputUpdateMissionDTO): Promise<IOutputGenericMissionDTO>{
     if(!id) throw new AppError(" Dont sent mission.")
     const alowUpdateMission = await this.menagerMissionPermissionRepository.confirmePermissionMission({id_agent_token})
     if(!alowUpdateMission)throw new AppError("Agent authenticate does not permission to that action.")

@@ -1,4 +1,4 @@
-import { MissionRepository } from "../../infra/typeorm/repositories/MissionReposioty";
+import { MissionRepository } from "../../infra/typeorm/repositories/MissionRepository";
 import { FindMissionByNameController } from "./FindMissionByNameController";
 import { FindMissionByNameUseCase } from "./FindMissionByNameUseCase";
 
