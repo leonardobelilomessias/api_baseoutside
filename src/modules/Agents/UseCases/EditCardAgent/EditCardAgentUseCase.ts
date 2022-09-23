@@ -1,6 +1,5 @@
 import { AppError } from "../../../../shared/errors/AppError"
 import { IInputEditCardAgentDTO, IOutputGenericCardAgentDTO } from "../../DTOS/ICardAgentDTOS"
-import { CardAgent } from "../../infra/typeorm/entities/CardAgent"
 import { ICardAgentRepository } from "../../repositories/ICardAgentRepository"
 
 class EditCardAgentUseCase{

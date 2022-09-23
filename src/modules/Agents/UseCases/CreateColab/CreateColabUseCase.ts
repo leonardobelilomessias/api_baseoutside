@@ -1,8 +1,7 @@
 import { AppError } from "../../../../shared/errors/AppError"
 import { ColabAgent } from "../../infra/typeorm/entities/ColabAgent"
-import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepository"
 import { IAgentRepository } from "../../repositories/IAgentRepository"
-import { IColabRepository } from "../../repositories/IColabRepositoryInMemory"
+import { IColabRepository } from "../../repositories/IColabRepository"
 
 class CreateColabAgentUseCase{
   private colabRepository: IColabRepository

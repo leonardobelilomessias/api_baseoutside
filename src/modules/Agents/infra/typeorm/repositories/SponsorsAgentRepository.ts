@@ -1,6 +1,7 @@
 import { Repository } from "typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
+import { ICreateSponsorDTO, IDeleteSponsorAgentDTO} from "../../../DTOS/ISponsorsAgentDTOS"
 import { ISponsorAgentRepository } from "../../../repositories/ISponsorAgentRepository"
 import { SponsorAgent } from "../entities/SponsorAgent"
 
@@ -20,9 +21,8 @@ class SponsorsAgentsRepository implements ISponsorAgentRepository{
     return sponsorsAgent
   }
 
-  async create({ id_agent, id_sponsor, type, agent_private, sponsor_private }): Promise<SponsorAgent> {
-    const sponsor = new SponsorAgent()
-    const newSponsor = this.sponsorsAgentsRepository.create( {id_agent, id_sponsor, type, agent_private, sponsor_private} )
+  async create({ id_agent, id_sponsor, type, agent_private, sponsor_private,value }:ICreateSponsorDTO): Promise<SponsorAgent> {
+    const newSponsor = this.sponsorsAgentsRepository.create( {id_agent, id_sponsor, type, agent_private, sponsor_private,value} )
     await this.sponsorsAgentsRepository.save(newSponsor) 
     return newSponsor
   }
@@ -32,7 +32,7 @@ class SponsorsAgentsRepository implements ISponsorAgentRepository{
       where:{id_sponsor:id_sponsor,agent_private:false}})
     return sponsorsAgent
   }
-  async delete({ id_agent, id_sponsor }: { id_agent: any; id_sponsor: any }): Promise<SponsorAgent> {
+  async delete({ id_agent, id_sponsor }: IDeleteSponsorAgentDTO): Promise<SponsorAgent> {
     const canceledSponsor = await this.sponsorsAgentsRepository.findOne({
       where: {
         id_agent: id_agent,

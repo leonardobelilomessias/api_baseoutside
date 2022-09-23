@@ -1,4 +1,4 @@
-import { SponsorsAgentsRepository } from "../../infra/typeorm/repositories/SponsorsAgentRepository.ts";
+import { SponsorsAgentsRepository } from "../../infra/typeorm/repositories/SponsorsAgentRepository";
 import { ToCancelSponsorAgentController } from "./ToCancelSponsorAgentController";
 import { ToCancelSponsorAgentUseCase } from "./ToCancelSponsorAgentUseCase";
 

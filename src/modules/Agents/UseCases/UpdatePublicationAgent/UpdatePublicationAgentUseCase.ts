@@ -1,4 +1,5 @@
 import { AppError } from "../../../../shared/errors/AppError";
+import { IInputUpdatePublicationDTO } from "../../DTOS/IPublicationAgentDTOS";
 import { PublicationAgent } from "../../infra/typeorm/entities/PublicationAgent";
 import { IPublicationsAgentRepository } from "../../repositories/IPublicationsAgentRepository";
 
@@ -7,7 +8,7 @@ class UpdatePublicationAgentUseCase{
   constructor(publicationsAgentRepository: IPublicationsAgentRepository) {
     this.publicationsAgentRepository = publicationsAgentRepository
   }
-  async execute({id_agent_token,id_publication, description}): Promise<PublicationAgent> {
+  async execute({id_agent_token,id_publication, description}:IInputUpdatePublicationDTO): Promise<PublicationAgent> {
     if(!id_publication) throw new AppError("Value sent of publications is undefined")
     const existPubiclation = await this.publicationsAgentRepository.findPublicationById(id_publication)
     if(!existPubiclation) throw new AppError("publication does not exist")

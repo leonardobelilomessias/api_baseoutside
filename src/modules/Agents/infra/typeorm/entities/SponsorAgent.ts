@@ -22,6 +22,9 @@ class SponsorAgent{
   agent_private:boolean;
 
   @Column()
+  value:number;
+
+  @Column()
   sponsor_private: boolean;
 
   constructor() {

@@ -1,12 +1,11 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { EditPublicationDTO, ICreatePublicationDTO, ResponseCreatePublicationDTO} from "../../../DTOS/IPublicationAgentDTOS";
+import { IEditPublicationDTO, ICreatePublicationDTO, IOutputCreatePublicationDTO, IOutputListPublicationDTO, } from "../../../DTOS/IPublicationAgentDTOS";
 import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository";
 import { IPublicationsAgentRepository } from "../../../repositories/IPublicationsAgentRepository";
 import { Agent } from "../entities/Agent";
 import { PublicationAgent} from "../entities/PublicationAgent";
-import { AgentRepository } from "./AgentRepository";
 import { JourneyAgentRepository } from "./JourneyAgentRepository";
 import { PhotoPublicationAgentRepository } from "./PhotosPublicationAgentRepository";
 
@@ -28,24 +27,23 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     const allPublicationAgent = await this.publicationsAgentRepository.find()
     return allPublicationAgent
   }
-  async listByIdAgent(id_agent: string){
-
+  async listByIdAgent(id_agent: string):Promise<IOutputListPublicationDTO[]>{
     const publicationByIdAgent = await this.publicationsAgentRepository.find({
       where:{id_agent:id_agent}
     })
-
     const fullPublications = await publicationByIdAgent.map(async (publication)=>{
       const photo = await this.photosPublicationsAgent.findPhotosByIdPublication(publication.id)
       const urlPhotos = photo.map(onePhoto=>(onePhoto.url))
       return {publication:publication,  photos:urlPhotos}
     })
-    return Promise.all(fullPublications)
+    return await Promise.all(fullPublications)
   }
+
   async findPublicationById(id_publication: string): Promise<PublicationAgent> {
     const foundPublication = await this.publicationsAgentRepository.findOneBy({id:id_publication})
     return foundPublication
   }
-  async create({id_agent, type, description ,content}:ICreatePublicationDTO): Promise<ResponseCreatePublicationDTO> {
+  async create({id_agent, type, description ,content}:ICreatePublicationDTO): Promise<IOutputCreatePublicationDTO> {
     const agent = await this.agentRepository.findOne({where:{id:id_agent}})
     if(!agent) throw new AppError("Agent not found.")
     const newPublication = new PublicationAgent()
@@ -58,7 +56,7 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
   list(): Promise<PublicationAgent[]> {
     return this.publicationsAgentRepository.find()
   }
-  async edit({ id_publication, description }: EditPublicationDTO): Promise<PublicationAgent> {
+  async edit({ id_publication, description }: IEditPublicationDTO): Promise<PublicationAgent> {
     const updatePublication = await this.publicationsAgentRepository.save({ id: id_publication, description: description })
     return updatePublication
   }

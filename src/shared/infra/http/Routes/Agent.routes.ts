@@ -23,7 +23,6 @@ import { toCancelColabAgentController } from "../../../../modules/Agents/UseCase
 import { listColabsAgentController } from "../../../../modules/Agents/UseCases/ListColabsAgent";
 import { listJourneyAgentController } from "../../../../modules/Agents/UseCases/ListJourneysAgentUseCase";
 import { deletedJourneyAgentController } from "../../../../modules/Agents/UseCases/DeleteJourneyAgent";
-import { listAgentsSponsorController } from "../../../../modules/Agents/UseCases/ListAgentsSponsor";
 import { listAgentsColabController } from "../../../../modules/Agents/UseCases/ListAgentsColab";
 import { listPublicationAgentController } from "../../../../modules/Agents/UseCases/ListPublicationAgent";
 import { deletePublicationAgentController } from "../../../../modules/Agents/UseCases/DeletePublicationAgent";
@@ -32,6 +31,7 @@ import { findCardAgentController } from "../../../../modules/Agents/UseCases/Fin
 import { editCardAgentController } from "../../../../modules/Agents/UseCases/EditCardAgent";
 import { deletedCardAgentController } from "../../../../modules/Agents/UseCases/DeleteCardAgent";
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
+import { listAgentsSponsorController } from "../../../../modules/Agents/UseCases/ListAgentsSponsor";
 
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)

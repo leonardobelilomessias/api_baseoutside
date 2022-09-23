@@ -1,6 +1,6 @@
-import { SponsorsAgentsRepository } from "../../infra/typeorm/repositories/SponsorsAgentRepository.ts";
-import { ListAgentsSponsorUseCase } from "./ListAgentsSponsor";
+import { SponsorsAgentsRepository } from "../../infra/typeorm/repositories/SponsorsAgentRepository";
 import { ListAgentsSponsorController } from "./ListAgentsSponsorController";
+import { ListAgentsSponsorUseCase } from "./ListAgentsSponsorUseCase";
 
 const sponsorAgentRepository = new SponsorsAgentsRepository()
 const lisAgentsSponsorUseCase = new ListAgentsSponsorUseCase(sponsorAgentRepository)

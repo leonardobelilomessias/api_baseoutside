@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { ListAgentsSponsorUseCase } from "./ListAgentsSponsor"
+import { ListAgentsSponsorUseCase } from "./ListAgentsSponsorUseCase"
 
 class ListAgentsSponsorController{
     private lisAgentsSponsorUseCase:ListAgentsSponsorUseCase

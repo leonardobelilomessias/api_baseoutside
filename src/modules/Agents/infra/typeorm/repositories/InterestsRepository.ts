@@ -1,11 +1,9 @@
 import { Repository } from "typeorm/repository/Repository"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
-import { IAgentRepository } from "../../../repositories/IAgentRepository"
 import { IInterestsRepository } from "../../../repositories/IInterestsRepository"
 import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository"
 import { Agent } from "../entities/Agent"
 import { Interests } from "../entities/Interests"
-import { JourneyAgent } from "../entities/JourneyAgent"
 import { JourneyAgentRepository } from "./JourneyAgentRepository"
 
 class InterestsRepository implements IInterestsRepository{
