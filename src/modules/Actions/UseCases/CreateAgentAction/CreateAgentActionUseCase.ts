@@ -14,7 +14,7 @@ class CreateAgentActionUseCase{
     if(foundAgentAction) throw new AppError("Agent alredy is at action")
     const validateAbleSubscribe = await ValidatorSubscribe.ableSubscribeAction({id_action,id_agent})
     if(!validateAbleSubscribe) throw new AppError("Agent  must to participate of mission od action to subscribe")
-    if(id_agent_token !== id_agent_token)throw new AppError("Agent authenticade doesn't have permission to action")
+    if(id_agent_token !== id_agent)throw new AppError("Agent authenticade doesn't have permission to action")
     const newAgentAction = await this.agentActionRepository.create({id_agent,id_action})
     return newAgentAction
   }

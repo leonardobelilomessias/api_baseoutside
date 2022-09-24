@@ -9,7 +9,8 @@ class UpdateDepartamentController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const {id,name,description,agents_limit,agents_necessary} = request.body
-    const updatedDepartament = await this.updateDepartamentUseCase.execute({id,name,description,agents_limit,agents_necessary})
+    const id_agent_token = request.user?.id
+    const updatedDepartament = await this.updateDepartamentUseCase.execute({id_agent_token,id,name,description,agents_limit,agents_necessary})
     return response.status(200).json(updatedDepartament)
   }
 }

@@ -1,5 +1,0 @@
-
-class DeleteAgentActionUseCase{
-
-}
-export{DeleteAgentActionUseCase}

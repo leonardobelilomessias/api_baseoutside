@@ -1,4 +1,5 @@
 import { AppError } from "../../../../shared/errors/AppError"
+import { IOutputGenericAgentActionDTO } from "../../dtos/IAgentActionDTOS"
 import { AgentAction } from "../../infra/typeorm/entities/AgentAction"
 import { IAgentActionRepository } from "../../repositories/IAgentActionRepository"
 
@@ -7,7 +8,7 @@ class ListAgentsActionUseCase{
   constructor(agentActionsRepository:IAgentActionRepository){
     this.agentActionsRepository = agentActionsRepository
   }
-  async execute(id_action:string):Promise<AgentAction[]>{
+  async execute(id_action:string):Promise<IOutputGenericAgentActionDTO[]>{
     if(!id_action) throw new AppError("Value of mission is undefined")
     const agentsAction = await this.agentActionsRepository.listAgentsAction(id_action)
     return agentsAction

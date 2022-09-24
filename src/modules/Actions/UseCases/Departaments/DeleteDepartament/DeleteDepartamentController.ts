@@ -8,7 +8,8 @@ class DeleteDepartamentController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const {id} = request.body
-    const deleteDepartament = await this.deleteDepartamentUseCase.execute(id)
+    const id_agent_token = request.user?.id
+    const deleteDepartament = await this.deleteDepartamentUseCase.execute({id_agent_token,id})
     return response.status(200).json(deleteDepartament)
   }
 }
