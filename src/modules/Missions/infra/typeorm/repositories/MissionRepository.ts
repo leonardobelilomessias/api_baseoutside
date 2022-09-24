@@ -1,7 +1,6 @@
 import { Repository } from "typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
-import { ICreateMissionDTO } from "../../../dtos/ICreateMissionDTO"
 import { IMissionRepository } from "../../../repositories/IMissonRepository"
 import { Mission } from "../entities/Mission"
 

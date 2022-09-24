@@ -11,9 +11,10 @@ class UpdateTaskDepartamentController{
     const { id, title, description, local, is_active,
        state, agents_necessary, agents_limit, priority, 
        date_limit_subscribe, is_require_skill, skill_require, id_departament } = request.body
-    const updateTaskDepartement = await this.updateTaskDepartamentUseCase.execute({ id, title, description, local, is_active, state, agents_necessary, agents_limit,
-      priority, date_limit_subscribe, is_require_skill,
-       skill_require, id_departament })
+    const id_agent_token = request.user?.id   
+    const updateTaskDepartement = await this.updateTaskDepartamentUseCase.execute({id_agent_token, id, title, description, local, is_active, state, agents_necessary, agents_limit,
+  priority, date_limit_subscribe, is_require_skill,
+  skill_require, id_departament })
     return response.status(200).json(updateTaskDepartement)
   }
 }

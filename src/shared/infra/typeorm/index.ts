@@ -28,6 +28,7 @@ import { WarningsMission } from "../../../modules/Missions/infra/typeorm/entitie
 import { WarningsAction } from "../../../modules/Actions/infra/typeorm/entities/WarningAction";
 import { WarningsDepartament } from "../../../modules/Actions/infra/typeorm/entities/WarningDepartament";
 import { WarningsTask } from "../../../modules/Actions/infra/typeorm/entities/WarningTask";
+import { AgentTask } from "../../../modules/Actions/infra/typeorm/entities/AgentTask";
  
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -62,7 +63,8 @@ export const AppDataSource = new DataSource({
     WarningsMission,
     WarningsAction,
     WarningsDepartament,
-    WarningsTask
+    WarningsTask,
+    AgentTask
   ],
   migrations: ["./src/shared/infra/typeorm/migrations/*ts"]
 

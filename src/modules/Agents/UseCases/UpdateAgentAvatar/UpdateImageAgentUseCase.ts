@@ -1,6 +1,7 @@
 import { AppError } from "../../../../shared/errors/AppError"
 import { IStorageProvider } from "../../../../utils/providers/StorageProvider/IStorageProvide"
-import { EditAgent, IAgentRepository } from "../../repositories/IAgentRepository"
+import { IOutputGenericAgentDTO } from "../../DTOS/IAgentDTOS"
+import {  IAgentRepository } from "../../repositories/IAgentRepository"
 
 interface ICreateImageProfile{
   id_agent: string
@@ -13,7 +14,7 @@ class UpdateImageAgentUseCase{
      this.agenteRepository = agentRepository
      this.storageProvider = storageProvider
   }
-  async execute({ id_agent, image_profile }: ICreateImageProfile): Promise<EditAgent> {
+  async execute({ id_agent, image_profile }: ICreateImageProfile) {
     try{
       if(!id_agent||!image_profile) throw new AppError("Values can't be undefined.")
       const agent = await this.agenteRepository.findById(id_agent)

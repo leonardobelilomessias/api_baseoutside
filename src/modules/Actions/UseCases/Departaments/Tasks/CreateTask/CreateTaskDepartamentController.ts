@@ -11,8 +11,9 @@ class CreateTaskDepartamentController{
     const { title, description, id_action, local, is_active, 
     state, agents_necessary, agents_limit, priority, date_limit_subscribe,
      is_require_skill, skill_require, id_mission, id_departament } = request.body
+     const id_agent_token = request.user?.id
     const createTaskDepartament = await this.createTaskDepartamentUseCase.execute(
-      { title, description, id_action, 
+      {id_agent_token, title, description, id_action, 
         local, is_active, state, agents_necessary, agents_limit, priority, date_limit_subscribe, is_require_skill, skill_require,
          id_mission, id_departament }
     )

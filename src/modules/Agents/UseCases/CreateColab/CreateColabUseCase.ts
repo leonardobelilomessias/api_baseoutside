@@ -12,7 +12,6 @@ class CreateColabAgentUseCase{
     this.agentRepository = agentRepository
   }
   async execute({id_agent_token, id_agent, id_colab, type }:IInputCreateColabAgentDTO): Promise<IOutputGenericColabAgentDTO>{
-    console.log(id_agent_token)
     if(id_agent!== id_agent_token) throw new AppError("Token sen not to own agent authenticate ")
     if (!id_agent || !id_colab) throw new AppError('Value of agent or colab is undefined. ')
     if (id_agent===id_colab ) throw new AppError('Dont is allow be get colab some value of agent ')

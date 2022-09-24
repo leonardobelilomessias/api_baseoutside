@@ -19,7 +19,6 @@ interface IOutputCreateDepartamentActionDTO{
 interface IInputUpdateDepartamentActionDTO{
   id_agent_token:string;
   id:string;
-  id_action:string;
   name:string;
   description:string;
   agents_limit:number;

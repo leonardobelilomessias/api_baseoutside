@@ -9,7 +9,8 @@ class DeleteTaskDepartamentController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const {id} = request.body
-    const deleteTaskDepartament = await this.deleteTaskDepartamentUseCase.execute(id)
+    const id_agent_token = request.user?.id
+    const deleteTaskDepartament = await this.deleteTaskDepartamentUseCase.execute({id_agent_token,id})
     return response.status(200).json(deleteTaskDepartament)
   }
 }

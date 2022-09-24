@@ -9,6 +9,12 @@ import { deleteAgentDepartamentController } from "../../../../modules/Actions/Us
 import { deleteDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/DeleteDepartament";
 import { listAgentsDepartmentController } from "../../../../modules/Actions/UseCases/Departaments/ListAgentsDepartament";
 import { listDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/ListDepartamets";
+import { createAgentTaskController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/AgentsTasks/CreateAgentTask";
+import { deleteAgentTaskController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/AgentsTasks/DeleteAgentTask";
+import { listAgentTaskByStateController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/AgentsTasks/ListAgentTaskByState";
+import { listAgentTaskController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/AgentsTasks/ListAgentTasks";
+import { listTaskAgentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/AgentsTasks/ListTaskAgent";
+import { updateAgentTaskController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/AgentsTasks/UpdateAgentTask";
 import { createTaskDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/CreateTask";
 import { deleteTaskDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/DeleteTaskDepartament";
 import { listTasksDepartamentController } from "../../../../modules/Actions/UseCases/Departaments/Tasks/ListTaskDepartament";
@@ -115,6 +121,18 @@ action.get("/warningsTaskByPriority", async (request, response) => {
 action.get("/warningsTaskByType", async (request, response) => {
   await listwarningsTaskByTypeController.handle(request,response)
 })
+action.get("/listAgentTasks", async (request, response) => {
+  await listAgentTaskController.handle(request,response)
+})
+
+action.get("/listTaskAgents", async (request, response) => {
+  await listTaskAgentController.handle(request,response)
+})
+
+action.get("/listAgentTaskByState", async (request, response) => {
+  await listAgentTaskByStateController.handle(request,response)
+})
+
 action.patch("/",ensureAuthenticate, async(request,response)=>{
   await updateActionController.handle(request,response)
 })
@@ -128,11 +146,14 @@ action.patch("/departament",ensureAuthenticate, async(request,response)=>{
 action.patch("/warning",ensureAuthenticate, async(request,response)=>{
   await updateWarningActionController.handle(request,response)
 })
-action.patch("/warningDepartament",async(request,response)=>{
+action.patch("/warningDepartament",ensureAuthenticate,async(request,response)=>{
   await updateWarningDepartamentController.handle(request,response)
 })
 action.patch("/warningTask",ensureAuthenticate, async(request,response)=>{
   await updateWarningTaskController.handle(request,response)
+})
+action.patch("/updateAgentTask",async(request,response)=>{
+  await updateAgentTaskController.handle(request,response)
 })
 
 
@@ -162,7 +183,9 @@ action.post("/warningTask",ensureAuthenticate, async(request,response)=>{
   await createWarningTaskController.handle(request,response)
 })
 
-
+action.post("/agentTask", async(request,response)=>{
+  await createAgentTaskController.handle(request,response)
+})
 action.delete("/",ensureAuthenticate, async(request,response)=>{
   await cancelActionController.handle(request,response)
 })
@@ -188,5 +211,8 @@ action.delete("/warningDepartament",ensureAuthenticate, async(request,response)=
 })
 action.delete("/warningTask",ensureAuthenticate, async(request,response)=>{
   await   deletedWarnigTaskController.handle(request,response)
+})
+action.delete("/agentTask", async(request,response)=>{
+  await  deleteAgentTaskController.handle(request,response)
 })
 export {action}

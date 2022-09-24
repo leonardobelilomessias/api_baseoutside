@@ -39,7 +39,7 @@ interface IEditTaskDepartament {
 
 interface ITaskDepartamentRepository{
 
-  create({title,description,id_action,local,is_active,state,agents_necessary,agents_limit,priority,date_limit_subscribe,is_require_skill,skill_require,id_mission,id_departament}:ICreateTaskDepartament): Promise<TaskDepartament>
+  create({title,description,id_action,local,is_active,state,agents_necessary,agents_limit,priority,date_limit_subscribe,is_require_skill,skill_require,id_mission,id_departament}): Promise<TaskDepartament>
 
   findTaskDepartamentById({id}): Promise<TaskDepartament>
 
@@ -53,7 +53,7 @@ interface ITaskDepartamentRepository{
 
   listTasksDepartamentByMisssion(id_mission:string):Promise<TaskDepartament[]>
 
-  editTaskDepartament({id,title,description,local,is_active,state,agents_necessary,agents_limit,priority,date_limit_subscribe,is_require_skill,skill_require,id_departament}:IEditTaskDepartament):Promise<TaskDepartament>
+  editTaskDepartament({id,title,description,local,is_active,state,agents_necessary,agents_limit,priority,date_limit_subscribe,is_require_skill,skill_require,id_departament}):Promise<TaskDepartament>
 
   deleteTaskDepartament(id:string):Promise<TaskDepartament>
 

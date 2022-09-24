@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { IDepartamentRepository, ICreateDepartament, IEditDepartement } from "../../../repositories/IDepartamentRepository";
+import { IDepartamentRepository, IEditDepartement } from "../../../repositories/IDepartamentRepository";
 import { AgentDepartament } from "../entities/AgentDepartament";
 import { Departament } from "../entities/Departament";
 import { TaskDepartament } from "../entities/TaskDepartament";
@@ -27,7 +27,7 @@ class DepartamentRepository implements IDepartamentRepository{
     return agentDepartament
   }
 
-  async create({ id_action, name, description, agents_limit, agents_necessary }: ICreateDepartament): Promise<Departament> {
+  async create({ id_action, name, description, agents_limit, agents_necessary }): Promise<Departament> {
     
     const newAction = new Departament()
     Object.assign(newAction,{ id_action, name, description, agents_limit, agents_necessary })

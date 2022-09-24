@@ -11,7 +11,6 @@ class DeleteCardAgentUseCase{
   }
   async execute({id_agent,id_agent_token}:IInputDeleteCardAgent):Promise<IOutputGenericCardAgentDTO>{ 
     if(!id_agent) throw new AppError("Value of agent is undefined.")
-    console.log(id_agent_token)
     if(id_agent !== id_agent_token) throw new AppError("Token sen not to own agent authenticate ")
     const findCardAgent = await this.cardAgentRepository.listByid(id_agent)
     if(!findCardAgent) throw new AppError("Card Agent not found.")

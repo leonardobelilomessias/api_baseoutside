@@ -87,6 +87,8 @@ agent.get("/findCard",async (request, response) => {
 agent.get("/journey", async (request, response) => {
   await listJourneyAgentController.handle(request,response)
 })
+
+
 agent.post("/", async (request, response) => {
    await createAgentController().handle(request,response)
 })

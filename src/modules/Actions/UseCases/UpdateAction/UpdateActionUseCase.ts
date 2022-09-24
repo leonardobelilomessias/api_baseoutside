@@ -15,7 +15,6 @@ class UpdateActionUseCase{
     const foundAction = await this.actionRepository.findById(id)
     if(!foundAction) throw new AppError("Action not found.")
     const allowUpdate = await this.menagePermissionMission.confirmePermissionAction({id_action:id,id_agent_token})
-    console.log(allowUpdate)
     if(!allowUpdate) throw new AppError("Agent authenticate dosent authorizated to action.")
     Object.assign(foundAction,{ name,description,date_start,date_end,state,local})
     const updateAction  = await this.actionRepository.edit(foundAction as IIOutputUpdateActionDTO)

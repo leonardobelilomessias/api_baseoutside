@@ -13,7 +13,6 @@ class SponsorsMissionsRepository implements ISponsorMissionRepository{
     try{
       const newSponsorMission = new SponsorMission()
       Object.assign(newSponsorMission,{ id_sponsor, id_mission, type:1, sponsor_private, mission_private ,value})
-      console.log(newSponsorMission)
       const createdSponsor = await this.sponsorsMissionsRepository.save(newSponsorMission)
       return createdSponsor
     }catch{

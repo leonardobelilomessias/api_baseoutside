@@ -22,8 +22,9 @@ class TaskDepartamentRepository implements ITaskDepartamentRepository{
       throw new AppError("Some value is incorrect")
     }
   }
-  findTaskDepartamentById({ id }: { id: any }): Promise<TaskDepartament> {
-    throw new Error("Method not implemented.")
+  async findTaskDepartamentById({ id }: { id: any }): Promise<TaskDepartament> {
+    const findTaskDepartament = await this.taskDepartamentRepository.findOne({where:{id:id}})
+    return findTaskDepartament
   }
   findTaskDepartamentByTitle({ title }: { title: any }): Promise<TaskDepartament> {
     throw new Error("Method not implemented.")
