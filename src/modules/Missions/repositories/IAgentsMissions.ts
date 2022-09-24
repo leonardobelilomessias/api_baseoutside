@@ -12,5 +12,7 @@ interface IAgentsMissions{
   
   findAllMissionsAgent(id_agent:string):Promise<AgentMission[]>
 
+  findByIdAgent(id_agent:string):Promise<AgentMission>
+
 }
 export{IAgentsMissions}

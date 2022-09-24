@@ -1,3 +1,4 @@
+import { IUpdateActionDTO } from "../dtos/IActionDTOS";
 import { Action } from "../infra/typeorm/entities/Action";
 
 
@@ -5,7 +6,7 @@ import { Action } from "../infra/typeorm/entities/Action";
 
 interface IActionRepository{
 
-  create({creator, name,description,date_start,date_end,value,id_mission,state,local}):Promise<Action>
+  create({creator, name,description,date_start,date_end,id_mission,state,local}):Promise<Action>
   
   listAll(): Promise<Action[]>
   
@@ -19,7 +20,7 @@ interface IActionRepository{
 
   findByField(field:string): Promise<Action>
 
-  edit({ id, name,description,date_start,date_end,value,state,local}): Promise<Action>
+  edit({ id, name,description,date_start,date_end,state,local}:IUpdateActionDTO): Promise<Action>
   
   delete(Action:Action): Promise<Action>
 

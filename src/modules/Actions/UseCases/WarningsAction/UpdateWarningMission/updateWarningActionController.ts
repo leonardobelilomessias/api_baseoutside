@@ -7,8 +7,9 @@ class UpdateWarningActionController{
     this.updateWarningActionUseCase = updateWarningActionUseCase
   }
   async handle(request:Request,response:Response):Promise<Response>{
-    const { id, title, content, priority, is_active, state, type } = request.body
-    const editedWarningAction = await this.updateWarningActionUseCase.execute({ id, title, content, priority, is_active, state, type }) 
+    const { id,title, content, priority, is_active, state, type } = request.body
+    const id_agent_token = request.user.id
+    const editedWarningAction = await this.updateWarningActionUseCase.execute({ id_agent_token ,id, title, content, priority, is_active, state, type }) 
     return response.status(200).json(editedWarningAction)
   }
 }

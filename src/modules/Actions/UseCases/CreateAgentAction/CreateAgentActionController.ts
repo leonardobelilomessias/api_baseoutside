@@ -9,7 +9,8 @@ class CreateAgentActionController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const {id_action,id_agent} = request.body
-    const agentAction = await this.createAgentActionUseCase.execute({id_action,id_agent})
+    const id_agent_token = request.user.id
+    const agentAction = await this.createAgentActionUseCase.execute({id_agent_token,id_action,id_agent})
     return response.status(200).json(agentAction)
   }
 }

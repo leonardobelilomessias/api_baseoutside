@@ -8,6 +8,10 @@ class AgentsMissionRepository implements IAgentsMissions{
   constructor() {
     this.agentsMissionRepository = AppDataSource.getRepository(AgentMission)
   }
+ async  findByIdAgent(id_agent: string): Promise<AgentMission> {
+    const findAgentById = await this.agentsMissionRepository.findOne({where:{id_agent}})
+    return findAgentById
+  }
  async  create({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {
    const newAgentMission = new AgentMission()
    Object.assign(newAgentMission, { id_mission, id_agent })

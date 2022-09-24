@@ -5,7 +5,7 @@ interface ICreateWarningsActionDTO{
   id_creator:string;
   title:string;
   content:string;
-  priority?:string;
+  priority?:number;
   type?:number;
   state?:number;
   is_active?:boolean;
@@ -14,7 +14,7 @@ interface IEditWarningsActionDTO{
   id:string;
   title:string;
   content:string;
-  priority?:string;
+  priority?:number;
   type?:number;
   state?:number;
   is_active?:boolean;

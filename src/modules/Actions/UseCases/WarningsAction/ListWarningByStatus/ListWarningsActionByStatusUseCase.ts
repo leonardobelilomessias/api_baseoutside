@@ -1,4 +1,5 @@
 import { AppError } from "../../../../../shared/errors/AppError"
+import { IOutputGenericWarnigActionDTO } from "../../../dtos/IWarningsActionsDTOS"
 import { WarningsAction } from "../../../infra/typeorm/entities/WarningAction"
 import { IWarningsActionRepository } from "../../../repositories/IWarningsActionRepository"
 
@@ -7,7 +8,7 @@ class ListWarningsActionByStatusUseCase{
   constructor(warningsActionRepository:IWarningsActionRepository){
     this.warningsActionRepository = warningsActionRepository
   }
-  async execute({state,id_action}):Promise<WarningsAction[]>{
+  async execute({state,id_action}):Promise<IOutputGenericWarnigActionDTO[]>{
     if(!state) throw new AppError("Value of status is undefined")
     if(typeof state !== typeof Number()&& !!state)throw new AppError("Value of state must be a number.")
   

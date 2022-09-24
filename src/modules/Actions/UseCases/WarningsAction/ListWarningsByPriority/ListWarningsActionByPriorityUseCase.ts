@@ -1,4 +1,5 @@
 import { AppError } from "../../../../../shared/errors/AppError"
+import { IOutputGenericWarnigActionDTO } from "../../../dtos/IWarningsActionsDTOS"
 import { WarningsAction } from "../../../infra/typeorm/entities/WarningAction"
 import { IWarningsActionRepository } from "../../../repositories/IWarningsActionRepository"
 
@@ -7,7 +8,7 @@ class ListWarningsActionByPriorityUseCase{
   constructor(warningsActionRepository:IWarningsActionRepository){
     this.warningsActionRepository = warningsActionRepository
   }
-  async execute({priority,id_action}):Promise<WarningsAction[]>{
+  async execute({priority,id_action}):Promise<IOutputGenericWarnigActionDTO[]>{
     if(!priority) throw new AppError("Value of Priority is undefined")
     if(typeof priority !== typeof Number()&& !!priority)throw new AppError("Value of Priority must be a number.")
     const listWarningsByPriority = this.warningsActionRepository.listByPriority({priority,id_action})

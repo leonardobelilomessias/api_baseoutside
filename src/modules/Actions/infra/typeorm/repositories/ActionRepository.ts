@@ -14,10 +14,10 @@ class ActionRepository implements IActionRepository{
     const findActionsByMission = await this.actionRepository.find({where:{id_mission}})
     return findActionsByMission
   }
-  async create({creator, name, description, date_start, date_end, value, id_mission,local }): Promise<Action> {
+  async create({creator, name,description,date_start,date_end,id_mission,state,local}): Promise<Action> {
     try{
       const action = new Action()
-      Object.assign(action,{creator, name, description, date_start, date_end, value, id_mission,local })
+      Object.assign(action,{creator, name,description,date_start,date_end,id_mission,state,local})
       const newAction = await this.actionRepository.save(action)
       return newAction
     }catch(err){

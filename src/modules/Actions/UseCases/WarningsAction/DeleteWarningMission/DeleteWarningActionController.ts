@@ -8,7 +8,8 @@ class DeleteWarningActionController{
   }
   async handle(request:Request,response:Response):Promise<Response>{
     const {id} = request.body
-    const deletedWarnigAction = await this.deletewarningActionUseCase.execute(id)
+    const id_agent_token = request.user.id
+    const deletedWarnigAction = await this.deletewarningActionUseCase.execute({id,id_agent_token})
     return response.status(200).json(deletedWarnigAction)
   }
 }
