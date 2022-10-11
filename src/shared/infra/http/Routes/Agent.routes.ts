@@ -34,7 +34,7 @@ import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 import  listAgentsSponsorController  from "../../../../modules/Agents/UseCases/ListAgentsSponsor";
 import  feedColabController  from "../../../../modules/Agents/UseCases/FeedColab";
 import fetchAgentProfileController  from "../../../../modules/Agents/UseCases/FetchAgentProfile";
-
+import findAgentById  from "../../../../modules/Agents/UseCases/FindAgentById";
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
 const uploadPhotosAgent = multer(uploadConfig)
@@ -116,6 +116,11 @@ agent.post("/colabAgent",ensureAuthenticate, async (request, response) => {
  agent.post("/fetchAgentProfile",async (request, response) => {
   return await  fetchAgentProfileController().handle(request,response)
  })
+
+ agent.post("/findAgentById",async (request, response) => {
+  return await  findAgentById().handle(request,response)
+ })
+
 
 agent.patch("/imageProfile",ensureAuthenticate, upload_image_profile.single("image_profile"),async (request, response) => {
   return await  updateImageAgentController().handle(request,response)
