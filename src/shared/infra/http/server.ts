@@ -8,9 +8,12 @@ import { AppError } from "../../errors/AppError";
 const app = express()
 
 app.use("/sendPhotos",express.static(`./tmp/sendPhotos`))
+app.use("/PhotosPublications",express.static(`./tmp/PhotosPublications`))
+app.use("/Agent",express.static(`./tmp/Agent`))
+
 app.use(express.json())
 app.use(router)  
-
+ 
 app.use((error: Error, resquest:Request, response:Response, next:NextFunction) => {
   if (error instanceof AppError) {
     return response.status(error.statusCode).json({

@@ -13,5 +13,7 @@ interface IColabRepository{
   toCancelColab({id_agent, id_colab}:IDeleteColabAgentDTO): Promise<ColabAgent>
   
   findIfExistentcolab({ id_agent, id_colab}):Promise<ColabAgent>
+
+  listFeedColab(id_agent)
 }
 export{ IColabRepository}

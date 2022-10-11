@@ -32,6 +32,7 @@ import { editCardAgentController } from "../../../../modules/Agents/UseCases/Edi
 import { deletedCardAgentController } from "../../../../modules/Agents/UseCases/DeleteCardAgent";
 import { ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 import { listAgentsSponsorController } from "../../../../modules/Agents/UseCases/ListAgentsSponsor";
+import { feedColabController } from "../../../../modules/Agents/UseCases/FeedColab";
 
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
@@ -41,7 +42,7 @@ agent.get("/",async  (request, response) => {
  await  listsAgentController.handle(request,response)
 })
 
-agent.get("/findByname", async (request, response) => {
+agent.post("/findByname", async (request, response) => {
    await findAgentByNameController.handle(request,response)
 })
 
@@ -101,6 +102,10 @@ agent.post("/photoPublication",ensureAuthenticate, uploadPhotosAgent.array('phot
 })
 agent.post("/colabAgent",ensureAuthenticate, async (request, response) => {
   await createColabAgentController.handle(request,response)
+ })
+
+ agent.post("/feedColab", async (request, response) => {
+  await feedColabController.listFeedColab(request,response)
  })
 
  agent.post("/cardAgent",ensureAuthenticate, async (request, response) => {
