@@ -1,3 +1,4 @@
+import { AppError } from "../../../../shared/errors/AppError"
 import { IOutputFetchProfileAgentDTO } from "../../DTOS/IAgentDTOS"
 import { MapAgent } from "../../infra/typeorm/entities/MapAgent"
 import { IAgentRepository } from "../../repositories/IAgentRepository"
@@ -8,9 +9,8 @@ class FetchAgentProfileUseCase{
     this.agentRepository = agentRepository
   }
   async execute(id_agent:string){
+    if(!id_agent) throw new AppError("Value of field names is empty.")
     const profileAgent = await this.agentRepository.fetchAgentProfile(id_agent)
-    const mapAgent= new MapAgent(profileAgent)
-    mapAgent.dealingAgent()
     return profileAgent
   }
 }

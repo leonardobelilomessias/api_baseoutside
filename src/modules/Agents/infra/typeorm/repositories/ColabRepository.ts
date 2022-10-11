@@ -15,9 +15,9 @@ class ColabAgentRepository implements IColabRepository{
     this.colabAgentRepository = AppDataSource.getRepository("colabs_agents")
     this.journeyAgentRepository = new JourneyAgentRepository()
   }
-  listFeedColab(id_agent: any) {
-    const feedColabsAgets = AppDataSource.createQueryRunner()
-    .manager.query(`select agent.name ,colab.id_colab,image_profile, publications.description, photos.url  
+  async listFeedColab(id_agent: string) {
+    console.log('aqui list feed colab ')
+    const feedColabsAgets = await this.colabAgentRepository.query(`select agent.name ,colab.id_colab,image_profile, publications.description, photos.url  
     from agents agent inner join colabs_agents colab on agent.id = colab.id_colab
     inner join publications_agents publications on publications.id_agent = colab.id_colab 
     inner join photos_publications_agents photos on photos.id_publication = publications.id 

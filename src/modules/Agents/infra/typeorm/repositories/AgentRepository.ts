@@ -19,7 +19,8 @@ import { IEditAgentDTO, IResponseAgentDTO} from "../../../DTOS/IAgentDTOS"
      this.interestsRepository = new InterestsRepository()
   }
    
-  async fetchAgentProfile(id_agent: any) {
+  async fetchAgentProfile(id_agent: string) {
+    
      const agentProfile = await this.agentRepository.findOne({where:{id:id_agent}})
      return agentProfile
    }
