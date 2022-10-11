@@ -2,8 +2,11 @@ import { JourneyAgentRepository } from "../../infra/typeorm/repositories/Journey
 import { DeleteJourneyAgentController } from "./DeleteJourneyAgentController";
 import { DeleteJourneyAgentUseCase } from "./DeleteJourneyAgentUseCase";
 
-const journeyAgentRepository = new JourneyAgentRepository()
-const deleteJourneyAgentUseCase = new DeleteJourneyAgentUseCase(journeyAgentRepository)
-const deletedJourneyAgentController = new DeleteJourneyAgentController(deleteJourneyAgentUseCase)
+export default()=>{
+  const journeyAgentRepository = new JourneyAgentRepository()
+  const deleteJourneyAgentUseCase = new DeleteJourneyAgentUseCase(journeyAgentRepository)
+  const deletedJourneyAgentController = new DeleteJourneyAgentController(deleteJourneyAgentUseCase)
+  return deletedJourneyAgentController
+}
 
-export{deletedJourneyAgentController}
+

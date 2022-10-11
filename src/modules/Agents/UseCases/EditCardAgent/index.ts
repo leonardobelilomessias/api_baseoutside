@@ -2,7 +2,10 @@ import { CardAgentRepository } from "../../infra/typeorm/repositories/CardAgentR
 import { EditCardAgentController } from "./EditCardAgentController";
 import { EditCardAgentUseCase } from "./EditCardAgentUseCase";
 
-const cardAgentRepository = new CardAgentRepository()
-const editCardAgentUseCase = new EditCardAgentUseCase(cardAgentRepository)
-const editCardAgentController = new EditCardAgentController(editCardAgentUseCase)
-export{editCardAgentController}
+export default ()=>{
+  const cardAgentRepository = new CardAgentRepository()
+  const editCardAgentUseCase = new EditCardAgentUseCase(cardAgentRepository)
+  const editCardAgentController = new EditCardAgentController(editCardAgentUseCase)
+  return editCardAgentController
+}
+

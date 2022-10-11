@@ -2,8 +2,11 @@ import { ColabAgentRepository } from "../../infra/typeorm/repositories/ColabRepo
 import { ToCancelColabAgentController } from "./ToCancelColabAgentController";
 import { ToCancelColabAgentUseCase } from "./ToCancelColabAgentUseCase";
 
-const colabAgentRepository = new ColabAgentRepository()
-const toCancelColabAgentUseCase = new ToCancelColabAgentUseCase(colabAgentRepository)
-const toCancelColabAgentController = new ToCancelColabAgentController(toCancelColabAgentUseCase)
+export default()=>{
 
-export{toCancelColabAgentController}
+  const colabAgentRepository = new ColabAgentRepository()
+  const toCancelColabAgentUseCase = new ToCancelColabAgentUseCase(colabAgentRepository)
+  const toCancelColabAgentController = new ToCancelColabAgentController(toCancelColabAgentUseCase)
+  return toCancelColabAgentController
+}
+

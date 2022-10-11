@@ -2,8 +2,11 @@ import { JourneyAgentRepository } from "../../infra/typeorm/repositories/Journey
 import { ListJourneysAgentController } from "./ListJourneysAgentController";
 import { ListJourneysAgentUseCase } from "./ListJourneysAgents";
 
-const journeyAgentRepository = new JourneyAgentRepository()
-const listJourneyAgenUseCase = new ListJourneysAgentUseCase(journeyAgentRepository)
-const listJourneyAgentController = new ListJourneysAgentController(listJourneyAgenUseCase)
+export default()=>{
+  const journeyAgentRepository = new JourneyAgentRepository()
+  const listJourneyAgenUseCase = new ListJourneysAgentUseCase(journeyAgentRepository)
+  const listJourneyAgentController = new ListJourneysAgentController(listJourneyAgenUseCase)
+  return listJourneyAgentController
+}
 
-export{listJourneyAgentController}
+

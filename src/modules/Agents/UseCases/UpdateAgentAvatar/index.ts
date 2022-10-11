@@ -3,9 +3,12 @@ import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepositor
 import { UpdateImageAgentController } from "./UpdateImageAgentController";
 import { UpdateImageAgentUseCase } from "./UpdateImageAgentUseCase";
 
-const agenteRepository = new AgentRepository()
-const storageProvider = new LocalStorageProvider()
-const updateImageAvatarUseCase = new UpdateImageAgentUseCase(agenteRepository,storageProvider)
-const updateImageAgentController = new UpdateImageAgentController(updateImageAvatarUseCase)
+export default()=>{
 
-export{updateImageAgentController}
+  const agenteRepository = new AgentRepository()
+  const storageProvider = new LocalStorageProvider()
+  const updateImageAvatarUseCase = new UpdateImageAgentUseCase(agenteRepository,storageProvider)
+  const updateImageAgentController = new UpdateImageAgentController(updateImageAvatarUseCase)
+  return updateImageAgentController
+}
+

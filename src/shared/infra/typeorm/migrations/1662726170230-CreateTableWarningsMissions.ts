@@ -69,7 +69,7 @@ export class CreateTableWarningsMissions1662726170230 implements MigrationInterf
                             onUpdate:"CASCADE"
                         },
                         {
-                            name: "fk_id_mission_notices_missions",
+                            name: "fk_id_mission_warnings_missions",
                             referencedTableName: "missions",
                             referencedColumnNames: ["id"],
                             columnNames:["id_mission"],

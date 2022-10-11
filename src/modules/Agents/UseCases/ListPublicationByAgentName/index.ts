@@ -4,10 +4,13 @@ import { PublicationsAgentRepository } from "../../infra/typeorm/repositories/Pu
 import { ListPublicatonsByIdAgentController } from "./ListPublicationsByIdAgentController";
 import { ListPublicationsByIdAgentUseCase } from "./ListPublicationsByIdAgentUseCase";
 
-const storageProvider = new LocalStorageProvider()
-const photosPublicationAgentRepository = new PhotoPublicationAgentRepository(storageProvider)
-const publicationsAgentsRepository = new PublicationsAgentRepository(photosPublicationAgentRepository)
-const listPublicatonsByIdAgentUseCase = new ListPublicationsByIdAgentUseCase(publicationsAgentsRepository)
-const listPublicatonsByIdAgentController = new ListPublicatonsByIdAgentController(listPublicatonsByIdAgentUseCase)
+export default()=>{
+  const storageProvider = new LocalStorageProvider()
+  const photosPublicationAgentRepository = new PhotoPublicationAgentRepository(storageProvider)
+  const publicationsAgentsRepository = new PublicationsAgentRepository(photosPublicationAgentRepository)
+  const listPublicatonsByIdAgentUseCase = new ListPublicationsByIdAgentUseCase(publicationsAgentsRepository)
+  const listPublicatonsByIdAgentController = new ListPublicatonsByIdAgentController(listPublicatonsByIdAgentUseCase)
+  return listPublicatonsByIdAgentController
+}
 
-export{listPublicatonsByIdAgentController}
+

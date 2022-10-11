@@ -61,7 +61,7 @@ export class CreateTableWarningsDepartaments1662755242386 implements MigrationIn
                     ],
                     foreignKeys: [
                         {
-                            name: "fk_id_agent_warnings_departaments",
+                            name: "fk_id_agent_warning_departaments",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
                             columnNames:["id_creator"],

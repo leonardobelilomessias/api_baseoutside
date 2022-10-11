@@ -5,10 +5,13 @@ import { PublicationsAgentRepository } from "../../infra/typeorm/repositories/Pu
 import { CreatePublicationAgentController } from "./CreatePublicationAgentController";
 import { CreatePublicationAgentUseCase } from "./CreatePublicationAgentUseCase";
 
-const storageProvider = process.env.disk === "local" ? new LocalStorageProvider(): new S3StorageProvider()
-const photoPublicationAgentRepository = new PhotoPublicationAgentRepository(storageProvider)
-const publicationAgentRepository = new PublicationsAgentRepository(photoPublicationAgentRepository)
-const createPublicationAgentUseCase = new CreatePublicationAgentUseCase(publicationAgentRepository)
-const createPublicationAgentController = new CreatePublicationAgentController(createPublicationAgentUseCase)
+export default()=>{
 
-export{ createPublicationAgentController}
+  const storageProvider = process.env.disk === "local" ? new LocalStorageProvider(): new S3StorageProvider()
+  const photoPublicationAgentRepository = new PhotoPublicationAgentRepository(storageProvider)
+  const publicationAgentRepository = new PublicationsAgentRepository(photoPublicationAgentRepository)
+  const createPublicationAgentUseCase = new CreatePublicationAgentUseCase(publicationAgentRepository)
+  const createPublicationAgentController = new CreatePublicationAgentController(createPublicationAgentUseCase)
+  return createPublicationAgentController
+}
+

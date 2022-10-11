@@ -3,9 +3,12 @@ import { SkillsRepository } from "../../infra/typeorm/repositories/SkillsReposit
 import { FindAgentsBySkillsController } from "./FindAgentBySkillController";
 import { FindAgentsBySkillsUseCase } from "./FindAgentBySkillUseCase";
 
-const agentRepository = new AgentRepository()
-const skillRepository = new SkillsRepository()
-const findAgentsBySkillsUseCase = new FindAgentsBySkillsUseCase(agentRepository,skillRepository)
-const findAgentsBySkillsController = new FindAgentsBySkillsController(findAgentsBySkillsUseCase)
+export default()=>{
 
-export{findAgentsBySkillsController}
+  const agentRepository = new AgentRepository()
+  const skillRepository = new SkillsRepository()
+  const findAgentsBySkillsUseCase = new FindAgentsBySkillsUseCase(agentRepository,skillRepository)
+  const findAgentsBySkillsController = new FindAgentsBySkillsController(findAgentsBySkillsUseCase)
+  return(findAgentsBySkillsController)
+}
+

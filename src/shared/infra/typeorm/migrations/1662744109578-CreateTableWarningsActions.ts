@@ -61,7 +61,7 @@ export class CreateTableWarningsActions1662744109578 implements MigrationInterfa
                     ],
                     foreignKeys: [
                         {
-                            name: "fk_id_agent_notices_actions",
+                            name: "fk_id_agent_warnings_actions",
                             referencedTableName: "agents",
                             referencedColumnNames: ["id"],
                             columnNames:["id_creator"],
@@ -69,7 +69,7 @@ export class CreateTableWarningsActions1662744109578 implements MigrationInterfa
                             onUpdate:"CASCADE"
                         },
                         {
-                            name: "fk_id_action_notices_actions",
+                            name: "fk_id_action_warnings_actions",
                             referencedTableName: "actions",
                             referencedColumnNames: ["id"],
                             columnNames:["id_action"],

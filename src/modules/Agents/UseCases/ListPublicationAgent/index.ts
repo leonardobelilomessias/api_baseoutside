@@ -5,12 +5,13 @@ import { PublicationsAgentRepository } from "../../infra/typeorm/repositories/Pu
 import { ListPublicationAgentController } from "./ListPublicationAgentController";
 import { ListPublicationAgentUseCase } from "./ListPublicationAgentUseCase";
 
-const storageProvider = new LocalStorageProvider()
-const photoPublicationAgentRepository = new PhotoPublicationAgentRepository(storageProvider) 
-const publicationAgentRepository = new PublicationsAgentRepository(photoPublicationAgentRepository)
-const listPublicationAgentUseCase = new ListPublicationAgentUseCase(publicationAgentRepository)
-const listPublicationAgentController = new ListPublicationAgentController(listPublicationAgentUseCase)
+export default()=>{
 
-export{
-  listPublicationAgentController
+  const storageProvider = new LocalStorageProvider()
+  const photoPublicationAgentRepository = new PhotoPublicationAgentRepository(storageProvider) 
+  const publicationAgentRepository = new PublicationsAgentRepository(photoPublicationAgentRepository)
+  const listPublicationAgentUseCase = new ListPublicationAgentUseCase(publicationAgentRepository)
+  const listPublicationAgentController = new ListPublicationAgentController(listPublicationAgentUseCase)
+  return listPublicationAgentController
 }
+

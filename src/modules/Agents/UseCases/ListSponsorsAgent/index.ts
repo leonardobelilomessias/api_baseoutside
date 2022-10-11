@@ -2,8 +2,11 @@ import { SponsorsAgentsRepository } from "../../infra/typeorm/repositories/Spons
 import { ListSponsorAgentController } from "./ListSponsorAgentController";
 import { ListSponsorsAgentsUseCase } from "./ListSponsorsAgentsUseCase";
 
-const sponsorsAgentsRepository = new SponsorsAgentsRepository()
-const listSponsorAgentUseCase = new ListSponsorsAgentsUseCase(sponsorsAgentsRepository)
-const listSponsorAgentController = new ListSponsorAgentController(listSponsorAgentUseCase)
+export default()=>{
 
-export{listSponsorAgentController}
+  const sponsorsAgentsRepository = new SponsorsAgentsRepository()
+  const listSponsorAgentUseCase = new ListSponsorsAgentsUseCase(sponsorsAgentsRepository)
+  const listSponsorAgentController = new ListSponsorAgentController(listSponsorAgentUseCase)
+  return listSponsorAgentController
+}
+

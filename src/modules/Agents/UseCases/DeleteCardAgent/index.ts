@@ -2,7 +2,9 @@ import { CardAgentRepository } from "../../infra/typeorm/repositories/CardAgentR
 import { DeleteCardAgentController } from "./DeleteCardAgentController";
 import { DeleteCardAgentUseCase } from "./DeleteCardAgentUseCase";
 
-const cardAgentRepository = new CardAgentRepository()
-const deleteCardAgentUseCase = new DeleteCardAgentUseCase(cardAgentRepository)
-const deletedCardAgentController = new DeleteCardAgentController(deleteCardAgentUseCase)
-export{deletedCardAgentController}
+export default ()=>{
+  const cardAgentRepository = new CardAgentRepository()
+  const deleteCardAgentUseCase = new DeleteCardAgentUseCase(cardAgentRepository)
+  const deletedCardAgentController = new DeleteCardAgentController(deleteCardAgentUseCase)
+  return deletedCardAgentController
+}

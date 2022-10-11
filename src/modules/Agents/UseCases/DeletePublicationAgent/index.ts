@@ -7,11 +7,13 @@ import { DeletePublicationAgentController } from "./DeletePublicationAgentContro
 import { DeletePublicationAgentUseCase } from "./DeletePublicationAgentUseCase";
 
 
+export default()=>{
+  const storageProvider = process.env.disk === "local" ? new LocalStorageProvider(): new S3StorageProvider()
+  const photoPublicationAgentRepository = new PhotoPublicationAgentRepository(storageProvider)
+  const publicationAgentRepository = new PublicationsAgentRepository(photoPublicationAgentRepository)
+  const deletePublicationAgentUseCase = new  DeletePublicationAgentUseCase(publicationAgentRepository)
+  const deletePublicationAgentController = new DeletePublicationAgentController(deletePublicationAgentUseCase)
+  return deletePublicationAgentController
+}
 
-const storageProvider = process.env.disk === "local" ? new LocalStorageProvider(): new S3StorageProvider()
-const photoPublicationAgentRepository = new PhotoPublicationAgentRepository(storageProvider)
-const publicationAgentRepository = new PublicationsAgentRepository(photoPublicationAgentRepository)
-const deletePublicationAgentUseCase = new  DeletePublicationAgentUseCase(publicationAgentRepository)
-const deletePublicationAgentController = new DeletePublicationAgentController(deletePublicationAgentUseCase)
 
-export{deletePublicationAgentController}

@@ -4,9 +4,13 @@ import { InterestsRepositoryInMemory } from "../../RepositoryInMemory/InterestsR
 import { FindyByInterestController } from "./FindByInterestController";
 import { FindAgentsByInterestUseCase } from "./FindByInterestUseCase";
 
-const agentRepository = new AgentInMemoryRepository()
-const interestRepository = new InterestsRepository()
-const findByInterestUseCase = new FindAgentsByInterestUseCase(interestRepository)
-const findyByInterestController = new FindyByInterestController(findByInterestUseCase)
+export default()=>{
 
-export{findyByInterestController}
+  const agentRepository = new AgentInMemoryRepository()
+  const interestRepository = new InterestsRepository()
+  const findByInterestUseCase = new FindAgentsByInterestUseCase(interestRepository)
+  const findyByInterestController = new FindyByInterestController(findByInterestUseCase)
+  return findyByInterestController
+}
+
+

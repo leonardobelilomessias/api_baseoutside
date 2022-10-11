@@ -10,7 +10,7 @@ export const AppDataSource = new DataSource({
   port: 5432,
   username: process.env.USER_DATABASE ,
   password: process.env.PASSWORD_DATABASE,
-  database: process.env.DB_NAME, 
+  database: process.env.DB_NAME,  
   entities: [Agent],
   migrations: ["./src/database/migrations/*.ts"],
 

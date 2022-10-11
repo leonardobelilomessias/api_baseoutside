@@ -2,8 +2,11 @@ import { ColabAgentRepository } from "../../infra/typeorm/repositories/ColabRepo
 import { ListColabsAgentController } from "./ListColabsAgentController";
 import { ListColabsAgentUseCase } from "./ListColabsAgentUseCase";
 
-const colabAgentRepository = new ColabAgentRepository()
-const listColabsAgentUseCase = new ListColabsAgentUseCase(colabAgentRepository)
-const listColabsAgentController = new ListColabsAgentController(listColabsAgentUseCase)
+export default()=>{
 
-export{listColabsAgentController}
+  const colabAgentRepository = new ColabAgentRepository()
+  const listColabsAgentUseCase = new ListColabsAgentUseCase(colabAgentRepository)
+  const listColabsAgentController = new ListColabsAgentController(listColabsAgentUseCase)
+  return listColabsAgentController
+}
+

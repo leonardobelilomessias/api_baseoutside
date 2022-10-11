@@ -2,8 +2,11 @@ import { SponsorsAgentsRepository } from "../../infra/typeorm/repositories/Spons
 import { ToCancelSponsorAgentController } from "./ToCancelSponsorAgentController";
 import { ToCancelSponsorAgentUseCase } from "./ToCancelSponsorAgentUseCase";
 
-const sponsorAgentRepository = new SponsorsAgentsRepository()
-const toCancelSponsorAgentUseCase = new ToCancelSponsorAgentUseCase(sponsorAgentRepository)
-const toCancelSponsorAgentController = new ToCancelSponsorAgentController(toCancelSponsorAgentUseCase)
+export default()=>{
 
-export{toCancelSponsorAgentController}
+  const sponsorAgentRepository = new SponsorsAgentsRepository()
+  const toCancelSponsorAgentUseCase = new ToCancelSponsorAgentUseCase(sponsorAgentRepository)
+  const toCancelSponsorAgentController = new ToCancelSponsorAgentController(toCancelSponsorAgentUseCase)
+  return toCancelSponsorAgentController
+}
+

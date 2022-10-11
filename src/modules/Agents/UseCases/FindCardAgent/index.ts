@@ -2,7 +2,10 @@ import { CardAgentRepository } from "../../infra/typeorm/repositories/CardAgentR
 import { FindCardAgentController } from "./FindCardAgentController";
 import { FindCardAgentUseCase } from "./FindCardAgentUseCase";
 
-const cardAgentRepository = new CardAgentRepository()
-const findCardAgentUseCase = new FindCardAgentUseCase(cardAgentRepository)
-const findCardAgentController = new FindCardAgentController(findCardAgentUseCase)
-export{findCardAgentController}
+export default()=>{
+
+  const cardAgentRepository = new CardAgentRepository()
+  const findCardAgentUseCase = new FindCardAgentUseCase(cardAgentRepository)
+  const findCardAgentController = new FindCardAgentController(findCardAgentUseCase)
+  return findCardAgentController
+}

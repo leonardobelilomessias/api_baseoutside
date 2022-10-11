@@ -5,7 +5,7 @@ import { agentRefreshTokenController } from "../../../../modules/accounts/UserTo
 const authenticateRoutes = Router()
 
 authenticateRoutes.post("/sessions", async (request, response) => {
-  await authenticateAgentController.handle(request,response)
+   return await authenticateAgentController.handle(request,response)
 })
 
 authenticateRoutes.post("/refresh-token", (request, response) => {

@@ -32,5 +32,7 @@ interface IAgentRepository{
   resetPassword({id_agent,password}):Promise<Agent>
 
   findByUserName(user_name:string):Promise<Agent>
+
+  fetchAgentProfile(id_agent)
 } 
 export {IAgentRepository} 

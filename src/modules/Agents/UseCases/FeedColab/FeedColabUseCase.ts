@@ -5,7 +5,7 @@ class FeedColabUseCase{
   constructor(colabRepository:IColabRepository){
     this.colabRepository = colabRepository
   }
-  async listFeed(id_agent:String){
+  async listFeed(id_agent:string){
     const feedColab = await this.colabRepository.listFeedColab(id_agent)
     return feedColab
   }
