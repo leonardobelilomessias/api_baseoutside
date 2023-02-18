@@ -12,8 +12,16 @@ interface IInputDeleteAgentMissionDTO{
   id_mission:string;
   id_agent:string;
 }
+interface IOutputAgentMissionDTO{
+  id_mission:string;
+  id_agent:string;
+  id: string;
+  created_at:Date;
+
+}
 export{
   IInputCreateAgentMissionDTO,
   IOutputGenericAgentMissionDTO,
-  IInputDeleteAgentMissionDTO
+  IInputDeleteAgentMissionDTO,
+  IOutputAgentMissionDTO
 }

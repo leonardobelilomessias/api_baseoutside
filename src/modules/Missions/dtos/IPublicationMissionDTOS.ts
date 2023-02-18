@@ -6,8 +6,12 @@ interface IInputCreatePublicationDTO{
   content:string[]
 }
 interface IOutputCreatePublicationMissionDTO{
-  publication: Object
-  photos:Object[];
+  id:string;
+  id_mission:string;
+  created_at:Date;
+  type:string;
+  description:string
+
 }
 interface IInputDeletePublicationMissionDTO{
   id_publication:string;

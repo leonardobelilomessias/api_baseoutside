@@ -1,3 +1,4 @@
+import { IOutputourneyMission } from "../dtos/IJourneyMissionDTO";
 import { JourneyMission } from "../infra/typeorm/entities/JourneyMission"
 
 
@@ -12,16 +13,16 @@ interface ICreateJourneyMission{
 
 interface IJourneyMissionRepository{
 
-  create({}:ICreateJourneyMission):Promise<JourneyMission>
+  create({}:ICreateJourneyMission):Promise<IOutputourneyMission>
 
   list():Promise<JourneyMission[]>
 
-  listByIdMission(id_mission:string):Promise<JourneyMission[]>
+  listByIdMission(id_mission:string):Promise<IOutputourneyMission[]>
 
-  hidden(id:string):Promise<JourneyMission>
+  hidden(id:string):Promise<IOutputourneyMission>
 
-  show(id:string):Promise<JourneyMission>
+  show(id:string):Promise<IOutputourneyMission>
 
-  delete(id:string):Promise<JourneyMission>
+  delete(id:string):Promise<IOutputourneyMission>
 }
 export{IJourneyMissionRepository,ICreateJourneyMission}

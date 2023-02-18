@@ -56,12 +56,23 @@ interface IInputDeleteWarning{
   id_agent_token:string;
   id:string
 }
+interface IOutputWarningsMissionDTOS{
+  id_mission:string;
+  id_creator:string;
+  title :string;
+  content:string; 
+  priority?:number; 
+  is_active?:boolean ;
+  state?:number 
+  type?:number;
+}
 export {
   IInputCreateWarningsMissionDTOS,
   ICreateWarningsMissionDTOS,
   IEditWarningsMissionDTO,
   IInputEditWarningsMissionDTO,
   IOutputGenericWarningsMissionDTOS,
-  IInputDeleteWarning
+  IInputDeleteWarning,
+  IOutputWarningsMissionDTOS
 
 }

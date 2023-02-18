@@ -1,3 +1,4 @@
+import { IOutputPhotoPublicationMission } from "../dtos/IPhotoPublicationMissionDTOS";
 import { PhotoPublicationMission } from "../infra/typeorm/entities/PhotoPublicationMission"
 
 interface ICreatePhotoMision{
@@ -6,9 +7,9 @@ interface ICreatePhotoMision{
 }
 interface IPhotoPublicationMissionRepository{
 
-  create({id_publication,content}:ICreatePhotoMision):Promise<PhotoPublicationMission[]>
+  create({id_publication,content}:ICreatePhotoMision):Promise<IOutputPhotoPublicationMission[]>
 
-  list(id_publication:string):Promise<PhotoPublicationMission[]>
+  list(id_publication:string):Promise<IOutputPhotoPublicationMission[]>
 
   delete(id_publication:string):Promise<void>
 }

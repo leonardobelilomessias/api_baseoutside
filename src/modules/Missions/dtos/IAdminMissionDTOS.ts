@@ -41,6 +41,13 @@ interface IOutputDeleteAdminMissionDTO{
   id_agent:string;
   type?:string;
 }
+
+interface IOutputAdminMissionDTO{
+  id:string;
+  id_mission:string;
+  id_agent:string;
+  type?:string;
+}
 export{
   IInputCreateAdminMissionDTO,
   IOutputCreateAdminMissionDTO,
@@ -48,5 +55,6 @@ export{
   IInputUpdateAdminMissionDTO,
   IOutputUpdateAdminMissionDTO,
   IInputDeleteAdminMissionDTO,
-  IOutputDeleteAdminMissionDTO
+  IOutputDeleteAdminMissionDTO,
+  IOutputAdminMissionDTO
 }

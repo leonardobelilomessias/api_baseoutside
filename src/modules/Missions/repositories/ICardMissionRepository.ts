@@ -1,3 +1,4 @@
+import { IOutputCardMissionDTO } from "../dtos/ICardMissionDTO";
 import { CardMission } from "../infra/typeorm/entities/CardMission";
 
 
@@ -14,12 +15,12 @@ interface IEditCardMission{
 
 interface ICardMissionRepository{
 
-  create({id_mission,description}:ICreateCardMission):Promise<CardMission>
+  create({id_mission,description}:ICreateCardMission):Promise<IOutputCardMissionDTO>
 
-  edit({description,id_mission}:IEditCardMission):Promise<CardMission>
+  edit({description,id_mission}:IEditCardMission):Promise<IOutputCardMissionDTO>
 
-  listByid(id_mission:string):Promise<CardMission>
+  listByid(id_mission:string):Promise<IOutputCardMissionDTO>
 
-  delete(id_mission:string):Promise<CardMission>
+  delete(id_mission:string):Promise<IOutputCardMissionDTO>
 }
 export{ICardMissionRepository,ICreateCardMission,IEditCardMission}

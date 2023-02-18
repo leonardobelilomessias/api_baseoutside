@@ -1,3 +1,4 @@
+import { IOutputCreatePublicationMissionDTO } from "../dtos/IPublicationMissionDTOS";
 import { PhotoPublicationMission } from "../infra/typeorm/entities/PhotoPublicationMission";
 import { PublicationMission } from "../infra/typeorm/entities/PublicationMission";
 
@@ -13,11 +14,11 @@ interface IPublicationMission{
 
   list(id_mission:string)
 
-  edit({id_publication,description}):Promise<PublicationMission>
+  edit({id_publication,description}):Promise<IOutputCreatePublicationMissionDTO>
 
-  delete(id_publication:string):Promise<PublicationMission>
+  delete(id_publication:string):Promise<IOutputCreatePublicationMissionDTO>
 
-  findById(id_publication:string):Promise<PublicationMission>
+  findById(id_publication:string):Promise<IOutputCreatePublicationMissionDTO>
 
 }
 export{IPublicationMission,IResponsePublicationMission}

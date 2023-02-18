@@ -22,9 +22,16 @@ interface IInputEditCardMissionDTO{
   title?:string;
   description?:string;
 }
+interface IOutputCardMissionDTO{
+  id:string;
+  id_mission:string;
+  description:string;
+  title:string;
+}
 export{
   IInputCreateCardMissionDTO,
   IOutputGenericCardMissionDTO,
   IInputDeleteCardMissionDTO,
-  IInputEditCardMissionDTO
+  IInputEditCardMissionDTO,
+  IOutputCardMissionDTO
 }

@@ -1,6 +1,7 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
+import { IOutputCreatePublicationMissionDTO } from "../../../dtos/IPublicationMissionDTOS";
 import { IPhotoPublicationMissionRepository } from "../../../repositories/IPhotoPublicationMissionRepository";
 import { IPublicationMission, IResponsePublicationMission } from "../../../repositories/IPublicationMissionRepository";
 import { PublicationMission } from "../entities/PublicationMission";
@@ -16,7 +17,7 @@ class PublicationMissionRepository implements IPublicationMission{
     this.photoPublicationMissionRepository = photoPublicationMissionRepository
     this.JourneyMissionRepository = new JourneyMissionRepository()
   }
-  async findById(id_publication: string): Promise<PublicationMission> {
+  async findById(id_publication: string): Promise<IOutputCreatePublicationMissionDTO> {
     const findpublication = await this.publicationMissionRepository.findOne({where:{id:id_publication}})
     return findpublication
   }
@@ -41,7 +42,7 @@ class PublicationMissionRepository implements IPublicationMission{
   return Promise.all(fullPublications) 
 
   }
-  async edit({id_publication,description}): Promise<PublicationMission> {
+  async edit({id_publication,description}): Promise<IOutputCreatePublicationMissionDTO> {
     const findPublication = await this.publicationMissionRepository.findOne({where:{id:id_publication}})
     if(!findPublication) throw new AppError("Publication not found.")
     Object.assign(findPublication,{description})
@@ -49,7 +50,7 @@ class PublicationMissionRepository implements IPublicationMission{
     
     return editedPublication
   }
-  async delete(id_publication: string): Promise<PublicationMission> {
+  async delete(id_publication: string): Promise<IOutputCreatePublicationMissionDTO> {
     await this.photoPublicationMissionRepository.delete(id_publication)
     const findPublication= await this.publicationMissionRepository.findOneBy({id:id_publication})
     if(!findPublication) throw new AppError("Publication not found.")

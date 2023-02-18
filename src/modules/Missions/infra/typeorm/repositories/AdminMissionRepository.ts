@@ -9,6 +9,8 @@ import { Mission } from "../entities/Mission";
 import { MissionRepository } from "./MissionRepository";
 import {IAgentsMissions} from "../../../repositories/IAgentsMissions"
 import { AgentsMissionRepository } from "./AgentsMissionRepository";
+import { IOutputAdminMissionDTO } from "../../../dtos/IAdminMissionDTOS";
+import { IOutputAgentMissionDTO } from "../../../dtos/IAgentMissionDTOS";
 
 class AdminMissionRepository implements IAdminMissionRepository{
   private adminMissionRepository :Repository<AdminMission>
@@ -24,7 +26,7 @@ class AdminMissionRepository implements IAdminMissionRepository{
     const findMission = await this.missionRepository.findById(id_mission)
     return findMission.creator
   }
-  async findAgentInMission({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<AgentMission> {
+  async findAgentInMission({ id_agent, id_mission }: { id_agent: any; id_mission: any; }): Promise<IOutputAgentMissionDTO> {
     const agentMission = await this.agentMissionRepository.findAgentMission({id_agent,id_mission})
     return agentMission
   }
@@ -32,7 +34,7 @@ class AdminMissionRepository implements IAdminMissionRepository{
     const foundAdmininMission = await this.adminMissionRepository.find({where:{id_mission}})
     return foundAdmininMission
   }
- async createAdminMission({ id_mission, id_agent, type }): Promise<AdminMission> {
+ async createAdminMission({ id_mission, id_agent, type }): Promise<IOutputAdminMissionDTO> {
   try{
     const newAdmin = new AdminMission()
     Object.assign(newAdmin,{id_agent,id_mission,type})
@@ -43,11 +45,11 @@ class AdminMissionRepository implements IAdminMissionRepository{
   }
 
   }
-  async findAdminMission({ id_agent, id_mission }): Promise<AdminMission> {
+  async findAdminMission({ id_agent, id_mission }): Promise<IOutputAdminMissionDTO> {
     const findAdminMission = await this.adminMissionRepository.findOne({where:{id_agent,id_mission}})
     return findAdminMission
   }
-  async updateAdminMission({ id_agent, id_mission,type }): Promise<AdminMission> {
+  async updateAdminMission({ id_agent, id_mission,type }): Promise<IOutputAdminMissionDTO> {
     try{
       const findAdminMission = await this.adminMissionRepository.findOne({where:{id_agent,id_mission}})
       findAdminMission.type = type
@@ -57,7 +59,7 @@ class AdminMissionRepository implements IAdminMissionRepository{
       throw new AppError("there was some error. Verify if value are correct.")
     }
   }
-  async deleteAdminMission({ id_agent, id_mission }): Promise<AdminMission> {
+  async deleteAdminMission({ id_agent, id_mission }): Promise<IOutputAdminMissionDTO> {
    const findAdminMission =  await this.adminMissionRepository.findOne({where:{id_agent,id_mission}})
    if(!findAdminMission) throw new AppError("Admin not found on mission.")
    await this.adminMissionRepository.delete(findAdminMission.id)

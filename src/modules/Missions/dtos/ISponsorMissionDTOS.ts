@@ -50,11 +50,24 @@ interface IOutputDeleteMissionsSponsorDTO{
   sponsor_private?:boolean;
   value:number 
 }
+
+interface IOutputSponsorMissionDTO{
+  id:string;
+  id_sponsor:string;
+  id_mission:string;
+  type:number;
+  mission_private?:boolean;
+  sponsor_private?:boolean;
+  value:number 
+  created_at: Date;
+
+}
 export{
   IInputCreateSponsorMissionDTO,
   IOutputCreateSponsorMissionDTO,
   IOutputListSponsorMissionDTO,
   IOutputListMissionsSponsorDTO,
   IInputDeleteSponsorMissionDTO,
-  IOutputDeleteMissionsSponsorDTO
+  IOutputDeleteMissionsSponsorDTO,
+  IOutputSponsorMissionDTO
 }
