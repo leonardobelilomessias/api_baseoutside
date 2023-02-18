@@ -1,4 +1,4 @@
-interface IInputCreateWarningDEpartamentActionDTO{
+interface IInputCreateWarningDepartamentActionDTO{
   id_agent_token:string;
   id_departament:string;
   id_creator:string;
@@ -9,7 +9,7 @@ interface IInputCreateWarningDEpartamentActionDTO{
   state:number;
   type:number;
 }
-interface IOutputCreateWarningDEpartamentActionDTO{
+interface IOutputCreateWarningDepartamentActionDTO{
   id:string;
   id_departament:string;
   id_creator:string;
@@ -20,7 +20,7 @@ interface IOutputCreateWarningDEpartamentActionDTO{
   state:number;
   type:number;
 }
-interface IInputUpdateWarningDEpartamentActionDTO{
+interface IInputUpdateWarningDepartamentActionDTO{
   id_agent_token:string;
   id:string;
   title:string;
@@ -30,7 +30,18 @@ interface IInputUpdateWarningDEpartamentActionDTO{
   state:number;
   type:number;
 }
-interface IOutputUpdateWarningDEpartamentActionDTO{
+interface IOutputUpdateWarningDepartamentActionDTO{
+  id:string;
+  id_departament:string;
+  id_creator:string;
+  title:string;
+  content:string;
+  priority:number;
+  is_active:boolean;
+  state:number;
+  type:number;
+}
+interface IOutputWarningDepartamentDTO{
   id:string;
   id_departament:string;
   id_creator:string;
@@ -42,9 +53,10 @@ interface IOutputUpdateWarningDEpartamentActionDTO{
   type:number;
 }
 export{
-  IInputCreateWarningDEpartamentActionDTO,
-  IOutputCreateWarningDEpartamentActionDTO,
-  IInputUpdateWarningDEpartamentActionDTO,
-  IOutputUpdateWarningDEpartamentActionDTO
+  IInputCreateWarningDepartamentActionDTO,
+  IOutputCreateWarningDepartamentActionDTO,
+  IInputUpdateWarningDepartamentActionDTO,
+  IOutputUpdateWarningDepartamentActionDTO,
+  IOutputWarningDepartamentDTO
   
 }

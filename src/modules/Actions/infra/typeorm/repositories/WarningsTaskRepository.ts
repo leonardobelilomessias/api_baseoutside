@@ -1,6 +1,7 @@
 import { Repository } from "typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
+import { IOutputWarningsTaskDTO } from "../../../dtos/IWarningsTasksDTO"
 import { ICreateWarningsTaskDTO, IEditWarningsTaskDTO, IWarningsTaskRepository } from "../../../repositories/IWarningsTaskRepository"
 import { WarningsTask } from "../entities/WarningTask"
 
@@ -13,29 +14,29 @@ class WarningTaskRepository implements IWarningsTaskRepository{
     const findwarning = await this.warningsTaskRepository.findOne({where:{id}})
     return findwarning
   }
-  async create({ id_task, id_creator, title, content, priority, is_active, state, type }: ICreateWarningsTaskDTO): Promise<WarningsTask> {
+  async create({ id_task, id_creator, title, content, priority, is_active, state, type }: ICreateWarningsTaskDTO): Promise<IOutputWarningsTaskDTO> {
     const newWarning = new WarningsTask()
     Object.assign(newWarning,{ id_task, id_creator, title, content, priority, is_active, state, type })
     const createdWarning = await this.warningsTaskRepository.save(newWarning)
     return createdWarning
   }
-  async listByIdTask(id_task: string): Promise<WarningsTask[]> {
+  async listByIdTask(id_task: string): Promise<IOutputWarningsTaskDTO[]> {
     const listWarningsTask = await this.warningsTaskRepository.find({where:{id_task}})
     return listWarningsTask
   }
-  async listByStatus({state,id_task}): Promise<WarningsTask[]> {
+  async listByStatus({state,id_task}): Promise<IOutputWarningsTaskDTO[]> {
     const findWarning = await this.warningsTaskRepository.find({where:{state,id_task}})
     return findWarning
   }
-  async listByPriority({priority,id_task}): Promise<WarningsTask[]> {
+  async listByPriority({priority,id_task}): Promise<IOutputWarningsTaskDTO[]> {
     const findWarning = await this.warningsTaskRepository.find({where:{priority,id_task}})
     return findWarning
   }
-  async listByType({type,id_task}): Promise<WarningsTask[]> {
+  async listByType({type,id_task}): Promise<IOutputWarningsTaskDTO[]> {
     const findWarning = await this.warningsTaskRepository.find({where:{type,id_task}})
     return findWarning
   }
-  async edit({ id, title, content, priority, is_active, state, type }: IEditWarningsTaskDTO): Promise<WarningsTask> {
+  async edit({ id, title, content, priority, is_active, state, type }: IEditWarningsTaskDTO): Promise<IOutputWarningsTaskDTO> {
     const findWarning = await this.warningsTaskRepository.findOneBy({id})
     Object.assign(findWarning,{title, content, priority, is_active, state, type })
     const editedWarningTask = await this.warningsTaskRepository.save(findWarning)

@@ -1,4 +1,4 @@
-import { IUpdateActionDTO } from "../dtos/IActionDTOS";
+import { IOutputCreateActionDTO, IUpdateActionDTO } from "../dtos/IActionDTOS";
 import { Action } from "../infra/typeorm/entities/Action";
 
 
@@ -6,23 +6,23 @@ import { Action } from "../infra/typeorm/entities/Action";
 
 interface IActionRepository{
 
-  create({creator, name,description,date_start,date_end,id_mission,state,local}):Promise<Action>
+  create({creator, name,description,date_start,date_end,id_mission,state,local}):Promise<IOutputCreateActionDTO>
   
-  listAll(): Promise<Action[]>
+  listAll(): Promise<IOutputCreateActionDTO[]>
   
-  findById(id:string): Promise<Action>
+  findById(id:string): Promise<IOutputCreateActionDTO>
 
-  findByIdMission(id_mission:string): Promise<Action[]>
+  findByIdMission(id_mission:string): Promise<IOutputCreateActionDTO[]>
   
-  findByName(name:string): Promise<Action[]>
+  findByName(name:string): Promise<IOutputCreateActionDTO[]>
 
-  findByLocal(local:string): Promise<Action[]>
+  findByLocal(local:string): Promise<IOutputCreateActionDTO[]>
 
-  findByField(field:string): Promise<Action>
+  findByField(field:string): Promise<IOutputCreateActionDTO>
 
-  edit({ id, name,description,date_start,date_end,state,local}:IUpdateActionDTO): Promise<Action>
+  edit({ id, name,description,date_start,date_end,state,local}:IUpdateActionDTO): Promise<IOutputCreateActionDTO>
   
-  delete(Action:Action): Promise<Action>
+  delete(Action:Action): Promise<IOutputCreateActionDTO>
 
 }
 

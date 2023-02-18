@@ -13,8 +13,16 @@ interface IOutputDeletAgentDepartamentAcionDTO{
   id_agent:string;
   id_departament:string;
 }
+interface IOutputAgentDepartamentAcionDTO {
+  id:string
+  id_agent_token?:string;
+  id_agent:string;
+  id_departament:string;
+  created_at:Date
+}
 export{ 
   IInputCreateAgentDepartamentAcionDTO,
   IInputDeleteAgentDepartamentAcionDTO,
-  IOutputDeletAgentDepartamentAcionDTO
+  IOutputDeletAgentDepartamentAcionDTO,
+  IOutputAgentDepartamentAcionDTO 
 }

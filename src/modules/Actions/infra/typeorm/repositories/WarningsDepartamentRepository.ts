@@ -1,7 +1,8 @@
 import { Repository } from "typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
-import { ICreateWarningsDepartamentDTO, IEditWarningsDepartamentDTO, IWarningsDepartamentRepository } from "../../../repositories/IWarningsDepartamentRepository"
+import { IOutputWarningDepartamentDTO } from "../../../dtos/IWarningDepartamentDTOS"
+import {  IEditWarningsDepartamentDTO, IWarningsDepartamentRepository } from "../../../repositories/IWarningsDepartamentRepository"
 import { WarningsDepartament } from "../entities/WarningDepartament"
 
 class WarningDepartamentRepository implements IWarningsDepartamentRepository{
@@ -13,29 +14,29 @@ class WarningDepartamentRepository implements IWarningsDepartamentRepository{
     const findwarning = await this.warningsDepartamentRepository.findOne({where:{id}})
     return findwarning
   }
-  async create({ id_departament, id_creator, title, content, priority, is_active, state, type }: ICreateWarningsDepartamentDTO): Promise<WarningsDepartament> {
+  async create({ id_departament, id_creator, title, content, priority, is_active, state, type }: IOutputWarningDepartamentDTO): Promise<IOutputWarningDepartamentDTO> {
     const newWarning = new WarningsDepartament()
     Object.assign(newWarning,{ id_departament, id_creator, title, content, priority, is_active, state, type })
     const createdWarning = await this.warningsDepartamentRepository.save(newWarning)
     return createdWarning
   }
-  async listByIdDepartament(id_departament: string): Promise<WarningsDepartament[]> {
+  async listByIdDepartament(id_departament: string): Promise<IOutputWarningDepartamentDTO[]> {
     const listWarningsDepartament = await this.warningsDepartamentRepository.find({where:{id_departament}})
     return listWarningsDepartament
   }
-  async listByStatus({state,id_departament}): Promise<WarningsDepartament[]> {
+  async listByStatus({state,id_departament}): Promise<IOutputWarningDepartamentDTO[]> {
     const findWarning = await this.warningsDepartamentRepository.find({where:{state,id_departament}})
     return findWarning
   }
-  async listByPriority({priority,id_departament}): Promise<WarningsDepartament[]> {
+  async listByPriority({priority,id_departament}): Promise<IOutputWarningDepartamentDTO[]> {
     const findWarning = await this.warningsDepartamentRepository.find({where:{priority,id_departament}})
     return findWarning
   }
-  async listByType({type,id_departament}): Promise<WarningsDepartament[]> {
+  async listByType({type,id_departament}): Promise<IOutputWarningDepartamentDTO[]> {
     const findWarning = await this.warningsDepartamentRepository.find({where:{type,id_departament}})
     return findWarning
   }
-  async edit({ id, title, content, priority, is_active, state, type }: IEditWarningsDepartamentDTO): Promise<WarningsDepartament> {
+  async edit({ id, title, content, priority, is_active, state, type }: IEditWarningsDepartamentDTO): Promise<IOutputWarningDepartamentDTO> {
     const findWarning = await this.warningsDepartamentRepository.findOneBy({id})
     Object.assign(findWarning,{title, content, priority, is_active, state, type })
     const editedWarningDepartament = await this.warningsDepartamentRepository.save(findWarning)

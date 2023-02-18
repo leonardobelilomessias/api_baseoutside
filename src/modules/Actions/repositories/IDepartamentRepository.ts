@@ -1,3 +1,4 @@
+import { IInputCreateDepartamentActionDTO, IOutputAgentDepartamentDTO, IOutputCreateDepartamentActionDTO, IOutputGenericDepartamentActionDTO } from '../dtos/IDepartamentActionDTOS';
 import { AgentDepartament } from '../infra/typeorm/entities/AgentDepartament';
 import {Departament} from '../infra/typeorm/entities/Departament';
 
@@ -11,25 +12,27 @@ interface IEditDepartement{
 
 interface IDepartamentRepository{
 
-  create({id_action,name,description,agents_limit,agents_necessary}):Promise<Departament>
+  create({id_action,name,description,agents_limit,agents_necessary}):Promise<IOutputCreateDepartamentActionDTO>
 
-  listAll(id_action:string):Promise<Departament[]>
-
-  listDepartamentAgent(id_agent:string):Promise<Departament[]>
+  listAll(id_action:string):Promise<IOutputGenericDepartamentActionDTO[]>
   
-  findAgentDepartament({id_agent,id_departament}):Promise<AgentDepartament>
+  findDepartamentById({id_departament}):Promise<IOutputGenericDepartamentActionDTO>
+  
+  findAgentDepartament({id_agent,id_departament}):Promise<IOutputAgentDepartamentDTO>
+  
+  edit({id,name,description,agents_limit,agents_necessary}):Promise<IOutputGenericDepartamentActionDTO>
 
-  edit({id,name,description,agents_limit,agents_necessary}):Promise<Departament>
+  listDepartamentAgent(id_agent:string):Promise<IOutputGenericDepartamentActionDTO[]>
 
-  delete(id:String):Promise<Departament>
+  delete(id:String):Promise<IOutputGenericDepartamentActionDTO>
 
-  createAgentDepartament({id_agent,id_departament}):Promise<AgentDepartament>
+  createAgentDepartament({id_agent,id_departament}):Promise<IOutputAgentDepartamentDTO>
 
-  listAgentsDepartament(id_departament):Promise<AgentDepartament[]>
+  listAgentsDepartament(id_departament):Promise<IOutputAgentDepartamentDTO[]>
 
-  deleteAgentDepartament({id_agent,id_departament}):Promise<AgentDepartament>
 
-  findDepartamentById({id_departament}):Promise<Departament>
+  deleteAgentDepartament({id_agent,id_departament}):Promise<IOutputAgentDepartamentDTO>
+
 
 
 }

@@ -1,3 +1,4 @@
+import { IOutputTaskDepartamentDTO } from "../dtos/ITasksDepartamentsActionDTOS";
 import {  TaskDepartament } from "../infra/typeorm/entities/TaskDepartament";
 
 
@@ -39,23 +40,23 @@ interface IEditTaskDepartament {
 
 interface ITaskDepartamentRepository{
 
-  create({title,description,id_action,local,is_active,state,agents_necessary,agents_limit,priority,date_limit_subscribe,is_require_skill,skill_require,id_mission,id_departament}): Promise<TaskDepartament>
+  create({title,description,id_action,local,is_active,state,agents_necessary,agents_limit,priority,date_limit_subscribe,is_require_skill,skill_require,id_mission,id_departament}): Promise<IOutputTaskDepartamentDTO>
 
-  findTaskDepartamentById({id}): Promise<TaskDepartament>
+  findTaskDepartamentById({id}): Promise<IOutputTaskDepartamentDTO>
 
-  findTaskDepartamentByTitle({title}):Promise<TaskDepartament>
+  findTaskDepartamentByTitle({title}):Promise<IOutputTaskDepartamentDTO>
 
-  listAllTaskDepartament(id_departament:string):Promise<TaskDepartament[]>
+  listAllTaskDepartament(id_departament:string):Promise<IOutputTaskDepartamentDTO[]>
 
-  listTasksDepartamentByAction(id_action:string):Promise<TaskDepartament[]>
+  listTasksDepartamentByAction(id_action:string):Promise<IOutputTaskDepartamentDTO[]>
 
-  listTasksDepartamentByLocal(local:string):Promise<TaskDepartament[]>
+  listTasksDepartamentByLocal(local:string):Promise<IOutputTaskDepartamentDTO[]>
 
-  listTasksDepartamentByMisssion(id_mission:string):Promise<TaskDepartament[]>
+  listTasksDepartamentByMisssion(id_mission:string):Promise<IOutputTaskDepartamentDTO[]>
 
-  editTaskDepartament({id,title,description,local,is_active,state,agents_necessary,agents_limit,priority,date_limit_subscribe,is_require_skill,skill_require,id_departament}):Promise<TaskDepartament>
+  editTaskDepartament({id,title,description,local,is_active,state,agents_necessary,agents_limit,priority,date_limit_subscribe,is_require_skill,skill_require,id_departament}):Promise<IOutputTaskDepartamentDTO>
 
-  deleteTaskDepartament(id:string):Promise<TaskDepartament>
+  deleteTaskDepartament(id:string):Promise<IOutputTaskDepartamentDTO>
 
 
 

@@ -50,9 +50,19 @@ interface IOutputGenericDepartamentActionDTO{
   id:string;
   id_action:string;
   name:string;
-  description:string;
-  agents_limit:number;
-  agents_necessary:number
+  created_at?:Date;
+  description?:string;
+  agents_limit?:number;
+  agents_necessary?:number
+  image_profile?:string;
+}
+
+interface IOutputAgentDepartamentDTO{
+  id:string;
+  id_agent:string
+  id_departament:string;
+  created_at:Date;
+
 }
 
 export{
@@ -62,5 +72,6 @@ export{
   IOutputUpdateDepartamentActionDTO,
   IOutputDeleteDepartamentActionDTO,
   InputDeleteDepartamentActionDTO,
-  IOutputGenericDepartamentActionDTO
+  IOutputGenericDepartamentActionDTO,
+  IOutputAgentDepartamentDTO
 }

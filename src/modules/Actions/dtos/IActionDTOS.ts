@@ -11,7 +11,6 @@ interface IInputCreateActionDTO{
   type?:number
 }
 interface IOutputCreateActionDTO{
-  
   creator:string;
   name:string;
   description:string;

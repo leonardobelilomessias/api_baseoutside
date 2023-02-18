@@ -1,3 +1,4 @@
+import { IOutputWarningsTaskDTO } from "../dtos/IWarningsTasksDTO";
 import { WarningsTask } from "../infra/typeorm/entities/WarningTask";
 
 interface ICreateWarningsTaskDTO{
@@ -21,21 +22,21 @@ interface IEditWarningsTaskDTO{
 }
 interface IWarningsTaskRepository{
 
-  create({id_task,id_creator,title,content,priority,is_active,state,type}:ICreateWarningsTaskDTO):Promise<WarningsTask>
+  create({id_task,id_creator,title,content,priority,is_active,state,type}:ICreateWarningsTaskDTO):Promise<IOutputWarningsTaskDTO>
 
-  findById(id:string):Promise<WarningsTask>
+  findById(id:string):Promise<IOutputWarningsTaskDTO>
 
-  listByIdTask(id_task:string):Promise<WarningsTask[]>
+  listByIdTask(id_task:string):Promise<IOutputWarningsTaskDTO[]>
 
-  listByStatus({state,id_task}):Promise<WarningsTask[]>
+  listByStatus({state,id_task}):Promise<IOutputWarningsTaskDTO[]>
 
-  listByPriority({priority,id_task}):Promise<WarningsTask[]>
+  listByPriority({priority,id_task}):Promise<IOutputWarningsTaskDTO[]>
 
-  listByType({type,id_task}):Promise<WarningsTask[]>
+  listByType({type,id_task}):Promise<IOutputWarningsTaskDTO[]>
   
-  edit({id,title,content,priority,is_active,state,type}:IEditWarningsTaskDTO):Promise<WarningsTask>
+  edit({id,title,content,priority,is_active,state,type}:IEditWarningsTaskDTO):Promise<IOutputWarningsTaskDTO>
 
-  delete(id:string):Promise<WarningsTask>
+  delete(id:string):Promise<IOutputWarningsTaskDTO>
 
 }
 

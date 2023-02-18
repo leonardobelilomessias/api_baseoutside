@@ -1,3 +1,4 @@
+import { IOutputGenericWarnigActionDTO } from "../dtos/IWarningsActionsDTOS";
 import { WarningsAction } from "../infra/typeorm/entities/WarningAction";
 
 interface ICreateWarningsActionDTO{
@@ -21,21 +22,21 @@ interface IEditWarningsActionDTO{
 }
 interface IWarningsActionRepository{
 
-  create({id_action,id_creator,title,content,priority,is_active,state,type}:ICreateWarningsActionDTO):Promise<WarningsAction>
+  create({id_action,id_creator,title,content,priority,is_active,state,type}:ICreateWarningsActionDTO):Promise<IOutputGenericWarnigActionDTO>
 
-  findById(id:string):Promise<WarningsAction>
+  findById(id:string):Promise<IOutputGenericWarnigActionDTO>
 
-  listByIdAction(id_action:string):Promise<WarningsAction[]>
+  listByIdAction(id_action:string):Promise<IOutputGenericWarnigActionDTO[]>
 
-  listByStatus({state,id_action}):Promise<WarningsAction[]>
+  listByStatus({state,id_action}):Promise<IOutputGenericWarnigActionDTO[]>
 
-  listByPriority({priority,id_action}):Promise<WarningsAction[]>
+  listByPriority({priority,id_action}):Promise<IOutputGenericWarnigActionDTO[]>
 
-  listByType({type,id_action}):Promise<WarningsAction[]>
+  listByType({type,id_action}):Promise<IOutputGenericWarnigActionDTO[]>
   
-  edit({id,title,content,priority,is_active,state,type}:IEditWarningsActionDTO):Promise<WarningsAction>
+  edit({id,title,content,priority,is_active,state,type}:IEditWarningsActionDTO):Promise<IOutputGenericWarnigActionDTO>
 
-  delete(id:string):Promise<WarningsAction>
+  delete(id:string):Promise<IOutputGenericWarnigActionDTO>
 
 }
 
