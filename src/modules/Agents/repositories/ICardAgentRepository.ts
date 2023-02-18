@@ -1,7 +1,6 @@
 
-import { ICreateCardAgentDTO, IEditCardAgentDTO } from "../DTOS/ICardAgentDTOS";
-import { CardAgent } from "../infra/typeorm/entities/CardAgent";
-
+import { ICreateCardAgentDTO, IEditCardAgentDTO, IOutputGenericCardAgentDTO  as CardAgent} from "../DTOS/ICardAgentDTOS";
+//import { CardAgent } from "../infra/typeorm/entities/CardAgent";
 
 
 

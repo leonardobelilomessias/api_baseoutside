@@ -1,5 +1,6 @@
 import { Repository } from "typeorm/repository/Repository"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
+import { IInterestsDTO } from "../../../DTOS/IInterestAgentDTOS"
 import { IInterestsRepository } from "../../../repositories/IInterestsRepository"
 import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository"
 import { Agent } from "../entities/Agent"
@@ -15,11 +16,11 @@ class InterestsRepository implements IInterestsRepository{
      this.agentRepository = AppDataSource.getRepository('agents')
      this.journeyAgentRepository =  new JourneyAgentRepository()
   }
-  findInterestByName(interest: string): Promise<Interests[]> {
+  async findInterestByName(interest: string): Promise<IInterestsDTO[]> {
     throw new Error("Method not implemented.")
   }
 
-  async findInterestByAgent(id_agent): Promise<Interests[]> {
+  async findInterestByAgent(id_agent): Promise<IInterestsDTO[]> {
     const interestAgent = await this.interestsRepository.find({where:{id_agent}})
     return interestAgent
   }

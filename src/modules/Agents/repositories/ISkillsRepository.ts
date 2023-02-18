@@ -1,10 +1,11 @@
+import { ISkillsDTO } from "../DTOS/ISkillsAgentDTOS"
 import { Skills } from "../infra/typeorm/entities/Skills"
 
 interface ISkillsRepository{
 
-  ListAllSkills(): Promise<Skills[]>
+  ListAllSkills(): Promise<ISkillsDTO[]>
   
-  findSkillsByAgent(id_agent: string): Promise<Skills[]>
+  findSkillsByAgent(id_agent: string): Promise<ISkillsDTO[]>
   
   findAgentBySkill(skill:string)
   

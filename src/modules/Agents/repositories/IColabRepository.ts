@@ -1,6 +1,5 @@
-import { ICreateColabAgentDTO, IDeleteColabAgentDTO } from "../DTOS/IColabAgentDTOS";
+import { ICreateColabAgentDTO, IDeleteColabAgentDTO, IOutputGenericColabAgentDTO as ColabAgent } from "../DTOS/IColabAgentDTOS";
 import { Agent } from "../infra/typeorm/entities/Agent";
-import { ColabAgent } from "../infra/typeorm/entities/ColabAgent";
 
 
 interface IColabRepository{

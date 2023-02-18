@@ -8,6 +8,13 @@ interface IInputCreatePublicationDTO{
   description?: string
   content: string[]
 }
+interface IPublicationAgentDTO{
+  id_agent_token:string
+  id_agent: string
+  type: string
+  description?: string
+
+}
 interface ICreatePublicationDTO{
   id_agent: string
   type: string
@@ -32,11 +39,11 @@ interface IOutputCreatePublicationDTO{
   content:PhotoPublicationAgent[]
  }
  interface IOutputGenericPublicationDTO{
-  id_agent: string;
-  id_publication: string;
+  id_agent?: string;
+  id_publication?: string;
   type: string;
   description?: string;
-  content:PhotoPublicationAgent[]
+  content?:PhotoPublicationAgent[]
  }
 
  interface IOutputListPublicationDTO{
@@ -51,6 +58,6 @@ export{
   IOutputListPublicationDTO,
   ICreatePublicationDTO,
 IOutputGenericPublicationDTO,
-IInputUpdatePublicationDTO
+IInputUpdatePublicationDTO, IPublicationAgentDTO
 
 }

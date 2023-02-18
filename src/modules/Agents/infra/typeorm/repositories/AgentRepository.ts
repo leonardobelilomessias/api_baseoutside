@@ -6,7 +6,7 @@ import { Agent } from "../entities/Agent"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { hash,compare } from "bcryptjs"
-import { IEditAgentDTO, IResponseAgentDTO} from "../../../DTOS/IAgentDTOS"
+import { IEditAgentDTO, IOutputAgentDTO, IOutputCreateAgentDTO, IOutputGenericAgentDTO, IResponseAgentDTO} from "../../../DTOS/IAgentDTOS"
 
 
  class AgentRepository implements IAgentRepository {
@@ -26,29 +26,29 @@ import { IEditAgentDTO, IResponseAgentDTO} from "../../../DTOS/IAgentDTOS"
    }
 
    
-   async findBySkills(skills): Promise<Agent[]> {
-    const agentsWithSkill = await this.agentRepository.createQueryBuilder("agents")
+   async findBySkills(skills): Promise<IOutputAgentDTO[]> {
+    const agentsWithSkill  = await this.agentRepository.createQueryBuilder("agents")
     .innerJoinAndMapMany("agents.skills", "skills_agents", "sk", "agents.id = sk.id_agent")
     .where("sk.skill = :skill",{skill:skills})   
     .getMany()
-     return agentsWithSkill
+     return agentsWithSkill 
    }
 
-   async findByInterest(interests:string[]): Promise<Agent[]> {
+   async findByInterest(interests:string[]): Promise<IOutputAgentDTO[]> {
      throw new Error("Method not implemented.")
    }
 
-  async findById(id:string): Promise<Agent> {
+  async findById(id:string): Promise<IOutputAgentDTO> {
     const findAgent = await this.agentRepository.findOneBy({id:String(id)})
-    return  findAgent
+    return  findAgent as IOutputAgentDTO
    }
    
-  async findByEmail({ email }: { email:string }): Promise<Agent> {
+  async findByEmail({ email }: { email:string }): Promise<IOutputAgentDTO> {
     const findAgent = await this.agentRepository.findOneBy({email:email})
     return  findAgent
    }
    
-  async create({ name, email,user_name, password,image_profile,description,vocation }): Promise<Agent> {
+  async create({ name, email,user_name, password,image_profile,description,vocation }): Promise<IOutputAgentDTO> {
     const agent = new Agent()
     Object.assign(agent,{ name, email,user_name, password,image_profile,description,vocation })
 
@@ -66,7 +66,7 @@ import { IEditAgentDTO, IResponseAgentDTO} from "../../../DTOS/IAgentDTOS"
      return newQuery
    }
 
-  async deactivate({id,password} ): Promise<Agent> {
+  async deactivate({id,password} ): Promise<IOutputAgentDTO> {
     const agentWillBeDelete = await this.agentRepository.findOneBy({ id: id })
     const passwordMatch = await compare(password, agentWillBeDelete.password)
     if(!passwordMatch)throw new AppError("Password  incorrect.")
@@ -131,7 +131,7 @@ import { IEditAgentDTO, IResponseAgentDTO} from "../../../DTOS/IAgentDTOS"
     const agentByUsername = await this.agentRepository.findOne({where:{user_name:user_name,is_active:true}})
     return agentByUsername
   }
-  listAll(): Promise<Agent[]> {
+  listAll(): Promise<IOutputAgentDTO[]> {
     throw new Error("Method not implemented.")
   }
 }

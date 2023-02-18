@@ -2,6 +2,7 @@ import { Repository } from "typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
 import { IStorageProvider } from "../../../../../utils/providers/StorageProvider/IStorageProvide"
+import { IPhotoPublicationAgentDTO } from "../../../DTOS/IPhotoPublicationsDTOS"
 import { IPhotosPublicationAgent } from "../../../repositories/IPhotosPublicationAgentRepository"
 import { PhotoPublicationAgent } from "../entities/PhotoPublicationAgent"
 
@@ -13,11 +14,11 @@ class PhotoPublicationAgentRepository implements IPhotosPublicationAgent{
     this.storageProvider = storageProvider
 
   }
-  async findPhotosByIdPublication(id_publication: string): Promise<PhotoPublicationAgent[]> {
+  async findPhotosByIdPublication(id_publication: string): Promise<IPhotoPublicationAgentDTO[]> {
     const photosPublications = await this.photosPublicationAgent.find({where:{id_publication:id_publication}})
     return photosPublications
   }
-  async create(id_publication: string, photos: string[]): Promise<PhotoPublicationAgent[]> {
+  async create(id_publication: string, photos: string[]): Promise<IPhotoPublicationAgentDTO[]> {
     
     const promise =  photos.map(async (photo) => {
       const newPhoto = new PhotoPublicationAgent(id_publication)
@@ -30,7 +31,7 @@ class PhotoPublicationAgentRepository implements IPhotosPublicationAgent{
 
     return photosAgent
   }
-  async list(id_publication: string): Promise<PhotoPublicationAgent[]> {
+  async list(id_publication: string): Promise<IPhotoPublicationAgentDTO[]> {
     throw new Error("Method not implemented.")
   }
   async delete(id_publication: string): Promise<void> {

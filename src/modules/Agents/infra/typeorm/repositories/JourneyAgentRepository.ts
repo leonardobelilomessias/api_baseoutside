@@ -1,7 +1,7 @@
 import { Repository } from "typeorm"
 import { AppError } from "../../../../../shared/errors/AppError"
 import { AppDataSource } from "../../../../../shared/infra/typeorm"
-import { ICreateJourneyAgent } from "../../../DTOS/IJourneyAgentDTOS"
+import { ICreateJourneyAgent, IJourneyAgentDTO } from "../../../DTOS/IJourneyAgentDTOS"
 import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository"
 import { JourneyAgent } from "../entities/JourneyAgent"
 
@@ -20,23 +20,23 @@ class JourneyAgentRepository implements IJourneyAgentRepository{
     const journeysAgent = await this.journeyAgentRepository.find()
     return journeysAgent
   }
-  async listByIdAgent(id_agent: string): Promise<JourneyAgent[]> {
+  async listByIdAgent(id_agent: string): Promise<IJourneyAgentDTO[]> {
     const journeyAgent = await this.journeyAgentRepository.find({where:{id_agent}})
     return journeyAgent
   }
-  async hidden(id: string): Promise<JourneyAgent> {
+  async hidden(id: string): Promise<IJourneyAgentDTO> {
     const journeyAgent = await this.journeyAgentRepository.findOneBy({id})
     journeyAgent.is_hidden = true
     const journeyHidden = this.journeyAgentRepository.save(journeyAgent)
     return journeyHidden
   }
- async  show(id: string): Promise<JourneyAgent> {
+ async  show(id: string): Promise<IJourneyAgentDTO> {
     const journeyAgent = await this.journeyAgentRepository.findOneBy({id})
     journeyAgent.is_hidden = false
     const journeyHidden = this.journeyAgentRepository.save(journeyAgent)
     return journeyHidden
   }
-  async delete(id: string): Promise<JourneyAgent> {
+  async delete(id: string): Promise<IJourneyAgentDTO> {
     const findJourney = await this.journeyAgentRepository.findOneBy({id})
     if(!findJourney) throw new AppError("Journey not found")
     const journeyDelete = await this.journeyAgentRepository.delete(findJourney.id)

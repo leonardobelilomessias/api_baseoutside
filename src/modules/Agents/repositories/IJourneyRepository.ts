@@ -1,5 +1,4 @@
-import { ICreateJourneyAgent } from "../DTOS/IJourneyAgentDTOS"
-import { JourneyAgent } from "../infra/typeorm/entities/JourneyAgent"
+import { ICreateJourneyAgent, IJourneyAgentDTO as JourneyAgent } from "../DTOS/IJourneyAgentDTOS"
 
 
 interface IJourneyAgentRepository{

@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { IEditPublicationDTO, ICreatePublicationDTO, IOutputCreatePublicationDTO, IOutputListPublicationDTO, } from "../../../DTOS/IPublicationAgentDTOS";
+import { IEditPublicationDTO, ICreatePublicationDTO, IOutputCreatePublicationDTO, IOutputListPublicationDTO, IOutputGenericPublicationDTO, IPublicationAgentDTO, } from "../../../DTOS/IPublicationAgentDTOS";
 import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository";
 import { IPublicationsAgentRepository } from "../../../repositories/IPublicationsAgentRepository";
 import { Agent } from "../entities/Agent";
@@ -20,7 +20,7 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     this.photosPublicationsAgent = photoPublicationAgentRepository
     this.journeyAgentRepository = new JourneyAgentRepository()
   }
-  listByAgentName(name: string): Promise<PublicationAgent[]> {
+  async listByAgentName(name: string): Promise<IPublicationAgentDTO[]> {
     throw new Error("Method not implemented.");
   }
   async listAll(): Promise<PublicationAgent[]> {
@@ -39,7 +39,7 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     return await Promise.all(fullPublications)
   }
 
-  async findPublicationById(id_publication: string): Promise<PublicationAgent> {
+  async findPublicationById(id_publication: string): Promise<IOutputGenericPublicationDTO> {
     const foundPublication = await this.publicationsAgentRepository.findOneBy({id:id_publication})
     return foundPublication
   }
@@ -60,7 +60,7 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     const updatePublication = await this.publicationsAgentRepository.save({ id: id_publication, description: description })
     return updatePublication
   }
-  async delete(id_publication: string): Promise<PublicationAgent> {
+  async delete(id_publication: string): Promise<IOutputGenericPublicationDTO> {
    await this.photosPublicationsAgent.delete(id_publication)
    const findPublicatio= await this.publicationsAgentRepository.findOneBy({id:id_publication})
    const deletedPublication = await this.publicationsAgentRepository.createQueryBuilder()

@@ -1,37 +1,35 @@
 
-import {  IEditAgentDTO, IInputCreateAgentDTO, IResponseAgentDTO } from "../DTOS/IAgentDTOS";
-import { Agent } from "../infra/typeorm/entities/Agent"
-
-
+import { Decimal } from "@prisma/client/runtime";
+import {  IEditAgentDTO, IInputCreateAgentDTO, IOutputAgentDTO, IOutputCreateAgentDTO, IOutputGenericAgentDTO, IResponseAgentDTO } from "../DTOS/IAgentDTOS";
 
 
 interface IAgentRepository{
   
-  create({name,email,password,}:IInputCreateAgentDTO): Promise<Agent>
+  create({name,email,password,}:IInputCreateAgentDTO): Promise<IOutputAgentDTO>
 
-  listAll(): Promise<Agent[]>
+  listAll(): Promise<IOutputAgentDTO[]>
   
-  deactivate( {id,password}): Promise<Agent>
+  deactivate( {id,password}): Promise<IOutputAgentDTO>
   
   activate({email}):Promise<void>
 
   edit({id, description,email,name,skills,interests,image_profile}:IEditAgentDTO): Promise<IResponseAgentDTO>
 
-  findByEmail({ email }): Promise<Agent>
+  findByEmail({ email }): Promise<IOutputAgentDTO>
 
-  findById( id :string): Promise<Agent>
+  findById( id :string): Promise<IOutputAgentDTO>
   
-  findByName(name :string): Promise<Agent>
+  findByName(name :string): Promise<IOutputAgentDTO>
   
-  findBySkills(skill:string[]):Promise<Agent[]>
+  findBySkills(skill:string[]):Promise<IOutputAgentDTO[]>
   
-  findByInterest( interest:string[] ): Promise<Agent[]>
+  findByInterest( interest:string[] ): Promise<IOutputAgentDTO[]>
 
-  findByVocation({vocation}:{vocation:string}):Promise<Agent[]>
+  findByVocation({vocation}:{vocation:string}):Promise<IOutputAgentDTO[]>
 
-  resetPassword({id_agent,password}):Promise<Agent>
+  resetPassword({id_agent,password}):Promise<IOutputAgentDTO>
 
-  findByUserName(user_name:string):Promise<Agent>
+  findByUserName(user_name:string):Promise<IOutputAgentDTO>
 
   fetchAgentProfile(id_agent)
 } 

@@ -11,21 +11,25 @@ interface IInputCreateAgentDTO{
 interface IOutputCreateAgentDTO{
   id: string;
   email: string;
+  password: string;
   name: string;
-  user_name: string;
-  description?:string | null;
-  balance?: number;
-  is_active?: boolean;
-  level?: number;
-  image_profile?: string | null
-  vocation?: string;
-  state?: number
+  user_name:string;
+  description: string;
+  balance:number 
+  is_active: boolean
+  level: number
+  image_profile: string;
+  vocation: string
+  created_at: Date;
+  state:number
 }
+
 interface IOutputGenericAgentDTO{
   id: string;
   email: string;
   name: string;
   user_name: string;
+  password?: string;
   description?:string | null;
   balance?: number;
   is_active?: boolean;
@@ -33,6 +37,7 @@ interface IOutputGenericAgentDTO{
   image_profile?: string | null
   vocation?: string;
   state?: number
+  created_at: Date;
 }
 interface IResponseAgentDTO{
   id: string;
@@ -46,21 +51,22 @@ interface IResponseAgentDTO{
 
 
 interface IOutputAgentDTO{
-  id: string;
+  id?: string;
   email: string;
-  password: string;
+  password?: string;
   name: string;
   user_name: string;
-  description: null;
-  balance: string;
+  description: null |string;
+  balance: number |string;
   is_active: boolean;
-  level: number;
+  level: number |string ;
   image_profile: string | null
   vocation: string;
+  created_at?: Date;
   state: number
-  skills: [] | string[],
-  interests: [] | string[],
-  owner_mission: [] | string[]
+  skills?: [] | string[],
+  interests?: [] | string[],
+  owner_mission?: [] | string[]
 }
 
 interface IEditAgentInputDTO{

@@ -4,7 +4,7 @@ import {v4 as uuidv4} from 'uuid'
 @Entity("agents")
 class Agent{
   @PrimaryColumn()
-  id?: string;
+  id?: string
   
   @Column()
   email: string;

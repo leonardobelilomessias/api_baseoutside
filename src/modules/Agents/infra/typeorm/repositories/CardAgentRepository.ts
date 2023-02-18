@@ -1,9 +1,9 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { ICreateCardAgentDTO } from "../../../DTOS/ICardAgentDTOS";
+import { ICreateCardAgentDTO,IOutputGenericCardAgentDTO as CardAgent } from "../../../DTOS/ICardAgentDTOS";
 import { ICardAgentRepository} from "../../../repositories/ICardAgentRepository";
-import { CardAgent } from "../entities/CardAgent";
+//import { CardAgent } from "../entities/CardAgent";
   
 class CardAgentRepository implements ICardAgentRepository{
   private cardAgentRepository:Repository<CardAgent>
@@ -12,7 +12,7 @@ class CardAgentRepository implements ICardAgentRepository{
   }
   async create({ id_agent, description,title }: ICreateCardAgentDTO): Promise<CardAgent> {
     try{
-      const newAgent = new CardAgent()
+      const newAgent = this.cardAgentRepository.create()
       Object.assign(newAgent,{id_agent:id_agent,description:description,title:title})
       const createAgent = await this.cardAgentRepository.save(newAgent)
       return createAgent
