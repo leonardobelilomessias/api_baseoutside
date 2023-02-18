@@ -4,10 +4,11 @@ import { CreateTaskDepartamentController } from "./CreateTaskDepartamentControll
 
 import { CreateTaskDepartamentUseCase } from "./CreateTaskDepartamentUseCase"
 
-
-const taskDepartamentRepository = new TaskDepartamentRepository()
-const departamentRepository = new DepartamentRepository()
-const createTaskDepartamentUseCase = new CreateTaskDepartamentUseCase(taskDepartamentRepository,departamentRepository)
-const createTaskDepartamentController = new CreateTaskDepartamentController(createTaskDepartamentUseCase)
-
-export{ createTaskDepartamentController}
+export default ()=>{
+    
+    const taskDepartamentRepository = new TaskDepartamentRepository()
+    const departamentRepository = new DepartamentRepository()
+    const createTaskDepartamentUseCase = new CreateTaskDepartamentUseCase(taskDepartamentRepository,departamentRepository)
+    const createTaskDepartamentController = new CreateTaskDepartamentController(createTaskDepartamentUseCase)
+    return createTaskDepartamentController
+}

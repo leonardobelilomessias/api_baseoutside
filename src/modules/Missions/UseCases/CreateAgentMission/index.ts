@@ -4,10 +4,13 @@ import { MissionRepository } from "../../infra/typeorm/repositories/MissionRepos
 import { CreateAgentMissionController } from "./CreateAgentMissionController";
 import { CreateAgentMissionUseCase } from "./CreateAgentMissionUseCase";
 
-const agentRepository = new AgentRepository()
-const missionRepository = new MissionRepository()
-const agentsMissionRepository = new AgentsMissionRepository()
-const createAgentMissionUseCase = new CreateAgentMissionUseCase(agentsMissionRepository, missionRepository, agentRepository)
-const createAgentMissionController = new CreateAgentMissionController(createAgentMissionUseCase)
-
-export{createAgentMissionController}
+export default()=>{
+    
+    const agentRepository = new AgentRepository()
+    const missionRepository = new MissionRepository()
+    const agentsMissionRepository = new AgentsMissionRepository()
+    const createAgentMissionUseCase = new CreateAgentMissionUseCase(agentsMissionRepository, missionRepository, agentRepository)
+    const createAgentMissionController = new CreateAgentMissionController(createAgentMissionUseCase)
+    
+    return createAgentMissionController
+}

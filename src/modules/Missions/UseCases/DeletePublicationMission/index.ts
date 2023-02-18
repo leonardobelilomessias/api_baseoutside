@@ -5,10 +5,12 @@ import { DeletePublicationMissionController } from "./DeletePublicationMissionCo
 import { DeletePublicationMissionUseCase } from "./DeletePublicationMissionUseCase";
 
 
-
-const storageProvider = new LocalStorageProvider()
-const photoPublicationMissionRepository = new PhotoPublicationMissionRepository(storageProvider)
-const publicationMissionRepository = new PublicationMissionRepository(photoPublicationMissionRepository)
-const deletePublicationMissionUseCase = new DeletePublicationMissionUseCase(publicationMissionRepository)
-const deletePublicationMissionController = new DeletePublicationMissionController(deletePublicationMissionUseCase)
-export{deletePublicationMissionController}
+export default()=>{
+    
+    const storageProvider = new LocalStorageProvider()
+    const photoPublicationMissionRepository = new PhotoPublicationMissionRepository(storageProvider)
+    const publicationMissionRepository = new PublicationMissionRepository(photoPublicationMissionRepository)
+    const deletePublicationMissionUseCase = new DeletePublicationMissionUseCase(publicationMissionRepository)
+    const deletePublicationMissionController = new DeletePublicationMissionController(deletePublicationMissionUseCase)
+    return deletePublicationMissionController
+}

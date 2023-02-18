@@ -4,8 +4,11 @@ import { WarningTaskRepository } from "../../../../../infra/typeorm/repositories
 import { CreaterWarningTaskController } from "./CreateWarningTaskController";
 import { CreateWarningTaskUseCase } from "./CreateWarningTaskUseCase";
 
-const warningTaskRepository = new WarningTaskRepository()
-const taskDepartamentRespository = new TaskDepartamentRepository()
-const createWarningTaskUseCase = new CreateWarningTaskUseCase(warningTaskRepository, taskDepartamentRespository)
-const createWarningTaskController = new CreaterWarningTaskController(createWarningTaskUseCase)
-export{createWarningTaskController}
+export default ()=>{
+    
+    const warningTaskRepository = new WarningTaskRepository()
+    const taskDepartamentRespository = new TaskDepartamentRepository()
+    const createWarningTaskUseCase = new CreateWarningTaskUseCase(warningTaskRepository, taskDepartamentRespository)
+    const createWarningTaskController = new CreaterWarningTaskController(createWarningTaskUseCase)
+    return createWarningTaskController
+}

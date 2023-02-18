@@ -19,7 +19,6 @@ class AgentTaskRepository implements IAgentTaskRepository{
     return newAgentTask 
   }
   async listTaskAgent(id_agent: string) {
-    console.log(id_agent)
     const listTaskAgent = await this.agentTaskRepository.find({where:{id_agent}})
     return listTaskAgent
   }

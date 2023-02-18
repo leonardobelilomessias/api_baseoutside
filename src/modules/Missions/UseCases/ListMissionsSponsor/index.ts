@@ -2,8 +2,10 @@ import { SponsorsMissionsRepository } from "../../infra/typeorm/repositories/Spo
 import { ListMissionsSponsorController } from "./ListMissionsSponsorController";
 import { ListMissionsSponsorUsecase } from "./ListMissionsSponsorUseCase";
 
-const sponsorsMissionsRepository = new SponsorsMissionsRepository()
-const listMissionsSponsorUseCase = new ListMissionsSponsorUsecase(sponsorsMissionsRepository)
-const listmissionsSponsorsController = new ListMissionsSponsorController(listMissionsSponsorUseCase)
-
-export{listmissionsSponsorsController}
+export default()=>{
+    
+    const sponsorsMissionsRepository = new SponsorsMissionsRepository()
+    const listMissionsSponsorUseCase = new ListMissionsSponsorUsecase(sponsorsMissionsRepository)
+    const listmissionsSponsorsController = new ListMissionsSponsorController(listMissionsSponsorUseCase)
+    return listmissionsSponsorsController
+}

@@ -4,7 +4,10 @@ import { ListWarningsTaskBySatusController } from "./ListWarningsTaskByPriorityC
 
 import { ListWarningsTaskByPriorityUseCase } from "./ListWarningsTaskByPriorityUseCase";
 
-const warningsTaskRepository = new WarningTaskRepository()
-const listwarnigsTaskUseCase = new ListWarningsTaskByPriorityUseCase(warningsTaskRepository)
-const listWarningsTaskByPriorityController = new ListWarningsTaskBySatusController(listwarnigsTaskUseCase)
-export{listWarningsTaskByPriorityController}
+export default ()=>{
+    
+    const warningsTaskRepository = new WarningTaskRepository()
+    const listwarnigsTaskUseCase = new ListWarningsTaskByPriorityUseCase(warningsTaskRepository)
+    const listWarningsTaskByPriorityController = new ListWarningsTaskBySatusController(listwarnigsTaskUseCase)
+    return listWarningsTaskByPriorityController
+}

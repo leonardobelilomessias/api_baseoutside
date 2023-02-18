@@ -3,7 +3,10 @@ import { MissionRepository } from "../../infra/typeorm/repositories/MissionRepos
 import { DeactivateMissionUseCase } from "./DeactiveMissionUseCase";
 import {DeactiveMissionController } from "./DeactiveMissionController";
 
-const missionRepository = new MissionRepository()
-const deactivateMissionUseCase = new DeactivateMissionUseCase(missionRepository)
-const deactivateMisionController = new DeactiveMissionController(deactivateMissionUseCase)
-export{deactivateMisionController}
+export default()=>{
+    
+    const missionRepository = new MissionRepository()
+    const deactivateMissionUseCase = new DeactivateMissionUseCase(missionRepository)
+    const deactivateMisionController = new DeactiveMissionController(deactivateMissionUseCase)
+    return deactivateMisionController
+}

@@ -3,9 +3,11 @@ import { TaskDepartamentRepository } from "../../../../../infra/typeorm/reposito
 import { WarningTaskRepository } from "../../../../../infra/typeorm/repositories/WarningsTaskRepository";
 import { UpdateWarningTaskController } from "./updateWarningTaskController";
 import { UpdateWarningTaskUseCase } from "./UpdateWarningTaskUseCase";
-
-const warningTaskRepository = new WarningTaskRepository()
-const taskDepartamentRepository = new TaskDepartamentRepository()
-const updateWarningTaskUseCase = new UpdateWarningTaskUseCase(warningTaskRepository,taskDepartamentRepository)
-const updateWarningTaskController = new UpdateWarningTaskController(updateWarningTaskUseCase)
-export{updateWarningTaskController}
+export default ()=>{
+    
+    const warningTaskRepository = new WarningTaskRepository()
+    const taskDepartamentRepository = new TaskDepartamentRepository()
+    const updateWarningTaskUseCase = new UpdateWarningTaskUseCase(warningTaskRepository,taskDepartamentRepository)
+    const updateWarningTaskController = new UpdateWarningTaskController(updateWarningTaskUseCase)
+    return updateWarningTaskController
+}

@@ -2,8 +2,11 @@ import { DepartamentRepository } from "../../../infra/typeorm/repositories/Depar
 import { CreateDepartamentController } from "./CreateDepartamentController"
 import { CreateDepartamentUseCase } from "./CreateDepartamentUseCase"
 
-const departamentRepository = new DepartamentRepository()
-const createDepartamentUseCase = new CreateDepartamentUseCase(departamentRepository)
-const createDepartamentController = new CreateDepartamentController(createDepartamentUseCase)
-
-export{createDepartamentController}
+export default ()=>{
+    
+    const departamentRepository = new DepartamentRepository()
+    const createDepartamentUseCase = new CreateDepartamentUseCase(departamentRepository)
+    const createDepartamentController = new CreateDepartamentController(createDepartamentUseCase)
+    
+    return createDepartamentController
+}

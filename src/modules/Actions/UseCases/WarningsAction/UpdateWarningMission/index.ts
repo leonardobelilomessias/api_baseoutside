@@ -2,7 +2,10 @@ import { WarningActionRepository } from "../../../infra/typeorm/repositories/War
 import { UpdateWarningActionController } from "./updateWarningActionController";
 import { UpdateWarningActionUseCase } from "./UpdateWarningActionUseCase";
 
-const warningActionRepository = new WarningActionRepository()
-const updateWarningActionUseCase = new UpdateWarningActionUseCase(warningActionRepository)
-const updateWarningActionController = new UpdateWarningActionController(updateWarningActionUseCase)
-export{updateWarningActionController}
+export default ()=>{
+    
+    const warningActionRepository = new WarningActionRepository()
+    const updateWarningActionUseCase = new UpdateWarningActionUseCase(warningActionRepository)
+    const updateWarningActionController = new UpdateWarningActionController(updateWarningActionUseCase)
+    return updateWarningActionController
+}

@@ -6,9 +6,12 @@ import { UpdateMissionUseCase } from "../UpdateMission/UpdateMissionUseCase";
 import { UpdatePublicationMissionController } from "./UpdatePublicationMissionController";
 import { UpdatePublicationMissionUseCase } from "./UpdatePublicationMissionUseCase";
 
-const storageProvider = new LocalStorageProvider()
-const photoPublicationMissionRepository = new PhotoPublicationMissionRepository(storageProvider)
-const publicationMissionRepository = new PublicationMissionRepository(photoPublicationMissionRepository)
-const updatePublicationMissionUseCase = new UpdatePublicationMissionUseCase(publicationMissionRepository)
-const updatePublicationMissionController = new UpdatePublicationMissionController(updatePublicationMissionUseCase)
-export{updatePublicationMissionController}
+export default()=>{
+    
+    const storageProvider = new LocalStorageProvider()
+    const photoPublicationMissionRepository = new PhotoPublicationMissionRepository(storageProvider)
+    const publicationMissionRepository = new PublicationMissionRepository(photoPublicationMissionRepository)
+    const updatePublicationMissionUseCase = new UpdatePublicationMissionUseCase(publicationMissionRepository)
+    const updatePublicationMissionController = new UpdatePublicationMissionController(updatePublicationMissionUseCase)
+    return updatePublicationMissionController
+}

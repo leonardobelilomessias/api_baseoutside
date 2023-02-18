@@ -2,7 +2,10 @@ import { AdminMissionRepository } from "../../infra/typeorm/repositories/AdminMi
 import { DeleteAdminController } from "./DeleteAdminMissionController";
 import { DeleteAdminMissionUseCase } from "./DeleteAdminMissionUseCase";
 
-const adminMissionRepository = new AdminMissionRepository()
-const deleteAdminMissionUseCase = new DeleteAdminMissionUseCase(adminMissionRepository)
-const deleteAdminMissionController = new DeleteAdminController(deleteAdminMissionUseCase)
-export{deleteAdminMissionController}
+export default()=>{
+    
+    const adminMissionRepository = new AdminMissionRepository()
+    const deleteAdminMissionUseCase = new DeleteAdminMissionUseCase(adminMissionRepository)
+    const deleteAdminMissionController = new DeleteAdminController(deleteAdminMissionUseCase)
+    return deleteAdminMissionController
+}

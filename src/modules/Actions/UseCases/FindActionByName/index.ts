@@ -2,8 +2,10 @@ import { ActionRepository } from "../../infra/typeorm/repositories/ActionReposit
 import { FindActionByNameController } from "./FindActionBynameController";
 import { FindActionByNameUseCase } from "./FindActionByNameUseCase";
 
-const actionRepository = new ActionRepository()
-const findActionByNameUseCase = new FindActionByNameUseCase(actionRepository)
-const findActionByNameController = new FindActionByNameController(findActionByNameUseCase)
-
-export {findActionByNameController}
+export default ()=>{
+    
+    const actionRepository = new ActionRepository()
+    const findActionByNameUseCase = new FindActionByNameUseCase(actionRepository)
+    const findActionByNameController = new FindActionByNameController(findActionByNameUseCase)    
+    return findActionByNameController
+}

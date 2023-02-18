@@ -2,8 +2,10 @@ import { ActionRepository } from "../../infra/typeorm/repositories/ActionReposit
 import { UpdateActionController } from "./UpdateActionController";
 import { UpdateActionUseCase } from "./UpdateActionUseCase";
 
-const actionRepository = new ActionRepository()
-const updateActionUseCase = new UpdateActionUseCase(actionRepository)
-const updateActionController = new UpdateActionController(updateActionUseCase)
-
-export{updateActionController}
+export default ()=>{
+    
+    const actionRepository = new ActionRepository()
+    const updateActionUseCase = new UpdateActionUseCase(actionRepository)
+    const updateActionController = new UpdateActionController(updateActionUseCase)
+    return updateActionController
+}

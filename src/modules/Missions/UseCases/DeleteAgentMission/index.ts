@@ -2,8 +2,10 @@ import { AgentsMissionRepository } from "../../infra/typeorm/repositories/Agents
 import { DeleteAgentMissionController } from "./DeleteAgentMissionController";
 import { DeleteAgentMissionUseCase } from "./DeleteAgentMissionUseCase";
 
-const agentsMissionRepository = new AgentsMissionRepository()
-const deleteAgentMissionUseCase = new DeleteAgentMissionUseCase(agentsMissionRepository)
-const deleteAgentMissionController = new DeleteAgentMissionController(deleteAgentMissionUseCase)
-
-export{ deleteAgentMissionController}
+export default()=>{
+    
+    const agentsMissionRepository = new AgentsMissionRepository()
+    const deleteAgentMissionUseCase = new DeleteAgentMissionUseCase(agentsMissionRepository)
+    const deleteAgentMissionController = new DeleteAgentMissionController(deleteAgentMissionUseCase)
+    return  deleteAgentMissionController
+}

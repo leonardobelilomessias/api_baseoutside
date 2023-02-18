@@ -3,7 +3,10 @@ import { ListWarningsMissionBySatusController } from "./ListWarningsMissionByPri
 
 import { ListWarningsMissionByPriorityUseCase } from "./ListWarningsMissionByPriorityUseCase";
 
-const warningsMissionRepository = new WarningMissionRepository()
-const listwarnigsMissionUseCase = new ListWarningsMissionByPriorityUseCase(warningsMissionRepository)
-const listwarnigsMissionByPriorityController = new ListWarningsMissionBySatusController(listwarnigsMissionUseCase)
-export{listwarnigsMissionByPriorityController}
+export default()=>{
+    
+    const warningsMissionRepository = new WarningMissionRepository()
+    const listwarnigsMissionUseCase = new ListWarningsMissionByPriorityUseCase(warningsMissionRepository)
+    const listwarnigsMissionByPriorityController = new ListWarningsMissionBySatusController(listwarnigsMissionUseCase)
+    return listwarnigsMissionByPriorityController
+} 

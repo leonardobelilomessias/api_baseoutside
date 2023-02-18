@@ -4,7 +4,10 @@ import { ListWarningsDepartamentBySatusController } from "./ListWarningsDepartam
 
 import { ListWarningsDepartamentByPriorityUseCase } from "./ListWarningsDepartamentByPriorityUseCase";
 
-const warningsDepartamentRepository = new WarningDepartamentRepository()
-const listwarnigsDepartamentUseCase = new ListWarningsDepartamentByPriorityUseCase(warningsDepartamentRepository)
-const listWarningsDepartamentByPriorityController = new ListWarningsDepartamentBySatusController(listwarnigsDepartamentUseCase)
-export{listWarningsDepartamentByPriorityController}
+export default ()=>{
+    
+    const warningsDepartamentRepository = new WarningDepartamentRepository()
+    const listwarnigsDepartamentUseCase = new ListWarningsDepartamentByPriorityUseCase(warningsDepartamentRepository)
+    const listWarningsDepartamentByPriorityController = new ListWarningsDepartamentBySatusController(listwarnigsDepartamentUseCase)
+    return listWarningsDepartamentByPriorityController
+}

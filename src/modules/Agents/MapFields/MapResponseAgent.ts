@@ -1,5 +1,5 @@
 import { Decimal } from "@prisma/client/runtime";
-import { IInputCreateAgentDTO, IOutputCreateAgentDTO } from "../DTOS/IAgentDTOS";
+import { IInputCreateAgentDTO, IOutputAgentDTO, IOutputCreateAgentDTO } from "../DTOS/IAgentDTOS";
 interface Agent{
 
   id: string;
@@ -17,11 +17,11 @@ interface Agent{
   state:number
 }
 class MapResponseAgent{
-  agent:Agent
-  constructor(agent:Agent){
+  agent:IOutputAgentDTO
+  constructor(agent:IOutputAgentDTO){
     this.agent = agent
   }
-  static mapFields(agent:Agent):IOutputCreateAgentDTO{
+  static mapFields(agent:IOutputAgentDTO):IOutputCreateAgentDTO{
     delete agent.password
     delete agent.created_at
     return agent as IOutputCreateAgentDTO

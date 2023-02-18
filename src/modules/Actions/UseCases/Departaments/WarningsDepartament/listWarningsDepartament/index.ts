@@ -3,7 +3,10 @@ import { WarningDepartamentRepository } from "../../../../infra/typeorm/reposito
 import { ListWarningsDepartamentController } from "./ListWarningsDepartamentController";
 import { ListWarningsDepartamentUseCase } from "./ListWarningsDepartamentUseCase";
 
-const warningsDepartamentRepository = new WarningDepartamentRepository()
-const listWarnigsDepartamentUseCase = new ListWarningsDepartamentUseCase(warningsDepartamentRepository)
-const listWarningsDepartamentController = new ListWarningsDepartamentController(listWarnigsDepartamentUseCase)
-export{listWarningsDepartamentController}
+export default ()=>{
+    
+    const warningsDepartamentRepository = new WarningDepartamentRepository()
+    const listWarnigsDepartamentUseCase = new ListWarningsDepartamentUseCase(warningsDepartamentRepository)
+    const listWarningsDepartamentController = new ListWarningsDepartamentController(listWarnigsDepartamentUseCase)
+    return listWarningsDepartamentController
+}

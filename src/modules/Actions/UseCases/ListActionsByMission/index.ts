@@ -2,7 +2,10 @@ import { ActionRepository } from "../../infra/typeorm/repositories/ActionReposit
 import { ListActionByMissionController } from "./ListActionByMissionController";
 import { ListActionByMissionUseCase } from "./ListActionByMissionUseCase";
 
-const actionRepository = new ActionRepository()
-const listActionByMissionUseCase = new ListActionByMissionUseCase(actionRepository)
-const listActionByMissionController = new ListActionByMissionController(listActionByMissionUseCase)
-export{listActionByMissionController}
+export default ()=>{
+    
+    const actionRepository = new ActionRepository()
+    const listActionByMissionUseCase = new ListActionByMissionUseCase(actionRepository)
+    const listActionByMissionController = new ListActionByMissionController(listActionByMissionUseCase)
+    return listActionByMissionController
+}

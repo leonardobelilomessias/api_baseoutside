@@ -2,7 +2,10 @@ import { DepartamentRepository } from "../../../infra/typeorm/repositories/Depar
 import { UpdateDepartamentController } from "./UpdateDepartamentController";
 import { UpdateDepartamentUseCase } from "./UpdateDepartamentUseCase";
 
-const departamentRepository = new DepartamentRepository()
-const updateDepartamentUseCase = new UpdateDepartamentUseCase(departamentRepository)
-const updateDepartamentController = new UpdateDepartamentController(updateDepartamentUseCase)
-export{updateDepartamentController}
+export default ()=>{
+    
+    const departamentRepository = new DepartamentRepository()
+    const updateDepartamentUseCase = new UpdateDepartamentUseCase(departamentRepository)
+    const updateDepartamentController = new UpdateDepartamentController(updateDepartamentUseCase)
+    return updateDepartamentController
+}

@@ -2,7 +2,10 @@ import { AgentTaskRepository } from "../../../../../infra/typeorm/repositories/A
 import { ListAgentTaksController } from "./ListAgentTasksController";
 import { ListAgentTasksUseCase } from "./ListAgentTasksUseCase";
 
-const agentTaskRepository = new AgentTaskRepository()
-const listAgentTaskUseCase = new ListAgentTasksUseCase(agentTaskRepository)
-const listAgentTaskController = new ListAgentTaksController(listAgentTaskUseCase)
-export{listAgentTaskController}
+export default ()=>{
+    
+    const agentTaskRepository = new AgentTaskRepository()
+    const listAgentTaskUseCase = new ListAgentTasksUseCase(agentTaskRepository)
+    const listAgentTaskController = new ListAgentTaksController(listAgentTaskUseCase)
+    return listAgentTaskController
+}

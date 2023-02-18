@@ -4,9 +4,10 @@ import { AgentActionRepository } from "../../infra/typeorm/repositories/AgentAct
 import { CreateAgentActionController } from "./CreateAgentActionController";
 import { CreateAgentActionUseCase } from "./CreateAgentActionUseCase";
 
-const agentActionRepository = new AgentActionRepository()
-
-const createAgentActionUseCase = new CreateAgentActionUseCase(agentActionRepository)
-const createAgentActionController = new CreateAgentActionController(createAgentActionUseCase)
-
-export{createAgentActionController}
+export default ()=>{
+    
+    const agentActionRepository = new AgentActionRepository()
+    const createAgentActionUseCase = new CreateAgentActionUseCase(agentActionRepository)
+    const createAgentActionController = new CreateAgentActionController(createAgentActionUseCase)   
+    return createAgentActionController
+}

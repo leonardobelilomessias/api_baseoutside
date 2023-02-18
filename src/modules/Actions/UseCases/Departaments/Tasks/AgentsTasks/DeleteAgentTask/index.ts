@@ -2,7 +2,10 @@ import { AgentTaskRepository } from "../../../../../infra/typeorm/repositories/A
 import { DeleteAgentTaskController } from "./DeleteAgentTaskController";
 import { DeleteAgentTaskUseCase } from "./DeleteAgentTaskUseCase";
 
-const agentTaskRepository = new AgentTaskRepository()
-const deleteAgentTaskUseCase = new DeleteAgentTaskUseCase(agentTaskRepository)
-const deleteAgentTaskController = new  DeleteAgentTaskController(deleteAgentTaskUseCase)
-export{deleteAgentTaskController}
+export default ()=>{
+    
+    const agentTaskRepository = new AgentTaskRepository()
+    const deleteAgentTaskUseCase = new DeleteAgentTaskUseCase(agentTaskRepository)
+    const deleteAgentTaskController = new  DeleteAgentTaskController(deleteAgentTaskUseCase)
+    return deleteAgentTaskController
+}

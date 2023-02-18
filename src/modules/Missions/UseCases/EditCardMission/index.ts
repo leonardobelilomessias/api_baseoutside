@@ -2,7 +2,10 @@ import { CardMissionRepository } from "../../infra/typeorm/repositories/CardMiss
 import { EditCardMissionController } from "./EditCardMissionController";
 import { EditCardMissionUseCase } from "./EditCardMissionUseCase";
 
-const cardMissionRepository = new CardMissionRepository()
-const editCardMissionUseCase = new EditCardMissionUseCase(cardMissionRepository)
-const editCardMissionController = new EditCardMissionController(editCardMissionUseCase)
-export{editCardMissionController}
+export default()=>{
+    
+    const cardMissionRepository = new CardMissionRepository()
+    const editCardMissionUseCase = new EditCardMissionUseCase(cardMissionRepository)
+    const editCardMissionController = new EditCardMissionController(editCardMissionUseCase)
+    return editCardMissionController
+}

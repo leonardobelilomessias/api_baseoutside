@@ -2,8 +2,10 @@ import { TaskDepartamentRepository } from "../../../../infra/typeorm/repositorie
 import { ListTasksDepartamentController } from "./ListTasksDepartamentController";
 import { ListTasksDepartamentUseCase } from "./ListTasksDepartamentUseCase";
 
-const taskDepartamentRepository = new TaskDepartamentRepository()
-const listTasksDepartamentUseCase = new ListTasksDepartamentUseCase(taskDepartamentRepository)
-const listTasksDepartamentController = new ListTasksDepartamentController(listTasksDepartamentUseCase)
-
-export{listTasksDepartamentController}
+export default ()=>{
+    
+    const taskDepartamentRepository = new TaskDepartamentRepository()
+    const listTasksDepartamentUseCase = new ListTasksDepartamentUseCase(taskDepartamentRepository)
+    const listTasksDepartamentController = new ListTasksDepartamentController(listTasksDepartamentUseCase)
+    return listTasksDepartamentController
+}

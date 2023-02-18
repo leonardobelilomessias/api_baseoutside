@@ -15,7 +15,6 @@ class CreateNewSponsorAgentUseCase{
 
   async execute({ id_agent, id_sponsor, type, agent_private, sponsor_private , value,id_agent_token}:IInputCreateSponsorDTO): Promise<IOutputGenericSponsorAgentDTO> {
     if (!id_agent || !id_sponsor) throw new AppError('invalid sponsor or agent')
-   // console.log({ id_agent, id_sponsor, type, agent_private, sponsor_private , id_agent_token})
     if(!type ||!value) throw new AppError("Value of type or value is undefined")
     if(id_agent !== id_agent_token) throw new AppError("Token sen not to own agent authenticate ")
     if(id_agent ===id_sponsor) throw new AppError("Value of agent and sponsor can't be the same")

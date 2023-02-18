@@ -4,8 +4,11 @@ import { WarningDepartamentRepository } from "../../../../infra/typeorm/reposito
 import { CreaterWarningDepartamentController } from "./CreateWarningDepartamentController";
 import { CreateWarningDepartamentUseCase } from "./CreateWarningDepartamentUseCase";
 
-const warningDepartamentRepository = new WarningDepartamentRepository()
-const departamentRepository = new DepartamentRepository()
-const createWarningDepartamentUseCase = new CreateWarningDepartamentUseCase(warningDepartamentRepository,departamentRepository)
-const createWarningDepartamentController = new CreaterWarningDepartamentController(createWarningDepartamentUseCase)
-export{createWarningDepartamentController}
+export default ()=>{
+    
+    const warningDepartamentRepository = new WarningDepartamentRepository()
+    const departamentRepository = new DepartamentRepository()
+    const createWarningDepartamentUseCase = new CreateWarningDepartamentUseCase(warningDepartamentRepository,departamentRepository)
+    const createWarningDepartamentController = new CreaterWarningDepartamentController(createWarningDepartamentUseCase)
+    return createWarningDepartamentController
+}

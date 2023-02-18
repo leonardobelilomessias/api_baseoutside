@@ -4,10 +4,12 @@ import { PublicationMissionRepository } from "../../infra/typeorm/repositories/P
 import { ListPublicationsMissionUseCase } from "./ListPublicationsMission";
 import { ListPublicationsMissionController } from "./ListPublicationsMissionController";
 
-const storageProvider = new LocalStorageProvider()
-const photoPublicationMissionRepository = new PhotoPublicationMissionRepository(storageProvider)
-const publicationMissionRepository = new PublicationMissionRepository(photoPublicationMissionRepository)
-const listPublicationMissionUseCase = new ListPublicationsMissionUseCase(publicationMissionRepository)
-const listPublicationMissionController = new ListPublicationsMissionController(listPublicationMissionUseCase)
-
-export{listPublicationMissionController}
+export default()=>{
+    
+    const storageProvider = new LocalStorageProvider()
+    const photoPublicationMissionRepository = new PhotoPublicationMissionRepository(storageProvider)
+    const publicationMissionRepository = new PublicationMissionRepository(photoPublicationMissionRepository)
+    const listPublicationMissionUseCase = new ListPublicationsMissionUseCase(publicationMissionRepository)
+    const listPublicationMissionController = new ListPublicationsMissionController(listPublicationMissionUseCase)
+    return listPublicationMissionController
+}

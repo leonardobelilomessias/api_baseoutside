@@ -2,7 +2,10 @@ import { WarningMissionRepository } from "../../infra/typeorm/repositories/Warni
 import { DeleteWarningMissionController } from "./DeleteWarningMissionController";
 import { DeleteWarningMissionUseCase } from "./DeleteWarningMissionUseCase";
 
-const warningMissionRepository = new WarningMissionRepository()
-const deleteWarningMissionUseCase = new  DeleteWarningMissionUseCase(warningMissionRepository)
-const deletedWarnigMissionController = new DeleteWarningMissionController(deleteWarningMissionUseCase)
-export{deletedWarnigMissionController}
+export default()=>{
+    
+    const warningMissionRepository = new WarningMissionRepository()
+    const deleteWarningMissionUseCase = new  DeleteWarningMissionUseCase(warningMissionRepository)
+    const deletedWarnigMissionController = new DeleteWarningMissionController(deleteWarningMissionUseCase)
+    return deletedWarnigMissionController
+}
