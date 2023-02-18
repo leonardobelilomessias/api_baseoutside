@@ -1,6 +1,21 @@
+import { Decimal } from "@prisma/client/runtime";
 import { IOutputCreateAgentDTO } from "../DTOS/IAgentDTOS";
-import { Agent } from "../infra/typeorm/entities/Agent";
+interface Agent{
 
+  id: string;
+  email: string;
+  password: string;
+  name: string;
+  user_name:string;
+  description: string;
+  balance:number |Decimal
+  is_active: boolean
+  level: number 
+  image_profile: string;
+  vocation: string
+  created_at: Date;
+  state:number
+}
 class MapResponseAgent{
   agent:Agent
   constructor(agent:Agent){

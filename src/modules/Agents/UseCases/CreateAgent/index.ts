@@ -1,4 +1,4 @@
-import { AgentRepository } from "../../../Agents/infra/typeorm/repositories/AgentRepository"
+import { AgentRepository } from "../../../Agents/infra/prisma/repositories/AgentRepository"
 import { CreateAgentUseCase } from "../../../Agents/UseCases/CreateAgent/CreateAgentUseCase"
 import { CreateAgentController } from "../../../Agents/UseCases/CreateAgent/CreateAgentController"
 
