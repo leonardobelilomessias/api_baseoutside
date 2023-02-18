@@ -11,6 +11,7 @@ class CreateAgentUseCase{
     this.agentRepository = agentReposiotory
   }
   async execute({ name, email, user_name, password ,description,vocation}:IInputCreateAgentDTO):Promise<IOutputCreateAgentDTO> {
+    console.log(name,email ,user_name,password)
     if(!name||!email||!user_name||!password) throw new AppError("You sent some invalid require value.")
     const agentExistByUserName = await this.agentRepository.findByUserName(user_name)
     if (agentExistByUserName) throw  new AppError("User with sent user name already exist",200)
@@ -19,10 +20,11 @@ class CreateAgentUseCase{
     try{
       const passwordHash = await hash(password, 8)
       const agentClean  = await cleanEmptySpace({ name, email, user_name, password:passwordHash ,description,vocation})
-      const agent = await this.agentRepository.create(agentClean as IInputCreateAgentDTO)
+      const agent = await this.agentRepository.create(agentClean as IOutputCreateAgentDTO)
+      console.log(agent)
       const AgentMapFields = MapResponseAgent.mapFields(agent)
       return AgentMapFields 
-    }catch{
+    }catch(e){
       throw new AppError('erro encript')
     }
  } 

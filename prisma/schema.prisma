@@ -1,0 +1,399 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model actions {
+  id                   String                 @id(map: "PK_7bfb822f56be449c0b8adbf83cf") @db.VarChar(36)
+  name                 String                 @db.VarChar
+  description          String
+  local                String?                @db.VarChar
+  id_mission           String                 @db.VarChar(36)
+  creator              String                 @db.VarChar(36)
+  created_at           DateTime               @default(now()) @db.Timestamp(6)
+  date_start           DateTime?              @db.Timestamp(6)
+  date_end             DateTime?              @db.Timestamp(6)
+  state                Int                    @default(0)
+  is_active            Boolean                @default(true)
+  type                 Int                    @default(0)
+  image_profile        String?                @db.VarChar
+  agents               agents                 @relation(fields: [creator], references: [id], onDelete: Cascade, map: "fk_creator_action")
+  missions             missions               @relation(fields: [id_mission], references: [id], onDelete: Cascade, map: "fk_mission_action")
+  agents_actions       agents_actions[]
+  departaments_actions departaments_actions[]
+  tasks_departamets    tasks_departamets[]
+  warnings_actions     warnings_actions[]
+}
+
+model admins_departaments {
+  id                   String               @id(map: "PK_0da76207a630819fef45c6b07a3") @db.VarChar(36)
+  id_agent             String               @db.VarChar(36)
+  id_departament       String               @db.VarChar(36)
+  created_at           DateTime             @default(now()) @db.Timestamp(6)
+  type                 String               @db.VarChar(15)
+  agents               agents               @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_id_agent_admins_departaments")
+  departaments_actions departaments_actions @relation(fields: [id_departament], references: [id], onDelete: Cascade, map: "fk_id_departament_admins_departaments")
+}
+
+model admins_missions {
+  id         String   @id(map: "PK_39e5901da6c218a1fe5f81b740e") @db.VarChar(36)
+  id_agent   String   @db.VarChar(36)
+  id_mission String   @db.VarChar(36)
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  type       String   @db.VarChar(15)
+  agents     agents   @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_id_agent_admins_missions")
+  missions   missions @relation(fields: [id_mission], references: [id], onDelete: Cascade, map: "fk_id_mission_admins_missions")
+}
+
+model agents {
+  id                                                 String                  @id() @default(uuid())  @db.VarChar(36)
+  email                                              String                  @db.VarChar
+  password                                           String                  @db.VarChar
+  name                                               String                  @db.VarChar(50)
+  user_name                                          String                  @unique @db.VarChar
+  description                                        String?
+  balance                                            Decimal                 @default(0) @db.Decimal(10, 2)
+  is_active                                          Boolean                 @default(true)
+  level                                              Int                     @default(0)
+  image_profile                                      String?                 @db.VarChar
+  vocation                                           String?                 @db.VarChar
+  created_at                                         DateTime                @default(now()) @db.Timestamp(6)
+  state                                              Int                     @default(0)
+  actions                                            actions[]
+  admins_departaments                                admins_departaments[]
+  admins_missions                                    admins_missions[]
+  agents_actions                                     agents_actions[]
+  agents_departament                                 agents_departament[]
+  agents_missions                                    agents_missions[]
+  agents_tasks                                       agents_tasks[]
+  agents_tokens                                      agents_tokens[]
+  card_agent                                         card_agent[]
+  colabs_agents_colabs_agents_id_agentToagents       colabs_agents[]         @relation("colabs_agents_id_agentToagents")
+  colabs_agents_colabs_agents_id_colabToagents       colabs_agents[]         @relation("colabs_agents_id_colabToagents")
+  interests_agents                                   interests_agents[]
+  journeys_agents                                    journeys_agents[]
+  missions                                           missions[]
+  publications_agents                                publications_agents[]
+  skills_agents                                      skills_agents[]
+  sponsors_agents_sponsors_agents_id_agentToagents   sponsors_agents[]       @relation("sponsors_agents_id_agentToagents")
+  sponsors_agents_sponsors_agents_id_sponsorToagents sponsors_agents[]       @relation("sponsors_agents_id_sponsorToagents")
+  sponsors_missions                                  sponsors_missions[]
+  warnings_actions                                   warnings_actions[]
+  warnings_departaments                              warnings_departaments[]
+  warnings_missions                                  warnings_missions[]
+  warnings_tasks                                     warnings_tasks[]
+}
+
+model agents_actions {
+  id         String   @id() @default(uuid()) @db.VarChar(36)
+  id_action  String   @db.VarChar(36)
+  id_agent   String   @db.VarChar(36)
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  actions    actions  @relation(fields: [id_action], references: [id], onDelete: Cascade, map: "fk_id_action_agents_actions")
+  agents     agents   @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_id_agent_agents_actions")
+}
+
+model agents_departament {
+  id                   String               @id() @default(uuid()) @db.VarChar(36)
+  id_agent             String               @db.VarChar(36)
+  id_departament       String               @db.VarChar(36)
+  created_at           DateTime             @default(now()) @db.Timestamp(6)
+  agents               agents               @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_id_agent_agents_departament")
+  departaments_actions departaments_actions @relation(fields: [id_departament], references: [id], onDelete: Cascade, map: "fk_id_departament_agents_actions")
+}
+
+model agents_missions {
+  id         String   @id() @default(uuid()) @db.VarChar(36)
+  id_mission String   @db.VarChar(36)
+  id_agent   String   @db.VarChar(36)
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  agents     agents   @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_agent_join_mission")
+  missions   missions @relation(fields: [id_mission], references: [id], onDelete: Cascade, map: "fk_mission_get_agent")
+}
+
+model agents_tasks {
+  id                String            @id() @default(uuid()) @db.VarChar(36)
+  id_task           String            @db.VarChar(36)
+  id_agent          String            @db.VarChar(36)
+  created_at        DateTime          @default(now()) @db.Timestamp(6)
+  is_active         Boolean           @default(true)
+  state             Int               @default(0)
+  agents            agents            @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_id_agent_agents_tasks")
+  tasks_departamets tasks_departamets @relation(fields: [id_task], references: [id], onDelete: Cascade, map: "fk_id_task_agents_tasks")
+}
+
+model agents_tokens {
+  id            String   @id() @default(uuid()) @db.VarChar(36)
+  refresh_token String   @db.VarChar
+  id_agent      String   @db.VarChar(36)
+  expires_date  DateTime @db.Timestamp(6)
+  created_at    DateTime @default(now()) @db.Timestamp(6)
+  agents        agents   @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_id_agent_agents_tokens")
+}
+
+model card_agent {
+  id          String @id() @default(uuid()) @db.VarChar(36)
+  id_agent    String @db.VarChar(36)
+  title       String @db.VarChar(50)
+  description String
+  agents      agents @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_id_agent_card")
+}
+
+model card_mission {
+  id          String   @id() @default(uuid()) @db.VarChar(36)
+  id_mission  String   @db.VarChar(36)
+  title       String   @db.VarChar(50)
+  description String
+  missions    missions @relation(fields: [id_mission], references: [id], onDelete: Cascade, map: "fk_id_mission_card")
+}
+
+model colabs_agents {
+  id                                    String   @id() @default(uuid()) @db.VarChar(36)
+  id_agent                              String   @db.VarChar(36)
+  id_colab                              String   @db.VarChar(36)
+  created_at                            DateTime @default(now()) @db.Timestamp(6)
+  type                                  String   @default(dbgenerated("0")) @db.VarChar
+  state                                 Int      @default(0)
+  is_active                             Int      @default(0)
+  agents_colabs_agents_id_agentToagents agents   @relation("colabs_agents_id_agentToagents", fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_id_agent_colabs_agents")
+  agents_colabs_agents_id_colabToagents agents   @relation("colabs_agents_id_colabToagents", fields: [id_colab], references: [id], onDelete: Cascade, map: "fk_id_colabs_colabs_agents")
+}
+
+model departaments_actions {
+  id                    String                  @id() @default(uuid()) @db.VarChar(36)
+  id_action             String                  @db.VarChar(36)
+  name                  String                  @db.VarChar
+  description           String
+  created_at            DateTime                @default(now()) @db.Timestamp(6)
+  agents_limit          Int?
+  agents_necessary      Int                     @default(1)
+  image_profile         String?                 @db.VarChar
+  admins_departaments   admins_departaments[]
+  agents_departament    agents_departament[]
+  actions               actions                 @relation(fields: [id_action], references: [id], onDelete: Cascade, map: "fk_action_departament")
+  tasks_departamets     tasks_departamets[]
+  warnings_departaments warnings_departaments[]
+}
+
+model interests_agents {
+  id        String @id() @default(uuid()) @db.VarChar
+  interests String @db.VarChar
+  id_agent  String @db.VarChar
+  agents    agents @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_agent_interests")
+}
+
+model journeys_agents {
+  id         String   @id(map: "PK_a6add9afce5eddee6bc8df4be09") @db.VarChar(36)
+  id_agent   String   @db.VarChar(36)
+  type       String?  @db.VarChar
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  id_content String   @db.VarChar(36)
+  is_hidden  Boolean  @default(false)
+  is_private Boolean? @default(false)
+  agents     agents   @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_agent_journeys")
+}
+
+model journeys_mission {
+  id         String   @id() @default(uuid()) @db.VarChar(36)
+  id_mission String   @db.VarChar(36)
+  type       String?  @db.VarChar
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  id_content String   @db.VarChar(36)
+  is_hidden  Boolean  @default(false)
+  is_private Boolean? @default(false)
+  missions   missions @relation(fields: [id_mission], references: [id], onDelete: Cascade, map: "fk_mission_journeys")
+}
+
+model migrations {
+  id        Int    @id() @default(autoincrement())
+  timestamp BigInt
+  name      String @db.VarChar
+}
+
+model missions {
+  id                    String                  @id() @default(uuid()) @db.VarChar(36)
+  identifier            String                  @db.VarChar
+  name                  String                  @db.VarChar
+  creator               String                  @db.VarChar(36)
+  description           String
+  local                 String?                 @db.VarChar
+  state                 Int                     @default(0)
+  balance               Decimal                 @default(0) @db.Decimal(15, 2)
+  is_active             Boolean                 @default(true)
+  level                 Int                     @default(0)
+  image_profile         String?                 @db.VarChar
+  duration              Int                     @default(0)
+  date_start            DateTime?               @db.Timestamp(6)
+  date_end              DateTime?               @db.Timestamp(6)
+  is_private            Boolean                 @default(false)
+  type                  Int?
+  created_at            DateTime                @default(now()) @db.Timestamp(6)
+  field                 String?                 @db.VarChar
+  actions               actions[]
+  admins_missions       admins_missions[]
+  agents_missions       agents_missions[]
+  card_mission          card_mission[]
+  journeys_mission      journeys_mission[]
+  agents                agents                  @relation(fields: [creator], references: [id], onDelete: Cascade, map: "fk_agent_creator")
+  publications_missions publications_missions[]
+  sponsors_missions     sponsors_missions[]
+  tasks_departamets     tasks_departamets[]
+  warnings_missions     warnings_missions[]
+}
+
+model photos_publications_agents {
+  id                  String              @id() @default(uuid()) @db.VarChar(36)
+  id_publication      String              @db.VarChar(36)
+  url                 String              @db.VarChar
+  created_at          DateTime            @default(now()) @db.Timestamp(6)
+  publications_agents publications_agents @relation(fields: [id_publication], references: [id], onDelete: Cascade, map: "fk_publications_agents")
+}
+
+model photos_publications_missions {
+  id                    String                @id() @default(uuid()) @db.VarChar(36)
+  id_publication        String                @db.VarChar(36)
+  url                   String                @db.VarChar
+  created_at            DateTime              @default(now()) @db.Timestamp(6)
+  publications_missions publications_missions @relation(fields: [id_publication], references: [id], onDelete: Cascade, map: "fk_publications_mission")
+}
+
+model publications_agents {
+  id                         String                       @id() @default(uuid()) @db.VarChar(36)
+  id_agent                   String                       @db.VarChar(36)
+  created_at                 DateTime                     @default(now()) @db.Timestamp(6)
+  type                       String                       @db.VarChar
+  description                String?
+  photos_publications_agents photos_publications_agents[]
+  agents                     agents                       @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_id_agent_publications")
+}
+
+model publications_missions {
+  id                           String                         @id() @default(uuid()) @db.VarChar(36)
+  id_mission                   String                         @db.VarChar(36)
+  created_at                   DateTime                       @default(now()) @db.Timestamp(6)
+  type                         String                         @db.VarChar
+  description                  String?
+  photos_publications_missions photos_publications_missions[]
+  missions                     missions                       @relation(fields: [id_mission], references: [id], onDelete: Cascade, map: "fk_id_mission_publications")
+}
+
+model skills_agents {
+  id       String @id() @default(uuid()) @db.VarChar
+  skill    String @db.VarChar
+  id_agent String @db.VarChar
+  agents   agents @relation(fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_agent_skill")
+}
+
+model sponsors_agents {
+  id                                        String   @id() @default(uuid()) @db.VarChar(36)
+  id_agent                                  String   @db.VarChar(36)
+  id_sponsor                                String   @db.VarChar(36)
+  type                                      String   @db.VarChar(20)
+  created_at                                DateTime @default(now()) @db.Timestamp(6)
+  agent_private                             Boolean  @default(false)
+  value                                     Decimal  @db.Decimal(10, 2)
+  sponsor_private                           Boolean  @default(false)
+  agents_sponsors_agents_id_agentToagents   agents   @relation("sponsors_agents_id_agentToagents", fields: [id_agent], references: [id], onDelete: Cascade, map: "fk_id_agent_sponsor")
+  agents_sponsors_agents_id_sponsorToagents agents   @relation("sponsors_agents_id_sponsorToagents", fields: [id_sponsor], references: [id], onDelete: Cascade, map: "fk_id_sponsor_agent")
+}
+
+model sponsors_missions {
+  id              String   @id() @default(uuid()) @db.VarChar(36)
+  id_mission      String   @db.VarChar(36)
+  id_sponsor      String   @db.VarChar(36)
+  type            Int      @default(0)
+  created_at      DateTime @default(now()) @db.Timestamp(6)
+  mission_private Boolean  @default(false)
+  sponsor_private Boolean  @default(false)
+  value           Decimal  @db.Decimal(10, 2)
+  missions        missions @relation(fields: [id_mission], references: [id], onDelete: Cascade, map: "fk_id_mission_sponsors")
+  agents          agents   @relation(fields: [id_sponsor], references: [id], onDelete: Cascade, map: "fk_id_sponsors_missions")
+}
+
+model tasks_departamets {
+  id                   String               @id() @default(uuid()) @db.VarChar(36)
+  id_departament       String               @db.VarChar(36)
+  id_action            String               @db.VarChar(36)
+  id_mission           String               @db.VarChar(36)
+  title                String               @db.VarChar
+  created_at           DateTime             @default(now()) @db.Timestamp(6)
+  description          String
+  local                String?              @db.VarChar
+  is_active            Boolean              @default(true)
+  state                Int                  @default(0)
+  agents_necessary     Int                  @default(1)
+  agents_limit         Int?
+  priority             Int                  @default(0)
+  date_limit_subscribe DateTime?            @db.Timestamp(6)
+  is_require_skill     Boolean              @default(false)
+  skill_require        String?              @db.VarChar
+  agents_tasks         agents_tasks[]
+  actions              actions              @relation(fields: [id_action], references: [id], onDelete: Cascade, map: "fk_action_task_departament")
+  departaments_actions departaments_actions @relation(fields: [id_departament], references: [id], onDelete: Cascade, map: "fk_departemant_task")
+  missions             missions             @relation(fields: [id_mission], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_mission_task_departament")
+  warnings_tasks       warnings_tasks[]
+}
+
+model warnings_actions {
+  id         String   @id() @default(uuid()) @db.VarChar(36)
+  id_action  String   @db.VarChar(36)
+  id_creator String   @db.VarChar(36)
+  title      String   @db.VarChar
+  content    String
+  priority   Int      @default(0)
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  type       Int      @default(0)
+  state      Int      @default(0)
+  is_active  Boolean  @default(true)
+  actions    actions  @relation(fields: [id_action], references: [id], onDelete: Cascade, map: "fk_id_action_warnings_actions")
+  agents     agents   @relation(fields: [id_creator], references: [id], onDelete: Cascade, map: "fk_id_agent_warnings_actions")
+}
+
+model warnings_departaments {
+  id                   String               @id() @default(uuid()) @db.VarChar(36)
+  id_departament       String               @db.VarChar(36)
+  id_creator           String               @db.VarChar(36)
+  title                String               @db.VarChar
+  content              String
+  priority             Int                  @default(0)
+  created_at           DateTime             @default(now()) @db.Timestamp(6)
+  type                 Int                  @default(0)
+  state                Int                  @default(0)
+  is_active            Boolean              @default(true)
+  agents               agents               @relation(fields: [id_creator], references: [id], onDelete: Cascade, map: "fk_id_agent_warning_departaments")
+  departaments_actions departaments_actions @relation(fields: [id_departament], references: [id], onDelete: Cascade, map: "fk_id_departament_warnings_departaments")
+}
+
+model warnings_missions {
+  id         String   @id() @default(uuid()) @db.VarChar(36)
+  id_mission String   @db.VarChar(36)
+  id_creator String   @db.VarChar(36)
+  title      String   @db.VarChar
+  content    String
+  priority   Int      @default(0)
+  created_at DateTime @default(now()) @db.Timestamp(6)
+  type       Int      @default(0)
+  state      Int      @default(0)
+  is_active  Boolean  @default(true)
+  agents     agents   @relation(fields: [id_creator], references: [id], onDelete: Cascade, map: "fk_id_agent_warnings_missions")
+  missions   missions @relation(fields: [id_mission], references: [id], onDelete: Cascade, map: "fk_id_mission_warnings_missions")
+}
+
+model warnings_tasks {
+  id                String            @id() @default(uuid()) @db.VarChar(36)
+  id_task           String            @db.VarChar(36)
+  id_creator        String            @db.VarChar(36)
+  title             String            @db.VarChar
+  content           String
+  priority          Int               @default(0)
+  created_at        DateTime          @default(now()) @db.Timestamp(6)
+  type              Int               @default(0)
+  state             Int               @default(0)
+  is_active         Boolean           @default(true)
+  agents            agents            @relation(fields: [id_creator], references: [id], onDelete: Cascade, map: "fk_id_agent_warnings_tasks")
+  tasks_departamets tasks_departamets @relation(fields: [id_task], references: [id], onDelete: Cascade, map: "fk_id_task_warnings_tasks")
+}

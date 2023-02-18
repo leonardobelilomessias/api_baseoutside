@@ -1,3 +1,5 @@
+import { Decimal } from "@prisma/client/runtime"
+
 interface IInputCreateAgentDTO{
   name: string
   email: string
@@ -15,7 +17,7 @@ interface IOutputCreateAgentDTO{
   name: string;
   user_name:string;
   description: string;
-  balance:number 
+  balance:number |string |Decimal
   is_active: boolean
   level: number
   image_profile: string;
@@ -31,7 +33,7 @@ interface IOutputGenericAgentDTO{
   user_name: string;
   password?: string;
   description?:string | null;
-  balance?: number;
+  balance?: number |string |Decimal
   is_active?: boolean;
   level?: number;
   image_profile?: string | null
@@ -57,7 +59,7 @@ interface IOutputAgentDTO{
   name: string;
   user_name: string;
   description: null |string;
-  balance: number |string;
+  balance: number |string |Decimal;
   is_active: boolean;
   level: number |string ;
   image_profile: string | null
@@ -98,7 +100,7 @@ interface IOutputFetchProfileAgentDTO{
   name: string;
   user_name: string;
   description?:string | null;
-  balance?: number;
+  balance?: number |string |Decimal
   is_active?: boolean;
   level?: number;
   image_profile?: string | null

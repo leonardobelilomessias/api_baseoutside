@@ -4,7 +4,6 @@ import { AppDataSource } from "../../../../../shared/infra/typeorm";
 import { IActionRepository } from "../../../repositories/IActionRepository";
 import { Action } from "../entities/Action";
 
-
 class ActionRepository implements IActionRepository{
   private actionRepository: Repository<Action>
   constructor() {
