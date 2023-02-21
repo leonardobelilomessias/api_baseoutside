@@ -8,8 +8,9 @@ class FeedColabController{
     this.feedColabUseCase = feedColabUseCase
   }
   async listFeedColab(request:Request,response:Response):Promise<Response>{
-    const {id_agent} = request.body
-    const feedColab = await this.feedColabUseCase.listFeed(id_agent)
+    const {id_agent} = request.query
+    console.log(typeof id_agent)
+    const feedColab = await this.feedColabUseCase.listFeed(id_agent )
     return response.status(200).json(feedColab)
   }
   

@@ -35,6 +35,7 @@ import  listAgentsSponsorController  from "../../../../modules/Agents/UseCases/L
 import  feedColabController  from "../../../../modules/Agents/UseCases/FeedColab";
 import fetchAgentProfileController  from "../../../../modules/Agents/UseCases/FetchAgentProfile";
 import findAgentById  from "../../../../modules/Agents/UseCases/FindAgentById";
+import feedSponsorAgentController from  "../../../../modules/Agents/UseCases/FeedSponsor";
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
 const uploadPhotosAgent = multer(uploadConfig)
@@ -43,7 +44,7 @@ agent.get("/",async  (request, response) => {
  return await   listsAgentController().handle(request,response)
 })
 
-agent.post("/findByname", async (request, response) => {
+agent.get("/findByname", async (request, response) => {
    return await  findAgentByNameController().handle(request,response)
 })
 
@@ -105,8 +106,11 @@ agent.post("/colabAgent",ensureAuthenticate, async (request, response) => {
   return await  createColabAgentController().handle(request,response)
  })
 
- agent.post("/feedColab", async (request, response) => {
+ agent.get("/feedColab", async (request, response) => {
   return await  feedColabController().listFeedColab(request,response)
+ })
+ agent.get("/feedSponsor", async (request, response) => {
+  return await  feedSponsorAgentController().handle(request,response)
  })
 
  agent.post("/cardAgent",ensureAuthenticate, async (request, response) => {
@@ -121,7 +125,6 @@ agent.post("/colabAgent",ensureAuthenticate, async (request, response) => {
   return await  findAgentById().handle(request,response)
  })
 
-
 agent.patch("/imageProfile",ensureAuthenticate, upload_image_profile.single("image_profile"),async (request, response) => {
   return await  updateImageAgentController().handle(request,response)
 })
@@ -132,7 +135,7 @@ agent.patch("/editCard",ensureAuthenticate,async (request, response) => {
   return await   editCardAgentController().handle(request,response)
 })
 agent.patch("/",ensureAuthenticate,async  (request, response) => {
-
+  
   return await  updateAgentController().handle(request,response)
 })
 

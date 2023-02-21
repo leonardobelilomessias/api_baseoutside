@@ -9,6 +9,8 @@ interface ISponsorAgentRepository{
   listAgentsSponsor(id_sponsor: string): Promise<IOutputGenericSponsorAgentDTO[]>
 
   findSponsorRecurent({id_agent,id_sponsor}):Promise<IOutputGenericSponsorAgentDTO>
+
+  fetchPublicationsSponsors(id_agent:string):Promise<any>
   
   delete({id_agent,id_sponsor}:IDeleteSponsorAgentDTO):Promise<IOutputGenericSponsorAgentDTO>
 }

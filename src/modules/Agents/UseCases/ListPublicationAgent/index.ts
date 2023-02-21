@@ -1,5 +1,4 @@
 import { LocalStorageProvider } from "../../../../utils/providers/StorageProvider/implementations/LocalStorageProvider";
-import { listActionController } from "../../../Actions/UseCases/ListAllActions";
 import { PhotoPublicationAgentRepository } from "../../infra/typeorm/repositories/PhotosPublicationAgentRepository";
 import { PublicationsAgentRepository } from "../../infra/typeorm/repositories/PublicationsAgentRepository";
 import { ListPublicationAgentController } from "./ListPublicationAgentController";

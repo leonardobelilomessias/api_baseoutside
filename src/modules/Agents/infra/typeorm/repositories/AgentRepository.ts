@@ -110,6 +110,7 @@ import { IEditAgentDTO, IOutputAgentDTO, IOutputCreateAgentDTO, IOutputGenericAg
    }
    
   async findByName(name :string): Promise<Agent> {
+    console.log('name repository ',name)
     const foundAgent = await  this.agentRepository.findOne({ where:{name:name,is_active:true} })
     return foundAgent
    }

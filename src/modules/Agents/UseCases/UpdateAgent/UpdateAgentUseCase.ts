@@ -10,6 +10,7 @@ class UpdateAgentUseCase{
   }
   
   async execute({id_agent_token, id, name, description, email, interests, skills, vocation }:IEditAgentInputDTO):Promise<IResponseAgentDTO> {
+    console.log(id, id_agent_token)
     if(id !== id_agent_token) throw new AppError("Token sent dont own the agent authenticate")
     const agentExist = await this.agentRepository.findById(id)
     if(!agentExist) throw new AppError('Agent not found')

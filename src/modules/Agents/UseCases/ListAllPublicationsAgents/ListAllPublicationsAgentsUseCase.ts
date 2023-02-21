@@ -1,5 +1,5 @@
-import { IPublicationsAgentRepository } from "../../DTOS/IPublicationsAgentRepository"
 import { PublicationAgent } from "../../infra/typeorm/entities/PublicationAgent"
+import { IPublicationsAgentRepository } from "../../repositories/IPublicationsAgentRepository"
 
 class ListAllPublicationsAgentsUseCase{
   private publicationsAgentsRepository: IPublicationsAgentRepository

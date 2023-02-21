@@ -6,8 +6,9 @@ class FeedColabUseCase{
   constructor(colabRepository:IColabRepository){
     this.colabRepository = colabRepository
   }
-  async listFeed(id_agent:string){
+  async listFeed(id_agent){
     if(!id_agent) throw new AppError('Value canot be empty')
+    console.log(id_agent)
     const feedColab = await this.colabRepository.listFeedColab(id_agent)
     return feedColab
   }

@@ -16,12 +16,13 @@ class ColabAgentRepository implements IColabRepository{
     this.journeyAgentRepository = new JourneyAgentRepository()
   }
   async listFeedColab(id_agent: string) {
-
+    
     const feedColabsAgets = await this.colabAgentRepository.query(`select agent.name ,colab.id_colab,image_profile, publications.description, photos.url  
     from agents agent inner join colabs_agents colab on agent.id = colab.id_colab
     inner join publications_agents publications on publications.id_agent = colab.id_colab 
     inner join photos_publications_agents photos on photos.id_publication = publications.id 
     where colab.id_agent = '${id_agent}';`)
+    console.log(feedColabsAgets)
     return feedColabsAgets
     
   }

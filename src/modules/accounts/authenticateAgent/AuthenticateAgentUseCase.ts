@@ -12,6 +12,7 @@ interface IRequest{
 
 interface IResponse{
   agent: {
+    agent_id:string;
     name:string
     email:string,
   }
@@ -52,6 +53,7 @@ class AuthenticateAgentUseCase{
     const tokenReturn = {
             token,
             agent: {
+              agent_id:agent.id,
               name: agent.name,
               email: agent.email
             },
