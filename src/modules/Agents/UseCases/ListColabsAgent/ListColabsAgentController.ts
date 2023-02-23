@@ -6,8 +6,8 @@ class ListColabsAgentController{
     this.listColabsAgentUseCase = listColabsAgentUseCase
   }
   async handle(request: Request, response: Response): Promise<Response>{
-    const {id_agent} = request.query 
-    console.log(id_agent)
+    const query= request.query
+    const id_agent = query.id_agent as string
     const sponsorsAsgent = await this.listColabsAgentUseCase.execute(id_agent)
     return response.status(200).json(sponsorsAsgent)
   }

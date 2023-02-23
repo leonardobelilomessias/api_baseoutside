@@ -36,6 +36,7 @@ import  feedColabController  from "../../../../modules/Agents/UseCases/FeedColab
 import fetchAgentProfileController  from "../../../../modules/Agents/UseCases/FetchAgentProfile";
 import findAgentById  from "../../../../modules/Agents/UseCases/FindAgentById";
 import feedSponsorAgentController from  "../../../../modules/Agents/UseCases/FeedSponsor";
+import SearchAgentsByName from "../../../../modules/Agents/UseCases/SearchAgentsByName";
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
 const uploadPhotosAgent = multer(uploadConfig)
@@ -91,6 +92,9 @@ agent.get("/journey", async (request, response) => {
   return await  listJourneyAgentController().handle(request,response)
 })
 
+agent.get("/searchAgentsByName", async (request, response) => {
+  return await  SearchAgentsByName().handle(request,response)
+})
 
 agent.post("/", async (request, response) => {
    return await  createAgentController().handle(request,response)

@@ -8,7 +8,7 @@ class FeedColabUseCase{
   }
   async listFeed(id_agent){
     if(!id_agent) throw new AppError('Value canot be empty')
-    console.log(id_agent)
+
     const feedColab = await this.colabRepository.listFeedColab(id_agent)
     return feedColab
   }

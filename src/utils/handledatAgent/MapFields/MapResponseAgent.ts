@@ -1,5 +1,5 @@
 import { Decimal } from "@prisma/client/runtime";
-import { IInputCreateAgentDTO, IOutputAgentDTO, IOutputCreateAgentDTO } from "../DTOS/IAgentDTOS";
+import { IInputCreateAgentDTO, IOutputAgentDTO, IOutputCreateAgentDTO } from "../../../modules/Agents/DTOS/IAgentDTOS";
 interface Agent{
 
   id: string;

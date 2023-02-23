@@ -7,7 +7,7 @@ class MapAgent{
 }
  dealingAgent(){
   delete this.agent.password
-
+  return this.agent
  }
 }
 export{MapAgent}

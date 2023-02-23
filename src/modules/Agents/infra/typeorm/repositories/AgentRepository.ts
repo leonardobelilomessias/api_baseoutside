@@ -18,7 +18,14 @@ import { IEditAgentDTO, IOutputAgentDTO, IOutputCreateAgentDTO, IOutputGenericAg
      this.skillsRepository = new SkillsRepository()
      this.interestsRepository = new InterestsRepository()
   }
-   
+   async searchAgentsByname(name: string): Promise<IOutputGenericAgentDTO[] | Agent[]> {
+     const agentsRawFound = await this.agentRepository.createQueryBuilder()
+     .select()
+     .where(`LOWER(name) LIKE LOWER('%${name}%')`)
+     .getMany()
+     return agentsRawFound
+   }
+
   async fetchAgentProfile(id_agent: string) {
     
      const agentProfile = await this.agentRepository.findOne({where:{id:id_agent}})

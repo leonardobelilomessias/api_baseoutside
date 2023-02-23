@@ -11,7 +11,7 @@ class SponsorsAgentsRepository implements ISponsorAgentRepository{
     this.sponsorsAgentsRepository = AppDataSource.getRepository(SponsorAgent)
   }
   async fetchPublicationsSponsors(id_agent: string): Promise<any> {
-    const postSponsorAgent  = await this.sponsorsAgentsRepository.query(`select  agent.name, image_profile ,publications.description, publications.id , photos.url  from agents  agent inner join sponsors_agents sponsors on agent.id = sponsors.id_agent 
+    const postSponsorAgent  = await this.sponsorsAgentsRepository.query(`select  agent.name,agent.id id_sponsored, image_profile ,publications.description, publications.id , photos.url, publications.id publication_id from agents  agent inner join sponsors_agents sponsors on agent.id = sponsors.id_agent 
     inner join publications_agents publications on publications.id_agent = sponsors.id_agent 
     inner join photos_publications_agents photos on photos.id_publication = publications.id 
     where sponsors.id_sponsor = '${id_agent}';`)

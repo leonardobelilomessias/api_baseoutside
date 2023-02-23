@@ -4,11 +4,11 @@ import { CreateColabAgentController } from "./CreateColabController";
 import { CreateColabAgentUseCase } from "./CreateColabUseCase";
 
 
-export default ()=>{
+export default () => {
   const colabAgentRepository = new ColabAgentRepository()
   const agentRepository = new AgentRepository()
-  const createColabAgentUseCase = new CreateColabAgentUseCase(colabAgentRepository,agentRepository)
+  const createColabAgentUseCase = new CreateColabAgentUseCase(colabAgentRepository, agentRepository)
   const createColabAgentController = new CreateColabAgentController(createColabAgentUseCase)
   return createColabAgentController
-  
+
 }

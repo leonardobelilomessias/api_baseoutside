@@ -2,7 +2,7 @@ import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepositor
 import { ListAgentsController } from "./ListAgentsController";
 import { ListAgentsUseCase } from "./ListAgentsUseCase";
 
-export default()=>{
+export default () => {
 
   const agentRepository = new AgentRepository()
   const listsAgentUsecase = new ListAgentsUseCase(agentRepository)

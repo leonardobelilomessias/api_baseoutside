@@ -4,11 +4,11 @@ import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepositor
 import { UpdateImageAgentController } from "./UpdateImageAgentController";
 import { UpdateImageAgentUseCase } from "./UpdateImageAgentUseCase";
 
-export default()=>{
+export default () => {
 
   const agenteRepository = new AgentRepository()
-  const storageProvider = process.env.disk === "local" ? new LocalStorageProvider(): new S3StorageProvider()
-  const updateImageAvatarUseCase = new UpdateImageAgentUseCase(agenteRepository,storageProvider)
+  const storageProvider = process.env.disk === "local" ? new LocalStorageProvider() : new S3StorageProvider()
+  const updateImageAvatarUseCase = new UpdateImageAgentUseCase(agenteRepository, storageProvider)
   const updateImageAgentController = new UpdateImageAgentController(updateImageAvatarUseCase)
   return updateImageAgentController
 }

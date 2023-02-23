@@ -1,12 +1,16 @@
-import { IInputCreateAgentDTO, IEditAgentDTO, IResponseAgentDTO } from "../../../DTOS/IAgentDTOS";
+import { IInputCreateAgentDTO, IEditAgentDTO, IResponseAgentDTO, IOutputGenericAgentDTO } from "../../../DTOS/IAgentDTOS";
 import { IAgentRepository } from "../../../repositories/IAgentRepository";
 import { Agent } from "../entities/Agent";
 import {PrismaClient} from '@prisma/client'
+
 
 class AgentRepository  implements IAgentRepository{
     agentRepository:PrismaClient
     constructor(){
         this.agentRepository = new PrismaClient()
+    }
+    searchAgentsByname(name: string): Promise<Agent[] | IOutputGenericAgentDTO[]> {
+        throw new Error("Method not implemented.");
     }
 
     async create({ name, email, password,user_name }: IInputCreateAgentDTO): Promise<Agent> {

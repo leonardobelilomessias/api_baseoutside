@@ -1,3 +1,5 @@
+import { Decimal } from "@prisma/client/runtime";
+
 interface ICreateColabAgentDTO{
   id_agent: string;
   id_colab: string;
@@ -26,7 +28,7 @@ interface IOutputListColabsDTO{
   name: string;
   user_name: string;
   description?:string | null;
-  balance?: number;
+  balance?: number | string | Decimal;
   is_active?: boolean;
   level?: number;
   image_profile?: string | null

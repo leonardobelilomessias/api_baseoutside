@@ -2,7 +2,7 @@ import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepositor
 import { FetchAgentProfileController } from "./FetchAgentProfileController";
 import { FetchAgentProfileUseCase } from "./FetchAgentProfileUseCase";
 
-export default()=>{
+export default () => {
 
   const agentRepository = new AgentRepository()
   const fetchAgentProfileUseCase = new FetchAgentProfileUseCase(agentRepository)

@@ -2,9 +2,9 @@ import { AgentRepository } from "../../infra/typeorm/repositories/AgentRepositor
 import { FindAgentByIdController } from "./FindAgentByIdController"
 import { FindAgentByIdUseCase } from "./FindAgentByIdUseCase"
 
-export default()=>{
+export default () => {
   const agentRepository = new AgentRepository()
-  const findAgentByIdUseCase =  new FindAgentByIdUseCase(agentRepository)
+  const findAgentByIdUseCase = new FindAgentByIdUseCase(agentRepository)
   const findAgentByIdController = new FindAgentByIdController(findAgentByIdUseCase)
   return findAgentByIdController
 }

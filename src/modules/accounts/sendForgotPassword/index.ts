@@ -14,4 +14,4 @@ const mailProvider = new EtherealMailProvider()
 const sendForgotPasswordUseCase = new SendForgotPasswordUseCase(agentRepository, agentTokenRepository, mailProvider)
 const sendForgotPasswordController = new SendForgotPasswordController(sendForgotPasswordUseCase)
 
-export{sendForgotPasswordController}
+export { sendForgotPasswordController }

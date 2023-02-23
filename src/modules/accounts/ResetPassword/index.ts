@@ -5,7 +5,7 @@ import { ResetPasswordUseCase } from "./ResetPasswordUseCase";
 
 const agentReposiotory = new AgentRepository()
 const agentTokenRepository = new AgentTokenRepository()
-const resetePasswordUseCase = new ResetPasswordUseCase(agentReposiotory,agentTokenRepository)
+const resetePasswordUseCase = new ResetPasswordUseCase(agentReposiotory, agentTokenRepository)
 const resetAgentController = new ResetPassworController(resetePasswordUseCase)
 
-export{resetAgentController}
+export { resetAgentController }
