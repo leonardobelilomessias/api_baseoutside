@@ -1,4 +1,4 @@
-import { IOutputCreateActionDTO, IUpdateActionDTO } from "../dtos/IActionDTOS";
+import { IOutputCreateActionDTO, IUpdateActionDTO,IOutputGenericActionDTO } from "../dtos/IActionDTOS";
 import { Action } from "../infra/typeorm/entities/Action";
 
 
@@ -23,6 +23,8 @@ interface IActionRepository{
   edit({ id, name,description,date_start,date_end,state,local}:IUpdateActionDTO): Promise<IOutputCreateActionDTO>
   
   delete(Action:Action): Promise<IOutputCreateActionDTO>
+
+  searchActionsByName(name:string):Promise<IOutputGenericActionDTO[]>
 
 }
 

@@ -19,5 +19,7 @@ interface IAdminMissionRepository{
 
   findAgentInMission({id_agent,id_mission}):Promise<IOutputAgentMissionDTO>
 
+
+
 }
 export{IAdminMissionRepository}

@@ -9,10 +9,12 @@ class MenagerPermissionRespository{
   this.menagerPermissionRepository = AppDataSource
   }
   async confirmePermissionMission({id_agent_token,id_mission}){
+
     const alow = await this.menagerPermissionRepository.createQueryRunner()
     .manager.query(`select mission.id as id_mission , mission.creator as id_creator, admin.id_agent as id_agent from missions mission 
     left join admins_missions admin on mission.id = admin.id_mission 
     where ((admin.id_agent = '${id_agent_token}')= true or (mission.creator ='${id_agent_token}')=true) = true and (mission.id= '${id_mission}')= true ;`)
+
     return alow[0]
 
   }

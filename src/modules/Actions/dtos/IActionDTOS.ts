@@ -20,6 +20,7 @@ interface IOutputCreateActionDTO{
   local?:string;
   state?:number;
   type?:number
+  
 }
 interface IOutputGenericActionDTO{
   

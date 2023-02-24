@@ -39,6 +39,7 @@ import  listwarnigsMissionByStateController  from "../../../../modules/Missions/
 import  listwarnigsMissionByPriorityController  from "../../../../modules/Missions/UseCases/ListWarningsByPriority";
 import  listwarnigsMissionByTypeController  from "../../../../modules/Missions/UseCases/ListWarningsByType";
 import  deletedJourneyMissionController  from "../../../../modules/Missions/UseCases/DeleteJourneyMission";
+import searchMissionByNameController from "../../../../modules/Missions/UseCases/SerchMissionsByName"
 import  {ensureAuthenticate } from "../middlewares/ensureAuthenticate";
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
@@ -73,6 +74,9 @@ mission.get("/agents", async (request, response) => {
 })
 mission.get("/missionsAgent", async (request, response) => {
   await  listMissionsAgentController().handle(request,response)
+ })
+ mission.get("/searchMissionsByName", async (request, response) => {
+  await  searchMissionByNameController().handle(request,response)
  })
 mission.get("/findByName/:name?", async(request, response) => {
   await findMissionByNameController().handle(request,response)

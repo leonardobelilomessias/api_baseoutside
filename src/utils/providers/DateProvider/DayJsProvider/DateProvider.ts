@@ -11,6 +11,8 @@ class DateProvider{
   static compairInHours(date_start, date_end){
     const dateStartUtc = this.convertToUtc(date_start)
     const dateEndUtc= this.convertToUtc(date_end)
+    
+
     return dayjs(dateStartUtc).diff(dateEndUtc,"hours")
   }
   static dateNow(){

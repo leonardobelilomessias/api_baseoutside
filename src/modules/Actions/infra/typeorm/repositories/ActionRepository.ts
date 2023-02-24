@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { IOutputCreateActionDTO } from "../../../dtos/IActionDTOS";
+import { IOutputCreateActionDTO, IOutputGenericActionDTO } from "../../../dtos/IActionDTOS";
 import { IActionRepository } from "../../../repositories/IActionRepository";
 import { Action } from "../entities/Action";
 
@@ -9,6 +9,13 @@ class ActionRepository implements IActionRepository{
   private actionRepository: Repository<Action>
   constructor() {
     this.actionRepository = AppDataSource.getRepository("actions")
+  }
+  async searchActionsByName(name:string): Promise<IOutputGenericActionDTO[]> {
+    const missionsRawFound = await this.actionRepository.createQueryBuilder()
+    .select()
+    .where(`LOWER(name) LIKE LOWER('%${name}%')`)
+    .getMany()
+    return missionsRawFound
   }
   async findByIdMission(id_mission: string): Promise<Action[]> {
     const findActionsByMission = await this.actionRepository.find({where:{id_mission}})

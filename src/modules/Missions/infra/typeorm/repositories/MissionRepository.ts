@@ -10,14 +10,23 @@ class MissionRepository implements IMissionRepository{
   constructor(){
     this.missionRepository = AppDataSource.getRepository("missions")
   }
+  async   serachMissionsByName(name:string): Promise<IOutputMissionDTO[]> {
+    const missionsRawFound = await this.missionRepository.createQueryBuilder()
+    .select()
+    .where(`LOWER(name) LIKE LOWER('%${name}%')`)
+    .getMany()
+    return missionsRawFound
+  }
   async findById(id: string): Promise<IOutputMissionDTO> {
     const foundMissionById = await this.missionRepository.findOneBy({ id: id })
     return foundMissionById
   }
   async create({identifier, name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field}): Promise<IOutputMissionDTO> {
+    
     try{
       const newMission = new Mission()
       Object.assign(newMission, {identifier, name, description, creator, image_profile, date_end, date_start, duration, is_private, local, type ,field})
+      console.log(newMission)
       const mission = await this.missionRepository.save(newMission)
       return mission
     }catch{

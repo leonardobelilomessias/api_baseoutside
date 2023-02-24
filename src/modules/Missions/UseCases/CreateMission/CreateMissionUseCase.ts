@@ -15,7 +15,7 @@ class CreateMissionUseCase{
     
     const existMission = await this.missionRepository.findByName(name);
     if (existMission) throw new AppError('Mission already exist');
-    if ((!name || !description || !creator)) throw new AppError("Is necessary fill all filds");
+    if ((!name || !description || !creator ||!identifier)) throw new AppError("Is necessary fill all filds");
     if(creator!== id_agent_token) throw new AppError("Token sen not to own agent authenticate ")
     const missionClean  = await cleanEmptySpace({identifier,name,description,creator,image_profile,local,field,type})
     Object.assign(missionClean,{date_end,date_start,duration,is_private})

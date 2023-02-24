@@ -19,6 +19,7 @@ class CreateActionUseCase{
     const dateNow = DateProvider.dateNow()
     if(!name || !description || !id_mission) throw new AppError("Sent invalid value")
     const allowCreateAction = await this.menagePermissionMission.confirmePermissionMission({id_agent_token,id_mission})
+  
     if(!allowCreateAction || id_agent_token !==creator) throw new AppError("Agent Authenticated haven't authorization to action..")
     const compareDateStart = DateProvider.compairInHours(date_start,dateNow)
     const compareDateEnd = DateProvider.compairInHours(date_end,dateNow)

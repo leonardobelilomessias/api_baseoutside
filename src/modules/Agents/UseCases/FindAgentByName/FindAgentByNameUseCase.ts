@@ -12,7 +12,6 @@ class FindAgentByNameUseCase {
   }
   async execute({ name }): Promise<IOutputGenericAgentDTO | IOutputAgentDTO> {
     if (!name) throw new AppError("Value of field names is empty.")
-    console.log(name)
     const handleName = name.trim()
     const foundAgent = await this.agentRepository.findByName(handleName)
     if (!foundAgent) return foundAgent

@@ -45,6 +45,7 @@ import  createWarningActionController  from "../../../../modules/Actions/UseCase
 import  deletedWarnigActionController  from "../../../../modules/Actions/UseCases/WarningsAction/DeleteWarningMission";
 import  listwarnigsActionByStateController  from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningByStatus";
 import  listWarnigsActionController  from "../../../../modules/Actions/UseCases/WarningsAction/listWarningsAction";
+import  searchActionsByName  from "../../../../modules/Actions/UseCases/searchActionsByName";
 
 import  listWarnigsActionByPriorityController  from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningsByPriority";
 import  listwarnigsActionByTypeController  from "../../../../modules/Actions/UseCases/WarningsAction/ListWarningsByType";
@@ -80,6 +81,9 @@ action.get("/byIdMission", async (request, response) => {
 })
 action.get("/actionsAgent", async (request, response) => {
   await listActionsAgentController().handle(request,response)
+})
+action.get("/searchactionsByName", async (request, response) => {
+  await searchActionsByName().handle(request,response)
 })
 
 action.get("/listTasksDepartament", async (request, response) => {
