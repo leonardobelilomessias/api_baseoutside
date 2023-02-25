@@ -28,7 +28,17 @@ import { IEditAgentDTO, IOutputAgentDTO, IOutputCreateAgentDTO, IOutputGenericAg
 
   async fetchAgentProfile(id_agent: string) {
     
-     const agentProfile = await this.agentRepository.findOne({where:{id:id_agent}})
+     const agentProfile = await this.agentRepository.createQueryBuilder("agent")
+     .leftJoinAndMapMany("agent.skills", "skills_agents", "sk", "agent.id = sk.id_agent")
+     .leftJoinAndMapMany("agent.interests", "interests_agents", "in", "agent.id = in.id_agent")
+     .leftJoinAndMapMany("agent.owner_mission", "missions", "ms", "agent.id = ms.creator")
+     .leftJoinAndMapMany("agent.missions","agents_missions","am","agent.id =am.id_agent")
+     .leftJoinAndMapMany("agent.tasks","agents_tasks","at","agent.id =at.id_agent")
+     .leftJoinAndMapMany("agent.actions","agents_actions","ac","agent.id =ac.id_agent")
+     .where("agent.is_active = :is_active", { is_active: true })
+     .andWhere("agent.id =:id_agent",{id_agent:id_agent})
+     .getOne()
+     delete agentProfile.password
      return agentProfile
    }
 

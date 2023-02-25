@@ -36,5 +36,7 @@ interface IAgentRepository{
   fetchAgentProfile(id_agent:string)
   
   searchAgentsByname(name:string):Promise<IOutputGenericAgentDTO[]| Agent[] |IOutputAgentDTO[]>
+
+  
 } 
 export {IAgentRepository} 

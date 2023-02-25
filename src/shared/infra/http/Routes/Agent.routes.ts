@@ -121,7 +121,7 @@ agent.post("/colabAgent",ensureAuthenticate, async (request, response) => {
   return await  createCardAgentController().handle(request,response)
  })
 
- agent.post("/fetchAgentProfile",async (request, response) => {
+ agent.get("/fetchAgentProfile",async (request, response) => {
   return await  fetchAgentProfileController().handle(request,response)
  })
 
