@@ -41,6 +41,8 @@ import  listwarnigsMissionByTypeController  from "../../../../modules/Missions/U
 import  deletedJourneyMissionController  from "../../../../modules/Missions/UseCases/DeleteJourneyMission";
 import searchMissionByNameController from "../../../../modules/Missions/UseCases/SerchMissionsByName"
 import  {ensureAuthenticate } from "../middlewares/ensureAuthenticate";
+import fetchMissionProfileController from "../../../../modules/Missions/UseCases/FetchMissionProfile"
+
 const mission = Router()
 const uploadPhotosMission = multer(uploadConfig)
 
@@ -51,6 +53,8 @@ mission.post("/",ensureAuthenticate, async (request, response) => {
 mission.post("/agent",ensureAuthenticate, async (request, response) => {
   await createAgentMissionController().handle(request,response)
 })
+
+
 mission.post("/card",ensureAuthenticate, async (request, response) => {
   await createCardMissionController().handle(request,response)
 })
@@ -83,6 +87,10 @@ mission.get("/findByName/:name?", async(request, response) => {
 })
 mission.get("/findByField/:field?", async(request, response) => {
    await findMissionsByFieldController().handle(request,response)
+})
+
+mission.get('/profileMission',async(request,response)=>{
+  await fetchMissionProfileController().handle(request,response)
 })
 
 mission.get("/findByLocal/:local?", async(request, response) => {

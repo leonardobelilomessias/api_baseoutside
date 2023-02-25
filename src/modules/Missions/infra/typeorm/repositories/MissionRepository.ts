@@ -10,6 +10,11 @@ class MissionRepository implements IMissionRepository{
   constructor(){
     this.missionRepository = AppDataSource.getRepository("missions")
   }
+  async fetchProfileMission(id: string): Promise<any> {
+    if (!id) return null
+    const missionFound = await this.missionRepository.findOne({where:{id:id}})
+    return missionFound
+  }
   async   serachMissionsByName(name:string): Promise<IOutputMissionDTO[]> {
     const missionsRawFound = await this.missionRepository.createQueryBuilder()
     .select()

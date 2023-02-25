@@ -24,6 +24,8 @@ interface IMissionRepository{
   createAdminMission({id_mission,id_agent,type})
   
   serachMissionsByName(name:string):Promise<IOutputMissionDTO[]>
+
+  fetchProfileMission(id:string):Promise<any>
   
 }
 
