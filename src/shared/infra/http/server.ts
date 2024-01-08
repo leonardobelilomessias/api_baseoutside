@@ -10,6 +10,7 @@ const app = express()
 app.use("/sendPhotos",express.static(`./tmp/sendPhotos`))
 app.use("/PhotosPublications",express.static(`./tmp/PhotosPublications`))
 app.use("/Agent",express.static(`./tmp/Agent`))
+app.use("/images",express.static(`./src/public/image`))
 
 app.use(express.json())
 app.use(router)  

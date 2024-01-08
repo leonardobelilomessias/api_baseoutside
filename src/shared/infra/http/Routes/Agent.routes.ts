@@ -37,6 +37,7 @@ import fetchAgentProfileController  from "../../../../modules/Agents/UseCases/Fe
 import findAgentById  from "../../../../modules/Agents/UseCases/FindAgentById";
 import feedSponsorAgentController from  "../../../../modules/Agents/UseCases/FeedSponsor";
 import SearchAgentsByName from "../../../../modules/Agents/UseCases/SearchAgentsByName";
+import fetchPublicationAgentByIdController from '../../../../modules/Agents/UseCases/FetchPublicationAgentById'
 const agent = Router()
 const upload_image_profile = multer(uploadConfig)
 const uploadPhotosAgent = multer(uploadConfig)
@@ -157,6 +158,10 @@ agent.delete("/journey",async (request, response) => {
 })
 agent.delete("/deletePublication",ensureAuthenticate,async (request, response) => {
   return await  deletePublicationAgentController().handle(request,response)
+})
+
+agent.get("/fetchPublicationAgentById",async(request,response)=>{
+    return await fetchPublicationAgentByIdController().handle(request,response)
 })
 
 agent.delete("/deleteCard",ensureAuthenticate,async (request, response) => {

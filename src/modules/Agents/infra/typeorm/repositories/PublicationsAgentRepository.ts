@@ -1,7 +1,7 @@
 import { Repository } from "typeorm";
 import { AppError } from "../../../../../shared/errors/AppError";
 import { AppDataSource } from "../../../../../shared/infra/typeorm";
-import { IEditPublicationDTO, ICreatePublicationDTO, IOutputCreatePublicationDTO, IOutputListPublicationDTO, IOutputGenericPublicationDTO, IPublicationAgentDTO, } from "../../../DTOS/IPublicationAgentDTOS";
+import { IEditPublicationDTO, ICreatePublicationDTO, IOutputCreatePublicationDTO, IOutputListPublicationDTO, IOutputGenericPublicationDTO, IPublicationAgentDTO, IOutpuLFetchPublicationDTO, } from "../../../DTOS/IPublicationAgentDTOS";
 import { IJourneyAgentRepository } from "../../../repositories/IJourneyRepository";
 import { IPublicationsAgentRepository } from "../../../repositories/IPublicationsAgentRepository";
 import { Agent } from "../entities/Agent";
@@ -19,6 +19,15 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     this.agentRepository = AppDataSource.getRepository("agents")
     this.photosPublicationsAgent = photoPublicationAgentRepository
     this.journeyAgentRepository = new JourneyAgentRepository()
+  }
+
+  async fetchAgentPublicationById(publication_id: string): Promise<IOutpuLFetchPublicationDTO> {
+    const publicationByIdAgent = await this.publicationsAgentRepository.findOne({
+      where:{id:publication_id}
+    })
+    const photos = await this.photosPublicationsAgent.findPhotosByIdPublication(publication_id)
+    console.log(photos)
+    return {publication:publicationByIdAgent,photos:photos}
   }
   async listByAgentName(name: string): Promise<IPublicationAgentDTO[]> {
     throw new Error("Method not implemented.");
@@ -38,6 +47,8 @@ class PublicationsAgentRepository implements IPublicationsAgentRepository{
     })
     return await Promise.all(fullPublications)
   }
+
+
 
   async findPublicationById(id_publication: string): Promise<IOutputGenericPublicationDTO> {
     const foundPublication = await this.publicationsAgentRepository.findOneBy({id:id_publication})

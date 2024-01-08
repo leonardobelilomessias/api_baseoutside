@@ -51,6 +51,17 @@ interface IOutputCreatePublicationDTO{
   photos:string[]
   
 }
+interface IOutpuLFetchPublicationDTO{
+  publication:PublicationAgent;
+  photos:IPhotos[]
+  
+}
+interface IPhotos{
+  id:string
+  id_publication:string
+  url:string
+  created_at:string
+}
 export{
   IInputCreatePublicationDTO
   ,IEditPublicationDTO
@@ -58,6 +69,8 @@ export{
   IOutputListPublicationDTO,
   ICreatePublicationDTO,
 IOutputGenericPublicationDTO,
-IInputUpdatePublicationDTO, IPublicationAgentDTO
+IInputUpdatePublicationDTO, IPublicationAgentDTO,
+IOutpuLFetchPublicationDTO
+
 
 }
